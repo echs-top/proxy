@@ -1,4 +1,4 @@
-#自用直连规则补充
+#自用直连域名补充
 payload:
   - dns.alidns.com
   - doh.pub
