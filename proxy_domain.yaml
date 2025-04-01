@@ -1,1 +1,6 @@
-
+#自用代理域名补充
+payload:
+  - '+.googleapis.cn'
+  - '+.googleapis.com'
+  - connectivitycheck.gstatic.com
+  
