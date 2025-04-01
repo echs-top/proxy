@@ -1,0 +1,10 @@
+#自用直连规则补充
+payload:
+  - dns.alidns.com
+  - doh.pub
+  - '+.echs.top'
+  - '+.sharepoint.cn'
+  - '+.zwying.com'
+  - '+.lwgzs.cn'
+  - '+.123pan.cn'
+  - '+.123957.com'
