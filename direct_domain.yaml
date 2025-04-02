@@ -1,5 +1,6 @@
 #自用直连域名补充
 payload:
+  - dns.nextdns.io
   - dns.alidns.com
   - '+.echs.top'
   - '+.sharepoint.cn'
