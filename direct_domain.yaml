@@ -1,7 +1,6 @@
 #自用直连域名补充
 payload:
   - dns.alidns.com
-  - doh.pub
   - '+.echs.top'
   - '+.sharepoint.cn'
   - '+.zwying.com'
