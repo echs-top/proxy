@@ -2,14 +2,6 @@
 payload:
   - dns.nextdns.io
   - dns.alidns.com
-  - '+.echs.top'
-  - '+.sharepoint.cn'
-  - '+.zwying.com'
-  - '+.lwgzs.cn'
-  - '+.123pan.cn'
-  - '+.123957.com'
-  - '+.123865.com'
-  - '+.linux.do'
   - mtalk.google.com
   - mtalk4.google.com
   - mtalk-staging.google.com
@@ -22,3 +14,12 @@ payload:
   - alt6-mtalk.google.com
   - alt7-mtalk.google.com
   - alt8-mtalk.google.com
+  - '+.echs.top'
+  - '+.sharepoint.cn'
+  - '+.zwying.com'
+  - '+.lwgzs.cn'
+  - '+.123pan.cn'
+  - '+.123957.com'
+  - '+.123865.com'
+  - '+.linux.do'
+  - '+.ldstatic.com'
