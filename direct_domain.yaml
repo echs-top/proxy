@@ -14,6 +14,8 @@ payload:
   - alt6-mtalk.google.com
   - alt7-mtalk.google.com
   - alt8-mtalk.google.com
+  - manga.bilibili.com
+  - upos-hz-mirrorakam.akamaized.net
   - '+.echs.top'
   - '+.sharepoint.cn'
   - '+.zwying.com'
@@ -26,3 +28,25 @@ payload:
   - '+.qsbtxt.net'
   - '+.push.oppo.com'
   - '+.push.oppomobile.com'
+  - '+.bilibili.tv'
+  - '+.biliintl.com'
+  - '+.dreamcast.hk'
+  - '+.bilibiligame.cn'
+  - '+.bilibiligame.co'
+  - '+.bilibiligame.net'
+  - '+.biligame.co'
+  - '+.biligame.com'
+  - '+.biligame.ne'
+  - '+.bilivideo.cn'
+  - '+.bilibilipay.cn'
+  - '+.bilibili.cn'
+  - '+.bigfun.cn'
+  - '+.bigfunapp.cn'
+  - '+.bili22.cn'
+  - '+.bili2233.cn'
+  - '+.bili23.cn'
+  - '+.bili33.cn'
+  - '+.anitama.cn'
+  - '+.animetamashi.cn'
+  - '+.bilicomic.com'
+  - '+.bilicomics.com'
