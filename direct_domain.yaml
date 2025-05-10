@@ -2,6 +2,7 @@
 payload:
   - dns.nextdns.io
   - dns.alidns.com
+  - dns.google
   - mtalk.google.com
   - mtalk4.google.com
   - mtalk-staging.google.com
