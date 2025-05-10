@@ -1,5 +1,7 @@
 #自用代理域名补充
 payload:
+  - dns.google
+  - dns.nextdns.io
   - '+.googleapis.cn'
   - '+.googleapis.com'
   - connectivitycheck.gstatic.com
