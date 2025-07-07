@@ -1,4 +1,0 @@
-223.5.5.5     dns.alidns.com
-119.29.29.29      doh.pub
-8.8.8.8     dns.google
-45.90.28.153      dns.nextdns.io
