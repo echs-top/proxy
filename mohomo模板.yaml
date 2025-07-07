@@ -1,0 +1,89 @@
+## 配置 ##
+mixed-port: 7890
+#redir-port: 7891
+#tproxy-port: 7892
+mode: rule
+udp: true
+ipv6: true
+allow-lan: true
+bind-address: "*"
+log-level: silent
+unified-delay: true
+tcp-concurrent: true
+disable-keep-alive: true
+#keep-alive-interval: 60
+#idle-timeout: 120
+geodata-loader: false
+find-process-mode: strict
+global-client-fingerprint: chrome
+#external-controller: 0.0.0.0:9090
+profile: { store-selected: true, store-fake-ip: true }
+ntp: { enable: true, write-to-system: false, server: time.aliyun.com, port: 123, interval: 60 }
+direct-dns: &direct-dns ["https://dns.alidns.com/dns-query#h3=true&ecs=223.6.6.6/24&ecs-override=true","https://doh.pub/dns-query#ecs=119.29.29.29/24&ecs-override=true"]
+proxy-dns: &proxy-dns ["https://dns.google/dns-query#proxy&h3=true&ecs=8.8.4.4/24&ecs-override=true","https://cloudflare-dns.com/dns-query#proxy&h3=true&ecs=1.1.1.1/24&ecs-override=true"]
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip, fake-ip-filter: ['+.*'], default-nameserver: [8.8.4.4,233.6.6.6], proxy-server-nameserver: *direct-dns, direct-nameserver: *direct-dns, nameserver: *proxy-dns }
+sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } } }
+tun: { enable: true, stack: mixed, auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, dns-hijack: ["any:53","tcp://any:53"] }
+
+
+## 订阅 ##
+proxy-providers:
+  link: { type: http, url: "订阅地址", path: ./link.yaml, proxy: DIRECT, interval: 86400, health-check: { enable: true, url: 'http://www.google.com/generate_204', interval: 1200, timeout: 4000, max-failed-times: 4 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
+proxy-groups:
+  - { name: PROXY, type: select, proxies: [自动-新日,自动-美德,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国,手动选择], use: [link], filter: "剩余流量",}
+  - { name: 手动选择, type: select, use: [link], exclude-filter: "🇦🇶|剩余流量|套餐到期|距离下次重置|过滤", lazy: true }
+  - { name: TELEGRAM, type: select, proxies: [自动-美德,自动-新日,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国,手动选择,PROXY] }
+  - { name: ONEDRIVE, type: select, proxies: [DIRECT,PROXY,自动-新日,自动-美德,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国] }
+  # - { name: STEAM, type: select, proxies: [PROXY,DIRECT] }
+  - { name: 自动-新日, type: url-test, use: [link], filter: "🇸🇬|🇯🇵", tolerance: 30, lazy: true, hidden: true }
+  - { name: 自动-美德, type: url-test, use: [link], filter: "🇺🇸|🇩🇪", tolerance: 30, lazy: true, hidden: true }
+  - { name: 自动-港台, type: url-test, use: [link], filter: "🇭🇰|🇹🇼", tolerance: 30, lazy: true, hidden: true }
+  - { name: 均衡-香港, type: load-balance, use: [link], filter: "🇭🇰", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 均衡-新加坡, type: load-balance, use: [link], filter: "🇸🇬", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 均衡-日本, type: load-balance, use: [link], filter: "🇯🇵", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 均衡-美国, type: load-balance, use: [link], filter: "🇺🇸", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 均衡-德国, type: load-balance, use: [link], filter: "🇩🇪", strategy: round-robin, lazy: true, hidden: true }
+
+
+## 规则 ##
+rules:
+  - RULE-SET,ads,REJECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,googlefcm,DIRECT
+  - DOMAIN,push.oppo.com,DIRECT
+  - DOMAIN,push.oppomobile.com,DIRECT
+  - DOMAIN-SUFFIX,808yun.cn,DIRECT
+  - DOMAIN-SUFFIX,echs.top,DIRECT
+  - DOMAIN-SUFFIX,123pan.cn,DIRECT
+  - DOMAIN-SUFFIX,linux.do,DIRECT
+  - DOMAIN-SUFFIX,qsbtxt.net,DIRECT
+  - DOMAIN-SUFFIX,mypikpak.com,PROXY
+  - DOMAIN,connectivitycheck.gstatic.com,PROXY
+  - DOMAIN-SUFFIX,googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,googleapis.com,PROXY  
+  - RULE-SET,bilibili,DIRECT
+  - RULE-SET,applications,DIRECT
+  - RULE-SET,games,DIRECT
+  - RULE-SET,cn,DIRECT
+  - RULE-SET,telegram,TELEGRAM
+  - RULE-SET,onedrive,ONEDRIVE
+  # - RULE-SET,steam,STEAM
+  - RULE-SET,private_ip,DIRECT,no-resolve
+  - IP-CIDR,154.201.76.158/24,DIRECT
+  - RULE-SET,cn_ip,DIRECT
+  - MATCH,PROXY
+ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: DIRECT }
+domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT }
+rule-providers:
+  ads: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
+  googlefcm: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
+  private: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.yaml", path: ./private.yaml }
+  bilibili: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/bilibili.yaml", path: ./bilibili.yaml }
+  applications: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/applications.yaml", path: ./applications.yaml }
+  games: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.yaml", path: ./games.yaml }
+  cn: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.yaml", path: ./cn.yaml }
+  telegram: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml", path: ./telegram.yaml }
+  onedrive: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.yaml", path: ./onedrive.yaml }
+  # steam: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.yaml", path: ./steam.yaml }
+  private_ip: { <<: *ip, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.yaml", path: ./private_ip.yaml }
+  cn_ip: { <<: *ip, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.yaml", path: ./cn_ip.yaml }
