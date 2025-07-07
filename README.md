@@ -1,5 +1,8 @@
 # proxy 代理机场推荐
 
+### 自用mihomo配置模板：
+https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/config.yaml
+
 ### 注：均为本人使用中推荐，但不对问题负责请自行判断(2025.07.8更新)
 
 ### 一、魔戒(用量少首选)
