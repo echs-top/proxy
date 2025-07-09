@@ -1,4 +1,4 @@
-# proxy 代理机场推荐
+# proxy 代理机场推荐，优先低价
 
 ### 自用mihomo配置模板：
 https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/config.yaml
@@ -26,4 +26,4 @@ https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/config.yaml
 
 
 ### 弃用机场
-免费机场(不再便宜)、glados(用着用着就连不上了，节点貌似限制能访问的网站)
+免费机场(不再便宜，只能纪念一下了)、glados(限制下载(约15MB/s下载超过20分钟好像就会限制，不允许跑满宽带下载)，节点限制能访问的网站)
