@@ -1,7 +1,5 @@
 ## 配置 ##
 mixed-port: 7890
-#redir-port: 7891
-#tproxy-port: 7892
 mode: rule
 ipv6: true
 allow-lan: true
@@ -9,38 +7,43 @@ bind-address: "*"
 log-level: silent
 unified-delay: true
 tcp-concurrent: true
-disable-keep-alive: true
-#keep-alive-interval: 60
-#idle-timeout: 120
 find-process-mode: strict
-global-client-fingerprint: chrome
-#external-controller: 0.0.0.0:9090
+global-client-fingerprint: random
+etag-support: true
 profile: { store-selected: true, store-fake-ip: true }
-ntp: { enable: true, write-to-system: false, server: time.aliyun.com, port: 123, interval: 60 }
-direct-dns: &direct-dns ["https://dns.alidns.com/dns-query#h3=true&ecs=223.6.6.6/24&ecs-override=true","https://doh.pub/dns-query#ecs=119.29.29.29/24&ecs-override=true"]
-proxy-dns: &proxy-dns ["https://dns.google/dns-query#proxy&h3=true&ecs=8.8.4.4/24&ecs-override=true","https://cloudflare-dns.com/dns-query#proxy&h3=true&ecs=1.1.1.1/24&ecs-override=true"]
-dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip, fake-ip-filter: ['+.*'], default-nameserver: [8.8.4.4,233.6.6.6], proxy-server-nameserver: *direct-dns, direct-nameserver: *direct-dns, nameserver: *proxy-dns }
-sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } } }
-tun: { enable: true, stack: mixed, auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, dns-hijack: ["any:53","tcp://any:53"] }
+direct-dns: &direct-dns ["https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.6.6.6/24&ecs-override=true","https://doh.pub/dns-query#DIRECT&ecs=119.29.29.29/24&ecs-override=true"]
+proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true&ecs=8.8.4.4/24&ecs-override=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true&ecs=1.1.1.1/24&ecs-override=true"]
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip, fake-ip-range: 28.0.0.1/8, fake-ip-filter: ["*","RULE-SET:private,googlefcm,direct_domain,fakeip,cn"], default-nameserver: [8.8.4.4,233.6.6.6], proxy-server-nameserver: *direct-dns, direct-nameserver: *direct-dns, nameserver: *proxy-dns }
+sniffer: { enable: true, force-dns-mapping: false, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } }, skip-domain: ["RULE-SET:ads,private,googlefcm,proxy_domain,direct_domain,onedrive,proxy,fakeip,cn"], skip-src-address: ["RULE-SET:private_ip,proxy_ip,direct_ip,cn_ip"] }
+tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, udp-timeout: 600 }
 
 
 ## 订阅 ##
 proxy-providers:
-  link: { type: http, url: "订阅地址", path: ./link.yaml, proxy: DIRECT, interval: 86400, health-check: { enable: true, url: 'http://www.google.com/generate_204', interval: 1200, timeout: 4000, max-failed-times: 4 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
+  link: { type: http, url: "机场订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.1"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 1800, timeout: 5000, max-failed-times: 2}, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [自动-新日,自动-美德,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国,手动选择], use: [link], filter: "剩余流量",}
+  - { name: PROXY, type: select, proxies: [负载均衡,自动选择,故障转移,手动选择,DIRECT], use: [link], filter: "剩余流量" }
+  - { name: 负载均衡, type: select, proxies: [新加坡⁺,日本⁺,美国⁺,德国⁺,香港⁺,台湾⁺,韩国⁺], lazy: true }
+  - { name: 自动选择, type: select, proxies: [新加坡,日本,美国,德国,香港,台湾,韩国], lazy: true }
+  - { name: 故障转移, type: fallback, use: [link], exclude-filter: "🇦🇶|剩余流量|套餐到期|距离下次重置|过滤", lazy: true }
   - { name: 手动选择, type: select, use: [link], exclude-filter: "🇦🇶|剩余流量|套餐到期|距离下次重置|过滤", lazy: true }
-  - { name: TELEGRAM, type: select, proxies: [自动-美德,自动-新日,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国,手动选择,PROXY] }
-  - { name: ONEDRIVE, type: select, proxies: [DIRECT,PROXY,自动-新日,自动-美德,自动-港台,均衡-香港,均衡-新加坡,均衡-日本,均衡-美国,均衡-德国] }
+  - { name: ONEDRIVE, type: select, proxies: [DIRECT,PROXY] }
+  # - { name: MICROSOFT, type: select, proxies: [DIRECT,PROXY] }
   # - { name: STEAM, type: select, proxies: [PROXY,DIRECT] }
-  - { name: 自动-新日, type: url-test, use: [link], filter: "🇸🇬|🇯🇵", tolerance: 30, lazy: true, hidden: true }
-  - { name: 自动-美德, type: url-test, use: [link], filter: "🇺🇸|🇩🇪", tolerance: 30, lazy: true, hidden: true }
-  - { name: 自动-港台, type: url-test, use: [link], filter: "🇭🇰|🇹🇼", tolerance: 30, lazy: true, hidden: true }
-  - { name: 均衡-香港, type: load-balance, use: [link], filter: "🇭🇰", strategy: round-robin, lazy: true, hidden: true }
-  - { name: 均衡-新加坡, type: load-balance, use: [link], filter: "🇸🇬", strategy: round-robin, lazy: true, hidden: true }
-  - { name: 均衡-日本, type: load-balance, use: [link], filter: "🇯🇵", strategy: round-robin, lazy: true, hidden: true }
-  - { name: 均衡-美国, type: load-balance, use: [link], filter: "🇺🇸", strategy: round-robin, lazy: true, hidden: true }
-  - { name: 均衡-德国, type: load-balance, use: [link], filter: "🇩🇪", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 新加坡⁺, type: load-balance, use: [link], filter: "🇸🇬", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 日本⁺, type: load-balance, use: [link], filter: "🇯🇵", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 美国⁺, type: load-balance, use: [link], filter: "🇺🇸", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 德国⁺, type: load-balance, use: [link], filter: "🇩🇪", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 香港⁺, type: load-balance, use: [link], filter: "🇭🇰", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 台湾⁺, type: load-balance, use: [link], filter: "🇹🇼", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 韩国⁺, type: load-balance, use: [link], filter: "🇰🇷", strategy: round-robin, lazy: true, hidden: true }
+  - { name: 新加坡, type: url-test, use: [link], filter: "🇸🇬", tolerance: 20, lazy: true, hidden: true }
+  - { name: 日本, type: url-test, use: [link], filter: "🇯🇵", tolerance: 20, lazy: true, hidden: true }
+  - { name: 美国, type: url-test, use: [link], filter: "🇺🇸", tolerance: 20, lazy: true, hidden: true }
+  - { name: 德国, type: url-test, use: [link], filter: "🇩🇪", tolerance: 20, lazy: true, hidden: true }
+  - { name: 香港, type: url-test, use: [link], filter: "🇭🇰", tolerance: 20, lazy: true, hidden: true }
+  - { name: 台湾, type: url-test, use: [link], filter: "🇹🇼", tolerance: 20, lazy: true, hidden: true }
+  - { name: 韩国, type: url-test, use: [link], filter: "🇰🇷", tolerance: 20, lazy: true, hidden: true }
 
 
 ## 规则 ##
@@ -48,40 +51,82 @@ rules:
   - RULE-SET,ads,REJECT
   - RULE-SET,private,DIRECT
   - RULE-SET,googlefcm,DIRECT
-  - DOMAIN,push.oppo.com,DIRECT
-  - DOMAIN,push.oppomobile.com,DIRECT
-  - DOMAIN-SUFFIX,808yun.cn,DIRECT
-  - DOMAIN-SUFFIX,echs.top,DIRECT
-  - DOMAIN-SUFFIX,123pan.cn,DIRECT
-  - DOMAIN-SUFFIX,linux.do,DIRECT
-  - DOMAIN-SUFFIX,qsbtxt.net,DIRECT
-  - DOMAIN-SUFFIX,mypikpak.com,PROXY
-  - DOMAIN,connectivitycheck.gstatic.com,PROXY
-  - DOMAIN-SUFFIX,googleapis.cn,PROXY
-  - DOMAIN-SUFFIX,googleapis.com,PROXY  
-  - RULE-SET,bilibili,DIRECT
-  - RULE-SET,applications,DIRECT
-  - RULE-SET,games,DIRECT
-  - RULE-SET,cn,DIRECT
-  - RULE-SET,telegram,TELEGRAM
+  - RULE-SET,proxy_domain,PROXY
+  - RULE-SET,direct_domain,DIRECT
   - RULE-SET,onedrive,ONEDRIVE
+  # - RULE-SET,microsoft,MICROSOFT
   # - RULE-SET,steam,STEAM
+  # - RULE-SET,bilibili,DIRECT
+  # - RULE-SET,games,DIRECT
+  - RULE-SET,proxy,PROXY
+  - RULE-SET,fakeip,DIRECT
+  - RULE-SET,cn,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - IP-CIDR,154.201.76.158/24,DIRECT
+  - RULE-SET,proxy_ip,PROXY
+  - RULE-SET,direct_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: DIRECT }
 domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT }
 rule-providers:
+  direct_domain:
+    type: inline
+    behavior: domain
+    payload:
+      - 'push.oppo.com'
+      - 'push.oppomobile.com'
+      - '+.808yun.cn'
+      - '+.echs.top'
+      - '+.123pan.cn'
+      - '+.linux.do'
+      - '+.qsbtxt.net'
+      - '+.boki.moe'
+      - '+.doh.pub'
+      - '+.alidns.com'
+  proxy_domain:
+    type: inline
+    behavior: domain
+    payload:
+      - '+.mypikpak.com'
+      - '+.googleapis.cn'
+      - '+.googleapis.com'
+      - '+.cloudflare-dns.com'
+      - '+.dns.google'
+      - '+.nextdns.io'
+  direct_ip:
+    type: inline
+    behavior: ipcidr
+    payload:
+      - '154.201.76.158/24'
+      - '223.5.5.5/24'
+      - '223.6.6.6/24'
+      - '119.29.29.29/24'
+      - '2400:3200::1/32'
+      - '2400:3200:baba::1/32'
+      - '2402:4e00::/32'
+      - '2402:4e00:1::/32'
+  proxy_ip:
+    type: inline
+    behavior: ipcidr
+    payload:
+      - '8.8.8.8/24'
+      - '8.8.4.4/24'
+      - '1.1.1.1/24'
+      - '1.0.0.1/24'
+      - '2606:4700:4700::1111/32'
+      - '2606:4700:4700::1001/32'
+      - '2001:4860:4860::8888/32'
+      - '2001:4860:4860::8844/32'
   ads: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
-  googlefcm: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
   private: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.yaml", path: ./private.yaml }
-  bilibili: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/bilibili.yaml", path: ./bilibili.yaml }
-  applications: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/applications.yaml", path: ./applications.yaml }
-  games: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.yaml", path: ./games.yaml }
-  cn: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.yaml", path: ./cn.yaml }
-  telegram: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml", path: ./telegram.yaml }
+  googlefcm: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
   onedrive: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.yaml", path: ./onedrive.yaml }
+  # microsoft: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.yaml", path: ./microsoft.yaml }
   # steam: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.yaml", path: ./steam.yaml }
+  proxy: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.yaml", path: ./proxy.yaml }
+  # bilibili: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/bilibili.yaml", path: ./bilibili.yaml }
+  # games: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.yaml", path: ./games.yaml }
+  fakeip: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.yaml", path: ./fakeip.yaml }
+  cn: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.yaml", path: ./cn.yaml }
   private_ip: { <<: *ip, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.yaml", path: ./private_ip.yaml }
   cn_ip: { <<: *ip, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.yaml", path: ./cn_ip.yaml }
