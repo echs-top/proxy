@@ -20,7 +20,7 @@ tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], auto-r
 
 ## 订阅 ##
 proxy-providers:
-  link: { type: http, url: "机场订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.1"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 1800, timeout: 5000, max-failed-times: 2}, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
+  link: { type: http, url: "机场订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.1"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 2}, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
 proxy-groups:
   - { name: PROXY, type: select, proxies: [负载均衡,自动选择,故障转移,手动选择,DIRECT], use: [link], filter: "剩余流量" }
   - { name: 负载均衡, type: select, proxies: [新加坡⁺,日本⁺,美国⁺,德国⁺,香港⁺,台湾⁺,韩国⁺], lazy: true }
