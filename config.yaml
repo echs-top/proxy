@@ -13,7 +13,7 @@ etag-support: true
 profile: { store-selected: true, store-fake-ip: true }
 direct-dns: &direct-dns ["https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.6.6.6/24&ecs-override=true","https://doh.pub/dns-query#DIRECT&ecs=119.29.29.29/24&ecs-override=true"]
 proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true&ecs=8.8.4.4/24&ecs-override=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true&ecs=1.1.1.1/24&ecs-override=true"]
-dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip, fake-ip-range: 28.0.0.1/8, fake-ip-filter: ["*","RULE-SET:private,googlefcm,direct_domain,fakeip,cn"], default-nameserver: [8.8.4.4,233.6.6.6], proxy-server-nameserver: *direct-dns, direct-nameserver: *direct-dns, nameserver: *proxy-dns }
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip, fake-ip-range: 28.0.0.1/8, fake-ip-filter: ["RULE-SET:private,googlefcm,direct_domain,fakeip,cn"], default-nameserver: [233.6.6.6,119.29.29.29], proxy-server-nameserver: *direct-dns, direct-nameserver: *direct-dns, nameserver: *proxy-dns }
 sniffer: { enable: true, force-dns-mapping: false, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } }, skip-domain: ["RULE-SET:ads,private,googlefcm,proxy_domain,direct_domain,onedrive,proxy,fakeip,cn"], skip-src-address: ["RULE-SET:private_ip,proxy_ip,direct_ip,cn_ip"] }
 tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, udp-timeout: 600 }
 
@@ -97,7 +97,6 @@ rule-providers:
     type: inline
     behavior: ipcidr
     payload:
-      - '154.201.76.158/24'
       - '223.5.5.5/24'
       - '223.6.6.6/24'
       - '119.29.29.29/24'
@@ -113,10 +112,14 @@ rule-providers:
       - '8.8.4.4/24'
       - '1.1.1.1/24'
       - '1.0.0.1/24'
+      - '45.90.28.153/24'
+      - '45.90.30.153/24'
       - '2606:4700:4700::1111/32'
       - '2606:4700:4700::1001/32'
       - '2001:4860:4860::8888/32'
       - '2001:4860:4860::8844/32'
+      - '2a07:a8c0::35:2761/32'
+      - '2a07:a8c1::35:2761/32'
   ads: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
   private: { <<: *domain, url: "https://github.boki.moe/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.yaml", path: ./private.yaml }
   googlefcm: { <<: *domain, url: "https://github.boki.moe/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
