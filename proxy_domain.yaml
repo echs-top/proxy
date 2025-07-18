@@ -1,3 +1,4 @@
 payload:
     - '+.quad9.net'
     - '+.dns.google'
+    - '+.cloudflare-dns.com'
