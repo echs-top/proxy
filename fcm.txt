@@ -1,14 +1,20 @@
+#fcm
 108.177.125.188    mtalk.google.com
 108.177.125.188    mtalk4.google.com
-142.251.170.188    mtalk-dev.google.com
-142.251.170.188    mtalk-staging.google.com
-192.178.164.188    alt1-mtalk.google.com
-192.178.164.188    alt2-mtalk.google.com
-74.125.131.188    alt3-mtalk.google.com
-209.85.144.188    alt4-mtalk.google.com
-74.125.126.188    alt5-mtalk.google.com
-142.250.115.188    alt6-mtalk.google.com
-192.178.131.188    alt7-mtalk.google.com
-209.85.144.188    alt8-mtalk.google.com
-180.163.151.161    dl.google.com
-180.163.150.33    dl.l.google.com
+108.177.125.188    mtalk-dev.google.com
+108.177.125.188    mtalk-staging.google.com
+108.177.125.188    alt1-mtalk.google.com
+108.177.125.188    alt2-mtalk.google.com
+108.177.125.188    alt3-mtalk.google.com
+108.177.125.188    alt4-mtalk.google.com
+108.177.125.188    alt5-mtalk.google.com
+108.177.125.188    alt6-mtalk.google.com
+108.177.125.188    alt7-mtalk.google.com
+108.177.125.188    alt8-mtalk.google.com
+108.177.125.188    dl.google.com
+108.177.125.188    dl.l.google.com
+
+#ban微信dns
+0.0.0.0 dns.weixin.qq.com
+0.0.0.0 dns.weixin.qq.com.cn
+0.0.0.0 dnstest.weixin.qq.com
