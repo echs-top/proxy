@@ -19,6 +19,8 @@ payload:
     - '+.qsbtxt.net'
     - '+.boki.moe'
     - '+.doh.pub'
+    - '+.dns.pub'
+    - '+.doh.360.cn'
     - '+.alidns.com'
     - '+.lehu.in'
     - '+.dns0.eu'
