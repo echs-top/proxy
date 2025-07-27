@@ -16,8 +16,3 @@
 209.85.144.188     alt8-mtalk.google.com
 180.163.151.161     dl.google.com
 180.163.150.33      dl.l.google.com 
-
-#ban微信dns
-0.0.0.0 dns.weixin.qq.com
-0.0.0.0 dns.weixin.qq.com.cn
-0.0.0.0 dnstest.weixin.qq.com
