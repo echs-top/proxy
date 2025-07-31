@@ -1,6 +1,0 @@
-{
-    "version": 2,
-    "routes": [
-      {"src": "/(.*)","dest": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo"}
-    ]
-}
