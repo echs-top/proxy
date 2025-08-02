@@ -16,7 +16,7 @@ profile: { store-selected: true, store-fake-ip: true }
 direct-dns: &direct-dns ["https://223.5.5.5/dns-query#DIRECT&h3=true","https://101.102.103.104/dns-query#DIRECT&h3=false"]
 proxy-dns: &proxy-dns ["https://8.8.8.8/dns-query#PROXY&h3=true","https://1.1.1.1/dns-query#PROXY&h3=true"]
 dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip,fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,101.102.103.104], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns, direct-nameserver: *direct-dns }
-sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
+sniffer: { enable: true, force-dns-mapping: false, parse-pure-ip: false, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
 tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9000, auto-route: true, auto-detect-interface: true, strict-route: false, udp-timeout: 600 }
 
 
