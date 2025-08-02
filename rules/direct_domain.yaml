@@ -15,7 +15,11 @@ payload:
     - dns.alidns.com
     - doh.pub
     - zns.lehu.in
+    - steamcdn-a.akamaihd.net
     - +.808yun.cn
     - +.echs.top
     - +.sharepoint.com
     - +.sharepoint.cn
+    - +.steampowered.com
+    - +.steamstatic.com
+    - +.steamserver.net
