@@ -1,30 +1,29 @@
-# Kitty能直接用其他要改代理组，去广告解除ads注释，电脑解除steam注释让下载等走直连
-
 ## 设置 ##
 mixed-port: 7890
 mode: rule
 ipv6: true
-allow-lan: true
+allow-lan: false
 bind-address: "*"
 log-level: silent
 unified-delay: true
 tcp-concurrent: true
+disable-keep-alive: true
 find-process-mode: always
 global-client-fingerprint: chrome
 etag-support: true
-experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
+experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 profile: { store-selected: true, store-fake-ip: true }
-direct-dns: &direct-dns ["https://223.5.5.5/dns-query#DIRECT&h3=true&skip-cert-verify=true","https://101.102.103.104/dns-query#DIRECT&h3=false&skip-cert-verify=true"]
-proxy-dns: &proxy-dns ["https://8.8.8.8/dns-query#PROXY&h3=true&skip-cert-verify=true","https://1.1.1.1/dns-query#PROXY&h3=true&skip-cert-verify=true"]
-dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: true, enhanced-mode: fake-ip,fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,101.102.103.104], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns, direct-nameserver: *direct-dns }
+direct-dns: &direct-dns ["https://223.5.5.5/dns-query#DIRECT&h3=true","https://101.102.103.104/dns-query#DIRECT&h3=false"]
+proxy-dns: &proxy-dns ["https://8.8.8.8/dns-query#PROXY&h3=true","https://1.1.1.1/dns-query#PROXY&h3=true"]
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: false, use-system-hosts: false, enhanced-mode: fake-ip,fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,101.102.103.104], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns, direct-nameserver: *direct-dns }
 sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
-tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, udp-timeout: 600 }
+tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9000, auto-route: true, auto-detect-interface: true, strict-route: false, udp-timeout: 600 }
 
 
 ## 订阅 ##
-proxy-providers: { link: { type: http, url: "订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, skip-cert-verify: true, ip-version: ipv6-prefer } } }
+proxy-providers: { link: { type: http, url: "订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
-bal: &bal { type: load-balance, include-all-providers: true, strategy: consistent-hashing, lazy: true, hidden: true }
+bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxy-groups:
   - { name: PROXY, type: select, proxies: [自动选择,负载均衡,故障转移,手动选择,DIRECT], include-all-providers: true, filter: "流量" }
   - { name: 自动选择, type: select, proxies: [新加坡,日本,美国,德国,英国,荷兰,香港,韩国], lazy: true }
@@ -52,52 +51,34 @@ proxy-groups:
 
 ## 规则 ##
 rules:
-  # - RULE-SET,ads,REJECT
+  - RULE-SET,ads,REJECT
   - DOMAIN,services.googleapis.cn,PROXY
-  - DOMAIN,mtalk.google.com,DIRECT
-  - DOMAIN,mtalk4.google.com,DIRECT
-  - DOMAIN,mtalk-dev.google.com,DIRECT
-  - DOMAIN,mtalk-staging.google.com,DIRECT
-  - DOMAIN,alt1-mtalk.google.com,DIRECT
-  - DOMAIN,alt2-mtalk.google.com,DIRECT
-  - DOMAIN,alt3-mtalk.google.com,DIRECT
-  - DOMAIN,alt4-mtalk.google.com,DIRECT
-  - DOMAIN,alt5-mtalk.google.com,DIRECT
-  - DOMAIN,alt6-mtalk.google.com,DIRECT
-  - DOMAIN,alt7-mtalk.google.com,DIRECT
-  - DOMAIN,alt8-mtalk.google.com,DIRECT
-  - DOMAIN,dl.google.com,DIRECT
-  - DOMAIN,dl.l.google.com,DIRECT
   - DOMAIN,steamcdn-a.akamaihd.net,DIRECT
-  - DOMAIN-SUFFIX,github.com,PROXY
-  - DOMAIN-SUFFIX,githubusercontent.com,PROXY
-  - DOMAIN-SUFFIX,lehu.in,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
   - DOMAIN-SUFFIX,echs.top,DIRECT
-  - DOMAIN-SUFFIX,adrules.top,DIRECT
-  - IP-SUFFIX,8.8.8.8/24,PROXY,no-resolve
-  - IP-SUFFIX,1.1.1.1/24,PROXY,no-resolve
-  - IP-SUFFIX,223.5.5.5/24,DIRECT,no-resolve
   - IP-SUFFIX,154.201.76.158/24,DIRECT,no-resolve
-  - IP-SUFFIX,101.102.103.104/24,DIRECT,no-resolve
   - RULE-SET,private,DIRECT
+  - RULE-SET,googlefcm,DIRECT
   - RULE-SET,microsoft,MICROSOFT
   # - RULE-SET,steam_cn,DIRECT
-  - RULE-SET,bilibili,DIRECT
+  # - RULE-SET,bilibili,DIRECT
+  - RULE-SET,gfw,PROXY
   - RULE-SET,cn,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
   - RULE-SET,hk_ip,DIRECT,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
-ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: PROXY }
-domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: PROXY }
+ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: PROXY }
+domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: PROXY }
 rule-providers:
-  # ads: { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
-  private: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs", path: ./private.mrs }
-  microsoft: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs", path: ./microsoft.mrs }
-  # steam_cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs", path: ./steam_cn.mrs }
-  bilibili: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs", path: ./bilibili.mrs }
-  cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./cn.mrs }
-  private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs", path: ./private_ip.mrs }
-  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./cn_ip.mrs }
-  hk_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/hk.mrs", path: ./hk_ip.mrs }
+  ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
+  private: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml", path: ./private.yaml }
+  googlefcm: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
+  microsoft: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.yaml", path: ./microsoft.yaml }
+  # steam_cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.yaml", path: ./steam_cn.yaml }
+  # bilibili: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml", path: ./bilibili.yaml }
+  gfw: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.yaml", path: ./gfw.yaml }
+  cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml", path: ./cn.yaml }
+  private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml", path: ./private_ip.yaml }
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml", path: ./cn_ip.yaml }
+  hk_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/hk.yaml", path: ./hk_ip.yaml }
