@@ -1,0 +1,8 @@
+适配：kitty机场可以直接用，其他的自行改代理组
+
+模式：redir-host配合域名嗅探
+
+dns: 直连走国内dns，代理走远程代理国外dns解析
+
+特殊直连规则：fcm、bilibili、steam下载、onedrive下载、直连dns
+特殊代理规则: 部分谷歌域名(play商店下载)、代理dns
