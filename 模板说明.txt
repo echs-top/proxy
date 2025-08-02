@@ -4,5 +4,5 @@
 
 dns: 直连走国内dns，代理走远程代理国外dns解析
 
-特殊直连规则：fcm、bilibili、steam下载、onedrive下载、直连dns
-特殊代理规则: 部分谷歌域名(play商店下载)、代理dns
+特殊直连规则：fcm、bilibili、steam下载、onedrive下载、直连dns、香港ip直连
+特殊代理规则: 部分谷歌域名(play商店下载)、代理dns、gfw代理
