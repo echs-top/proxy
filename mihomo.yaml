@@ -23,7 +23,7 @@ tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9
 ## 订阅 ##
 proxy-providers: { link: { type: http, url: "订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
-bal: &bal { type: load-balance, include-all-providers: true, strategy: sticky-sessions, lazy: true, hidden: true }
+bal: &bal { type: load-balance, include-all-providers: true, strategy: consistent-hashing, lazy: true, hidden: true }
 proxy-groups:
   - { name: PROXY, type: select, proxies: [自动选择,负载均衡,故障转移,手动选择,DIRECT], include-all-providers: true, filter: "流量" }
   - { name: 自动选择, type: select, proxies: [新加坡,日本,美国,德国,英国,荷兰,香港,韩国], lazy: true }
