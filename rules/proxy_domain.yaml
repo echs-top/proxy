@@ -1,0 +1,4 @@
+payload:
+    - services.googleapis.cn
+    - dns.google
+    - cloudflare-dns.com
