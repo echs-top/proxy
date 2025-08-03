@@ -1,7 +1,7 @@
 # 自用模板，kitty(kitty.ceo)能直接用，其他机场需自行调整代理组
 # redir-host+域名嗅探，代理兜底，分流规则如下
 # 直连：fcm、bilibili、steam下载、onedrive下载、直连dns、中国域名、香港/中国ip
-# 代理: 代理dns、gfw
+# 代理: 部分cn谷歌域名,代理dns、gfw
 
 
 ## 设置 ##
