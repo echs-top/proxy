@@ -1,9 +1,12 @@
 # 自用模板，kitty(kitty.ceo)能直接用，其他机场需自行调整代理组
+# 代理机场推荐 https://github.com/echs-top/proxy
+# 代理软件推荐 https://github.com/echs-top/proxy/main/代理软件.md
+
 # redir-host+域名嗅探，分流规则如下:
-  # 直连(国内dns)：fcm,bilibili,steam下载,onedrive下载,直连dns,中国域名,香港/中国ip
-  # 代理(远程代理dns): 部分cn谷歌域名,代理dns,gfw,未匹配规则代理兜底
-  # 系统(系统dns): 部分私人域名,lan及ip
-  # 拒绝(仅rcode://success): 秋风去广告
+# 直连(国内dns)：fcm,bilibili,steam下载,onedrive下载,直连dns,中国域名,香港/中国ip
+# 代理(远程代理dns): 部分cn谷歌域名,代理dns,gfw,未匹配规则代理兜底
+# 系统(系统dns): 部分私人域名,lan及ip
+# 拒绝(仅rcode://success): 秋风去广告
 
 
 ## 设置 ##
