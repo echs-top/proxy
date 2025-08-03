@@ -15,8 +15,8 @@ experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip
 profile: { store-selected: true, store-fake-ip: false }
 direct-dns: &direct-dns ["https://dns.alidns.com/dns-query#DIRECT&h3=true","https://https://doh.pub/dns-query#DIRECT&h3=false"]
 proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true"]
-hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'] }
-dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, enhanced-mode: fake-ip,fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,119.29.29.29], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns, direct-nameserver: *direct-dns }
+hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'] }
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: true, enhanced-mode: redir-host, default-nameserver: [223.5.5.5,119.29.29.29], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns, nameserver-policy: { 'rule-set:private': [system], 'rule-set:direct_domain,bilibili,cn': *direct-dns, 'rule-set:ads': ['rcode://success'] } }
 sniffer: { enable: true, force-dns-mapping: false, parse-pure-ip: false, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
 tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9000, auto-route: true, auto-detect-interface: true, strict-route: false, udp-timeout: 600 }
 
@@ -31,7 +31,6 @@ proxy-groups:
   - { name: 负载均衡, type: select, proxies: [新加坡⁺,日本⁺,美国⁺,德国⁺,英国⁺,荷兰⁺,香港⁺,韩国⁺], lazy: true }
   - { name: 故障转移, type: fallback, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true }
   - { name: 手动选择, type: select, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true }
-  - { name: ONEDRIVE, type: select, proxies: [DIRECT,PROXY] }
   - { name: 新加坡, <<: *auto, filter: "🇸🇬" }
   - { name: 日本, <<: *auto, filter: "🇯🇵" }
   - { name: 美国, <<: *auto, filter: "🇺🇸" }
@@ -53,38 +52,15 @@ proxy-groups:
 ## 规则 ##
 rules:
   - RULE-SET,ads,REJECT
-  - DOMAIN,services.googleapis.cn,PROXY
-  - DOMAIN,dns.google,PROXY
-  - DOMAIN,steamcdn-a.akamaihd.net,DIRECT
-  - DOMAIN,dns.alidns.com,DIRECT
-  - DOMAIN,doh.pub,DIRECT
-  - DOMAIN,zns.lehu.in,DIRECT
-  - DOMAIN-SUFFIX,808yun.cn,DIRECT
-  - DOMAIN-SUFFIX,echs.top,DIRECT
-  - IP-SUFFIX,8.8.8.8/24,PROXY,no-resolve
-  - IP-SUFFIX,8.8.4.4/24,PROXY,no-resolve
-  - IP-SUFFIX,1.1.1.1/24,PROXY,no-resolve
-  - IP-SUFFIX,1.0.0.1/24,PROXY,no-resolve
-  - IP-SUFFIX,154.201.76.158/24,DIRECT,no-resolve
-  - IP-SUFFIX,47.76.113.103/24,DIRECT,no-resolve
-  - IP-SUFFIX,223.5.5.5/24,DIRECT,no-resolve
-  - IP-SUFFIX,223.6.6.6/24,DIRECT,no-resolve
-  - IP-SUFFIX,119.29.29.29/24,DIRECT,no-resolve
-  - IP-SUFFIX,2001:4860:4860::8888/32,PROXY,no-resolve
-  - IP-SUFFIX,2001:4860:4860::8844/32,PROXY,no-resolve
-  - IP-SUFFIX,2606:4700:4700::1001/32,PROXY,no-resolve
-  - IP-SUFFIX,2606:4700:4700::1111/32,PROXY,no-resolve
-  - IP-SUFFIX,2400:3200::1/32,DIRECT,no-resolve
-  - IP-SUFFIX,2400:3200:baba::1/32,DIRECT,no-resolve
-  - IP-SUFFIX,2402:4e00::/32,DIRECT,no-resolve
   - RULE-SET,private,DIRECT
-  - RULE-SET,googlefcm,DIRECT
-  - RULE-SET,onedrive,ONEDRIVE
-  # - RULE-SET,steam_cn,DIRECT
-  # - RULE-SET,bilibili,DIRECT
+  - RULE-SET,private_ip,DIRECT,no-resolve
+  - RULE-SET,proxy_domain,PROXY
+  - RULE-SET,direct_domain,DIRECT
+  - RULE-SET,bilibili,DIRECT
   - RULE-SET,gfw,PROXY
   - RULE-SET,cn,DIRECT
-  - RULE-SET,private_ip,DIRECT,no-resolve
+  - RULE-SET,proxy_ip,PROXY,no-resolve
+  - RULE-SET,direct_ip,DIRECT,no-resolve
   - RULE-SET,hk_ip,DIRECT,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
@@ -92,13 +68,14 @@ ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: PR
 domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: PROXY }
 rule-providers:
   ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./ads.yaml }
+  proxy_domain: { <<: *domain, url: "https://raw.githubusercontent.com/echs-top/proxy/main/rules/proxy_domain.yaml", path: ./proxy_domain.yaml }
+  direct_domain: { <<: *domain, url: "https://raw.githubusercontent.com/echs-top/proxy/main/rules/direct_domain.yaml", path: ./direct_domain.yaml }
   private: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml", path: ./private.yaml }
-  googlefcm: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.yaml", path: ./googlefcm.yaml }
-  onedrive: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.yaml", path: ./onedrive.yaml }
-  # steam_cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.yaml", path: ./steam_cn.yaml }
-  # bilibili: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml", path: ./bilibili.yaml }
+  bilibili: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml", path: ./bilibili.yaml }
   gfw: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.yaml", path: ./gfw.yaml }
   cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml", path: ./cn.yaml }
   private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml", path: ./private_ip.yaml }
+  proxy_ip: { <<: *ip, url: "https://raw.githubusercontent.com/echs-top/proxy/main/rules/proxy_ip.yaml", path: ./proxy_ip.yaml }
+  direct_ip: { <<: *ip, url: "https://raw.githubusercontent.com/echs-top/proxy/main/rules/direct_ip.yaml", path: ./direct_ip.yaml }
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml", path: ./cn_ip.yaml }
   hk_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/hk.yaml", path: ./hk_ip.yaml }
