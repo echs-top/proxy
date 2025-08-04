@@ -93,9 +93,9 @@ rules:
   - RULE-SET,bilibili,DIRECT
   - RULE-SET,gfw,PROXY
   - RULE-SET,cn,DIRECT
-  - RULE-SET,proxy_ip,PROXY,no-resolve
-  - RULE-SET,direct_ip,DIRECT,no-resolve
-  - RULE-SET,hk_ip,DIRECT,no-resolve
+  - RULE-SET,proxy_ip,PROXY
+  - RULE-SET,direct_ip,DIRECT
+  - RULE-SET,hk_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: PROXY }
