@@ -37,7 +37,10 @@ tun: { enable: true, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9
 
 
 ## 订阅 ##
-proxy-providers: { link: { type: http, url: "订阅链接", path: ./link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
+proxy-providers:
+  link: { <<: *providers, url: "订阅链接", path: ./link.yaml }
+  # link2: { <<: *providers, url: "俩机场一起用真的好嘛", path: ./link2.yaml }
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
 bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxy-groups:
