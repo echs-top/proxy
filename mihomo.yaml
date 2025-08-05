@@ -57,7 +57,7 @@ bal: &bal { type: load-balance, include-all-providers: true, strategy: round-rob
 proxies: [ {name: DNS劫持, type: dns} ]
 proxy-groups:
   - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Global.png }
-  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AdblockPlus_2.png }
+  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AdblockPlus_2.png }
   - { name: ONEDRIVE下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/OneDrive.png }
   - { name: STEAM下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png }
   - { name: FCM推送, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png }
