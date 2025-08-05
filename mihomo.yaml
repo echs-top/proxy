@@ -31,7 +31,7 @@ direct-dns: &direct-dns ["quic://dns.alidns.com#DIRECT","https://https://doh.pub
 proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true","https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#PROXY&h3=true"]
 hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'], mtalk.google.com: ['2404:6800:4008:c1b::bc','2404:6800:4008:c01::bc','2404:6800:4008:c07::bc','2404:6800:4008:c15::bc','108.177.125.188','142.251.170.188'], mtalk4.google.com: [mtalk.google.com], mtalk-dev.google.com: [mtalk.google.com], mtalk-staging.google.com: [mtalk.google.com], alt1-mtalk.google.com: [mtalk.google.com], alt2-mtalk.google.com: [mtalk.google.com], alt3-mtalk.google.com: [mtalk.google.com], alt4-mtalk.google.com: [mtalk.google.com], alt5-mtalk.google.com: [mtalk.google.com], alt6-mtalk.google.com: [mtalk.google.com], alt7-mtalk.google.com: [mtalk.google.com], alt8-mtalk.google.com: [mtalk.google.com] }
 dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, respect-rules: false, enhanced-mode: fake-ip, fake-ip-range: 28.0.0.1/8, fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,119.29.29.29], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns,direct-nameserver: *direct-dns, direct-nameserver-follow-policy: true, nameserver-policy: { 'rule-set:private': [system], 'rule-set:ads': ['rcode://success'] } }
-sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], force-domain: ["RULE-SET:netflix"], skip-src-address: ["RULE-SET:private_ip"], skip-dst-address: ["RULE-SET:netflix_ip"] }
+sniffer: { enable: true, force-dns-mapping: false, parse-pure-ip: false, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], force-domain: ["RULE-SET:netflix"], skip-src-address: ["RULE-SET:private_ip"], skip-dst-address: ["RULE-SET:netflix_ip"] }
 tun: # box for android 适配
   enable: true
   device: meta
@@ -52,24 +52,24 @@ proxy-providers: { link: { type: http, <<: *url, interval: 86400, proxy: DIRECT,
 proxies: [ {name: DNS劫持, type: dns} ]
 zl: &zl { type: select, proxies: [DIRECT,PROXY,🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
 dl: &dl { type: select, proxies: [PROXY,DIRECT,🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
-choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png }
+choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Network_2.png }
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
 bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Global.png }
-  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AdblockPlus_2.png }
-  - { name: ONEDRIVE下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/OneDrive.png }
-  - { name: STEAM下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png }
-  - { name: FCM推送, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png }
-  - { name: AI, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png }
-  - { name: PLAY服务, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png }
-  - { name: TELEGRAM, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png }
-  - { name: TWITTER, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/X.png }
-  - { name: SPOTIFY, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png }
-  - { name: YOUTUBE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png }
-  - { name: NETFLIX, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png }
-  - { name: GITHUB, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png }
-  - { name: CLOUDFLARE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/CloudFlare.png }
+  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Global.png }
+  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AdblockPlus_2.png }
+  - { name: ONEDRIVE下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/OneDrive.png }
+  - { name: STEAM下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Steam.png }
+  - { name: FCM推送, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/FCM_Firebase_Cloud_Messaging.png }
+  - { name: AI, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AI.png }
+  - { name: PLAY服务, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Google.png }
+  - { name: TELEGRAM, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Telegram.png }
+  - { name: TWITTER, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/X.png }
+  - { name: SPOTIFY, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Spotify.png }
+  - { name: YOUTUBE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/YouTube.png }
+  - { name: NETFLIX, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Netflix.png }
+  - { name: GITHUB, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/GitHub.png }
+  - { name: CLOUDFLARE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/CloudFlare.png }
   - { name: 故障转移, type: fallback, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true, hidden: true }
   - { name: 手动选择¹, <<: *choose }
   - { name: 手动选择², <<: *choose }
@@ -98,6 +98,7 @@ rules:
   - DOMAIN-SUFFIX,ipwho.is,PROXY
   - DOMAIN-SUFFIX,echs.top,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
+  - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
   - IP-CIDR,154.201.76.158/24,DIRECT,no-resolve
   # 分流规则
   - OR,((DOMAIN-SUFFIX,sharepoint.com),(DOMAIN-SUFFIX,sharepoint.cn)),ONEDRIVE下载
