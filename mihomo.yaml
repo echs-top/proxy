@@ -1,37 +1,7 @@
-# 自用模板，已测试如下软件
+# 单机场自用模板，已测试如下软件
 # https://github.com/echs-top/proxy/blob/main/代理软件.md
-
-
-
-## TUN 为了适配box单独提出来了 ##
-tun: 
-  # include-uid: []
-  enable: true
-  device: meta
-  stack: mixed
-  dns-hijack: ["any:53","tcp://any:53"]
-  mtu: 9000
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  strict-route: true
-  udp-timeout: 600
-
-
-
-## 锚点 ##
-direct-dns: &direct-dns ["quic://dns.alidns.com#DIRECT","https://https://doh.pub/dns-query#DIRECT&h3=false"]
-proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true"]
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3, lazy: true }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } }
-zdxz: &zdxz { type: select, proxies: [🇭🇰香港,🇹🇼台湾,🇯🇵日本,🇸🇬新加坡,🇺🇸美国,🇩🇪德国,🇬🇧英国,🇫🇷法国,🇳🇱荷兰,🇹🇷土耳其,🇷🇺俄罗斯,🇨🇦加拿大], lazy: true, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/dpdp.png }
-fzjh: &fzjh { type: select, proxies: [🇭🇰香港⁺,🇹🇼台湾⁺,🇯🇵日本⁺,🇸🇬新加坡⁺,🇺🇸美国⁺,🇩🇪德国⁺,🇬🇧英国⁺,🇫🇷法国⁺,🇳🇱荷兰⁺,🇹🇷土耳其⁺,🇷🇺俄罗斯⁺,🇨🇦加拿大⁺], lazy: true, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/lightning(5).png }
-sdxz: &sdxz { type: select, include-all-providers: true, lazy: true, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/direct(1).png }
-zl: &zl { type: select, proxies: [DIRECT,PROXY,自动选择¹,自动选择²,负载均衡¹,负载均衡²,手动选择¹,手动选择²,故障转移] }
-dl: &dl { type: select, proxies: [PROXY,DIRECT,自动选择¹,自动选择²,负载均衡¹,负载均衡²,手动选择¹,手动选择²,故障转移] }
-auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
-bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
-ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: PROXY }
-domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: PROXY }
+## 订阅 ##
+url: &url { url: "订阅链接", path: ./providers/link.yaml }
 
 
 
@@ -51,70 +21,69 @@ find-process-mode: always
 global-client-fingerprint: chrome
 etag-support: true
 external-controller: 0.0.0.0:9090
-# 建议设置密码，不建议为空
+# 不建议为空
 secret: ""
 external-ui: ./dashboard
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 profile: { store-selected: true, store-fake-ip: false }
+direct-dns: &direct-dns ["quic://dns.alidns.com#DIRECT","https://https://doh.pub/dns-query#DIRECT&h3=false","https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#DIRECT&h3=true"]
+proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true","https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#PROXY&h3=true"]
 hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'], mtalk.google.com: ['2404:6800:4008:c1b::bc','2404:6800:4008:c01::bc','2404:6800:4008:c07::bc','2404:6800:4008:c15::bc','108.177.125.188','142.251.170.188'], mtalk4.google.com: [mtalk.google.com], mtalk-dev.google.com: [mtalk.google.com], mtalk-staging.google.com: [mtalk.google.com], alt1-mtalk.google.com: [mtalk.google.com], alt2-mtalk.google.com: [mtalk.google.com], alt3-mtalk.google.com: [mtalk.google.com], alt4-mtalk.google.com: [mtalk.google.com], alt5-mtalk.google.com: [mtalk.google.com], alt6-mtalk.google.com: [mtalk.google.com], alt7-mtalk.google.com: [mtalk.google.com], alt8-mtalk.google.com: [mtalk.google.com] }
 dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, respect-rules: false, enhanced-mode: fake-ip, fake-ip-range: 28.0.0.1/8, fake-ip-filter-mode: whitelist, default-nameserver: [223.5.5.5,119.29.29.29], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns,direct-nameserver: *direct-dns, direct-nameserver-follow-policy: true, nameserver-policy: { 'rule-set:private': [system], 'rule-set:ads': ['rcode://success'] } }
-sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
-# tun: { enable: true, device: meta, stack: mixed, dns-hijack: ["any:53","tcp://any:53"], mtu: 9000, auto-route: true, auto-redirect: true, auto-detect-interface: true, strict-route: true, udp-timeout: 600 }
+sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], force-domain: ["RULE-SET:netflix"], skip-src-address: ["RULE-SET:private_ip"], skip-dst-address: ["RULE-SET:netflix_ip"] }
+tun: # box for android 适配
+  enable: true
+  device: meta
+  stack: mixed
+  dns-hijack: ["any:53","tcp://any:53"]
+  mtu: 9000
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+  udp-timeout: 600
+  include-uid: []
 
 
 
-## 订阅 ##
-proxy-providers:
-  link: { <<: *providers, url: "订阅链接", path: ./providers/link1.yaml }
-  # link2: { <<: *providers, url: "订阅链接", path: ./providers/link2.yaml }
+## 代理组 ##
+proxy-providers: { link: { type: http, <<: *url, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 7200, timeout: 5000, max-failed-times: 3 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
+zl: &zl { type: select, proxies: [DIRECT,PROXY,🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
+dl: &dl { type: select, proxies: [PROXY,DIRECT,🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
+choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Network_2.png }
+auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
+bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxies: [ {name: DNS劫持, type: dns} ]
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [自动选择¹,自动选择²,负载均衡¹,负载均衡²,手动选择¹,手动选择²,故障转移,DIRECT], icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/mihomo.png }
-  - { name: 自动选择¹, <<: *zdxz }
-  - { name: 自动选择², <<: *zdxz }
-  # - { name: 自动选择³, <<: *zdxz }
-  # - { name: 自动选择⁴, <<: *zdxz }
-  - { name: 负载均衡¹, <<: *fzjh }
-  - { name: 负载均衡², <<: *fzjh }
-  # - { name: 负载均衡³, <<: *fzjh }
-  # - { name: 负载均衡⁴, <<: *fzjh }
-  - { name: 手动选择¹, <<: *sdxz }
-  - { name: 手动选择², <<: *sdxz }
-  #- { name: 手动选择³, <<: *sdxz }
-  #- { name: 手动选择⁴, <<: *sdxz }
-  - { name: FCM推送, <<: *zl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/google.png }
-  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/ad(7).png }
-  - { name: ONEDRIVE下载, <<: *zl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/OneDrive.png }
-  - { name: STEAM下载, <<: *zl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/steam(1).png }
-  - { name: TELEGRAM, <<: *dl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/telegram(1).png }
-  - { name: GITHUB, <<: *dl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/github(1).png }
-  - { name: CLOUDFLARE, <<: *dl, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/chinaunicomcloud.png }
+  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Global.png }
+  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AdblockPlus_2.png }
+  - { name: ONEDRIVE下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/OneDrive.png }
+  - { name: STEAM下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Steam.png }
+  - { name: FCM推送, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/FCM_Firebase_Cloud_Messaging.png }
+  - { name: AI, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/AI.png }
+  - { name: PLAY服务, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Google.png }
+  - { name: TELEGRAM, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Telegram.png }
+  - { name: TWITTER, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/X.png }
+  - { name: SPOTIFY, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Spotify.png }
+  - { name: YOUTUBE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/YouTube.png }
+  - { name: NETFLIX, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Netflix.png }
+  - { name: GITHUB, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/GitHub.png }
+  - { name: CLOUDFLARE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/CloudFlare.png }
   - { name: 故障转移, type: fallback, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true, hidden: true }
-  - { name: 🇭🇰香港, <<: *auto, filter: "🇭🇰|香港" }
-  - { name: 🇹🇼台湾, <<: *auto, filter: "🇹🇼|台湾" }
-  - { name: 🇯🇵日本, <<: *auto, filter: "🇯🇵|日本" }
-  - { name: 🇸🇬新加坡, <<: *auto, filter: "🇸🇬|新加坡" }
-  - { name: 🇺🇸美国, <<: *auto, filter: "🇺🇸|美国" }
-  - { name: 🇩🇪德国, <<: *auto, filter: "🇩🇪|德国" }
-  - { name: 🇬🇧英国, <<: *auto, filter: "🇬🇧|英国" }
-  - { name: 🇫🇷法国, <<: *auto, filter: "🇫🇷|法国" }
-  - { name: 🇳🇱荷兰, <<: *auto, filter: "🇳🇱|荷兰" }
-  - { name: 🇹🇷土耳其, <<: *auto, filter: "🇹🇷|土耳其" }
-  - { name: 🇷🇺俄罗斯, <<: *auto, filter: "🇷🇺|俄罗斯" }
-  - { name: 🇨🇦加拿大, <<: *auto, filter: "🇨🇦|加拿大" }
-  - { name: 🇭🇰香港⁺, <<: *bal, filter: "🇭🇰|香港" }
-  - { name: 🇹🇼台湾⁺, <<: *bal, filter: "🇹🇼|台湾" }
-  - { name: 🇯🇵日本⁺, <<: *bal, filter: "🇯🇵|日本" }
-  - { name: 🇸🇬新加坡⁺, <<: *bal, filter: "🇸🇬|新加坡" }
-  - { name: 🇺🇸美国⁺, <<: *bal, filter: "🇺🇸|美国" }
-  - { name: 🇩🇪德国⁺, <<: *bal, filter: "🇩🇪|德国" }
-  - { name: 🇬🇧英国⁺, <<: *bal, filter: "🇬🇧|英国" }
-  - { name: 🇫🇷法国⁺, <<: *bal, filter: "🇫🇷|法国" }
-  - { name: 🇳🇱荷兰⁺, <<: *bal, filter: "🇳🇱|荷兰" }
-  - { name: 🇹🇷土耳其⁺, <<: *bal, filter: "🇹🇷|土耳其" }
-  - { name: 🇷🇺俄罗斯⁺, <<: *bal, filter: "🇷🇺|俄罗斯" }
-  - { name: 🇨🇦加拿大⁺, <<: *bal, filter: "🇨🇦|加拿大" }
+  - { name: 手动选择¹, <<: *choose }
+  - { name: 手动选择², <<: *choose }
+  - { name: 手动选择³, <<: *choose }
+  - { name: 手动选择⁴, <<: *choose }
+  - { name: 🇭🇰香港|自动, <<: *auto, filter: "🇭🇰|香港" }
+  - { name: 🇯🇵日本|自动, <<: *auto, filter: "🇯🇵|日本" }
+  - { name: 🇸🇬新加坡|自动, <<: *auto, filter: "🇸🇬|新加坡" }
+  - { name: 🇺🇸美国|自动, <<: *auto, filter: "🇺🇸|美国" }
+  - { name: 其他地区|自动, <<: *auto, exclude-filter: "🇭🇰|香港|🇯🇵|日本|🇸🇬|新加坡|🇺🇸|美国|🇦🇶|流量|到期|重置" }
+  - { name: 🇭🇰香港|均衡, <<: *bal, filter: "🇭🇰|香港" }
+  - { name: 🇯🇵日本|均衡, <<: *bal, filter: "🇯🇵|日本" }
+  - { name: 🇸🇬新加坡|均衡, <<: *bal, filter: "🇸🇬|新加坡" }
+  - { name: 🇺🇸美国|均衡, <<: *bal, filter: "🇺🇸|美国" }
 
 
 
@@ -126,15 +95,21 @@ rules:
   - OR,((DOMAIN,dns.alidns.com),(DOMAIN,doh.pub),(DOMAIN,zns.lehu.in),(IP-CIDR,47.76.113.103/24,no-resolve),(IP-CIDR,223.5.5.5/24,no-resolve),(IP-CIDR,223.6.6.6/24,no-resolve),(IP-CIDR,119.29.29.29/24,no-resolve),(IP-CIDR6,2402:4e00::/32,no-resolve),(IP-CIDR6,2400:3200:baba::1/32,no-resolve),(IP-CIDR6,2400:3200::1/32,no-resolve)),DIRECT
   - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(IP-CIDR,8.8.8.8/24,no-resolve),(IP-CIDR,8.8.4.4/24,no-resolve),(IP-CIDR,1.1.1.1/24,no-resolve),(IP-CIDR,1.0.0.1/24,no-resolve),(IP-CIDR6,2001:4860:4860::8888/32,no-resolve),(IP-CIDR6,2001:4860:4860::8844/32,no-resolve),(IP-CIDR6,2606:4700:4700::1001/32,no-resolve),(IP-CIDR6,2606:4700:4700::1111/32,no-resolve)),PROXY
   # 自用补充
-  - DOMAIN,services.googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,ipwho.is,PROXY
   - DOMAIN-SUFFIX,echs.top,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
   - IP-CIDR,154.201.76.158/24,DIRECT,no-resolve
   # 分流规则
-  - OR,((DST-PORT,5228),(DOMAIN-REGEX,alt*-mtalk.google.com),(DOMAIN,mtalk4.google.com),(DOMAIN,mtalk-dev.google.com),(DOMAIN,mtalk-staging.google.com),(IP-CIDR6,2404:6800:4008:c1b::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c07::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c01::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c15::bc/32,no-resolve),(IP-CIDR,108.177.125.188/24,no-resolve),(IP-CIDR,142.251.170.188/24,no-resolve)),FCM推送
   - OR,((DOMAIN-SUFFIX,sharepoint.com),(DOMAIN-SUFFIX,sharepoint.cn)),ONEDRIVE下载
   - OR,((DOMAIN,steamcdn-a.akamaihd.net),(DOMAIN-SUFFIX,steamserver.net)),STEAM下载
+  - OR,((DST-PORT,5228),(DOMAIN-REGEX,alt*-mtalk.google.com),(DOMAIN,mtalk4.google.com),(DOMAIN,mtalk-dev.google.com),(DOMAIN,mtalk-staging.google.com),(IP-CIDR6,2404:6800:4008:c1b::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c07::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c01::bc/32,no-resolve),(IP-CIDR6,2404:6800:4008:c15::bc/32,no-resolve),(IP-CIDR,108.177.125.188/24,no-resolve),(IP-CIDR,142.251.170.188/24,no-resolve)),FCM推送
+  - OR,((RULE-SET,openai),(RULE-SET,gemini)),AI
+  - OR,((RULE-SET,google-play),(DOMAIN-SUFFIX,googleapis.cn)),PLAY服务
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
+  - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
+  - RULE-SET,spotify,SPOTIFY
+  - RULE-SET,youtube,YOUTUBE
+  - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
   - RULE-SET,github,GITHUB
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
   - RULE-SET,bilibili,DIRECT
@@ -142,17 +117,28 @@ rules:
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)),DIRECT
   - RULE-SET,hk_ip,DIRECT
   - MATCH,PROXY
+ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: yaml, proxy: PROXY }
+domain: &domain { type: http, interval: 86400, behavior: domain, format: yaml, proxy: PROXY }
 rule-providers:
   ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml", path: ./rules/private.yaml }
+  openai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.yaml", path: ./rules/openai.yaml }
+  gemini: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.yaml", path: ./rules/gemini.yaml }
+  google-play: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.yaml", path: ./rules/google-play.yaml }
   telegram: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml", path: ./rules/telegram.yaml }
+  twitter: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.yaml", path: ./rules/twitter.yaml }
+  spotify: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.yaml", path: ./rules/spotify.yaml }
+  youtube: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml", path: ./rules/youtube.yaml }
+  netflix: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml", path: ./rules/netflix.yaml }
   github: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml", path: ./rules/github.yaml }
   cloudflare: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.yaml", path: ./rules/cloudflare.yaml }
   bilibili: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml", path: ./rules/bilibili.yaml }
   gfw: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.yaml", path: ./rules/gfw.yaml }
   cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml", path: ./rules/cn.yaml }
   private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml", path: ./rules/private_ip.yaml }
-  cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.yaml", path: ./rules/cloudflare_ip.yaml }
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml", path: ./rules/telegram_ip.yaml }
+  twitter_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.yaml", path: ./rules/twitter_ip.yaml }
+  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.yaml", path: ./rules/netflix_ip.yaml }
+  cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.yaml", path: ./rules/cloudflare_ip.yaml }
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml", path: ./rules/cn_ip.yaml }
   hk_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/hk.yaml", path: ./rules/hk_ip.yaml }
