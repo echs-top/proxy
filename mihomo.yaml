@@ -1,12 +1,4 @@
-# 自用模板，kitty(kitty.ceo)直接用，其他机场自行调整代理组
-# 机场 https://github.com/echs-top/proxy
-# 软件 https://github.com/echs-top/proxy/blob/main/代理软件.md
-
-# 真实ip模式，分流规则如下:
-# 直连(国内dns)：fcm,bilibili,steam下载,onedrive下载,直连dns,中国域名,香港/中国ip
-# 代理(远程代理dns): 部分cn谷歌域名,代理dns,gfw,代理兜底
-# 系统(系统dns): 部分私人域名,lan
-# 拒绝(仅rcode://success): 秋风去广告
+# 自用模板，代理软件 https://github.com/echs-top/proxy/blob/main/代理软件.md
 
 
 ## 设置 ##
