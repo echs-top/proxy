@@ -21,7 +21,7 @@ global-client-fingerprint: chrome
 etag-support: true
 external-controller: 0.0.0.0:9090
 # 不建议为空
-secret: ""
+secret: "密码"
 external-ui: ./dashboard
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
@@ -31,7 +31,7 @@ proxy-dns: &proxy-dns ["https://dns.google/dns-query#PROXY&h3=true","https://clo
 hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'], mtalk.google.com: ['2404:6800:4008:c1b::bc','2404:6800:4008:c01::bc','2404:6800:4008:c07::bc','2404:6800:4008:c15::bc','108.177.125.188','142.251.170.188'], mtalk4.google.com: [mtalk.google.com], mtalk-dev.google.com: [mtalk.google.com], mtalk-staging.google.com: [mtalk.google.com], alt1-mtalk.google.com: [mtalk.google.com], alt2-mtalk.google.com: [mtalk.google.com], alt3-mtalk.google.com: [mtalk.google.com], alt4-mtalk.google.com: [mtalk.google.com], alt5-mtalk.google.com: [mtalk.google.com], alt6-mtalk.google.com: [mtalk.google.com], alt7-mtalk.google.com: [mtalk.google.com], alt8-mtalk.google.com: [mtalk.google.com] }
 dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, respect-rules: false, enhanced-mode: redir-host, default-nameserver: [223.5.5.5,119.29.29.29], proxy-server-nameserver: *direct-dns, nameserver: *proxy-dns,direct-nameserver: *direct-dns, direct-nameserver-follow-policy: true, nameserver-policy: { 'rule-set:private': [system], 'rule-set:ads': ['rcode://success'] } }
 sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
-tun:
+tun: # 拆开是为了适配 box 模块
   enable: true
   device: meta
   stack: mixed
