@@ -44,26 +44,26 @@ tun: # 适配box模块
 proxy-providers: { link: { type: http, <<: *url, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 1800, timeout: 5000, max-failed-times: 3 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
 zl: &zl { type: select, proxies: [DIRECT,PROXY,🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
 dl: &dl { type: select, proxies: [PROXY,DIRECT,🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
-choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Network_2.png }
+choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Network_2.png }
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
 bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Global.png }
-  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP,PASS], icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AdblockPlus_2.png }
-  - { name: ONEDRIVE下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/OneDrive.png }
-  - { name: STEAM下载, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Steam.png }
-  - { name: FCM推送, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/FCM_Firebase_Cloud_Messaging.png }
-  - { name: AI, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AI.png }
-  - { name: TELEGRAM, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Telegram.png }
-  - { name: TWITTER, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/X.png }
-  - { name: SPOTIFY, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Spotify.png }
-  - { name: TIKTOK, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/TikTok.png }
-  - { name: YOUTUBE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/YouTube.png }
-  - { name: NETFLIX, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Netflix.png }
-  - { name: GITHUB, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/GitHub.png }
-  - { name: CLOUDFLARE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/CloudFlare.png }
-  - { name: GOOGLE, <<: *dl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Google.png }
-  - { name: MICROSOFT, <<: *zl, icon: https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Microsoft.png }
+  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Global.png }
+  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP,PASS], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AdblockPlus_2.png }
+  - { name: ONEDRIVE下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/OneDrive.png }
+  - { name: STEAM下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Steam.png }
+  - { name: FCM推送, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/FCM_Firebase_Cloud_Messaging.png }
+  - { name: AI, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AI.png }
+  - { name: TELEGRAM, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Telegram.png }
+  - { name: TWITTER, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/X.png }
+  - { name: SPOTIFY, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Spotify.png }
+  - { name: TIKTOK, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/TikTok.png }
+  - { name: YOUTUBE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/YouTube.png }
+  - { name: NETFLIX, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Netflix.png }
+  - { name: GITHUB, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/GitHub.png }
+  - { name: CLOUDFLARE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/CloudFlare.png }
+  - { name: GOOGLE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Google.png }
+  - { name: MICROSOFT, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Microsoft.png }
   - { name: 故障转移, type: fallback, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true, hidden: true }
   - { name: 手动选择¹, <<: *choose }
   - { name: 手动选择², <<: *choose }
