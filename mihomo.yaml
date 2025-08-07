@@ -3,6 +3,8 @@ link: &link
 
 
 mixed-port: 7890
+tproxy-port: 7891
+redir-port: 7892
 allow-lan: true
 bind-address: "*"
 mode: rule
