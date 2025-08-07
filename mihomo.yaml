@@ -21,7 +21,7 @@ external-controller: 0.0.0.0:9090
 # 不建议为空
 secret: "密码"
 external-ui: ./dashboard
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-url: https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 profile: { store-selected: true, store-fake-ip: false }
 hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'] }
@@ -91,6 +91,7 @@ rules:
   - DOMAIN-SUFFIX,ipip.net,DIRECT
   - DOMAIN-SUFFIX,echs.top,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
+  - DOMAIN-SUFFIX,ghfast.top,DIRECT
   - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
   - DOMAIN,myql.eu.org,PROXY
   - IP-CIDR,154.201.76.158/24,DIRECT,no-resolve
@@ -116,7 +117,7 @@ rules:
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: DIRECT }
 domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: DIRECT }
 rule-providers:
-  ads: { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
+  ads: { 输入: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
   steam-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam@cn.mrs", path: ./rules/steam-cn.mrs }
   googlefcm: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs", path: ./rules/googlefcm.mrs }
