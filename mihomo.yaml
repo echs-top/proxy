@@ -1,9 +1,9 @@
 # 单机场自用redir-host模板，已测试如下软件
 # https://github.com/echs-top/proxy/blob/main/代理软件.md
 # 我尝试将策略组dns分流查询的抽象内容补齐，保证dns查询节点和策略选择节点一致性
-# 下载外部资源使用jsdelivr cdn (主要为了clash meta for android初次导入)
+# 下载外部资源使用cdn(主要为了clash meta初次导入)
 ## 订阅 ##
-url: &url { url: "订阅链接", path: ./providers/link.yaml }
+url: &url { url: "订阅链接" }
 
 
 ## 设置 ##
@@ -29,7 +29,7 @@ external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download
 experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 profile: { store-selected: true, store-fake-ip: false }
 hosts: { dns.google: ['8.8.8.8','8.8.4.4','2001:4860:4860::8888','2001:4860:4860::8844'], zns.lehu.in: [47.76.113.103], dns.alidns.com: ['223.5.5.5','223.6.6.6','2400:3200::1','2400:3200:baba::1'], doh.pub: ['119.29.29.29','2402:4e00::'], cloudflare-dns.com: ['1.1.1.1','1.0.0.1','2606:4700:4700::1111','2606:4700:4700::1001'] }
-dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, respect-rules: false, enhanced-mode: redir-host, default-nameserver: ['tls://223.5.5.5', 119.29.29.29], proxy-server-nameserver: ["quic://dns.alidns.com#DIRECT&ecs=223.5.5.5/24&ecs-override=true","https://doh.pub/dns-query#DIRECT&h3=false&ecs=119.29.29.29/24&ecs-override=true"], nameserver: ["https://dns.google/dns-query#PROXY&h3=true","https://cloudflare-dns.com/dns-query#PROXY&h3=true"], direct-nameserver: ["quic://dns.alidns.com#DIRECT","https://doh.pub/dns-query#DIRECT&h3=false"], direct-nameserver-follow-policy: true, nameserver-policy: { 'rule-set:private': [system], 'sharepoint.com': ["quic://dns.alidns.com#ONEDRIVE下载","https://doh.pub/dns-query#ONEDRIVE下载&h3=false","https://dns.google/dns-query#ONEDRIVE下载&h3=true","https://cloudflare-dns.com/dns-query#ONEDRIVE下载&h3=true"], 'sharepoint.cn': ["quic://dns.alidns.com#ONEDRIVE下载","https://doh.pub/dns-query#ONEDRIVE下载&h3=false","https://dns.google/dns-query#ONEDRIVE下载&h3=true","https://cloudflare-dns.com/dns-query#ONEDRIVE下载&h3=true"], 'steamcdn-a.akamaihd.net': ["quic://dns.alidns.com#STEAM下载","https://doh.pub/dns-query#STEAM下载&h3=false","https://dns.google/dns-query#STEAM下载&h3=true","https://cloudflare-dns.com/dns-query#STEAM下载&h3=true"], 'rule-set:steam-cn': ["quic://dns.alidns.com#STEAM下载","https://doh.pub/dns-query#STEAM下载&h3=false","https://dns.google/dns-query#STEAM下载&h3=true","https://cloudflare-dns.com/dns-query#STEAM下载&h3=true"], 'rule-set:googlefcm': ["quic://dns.alidns.com#FCM推送","https://doh.pub/dns-query#FCM推送&h3=false","https://dns.google/dns-query#FCM推送&h3=true","https://cloudflare-dns.com/dns-query#FCM推送&h3=true"], 'rule-set:openai,gemini': ["https://dns.google/dns-query#AI&h3=true","https://cloudflare-dns.com/dns-query#AI&h3=true"], 'rule-set:telegram': ["https://dns.google/dns-query#TELEGRAM&h3=true","https://cloudflare-dns.com/dns-query#TELEGRAM&h3=true"], 'rule-set:twitter': ["https://dns.google/dns-query#TWITTER&h3=true","https://cloudflare-dns.com/dns-query#TWITTER&h3=true"], 'rule-set:spotify': ["https://dns.google/dns-query#SPOTIFY&h3=true","https://cloudflare-dns.com/dns-query#SPOTIFY&h3=true"], 'rule-set:tiktok': ["https://dns.google/dns-query#TIKTOK&h3=true","https://cloudflare-dns.com/dns-query#TIKTOK&h3=true"], 'rule-set:youtube': ["https://dns.google/dns-query#YOUTUBE&h3=true","https://cloudflare-dns.com/dns-query#YOUTUBE&h3=true"], 'rule-set:netflix': ["https://dns.google/dns-query#NETFLIX&h3=true","https://cloudflare-dns.com/dns-query#NETFLIX&h3=true"], 'rule-set:github': ["https://dns.google/dns-query#GITHUB&h3=true","https://cloudflare-dns.com/dns-query#GITHUB&h3=true"], 'rule-set:cloudflare': ["https://dns.google/dns-query#CLOUDFLARE&h3=true","https://cloudflare-dns.com/dns-query#CLOUDFLARE&h3=true"], 'googleapis.cn': ["https://dns.google/dns-query#GOOGLE&h3=true","https://cloudflare-dns.com/dns-query#GOOGLE&h3=true"], 'rule-set:google': ["https://dns.google/dns-query#GOOGLE&h3=true","https://cloudflare-dns.com/dns-query#GOOGLE&h3=true"], 'rule-set:microsoft': ["quic://dns.alidns.com#MICROSOFT","https://doh.pub/dns-query#MICROSOFT&h3=false","https://dns.google/dns-query#MICROSOFT&h3=true","https://cloudflare-dns.com/dns-query#MICROSOFT&h3=true"] } }
+dns: { enable: true, cache-algorithm: arc, listen: 0.0.0.0:1053, ipv6: true, prefer-h3: true, use-hosts: true, use-system-hosts: false, respect-rules: false, enhanced-mode: redir-host, default-nameserver: ['tls://223.5.5.5', 119.29.29.29], proxy-server-nameserver: ["https://223.5.5.5/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true","https://doh.pub/dns-query#DIRECT&h3=false&ecs=119.29.29.29/24&ecs-override=true"], nameserver: ["https://8.8.8.8/dns-query#PROXY&h3=true","https://1.1.1.1/dns-query#PROXY&h3=true"], direct-nameserver: ["https://223.5.5.5/dns-query#DIRECT&h3=true","https://doh.pub/dns-query#DIRECT&h3=false"], direct-nameserver-follow-policy: true, nameserver-policy: { 'rule-set:private': [system], 'sharepoint.com': ["https://223.5.5.5/dns-query#ONEDRIVE下载&h3=true","https://doh.pub/dns-query#ONEDRIVE下载&h3=false","https://8.8.8.8/dns-query#ONEDRIVE下载&h3=true","https://1.1.1.1/dns-query#ONEDRIVE下载&h3=true"], 'sharepoint.cn': ["https://223.5.5.5/dns-query#ONEDRIVE下载&h3=true","https://doh.pub/dns-query#ONEDRIVE下载&h3=false","https://8.8.8.8/dns-query#ONEDRIVE下载&h3=true","https://1.1.1.1/dns-query#ONEDRIVE下载&h3=true"], 'steamcdn-a.akamaihd.net': ["https://223.5.5.5/dns-query#STEAM下载&h3=true","https://doh.pub/dns-query#STEAM下载&h3=false","https://8.8.8.8/dns-query#STEAM下载&h3=true","https://1.1.1.1/dns-query#STEAM下载&h3=true"], 'rule-set:steam-cn': ["https://223.5.5.5/dns-query#STEAM下载&h3=true","https://doh.pub/dns-query#STEAM下载&h3=false","https://8.8.8.8/dns-query#STEAM下载&h3=true","https://1.1.1.1/dns-query#STEAM下载&h3=true"], 'rule-set:googlefcm': ["https://223.5.5.5/dns-query#FCM推送&h3=true","https://doh.pub/dns-query#FCM推送&h3=false","https://8.8.8.8/dns-query#FCM推送&h3=true","https://1.1.1.1/dns-query#FCM推送&h3=true"], 'rule-set:openai,gemini': ["https://8.8.8.8/dns-query#AI&h3=true","https://1.1.1.1/dns-query#AI&h3=true"], 'rule-set:telegram': ["https://8.8.8.8/dns-query#TELEGRAM&h3=true","https://1.1.1.1/dns-query#TELEGRAM&h3=true"], 'rule-set:twitter': ["https://8.8.8.8/dns-query#TWITTER&h3=true","https://1.1.1.1/dns-query#TWITTER&h3=true"], 'rule-set:spotify': ["https://8.8.8.8/dns-query#SPOTIFY&h3=true","https://1.1.1.1/dns-query#SPOTIFY&h3=true"], 'rule-set:tiktok': ["https://8.8.8.8/dns-query#TIKTOK&h3=true","https://1.1.1.1/dns-query#TIKTOK&h3=true"], 'rule-set:youtube': ["https://8.8.8.8/dns-query#YOUTUBE&h3=true","https://1.1.1.1/dns-query#YOUTUBE&h3=true"], 'rule-set:netflix': ["https://8.8.8.8/dns-query#NETFLIX&h3=true","https://1.1.1.1/dns-query#NETFLIX&h3=true"], 'rule-set:github': ["https://8.8.8.8/dns-query#GITHUB&h3=true","https://1.1.1.1/dns-query#GITHUB&h3=true"], 'rule-set:cloudflare': ["https://8.8.8.8/dns-query#CLOUDFLARE&h3=true","https://1.1.1.1/dns-query#CLOUDFLARE&h3=true"], 'googleapis.cn': ["https://8.8.8.8/dns-query#GOOGLE&h3=true","https://1.1.1.1/dns-query#GOOGLE&h3=true"], 'rule-set:google': ["https://8.8.8.8/dns-query#GOOGLE&h3=true","https://1.1.1.1/dns-query#GOOGLE&h3=true"], 'rule-set:microsoft': ["https://223.5.5.5/dns-query#MICROSOFT&h3=true","https://doh.pub/dns-query#MICROSOFT&h3=false","https://8.8.8.8/dns-query#MICROSOFT&h3=true","https://1.1.1.1/dns-query#MICROSOFT&h3=true"] } }
 sniffer: { enable: true, force-dns-mapping: true, parse-pure-ip: true, override-destination: true, sniff: { HTTP: { ports: [80, 8080-8880], override-destination: true }, TLS: { ports: [443, 8443] }, QUIC: { ports: [443, 8443] } },skip-domain: ["RULE-SET:private"], skip-src-address: ["RULE-SET:private_ip"] }
 tun: # 适配box模块
   enable: true
@@ -45,51 +45,47 @@ tun: # 适配box模块
 
 
 ## 代理组 ##
-proxy-providers: { link: { type: http, <<: *url, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 1800, timeout: 5000, max-failed-times: 3 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer } } }
-zl: &zl { type: select, proxies: [DIRECT,PROXY,🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
-dl: &dl { type: select, proxies: [PROXY,DIRECT,🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴] }
-choose: &choose { type: select, include-all-providers: true, lazy: true, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Network_2.png }
+proxy-providers: { link: { type: http, <<: *url, path: ./providers/link.yaml, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: 'https://www.google.com/generate_204', interval: 1800, timeout: 5000, max-failed-times: 3 }, override: { udp: true, tfo: true, mptcp: true, ip-version: ipv6-prefer }, exclude-filter: "🇦🇶|流量|到期|重置" } }
+zl: &zl { type: select, proxies: [DIRECT,PROXY,香港|自动,香港|均衡,台湾|自动,台湾|均衡,日本|自动,日本|均衡,新加坡|自动,新加坡|均衡,美国|自动,美国|均衡,英国|自动,英国|均衡,故障转移], include-all-providers: true }
+dl: &dl { type: select, proxies: [PROXY,故障转移,香港|自动,香港|均衡,台湾|自动,台湾|均衡,日本|自动,日本|均衡,新加坡|自动,新加坡|均衡,美国|自动,美国|均衡,英国|自动,英国|均衡], include-all-providers: true }
+proxies: [ { name: DNS劫持, type: dns } ]
 auto: &auto { type: url-test, include-all-providers: true, tolerance: 20, lazy: true, hidden: true }
 bal: &bal { type: load-balance, include-all-providers: true, strategy: round-robin, lazy: true, hidden: true }
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [🇭🇰香港|自动,🇭🇰香港|均衡,🇹🇼台湾|自动,🇹🇼台湾|均衡,🇯🇵日本|自动,🇯🇵日本|均衡,🇸🇬新加坡|自动,🇸🇬新加坡|均衡,🇺🇸美国|自动,🇺🇸美国|均衡,🇩🇪德国|自动,🇩🇪德国|均衡,其他地区|自动,故障转移,手动选择¹,手动选择²,手动选择³,手动选择⁴], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Global.png }
-  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP,PASS], icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AdblockPlus_2.png }
-  - { name: ONEDRIVE下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/OneDrive.png }
-  - { name: STEAM下载, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Steam.png }
-  - { name: FCM推送, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/FCM_Firebase_Cloud_Messaging.png }
-  - { name: AI, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/AI.png }
-  - { name: TELEGRAM, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Telegram.png }
-  - { name: TWITTER, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/X.png }
-  - { name: SPOTIFY, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Spotify.png }
-  - { name: TIKTOK, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/TikTok.png }
-  - { name: YOUTUBE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/YouTube.png }
-  - { name: NETFLIX, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Netflix.png }
-  - { name: GITHUB, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/GitHub.png }
-  - { name: CLOUDFLARE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/CloudFlare.png }
-  - { name: GOOGLE, <<: *dl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Google.png }
-  - { name: MICROSOFT, <<: *zl, icon: https://gcore.jsdelivr.net/gh/Vbaethon/HOMOMIX@main/Icon/Color/Large/Microsoft.png }
-  - { name: 故障转移, type: fallback, include-all-providers: true, exclude-filter: "🇦🇶|流量|到期|重置", lazy: true, hidden: true }
-  - { name: 手动选择¹, <<: *choose }
-  - { name: 手动选择², <<: *choose }
-  - { name: 手动选择³, <<: *choose }
-  - { name: 手动选择⁴, <<: *choose }
-  - { name: 🇭🇰香港|自动, <<: *auto, filter: "🇭🇰|香港" }
-  - { name: 🇹🇼台湾|自动, <<: *auto, filter: "🇹🇼|台湾" }
-  - { name: 🇯🇵日本|自动, <<: *auto, filter: "🇯🇵|日本" }
-  - { name: 🇸🇬新加坡|自动, <<: *auto, filter: "🇸🇬|新加坡" }
-  - { name: 🇺🇸美国|自动, <<: *auto, filter: "🇺🇸|美国" }
-  - { name: 🇩🇪德国|自动, <<: *auto, filter: "🇩🇪|德国" }
-  - { name: 其他地区|自动, <<: *auto, exclude-filter: "🇭🇰|香港|🇹🇼|台湾|🇯🇵|日本|🇸🇬|新加坡|🇺🇸|美国|🇩🇪|德国|🇦🇶|流量|到期|重置" }
-  - { name: 🇭🇰香港|均衡, <<: *bal, filter: "🇭🇰|香港" }
-  - { name: 🇹🇼台湾|均衡, <<: *bal, filter: "🇹🇼|台湾" }
-  - { name: 🇯🇵日本|均衡, <<: *bal, filter: "🇯🇵|日本" }
-  - { name: 🇸🇬新加坡|均衡, <<: *bal, filter: "🇸🇬|新加坡" }
-  - { name: 🇺🇸美国|均衡, <<: *bal, filter: "🇺🇸|美国" }
-  - { name: 🇩🇪德国|均衡, <<: *bal, filter: "🇩🇪|德国" }
+  - { name: PROXY, type: select, proxies: [香港|自动,香港|均衡,台湾|自动,台湾|均衡,日本|自动,日本|均衡,新加坡|自动,新加坡|均衡,美国|自动,美国|均衡,英国|自动,英国|均衡,故障转移], include-all-providers: true, icon: https://proxy.echs.top/icon/Global.webp }
+  - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP,PASS], icon: https://proxy.echs.top/icon/Forbidden.webp }
+  - { name: ONEDRIVE下载, <<: *zl, icon: https://proxy.echs.top/icon/OneDrive.webp }
+  - { name: STEAM下载, <<: *zl, icon: https://proxy.echs.top/icon/Steam.webp }
+  - { name: FCM推送, <<: *zl, icon: https://proxy.echs.top/icon/FCM_Firebase_Cloud_Messaging.webp }
+  - { name: AI, <<: *dl, icon: https://proxy.echs.top/icon/AI.webp }
+  - { name: TELEGRAM, <<: *dl, icon: https://proxy.echs.top/icon/Telegram.webp }
+  - { name: TWITTER, <<: *dl, icon: https://proxy.echs.top/icon/X.webp }
+  - { name: SPOTIFY, <<: *dl, icon: https://proxy.echs.top/icon/Spotify.webp }
+  - { name: TIKTOK, <<: *dl, icon: https://proxy.echs.top/icon/TikTok.webp }
+  - { name: YOUTUBE, <<: *dl, icon: https://proxy.echs.top/icon/YouTube.webp }
+  - { name: NETFLIX, <<: *dl, icon: https://proxy.echs.top/icon/Netflix.webp }
+  - { name: GITHUB, <<: *dl, icon: https://proxy.echs.top/icon/GitHub.webp }
+  - { name: CLOUDFLARE, <<: *dl, icon: https://proxy.echs.top/icon/CloudFlare.webp }
+  - { name: GOOGLE, <<: *dl, icon: https://proxy.echs.top/icon/Google.webp }
+  - { name: MICROSOFT, <<: *zl, icon: https://proxy.echs.top/icon/Microsoft.webp }
+  - { name: 故障转移, type: fallback, include-all-providers: true, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Network_2.webp }
+  - { name: 香港|自动, <<: *auto, filter: "🇭🇰|香港", icon: https://proxy.echs.top/icon/Hong_Kong.webp }
+  - { name: 台湾|自动, <<: *auto, filter: "🇹🇼|台湾", icon: https://proxy.echs.top/icon/Taiwan_Province.webp }
+  - { name: 日本|自动, <<: *auto, filter: "🇯🇵|日本", icon: https://proxy.echs.top/icon/Japan.webp }
+  - { name: 新加坡|自动, <<: *auto, filter: "🇸🇬|新加坡", icon: https://proxy.echs.top/icon/Singapore.webp }
+  - { name: 美国|自动, <<: *auto, filter: "🇺🇸|美国", icon: https://proxy.echs.top/icon/USA.webp }
+  - { name: 英国|自动, <<: *auto, filter: "🇬🇧|英国", icon: https://proxy.echs.top/icon/UK.webp }
+  - { name: 香港|均衡, <<: *bal, filter: "🇭🇰|香港", icon: https://proxy.echs.top/icon/Hong_Kong.webp }
+  - { name: 台湾|均衡, <<: *bal, filter: "🇹🇼|台湾", icon: https://proxy.echs.top/icon/Taiwan_Province.webp }
+  - { name: 日本|均衡, <<: *bal, filter: "🇯🇵|日本", icon: https://proxy.echs.top/icon/Japan.webp }
+  - { name: 新加坡|均衡, <<: *bal, filter: "🇸🇬|新加坡", icon: https://proxy.echs.top/icon/Singapore.webp }
+  - { name: 美国|均衡, <<: *bal, filter: "🇺🇸|美国", icon: https://proxy.echs.top/icon/USA.webp }
+  - { name: 英国|均衡, <<: *bal, filter: "🇬🇧|英国", icon: https://proxy.echs.top/icon/UK.webp }
 
 
 ## 规则 ##
 rules:
+  - DST-PORT,53,DNS劫持
   - RULE-SET,ads,广告拦截
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
   - OR,((DOMAIN,dns.alidns.com),(DOMAIN,doh.pub),(DOMAIN,zns.lehu.in),(IP-CIDR,47.76.113.103/24,no-resolve),(IP-CIDR,223.5.5.5/24,no-resolve),(IP-CIDR,223.6.6.6/24,no-resolve),(IP-CIDR,119.29.29.29/24,no-resolve),(IP-CIDR6,2402:4e00::/32,no-resolve),(IP-CIDR6,2400:3200:baba::1/32,no-resolve),(IP-CIDR6,2400:3200::1/32,no-resolve)),DIRECT
@@ -100,6 +96,7 @@ rules:
   - DOMAIN-SUFFIX,echs.top,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
   - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
+  - DOMAIN,myql.eu.org,PROXY
   - IP-CIDR,154.201.76.158/24,DIRECT,no-resolve
   # 分流规则
   - OR,((DOMAIN-SUFFIX,sharepoint.com),(DOMAIN-SUFFIX,sharepoint.cn)),ONEDRIVE下载
@@ -117,13 +114,13 @@ rules:
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - RULE-SET,microsoft,MICROSOFT
   - RULE-SET,gfw,PROXY
-  - RULE-SET,bilibili,DIRECT
+  - OR,((RULE-SET,bilibili),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),DIRECT
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
   - MATCH,PROXY
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: DIRECT }
 domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: DIRECT }
 rule-providers:
-  ads: { 输入: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
+  ads: { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
   steam-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam@cn.mrs", path: ./rules/steam-cn.mrs }
   googlefcm: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs", path: ./rules/googlefcm.mrs }
