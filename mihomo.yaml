@@ -1,4 +1,4 @@
-# 单机场自用redir-host模板，已测试如下软件
+# 单订阅自用redir-host模板，已测试如下软件
 # https://github.com/echs-top/proxy/blob/main/代理软件.md
 # 我尝试将策略组dns分流查询的抽象内容补齐，保证dns查询节点和策略选择节点一致性
 # 下载外部资源使用cdn(主要为了clash meta初次导入)
