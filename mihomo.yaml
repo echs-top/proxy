@@ -96,6 +96,7 @@ rules:
   - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(IP-CIDR,8.8.8.8/24,no-resolve),(IP-CIDR,8.8.4.4/24,no-resolve),(IP-CIDR,1.1.1.1/24,no-resolve),(IP-CIDR,1.0.0.1/24,no-resolve),(IP-CIDR6,2001:4860:4860::8888/32,no-resolve),(IP-CIDR6,2001:4860:4860::8844/32,no-resolve),(IP-CIDR6,2606:4700:4700::1001/32,no-resolve),(IP-CIDR6,2606:4700:4700::1111/32,no-resolve)),PROXY
   # 自用补充
   - DOMAIN-SUFFIX,ipwho.is,PROXY
+  - DOMAIN-SUFFIX,ipip.net,DIRECT
   - DOMAIN-SUFFIX,echs.top,DIRECT
   - DOMAIN-SUFFIX,808yun.cn,DIRECT
   - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
