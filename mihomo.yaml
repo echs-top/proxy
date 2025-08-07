@@ -115,13 +115,14 @@ rules:
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - RULE-SET,microsoft,MICROSOFT
+  - RULE-SET,gfw,PROXY
   - RULE-SET,bilibili,DIRECT
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
   - MATCH,PROXY
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: DIRECT }
 domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: DIRECT }
 rule-providers:
-  ads: { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
+  ads: { 输入: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
   steam-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam@cn.mrs", path: ./rules/steam-cn.mrs }
   googlefcm: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs", path: ./rules/googlefcm.mrs }
@@ -137,6 +138,7 @@ rule-providers:
   cloudflare: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs", path: ./rules/cloudflare.mrs }
   google: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs", path: ./rules/google.mrs }
   microsoft: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs", path: ./rules/microsoft.mrs }
+  gfw: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs", path: ./rules/gfw.mrs }
   bilibili: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs", path: ./rules/bilibili.mrs }
   cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   private_ip: { <<: *ip, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs", path: ./rules/private_ip.mrs }
