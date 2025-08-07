@@ -62,8 +62,6 @@ dns:
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "*"
-    - "+.lan"
-    - "+.local"
     - "5228"
     - "sharepoint.com"
     - "steamcdn-a.akamaihd.net"
