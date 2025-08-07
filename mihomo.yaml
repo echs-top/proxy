@@ -17,7 +17,7 @@ disable-keep-alive: true
 find-process-mode: always
 global-client-fingerprint: chrome
 etag-support: true
-external-controller: 0.0.0.0:9090
+external-controller: 0.0.0.0:9000
 # 不建议为空
 secret: "密码"
 external-ui: ./dashboard
