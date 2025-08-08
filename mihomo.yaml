@@ -12,7 +12,7 @@ log-level: warning
 ipv6: true
 disable-keep-alive: true
 find-process-mode: always
-external-controller: 0.0.0.0:9090
+external-controller: 0.0.0.0:9000
 secret: "密码"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
@@ -54,6 +54,16 @@ hosts:
     - '2606:4700:20::681a:1f1'
     - '2606:4700:20::681a:f1'
     - '2606:4700:20::ac43:45f3'
+  dns0.eu:
+    - 193.110.81.0
+    - 185.253.5.0
+    - '2a0f:fc80::'
+    - '2a0f:fc81::'
+  dns11.quad9.net:
+    - 9.9.9.11
+    - 149.112.112.11
+    - '2620:fe::11'
+    - '2620:fe::fe:11'
 dns: 
   enable: true
   cache-algorithm: arc
@@ -61,10 +71,11 @@ dns:
   prefer-h3: true
   use-hosts: true
   use-system-hosts: false
-  respect-rules: false
+  respect-rules: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
+  fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "*"
     - "5228"
@@ -72,13 +83,16 @@ dns:
     - "steamcdn-a.akamaihd.net"
     - "RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple,microsoft-cn,cn"
   default-nameserver:
-    - tls://223.5.5.5
+    - 223.5.5.5
     - 119.29.29.29
-  nameserver:
+  proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
+    - "https://v.recipes/dns-cn#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
-    - "https://v.recipes/dns-ecs#DIRECT"
-    - "https://v.recipes/dns-query#DIRECT"
+  nameserver:
+    - "https://dns.google/dns-query#PROXY"
+    - "https://cloudflare-dns.com/dns-query#PROXY"
+    - "https://dns11.quad9.net/dns-query#PROXY"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
@@ -116,7 +130,7 @@ tun:
   stack: mixed
   dns-hijack:
     - any:53
-    - tcp://any:53
+    - any:853
   mtu: 9000
   auto-route: true
   auto-redirect: true
@@ -372,7 +386,7 @@ rule-providers:
     behavior: domain
     format: text
     proxy: DIRECT
-    url: "https://proxy.echs.top/rules/proxy_domain.list"
+    url: "https://proxy.echs.top/rules/direct_domain.list"
     path: ./rules/direct_domain.list
   private:
     <<: *domain
