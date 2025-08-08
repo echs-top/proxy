@@ -151,14 +151,9 @@ proxy-providers:
       enable: true
       url: 'https://www.google.com/generate_204'
       interval: 3600
-      timeout: 5000
+      timeout: 8000
       max-failed-times: 5
       expected-status: 204
-    override:
-      udp: true
-      tfo: true
-      mptcp: true
-      ip-version: ipv6-prefer
     exclude-filter: "🇦🇶|流量|到期|重置"
 zl: &zl
   type: select
