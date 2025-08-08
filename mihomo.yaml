@@ -74,27 +74,20 @@ dns:
   default-nameserver:
     - tls://223.5.5.5
     - 119.29.29.29
-    - system
-  proxy-server-nameserver:
-    - "https://v.recipes/dns/dns.google/dns-query#DIRECT&h3=true"
-    - "https://v.recipes/dns-query#DIRECT&h3=true"
-    - "quic://dns.alidns.com:853#DIRECT"
-    - "https://doh.pub/dns-query#DIRECT&h3=false"
-  nameserver:
-    - "https://v.recipes/dns/dns.google/dns-query#DIRECT&h3=true"
-    - "https://dns.google/dns-query#PROXY&h3=true"
-    - "https://v.recipes/dns-query#DIRECT&h3=true"
-    - "https://cloudflare-dns.com/dns-query#PROXY&h3=true"
+    nameserver:
+    - "https://dns.alidns.com/dns-query#DIRECT"
+    - "https://doh.pub/dns-query#DIRECT"
+    - "https://v.recipes/dns-ecs#DIRECT"
+    - "https://v.recipes/dns-query#DIRECT"
   direct-nameserver:
-    - "quic://dns.alidns.com:853#DIRECT"
-    - "https://doh.pub/dns-query#DIRECT&h3=false"
-    - "https://https://v.recipes/dns-cn#DIRECT&h3=true"
+    - "https://dns.alidns.com/dns-query#DIRECT"
+    - "https://doh.pub/dns-query#DIRECT"
     - system
 sniffer: 
   enable: true
   force-dns-mapping: false
   parse-pure-ip: false
-  override-destination: true
+  override-destination: false
   sniff: 
     HTTP:
       ports:
@@ -143,9 +136,9 @@ proxy-providers:
     health-check:
       enable: true
       url: 'https://www.google.com/generate_204'
-      interval: 1800
+      interval: 3600
       timeout: 5000
-      max-failed-times: 3
+      max-failed-times: 5
       expected-status: 204
     override:
       udp: true
