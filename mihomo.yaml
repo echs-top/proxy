@@ -97,12 +97,18 @@ sniffer:
   override-destination: true
   sniff: 
     HTTP:
-      ports: [80, 8080-8880]
+      ports:
+        - 80
+        - 8080-8880
       override-destination: true
     TLS:
-      ports: [443, 8443]
+      ports:
+        - 443
+        - 8443
     QUIC:
-      ports: [443, 8443]
+      ports:
+        - 443
+        - 8443
   skip-domain:
     - "RULE-SET:private"
   force-domain:
@@ -184,9 +190,6 @@ dl: &dl
     - 英国|自动
     - 英国|均衡
   include-all-providers: true
-proxies:
-  - name: dns_hijack
-    type: dns
 auto: &auto
   type: url-test
   include-all-providers: true
@@ -318,7 +321,6 @@ proxy-groups:
     filter: "🇬🇧|英国"
     icon: https://proxy.echs.top/icon/UK.webp
 rules:
-  - DST-PORT,53,dns_hijack
   - RULE-SET,ads,REJECT-DROP
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),PROXY
@@ -339,7 +341,7 @@ rules:
   - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),BILIBILI
   - RULE-SET,apple,APPLE
   - RULE-SET,microsoft-cn,DIRECT
-  - RULE-SET,gfw,PROXY
+  - RULE-SET,non_cn,PROXY
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
   - MATCH,PROXY
 ip: &ip
@@ -451,10 +453,10 @@ rule-providers:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs"
     path: ./rules/microsoft-cn.mrs
-  gfw:
+  non_cn:
     <<: *domain
-    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs"
-    path: ./rules/gfw.mrs
+    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs"
+    path: ./rules/non_cn.mrs
   cn:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
