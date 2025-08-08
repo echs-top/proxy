@@ -74,7 +74,7 @@ dns:
   default-nameserver:
     - tls://223.5.5.5
     - 119.29.29.29
-    nameserver:
+  nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
     - "https://v.recipes/dns-ecs#DIRECT"
