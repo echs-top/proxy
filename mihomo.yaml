@@ -101,7 +101,7 @@ sniffer:
   enable: true
   force-dns-mapping: false
   parse-pure-ip: false
-  override-destination: false
+  override-destination: true
   sniff: 
     HTTP:
       ports:
