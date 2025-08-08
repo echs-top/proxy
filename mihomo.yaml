@@ -90,9 +90,9 @@ dns:
     - "https://v.recipes/dns-cn#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
   nameserver:
-    - "https://dns.google/dns-query#PROXY"
-    - "https://cloudflare-dns.com/dns-query#PROXY"
-    - "https://dns11.quad9.net/dns-query#PROXY"
+    - "https://dns.google/dns-query#DNS查询"
+    - "https://cloudflare-dns.com/dns-query#DNS查询"
+    - "https://dns11.quad9.net/dns-query#DNS查询"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
@@ -153,7 +153,6 @@ proxy-providers:
       interval: 3600
       timeout: 8000
       max-failed-times: 5
-      expected-status: 204
     override:
       ip-version: ipv6-prefer
     exclude-filter: "🇦🇶|流量|到期|重置"
@@ -174,13 +173,14 @@ zl: &zl
     - 美国|均衡
     - 英国|自动
     - 英国|均衡
+    - 自动选择
     - 故障转移
   include-all-providers: true
 dl: &dl
   type: select
   proxies:
     - PROXY
-    - 故障转移
+    - 自动选择
     - 香港|自动
     - 香港|均衡
     - 台湾|自动
@@ -193,6 +193,7 @@ dl: &dl
     - 美国|均衡
     - 英国|自动
     - 英国|均衡
+    - 故障转移
   include-all-providers: true
 auto: &auto
   type: url-test
@@ -222,9 +223,20 @@ proxy-groups:
       - 美国|均衡
       - 英国|自动
       - 英国|均衡
+      - 自动选择
       - 故障转移
     include-all-providers: true
     icon: https://proxy.echs.top/icon/Global.webp
+  - name: DNS查询
+    <<: *dl
+    icon: https://proxy.echs.top/icon/Server.webp
+  - name: 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      - REJECT-DROP
+      - PASS
+    icon: https://proxy.echs.top/icon/Forbidden.webp
   - name: FCM推送
     <<: *zl
     icon: https://proxy.echs.top/icon/FCM_Firebase_Cloud_Messaging.webp
@@ -270,6 +282,13 @@ proxy-groups:
   - name: APPLE
     <<: *zl
     icon: https://proxy.echs.top/icon/Apple_black.webp
+  - name: 自动选择
+    type: url-test
+    include-all-providers: true
+    tolerance: 80
+    lazy: true
+    hidden: true
+    icon: https://proxy.echs.top/icon/Fast.webp
   - name: 故障转移
     type: fallback
     include-all-providers: true
@@ -325,8 +344,10 @@ proxy-groups:
     filter: "🇬🇧|英国"
     icon: https://proxy.echs.top/icon/UK.webp
 rules:
-  - RULE-SET,ads,REJECT-DROP
+  - RULE-SET,ads,广告拦截
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
+  - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(DOMAIN,dns0.eu),(DOMAIN,dns11.quad9.net),(IP-SUFFIX,8.8.8.8/24,no-resolve),(IP-SUFFIX,8.8.4.4/24,no-resolve),(IP-SUFFIX,1.1.1.1/24,no-resolve),(IP-SUFFIX,1.0.0.1/24,no-resolve),(IP-SUFFIX,193.110.81.0/24,no-resolve),(IP-SUFFIX,185.253.5.0/24,no-resolve),(IP-SUFFIX,9.9.9.11/24,no-resolve),(IP-SUFFIX,149.112.112.11/24,no-resolve),(IP-SUFFIX,2001:4860:4860::8888/32,no-resolve),(IP-SUFFIX,2001:4860:4860::8844/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1001/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1111/32,no-resolve),(IP-SUFFIX,2a0f:fc80::/32,no-resolve),(IP-SUFFIX,2a0f:fc81::/32,no-resolve),(IP-SUFFIX,2620:fe::11/32,no-resolve),(IP-SUFFIX,2620:fe::fe:11/32,no-resolve)),DNS查询
+  - OR,((DOMAIN,dns.alidns.com),(DOMAIN,zns.lehu.in),(DOMAIN,doh.pub),(DOMAIN,v.recipes),(IP-SUFFIX,47.76.113.103/24,no-resolve),(IP-SUFFIX,223.5.5.5/24,no-resolve),(IP-SUFFIX,223.6.6.6/24,no-resolve),(IP-SUFFIX,119.29.29.29/24,no-resolve),(IP-SUFFIX,104.26.0.241/24,no-resolve),(IP-SUFFIX,104.26.1.241/24,no-resolve),(IP-SUFFIX,172.67.69.243/24,no-resolve),(IP-SUFFIX,2402:4e00::/32,no-resolve),(IP-SUFFIX,2400:3200:baba::1/32,no-resolve),(IP-SUFFIX,2400:3200::1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:1f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::ac43:45f3/32,no-resolve)),DIRECT
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),PROXY
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),DIRECT
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
@@ -334,9 +355,9 @@ rules:
   - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM下载
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
   - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
-  - RULE-SET,spotify,SPOTIFY
+  - OR,((RULE-SET,spotify),(PROCESS-NAME,com.spotify.music)),SPOTIFY
   - RULE-SET,tiktok,TIKTOK
-  - RULE-SET,youtube,YOUTUBE
+  - OR,((RULE-SET,youtube),(PROCESS-NAME,com.google.android.youtube),(PROCESS-NAME,com.google.android.apps.youtube.music)),YOUTUBE
   - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
   - RULE-SET,github,GITHUB
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
