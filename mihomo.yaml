@@ -252,7 +252,7 @@ proxy-groups:
   - name: ONEDRIVE下载
     <<: *zl
     icon: https://proxy.echs.top/icon/OneDrive.webp
-  - name: STEAM下载
+  - name: STEAM中国
     <<: *zl
     icon: https://proxy.echs.top/icon/Steam.webp
   - name: TELEGRAM
@@ -282,15 +282,21 @@ proxy-groups:
   - name: AI
     <<: *dl
     icon: https://proxy.echs.top/icon/AI.webp
-  - name: GOOGLE
+  - name: PIXIV
     <<: *dl
-    icon: https://proxy.echs.top/icon/Google.webp
-  - name: BILIBILI
+    icon: https://proxy.echs.top/icon/Pixiv.webp
+  - name: 哔哩哔哩
     <<: *zl
     icon: https://proxy.echs.top/icon/Bilibili.webp
   - name: APPLE
     <<: *zl
     icon: https://proxy.echs.top/icon/Apple_black.webp
+  - name: GOOGLE
+    <<: *dl
+    icon: https://proxy.echs.top/icon/Google.webp
+  - name: 微软中国
+    <<: *zl
+    icon: https://proxy.echs.top/icon/Microsoft.webp
   - name: 自动选择
     type: url-test
     include-all-providers: true
@@ -358,7 +364,7 @@ rules:
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),DIRECT
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
   - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
-  - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM下载
+  - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
   - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
   - OR,((RULE-SET,spotify),(PROCESS-NAME,com.spotify.music)),SPOTIFY
@@ -368,10 +374,11 @@ rules:
   - RULE-SET,github,GITHUB
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
   - OR,((RULE-SET,openai),(RULE-SET,gemini)),AI
-  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
-  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),BILIBILI
+  - OR,((RULE-SET,pixiv),(PROCESS-NAME,jp.pxv.android)(PROCESS-NAME,com.perol.play.pixez)),PIXIV
+  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),哔哩哔哩
   - RULE-SET,apple,APPLE
-  - RULE-SET,microsoft-cn,DIRECT
+  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
+  - RULE-SET,microsoft-cn,微软中国
   - RULE-SET,non_cn,PROXY
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
   - MATCH,PROXY
@@ -464,10 +471,10 @@ rule-providers:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google-gemini.mrs"
     path: ./rules/gemini.mrs
-  google:
+  pixiv:
     <<: *domain
-    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
-    path: ./rules/google.mrs
+    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/pixiv.mrs"
+    path: ./rules/pixiv.mrs
   bilibili:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs"
@@ -480,6 +487,10 @@ rule-providers:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs"
     path: ./rules/apple.mrs
+  google:
+    <<: *domain
+    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
+    path: ./rules/google.mrs
   microsoft-cn:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs"
