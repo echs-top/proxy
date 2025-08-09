@@ -19,6 +19,8 @@ external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/rele
 unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
+global-ua: mihomo
+etag-support: true
 experimental: 
   quic-go-disable-gso: true
   quic-go-disable-ecn: true
@@ -158,7 +160,10 @@ proxy-providers:
       url: "https://www.google.com/generate_204"
       interval: 3600
       timeout: 10000
-    exclude-filter: "(?i)🇦🇶|流量|到期|重置"
+    override: 
+      udp: true
+      ip-version: ipv6-prefer
+    exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|故障|失联"
 proxies:
   - name: dns-hijack
     type: dns
@@ -205,7 +210,7 @@ dl: &dl
 auto: &auto
   type: url-test
   include-all-providers: true
-  tolerance: 20
+  tolerance: 50
   lazy: true
   hidden: true
 bal: &bal
@@ -298,7 +303,7 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     include-all-providers: true
-    tolerance: 80
+    tolerance: 100
     lazy: true
     hidden: true
     icon: https://proxy.echs.top/icon/Fast.webp
@@ -310,51 +315,51 @@ proxy-groups:
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
-    filter: "(?i)🇭🇰|香港"
+    filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong"
     icon: https://proxy.echs.top/icon/Hong_Kong.webp
   - name: 台湾|自动
     <<: *auto
-    filter: "(?i)🇹🇼|台湾"
+    filter: "(?i)🇹🇼|台湾|TW|taiwan"
     icon: https://proxy.echs.top/icon/Taiwan_Province.webp
   - name: 日本|自动
     <<: *auto
-    filter: "(?i)🇯🇵|日本"
+    filter: "(?i)🇯🇵|日本|JP|japan"
     icon: https://proxy.echs.top/icon/Japan.webp
   - name: 新加坡|自动
     <<: *auto
-    filter: "(?i)🇸🇬|新加坡"
+    filter: "(?i)🇸🇬|新加坡|SG|singapore"
     icon: https://proxy.echs.top/icon/Singapore.webp
   - name: 美国|自动
     <<: *auto
-    filter: "(?i)🇺🇸|美国"
+    filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
     icon: https://proxy.echs.top/icon/USA.webp
   - name: 英国|自动
     <<: *auto
-    filter: "(?i)🇬🇧|英国"
+    filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom"
     icon: https://proxy.echs.top/icon/UK.webp
   - name: 香港|均衡
     <<: *bal
-    filter: "(?i)🇭🇰|香港"
+    filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong"
     icon: https://proxy.echs.top/icon/Hong_Kong.webp
   - name: 台湾|均衡
     <<: *bal
-    filter: "(?i)🇹🇼|台湾"
+    filter: "(?i)🇹🇼|台湾|TW|taiwan"
     icon: https://proxy.echs.top/icon/Taiwan_Province.webp
   - name: 日本|均衡
     <<: *bal
-    filter: "(?i)🇯🇵|日本"
+    filter: "(?i)🇯🇵|日本|JP|japan"
     icon: https://proxy.echs.top/icon/Japan.webp
   - name: 新加坡|均衡
     <<: *bal
-    filter: "(?i)🇸🇬|新加坡"
+    filter: "(?i)🇸🇬|新加坡|SG|singapore"
     icon: https://proxy.echs.top/icon/Singapore.webp
   - name: 美国|均衡
     <<: *bal
-    filter: "(?i)🇺🇸|美国"
+    filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
     icon: https://proxy.echs.top/icon/USA.webp
   - name: 英国|均衡
     <<: *bal
-    filter: "(?i)🇬🇧|英国"
+    filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom"
     icon: https://proxy.echs.top/icon/UK.webp
 rules:
   - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
@@ -375,7 +380,7 @@ rules:
   - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
   - RULE-SET,github,GITHUB
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
-  - OR,((RULE-SET,openai),(RULE-SET,gemini)),AI
+  - OR,((RULE-SET,openai),(RULE-SET,gemini) ,(DOMAIN-SUFFIX,lingq.com,),(DOMAIN-SUFFIX,youglish.com,),(DOMAIN-SUFFIX,deepl.com,),(DOMAIN-SUFFIX,chat.openai.com,),(DOMAIN-SUFFIX,grammarly.com,),(DOMAIN-KEYWORD,(?i)sci-hub)),AI
   - OR,((RULE-SET,pixiv),(PROCESS-NAME,jp.pxv.android)(PROCESS-NAME,com.perol.play.pixez)),PIXIV
   - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),哔哩哔哩
   - RULE-SET,apple,APPLE
