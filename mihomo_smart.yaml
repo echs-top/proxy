@@ -1,5 +1,5 @@
 link: &link
-  url: "订阅链接"
+  url: "https://msub.lyf520.xyz/api/v1/client/subscribe?token=60ff22a5a66df56f2a9ba2030577a0cb"
 
 
 mixed-port: 7890
@@ -12,8 +12,8 @@ log-level: warning
 ipv6: true
 disable-keep-alive: true
 find-process-mode: always
-external-controller: 0.0.0.0:9000
-secret: "密码"
+external-controller: 0.0.0.0:9090
+secret: "echs"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 lgbm-auto-update: true
@@ -44,8 +44,9 @@ hosts:
     - '2400:3200::1'
     - '2400:3200:baba::1'
   doh.pub:
-    - 119.29.29.29
-    - '2402:4e00::'
+    - 120.53.53.53
+    - 1.12.12.21
+    - 1.12.12.12
   cloudflare-dns.com:
     - 1.1.1.1
     - 1.0.0.1
@@ -101,13 +102,16 @@ dns:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://v.recipes/dns-cn#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
+    - "https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#DIRECT"
   nameserver:
     - "https://dns.google/dns-query#DNS查询"
     - "https://cloudflare-dns.com/dns-query#DNS查询"
+    - "https://dns0.eu#DNS查询"
     - "https://dns11.quad9.net/dns-query#DNS查询"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
+    - "https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#DIRECT"
     - system
 sniffer: 
   enable: true
@@ -149,11 +153,12 @@ tun:
   auto-detect-interface: true
   strict-route: true
   udp-timeout: 600
+  include-uid: [2000,10060,10169,10257,10261,10298,10303,10304,10324,10330,10333,10334,10342,10344,10350,10353,10355,10364,10375,10404,10408,10410,10411,10416,10417]
 proxy-providers: 
-  link:
+  mojie:
     type: http
     <<: *link
-    path: ./providers/link.yaml
+    path: ./providers/mojie.yaml
     interval: 86400
     proxy: DIRECT
     header:
@@ -369,7 +374,7 @@ rules:
   - RULE-SET,ads,广告拦截
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
   - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(DOMAIN,dns0.eu),(DOMAIN,dns11.quad9.net),(IP-SUFFIX,8.8.8.8/24,no-resolve),(IP-SUFFIX,8.8.4.4/24,no-resolve),(IP-SUFFIX,1.1.1.1/24,no-resolve),(IP-SUFFIX,1.0.0.1/24,no-resolve),(IP-SUFFIX,193.110.81.0/24,no-resolve),(IP-SUFFIX,185.253.5.0/24,no-resolve),(IP-SUFFIX,9.9.9.11/24,no-resolve),(IP-SUFFIX,149.112.112.11/24,no-resolve),(IP-SUFFIX,2001:4860:4860::8888/32,no-resolve),(IP-SUFFIX,2001:4860:4860::8844/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1001/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1111/32,no-resolve),(IP-SUFFIX,2a0f:fc80::/32,no-resolve),(IP-SUFFIX,2a0f:fc81::/32,no-resolve),(IP-SUFFIX,2620:fe::11/32,no-resolve),(IP-SUFFIX,2620:fe::fe:11/32,no-resolve)),DNS查询
-  - OR,((DOMAIN,dns.alidns.com),(DOMAIN,zns.lehu.in),(DOMAIN,doh.pub),(DOMAIN,v.recipes),(IP-SUFFIX,47.76.113.103/24,no-resolve),(IP-SUFFIX,223.5.5.5/24,no-resolve),(IP-SUFFIX,223.6.6.6/24,no-resolve),(IP-SUFFIX,119.29.29.29/24,no-resolve),(IP-SUFFIX,104.26.0.241/24,no-resolve),(IP-SUFFIX,104.26.1.241/24,no-resolve),(IP-SUFFIX,172.67.69.243/24,no-resolve),(IP-SUFFIX,2402:4e00::/32,no-resolve),(IP-SUFFIX,2400:3200:baba::1/32,no-resolve),(IP-SUFFIX,2400:3200::1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:1f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::ac43:45f3/32,no-resolve)),DIRECT
+  - OR,((DOMAIN,dns.alidns.com),(DOMAIN,zns.lehu.in),(DOMAIN,doh.pub),(DOMAIN,v.recipes),(IP-SUFFIX,47.76.113.103/24,no-resolve),(IP-SUFFIX,223.5.5.5/24,no-resolve),(IP-SUFFIX,223.6.6.6/24,no-resolve),(IP-SUFFIX,119.29.29.29/24,no-resolve),(IP-SUFFIX,104.26.0.241/24,no-resolve),(IP-SUFFIX,104.26.1.241/24,no-resolve),(IP-SUFFIX,172.67.69.243/24,no-resolve),(IP-SUFFIX,120.53.53.53/24,no-resolve),(IP-SUFFIX,1.12.12.12/24,no-resolve),(IP-SUFFIX,1.12.12.21/24,no-resolve),(IP-SUFFIX,2400:3200:baba::1/32,no-resolve),(IP-SUFFIX,2400:3200::1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:1f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::ac43:45f3/32,no-resolve)),DIRECT
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),PROXY
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),DIRECT
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
