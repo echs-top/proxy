@@ -214,7 +214,7 @@ auto: &auto
 bal: &bal
   type: load-balance
   include-all-providers: true
-  strategy: round-robin
+  strategy: sticky-sessions
   lazy: true
   hidden: true
 proxy-groups:
@@ -300,11 +300,7 @@ proxy-groups:
     hidden: true
     icon: https://proxy.echs.top/icon/Fast.webp
   - name: 负载均衡
-    type: load-balance
-    include-all-providers: true
-    strategy: sticky-sessions
-    hidden: true
-    lazy: true
+    <<: *bal
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
