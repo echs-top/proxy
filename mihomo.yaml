@@ -1,5 +1,5 @@
 link: &link
-  url: "https://msub.lyf520.xyz/api/v1/client/subscribe?token=60ff22a5a66df56f2a9ba2030577a0cb"
+  url: "订阅链接"
 
 
 mixed-port: 7890
@@ -12,8 +12,8 @@ log-level: warning
 ipv6: true
 disable-keep-alive: true
 find-process-mode: always
-external-controller: 0.0.0.0:9090
-secret: "echs"
+external-controller: 0.0.0.0:9000
+secret: "密码"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 unified-delay: true
@@ -98,16 +98,13 @@ dns:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://v.recipes/dns-cn#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
-    - "https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#DIRECT"
   nameserver:
     - "https://dns.google/dns-query#DNS查询"
     - "https://cloudflare-dns.com/dns-query#DNS查询"
-    - "https://dns0.eu#DNS查询"
     - "https://dns11.quad9.net/dns-query#DNS查询"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT"
     - "https://doh.pub/dns-query#DIRECT"
-    - "https://zns.lehu.in/dns/c8Of4f1IlzHkmzUFWClD9w#DIRECT"
     - system
 sniffer: 
   enable: true
@@ -149,12 +146,11 @@ tun:
   auto-detect-interface: true
   strict-route: true
   udp-timeout: 600
-  include-uid: [2000,10060,10169,10257,10261,10298,10303,10304,10324,10330,10333,10334,10342,10344,10350,10353,10355,10364,10375,10404,10408,10410,10411,10416,10417]
 proxy-providers: 
-  mojie:
+  link:
     type: http
     <<: *link
-    path: ./providers/mojie.yaml
+    path: ./providers/link.yaml
     interval: 86400
     proxy: DIRECT
     header:
@@ -307,8 +303,8 @@ proxy-groups:
     type: load-balance
     include-all-providers: true
     strategy: sticky-sessions
+    hidden: true
     lazy: true
-  hidden: true
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
