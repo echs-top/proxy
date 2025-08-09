@@ -162,8 +162,6 @@ proxy-providers:
       interval: 3600
       timeout: 8000
       max-failed-times: 5
-    override:
-      ip-version: ipv6-prefer
     exclude-filter: "(?i)🇦🇶|流量|到期|重置"
 zl: &zl
   type: select
