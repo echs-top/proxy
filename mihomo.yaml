@@ -1,4 +1,4 @@
-link: &link
+url: &url
   url: "订阅链接"
 
 
@@ -144,11 +144,10 @@ tun:
   auto-detect-interface: true
   strict-route: true
   udp-timeout: 600
-  include-uid: [10060,10143,10169,10257,10261,10298,10303,10304,10324,10330,10333,10334,10342,10344,10350,10353,10355,10364,10375,10404,10407,10408,10409,10411,10417]
 proxy-providers: 
   link:
     type: http
-    <<: *link
+    <<: *url
     path: ./providers/link.yaml
     interval: 86400
     proxy: DIRECT
