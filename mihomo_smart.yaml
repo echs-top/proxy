@@ -220,7 +220,7 @@ bal: &bal
   policy-priority: ""
   uselightgbm: false
   collectdata: false
-  strategy: round-robin
+  strategy: sticky-sessions
   sample-rate: 1
   include-all-providers: true
   lazy: true
@@ -308,15 +308,7 @@ proxy-groups:
     hidden: true
     icon: https://proxy.echs.top/icon/Fast.webp
   - name: 负载均衡
-    type: smart
-    policy-priority: ""
-    uselightgbm: false
-    collectdata: false
-    strategy: sticky-sessions
-    sample-rate: 1
-    include-all-providers: true
-    hidden: true
-    lazy: true
+    <<: *bal
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
