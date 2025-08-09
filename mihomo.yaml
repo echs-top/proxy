@@ -16,6 +16,9 @@ external-controller: 0.0.0.0:9090
 secret: "密码"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+lgbm-auto-update: true
+lgbm-update-interval: 24
+lgbm-url: "https://ghfast.top/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
 unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
@@ -26,6 +29,7 @@ experimental:
 profile:
   store-selected: true
   store-fake-ip: true
+  smart-collector-size: 1024
 hosts: 
   dns.google:
     - 8.8.8.8
@@ -209,9 +213,13 @@ auto: &auto
   lazy: true
   hidden: true
 bal: &bal
-  type: load-balance
-  include-all-providers: true
+  type: smart
+  # policy-priority: ""
+  uselightgbm: true
+  collectdata: false
   strategy: round-robin
+  sample-rate: 1
+  include-all-providers: true
   lazy: true
   hidden: true
 proxy-groups:
