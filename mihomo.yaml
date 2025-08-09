@@ -81,6 +81,14 @@ dns:
     - "5228"
     - "sharepoint.com"
     - "steamcdn-a.akamaihd.net"
+    - "dns.alidns.com"
+    - "zns.lehu.in"
+    - "doh.pub"
+    - "v.recipes"
+    - "dns.google"
+    - "cloudflare-dns.com"
+    - "dns0.eu"
+    - "dns11.quad9.net"
     - "RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple,microsoft-cn,cn"
   default-nameserver:
     - 223.5.5.5
