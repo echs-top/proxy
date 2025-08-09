@@ -11,17 +11,17 @@ mode: rule
 log-level: error
 ipv6: true
 disable-keep-alive: true
-find-process-mode: always
-external-controller: 0.0.0.0:9000
+find-process-mode: strict
+external-controller: 0.0.0.0:9090
 secret: "密码"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 lgbm-auto-update: true
-lgbm-update-interval: 72
+lgbm-update-interval: 24
 lgbm-url: "https://ghfast.top/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: chrome
+global-client-fingerprint: random
 experimental: 
   quic-go-disable-gso: true
   quic-go-disable-ecn: true
@@ -34,15 +34,15 @@ hosts:
   dns.google:
     - 8.8.8.8
     - 8.8.4.4
-    - '2001:4860:4860::8888'
-    - '2001:4860:4860::8844'
+    - "2001:4860:4860::8888"
+    - "2001:4860:4860::8844"
   zns.lehu.in:
     - 47.76.113.103
   dns.alidns.com:
     - 223.5.5.5
     - 223.6.6.6
-    - '2400:3200::1'
-    - '2400:3200:baba::1'
+    - "2400:3200::1"
+    - "2400:3200:baba::1"
   doh.pub:
     - 120.53.53.53
     - 1.12.12.21
@@ -50,25 +50,20 @@ hosts:
   cloudflare-dns.com:
     - 1.1.1.1
     - 1.0.0.1
-    - '2606:4700:4700::1111'
-    - '2606:4700:4700::1001'
+    - "2606:4700:4700::1111"
+    - "2606:4700:4700::1001"
   v.recipes:
     - 104.26.0.241
     - 104.26.1.241
     - 172.67.69.243
-    - '2606:4700:20::681a:1f1'
-    - '2606:4700:20::681a:f1'
-    - '2606:4700:20::ac43:45f3'
-  dns0.eu:
-    - 193.110.81.0
-    - 185.253.5.0
-    - '2a0f:fc80::'
-    - '2a0f:fc81::'
-  dns11.quad9.net:
-    - 9.9.9.11
-    - 149.112.112.11
-    - '2620:fe::11'
-    - '2620:fe::fe:11'
+    - "2606:4700:20::681a:1f1"
+    - "2606:4700:20::681a:f1"
+    - "2606:4700:20::ac43:45f3"
+  dns.twnic.tw:
+    - 101.102.103.104
+    - 101.101.101.101
+    - "2001:de4::102"
+    - "2001:de4::101"
   services.googleapis.cn: services.googleapis.com
 dns: 
   enable: true
@@ -76,8 +71,8 @@ dns:
   ipv6: true
   prefer-h3: true
   use-hosts: true
-  use-system-hosts: false
-  respect-rules: true
+  use-system-hosts: true
+  respect-rules: false
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
@@ -93,24 +88,22 @@ dns:
     - "v.recipes"
     - "dns.google"
     - "cloudflare-dns.com"
-    - "dns0.eu"
-    - "dns11.quad9.net"
+    - "dns.twnic.tw"
     - "RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple,microsoft-cn,cn"
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   proxy-server-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT"
-    - "https://v.recipes/dns-cn#DIRECT"
-    - "https://doh.pub/dns-query#DIRECT"
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false"
+    - "https://v.recipes/dns-cn#DIRECT&h3=true"
   nameserver:
-    - "https://dns.google/dns-query#DNS查询"
-    - "https://cloudflare-dns.com/dns-query#DNS查询"
-    - "https://dns11.quad9.net/dns-query#DNS查询"
+    - "https://dns.google/dns-query#DNS查询&h3=true"
+    - "https://cloudflare-dns.com/dns-query#DNS查询&h3=true"
+    - "https://dns.twnic.tw/dns-query#DNS查询&h3=false"
   direct-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT"
-    - "https://doh.pub/dns-query#DIRECT"
-    - system
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false"
 sniffer: 
   enable: true
   force-dns-mapping: false
@@ -132,11 +125,11 @@ sniffer:
         - 8443
   skip-domain:
     - "RULE-SET:private"
+    - "+.push.apple.com"
+    - "Mijia Cloud"
   force-domain:
     - "RULE-SET:netflix"
   skip-src-address:
-    - "RULE-SET:private_ip"
-  skip-dst-address:
     - "RULE-SET:private_ip"
 tun:
   enable: true
@@ -144,13 +137,16 @@ tun:
   stack: mixed
   dns-hijack:
     - any:53
+    - tcp://any:53
     - any:853
+    - tcp://any:853
   mtu: 9000
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
   udp-timeout: 600
+  include-uid: [10060,10143,10169,10257,10261,10298,10303,10304,10324,10330,10333,10334,10342,10344,10350,10353,10355,10364,10375,10404,10407,10408,10409,10411,10417]
 proxy-providers: 
   link:
     type: http
@@ -163,11 +159,13 @@ proxy-providers:
         - "clash-verge/v2.3.2"
     health-check:
       enable: true
-      url: 'https://www.google.com/generate_204'
+      url: "https://www.google.com/generate_204"
       interval: 3600
-      timeout: 8000
-      max-failed-times: 5
+      timeout: 10000
     exclude-filter: "(?i)🇦🇶|流量|到期|重置"
+proxies:
+  - name: dns-hijack
+    type: dns
 zl: &zl
   type: select
   proxies:
@@ -186,7 +184,7 @@ zl: &zl
     - 英国|自动
     - 英国|均衡
     - 自动选择
-    - 负载均衡
+    - 故障转移
   include-all-providers: true
 dl: &dl
   type: select
@@ -206,7 +204,7 @@ dl: &dl
     - 英国|自动
     - 英国|均衡
     - 自动选择
-    - 负载均衡
+    - 故障转移
   include-all-providers: true
 auto: &auto
   type: url-test
@@ -216,10 +214,10 @@ auto: &auto
   hidden: true
 bal: &bal
   type: smart
-  policy-priority: ""
+  # policy-priority: ""
   uselightgbm: true
   collectdata: false
-  strategy: sticky-sessions
+  strategy: round-robin
   sample-rate: 1
   include-all-providers: true
   lazy: true
@@ -241,7 +239,7 @@ proxy-groups:
       - 英国|自动
       - 英国|均衡
       - 自动选择
-      - 负载均衡
+      - 故障转移
     include-all-providers: true
     icon: https://proxy.echs.top/icon/Global.webp
   - name: DNS查询
@@ -312,8 +310,11 @@ proxy-groups:
     lazy: true
     hidden: true
     icon: https://proxy.echs.top/icon/Fast.webp
-  - name: 负载均衡
-    <<: *bal
+  - name: 故障转移
+    type: fallback
+    include-all-providers: true
+    lazy: true
+    hidden: true
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
@@ -364,20 +365,21 @@ proxy-groups:
     filter: "(?i)🇬🇧|英国"
     icon: https://proxy.echs.top/icon/UK.webp
 rules:
-  - RULE-SET,ads,广告拦截
+  - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
-  - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(DOMAIN,dns0.eu),(DOMAIN,dns11.quad9.net),(IP-SUFFIX,8.8.8.8/24,no-resolve),(IP-SUFFIX,8.8.4.4/24,no-resolve),(IP-SUFFIX,1.1.1.1/24,no-resolve),(IP-SUFFIX,1.0.0.1/24,no-resolve),(IP-SUFFIX,193.110.81.0/24,no-resolve),(IP-SUFFIX,185.253.5.0/24,no-resolve),(IP-SUFFIX,9.9.9.11/24,no-resolve),(IP-SUFFIX,149.112.112.11/24,no-resolve),(IP-SUFFIX,2001:4860:4860::8888/32,no-resolve),(IP-SUFFIX,2001:4860:4860::8844/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1001/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1111/32,no-resolve),(IP-SUFFIX,2a0f:fc80::/32,no-resolve),(IP-SUFFIX,2a0f:fc81::/32,no-resolve),(IP-SUFFIX,2620:fe::11/32,no-resolve),(IP-SUFFIX,2620:fe::fe:11/32,no-resolve)),DNS查询
-  - OR,((DOMAIN,dns.alidns.com),(DOMAIN,zns.lehu.in),(DOMAIN,doh.pub),(DOMAIN,v.recipes),(IP-SUFFIX,47.76.113.103/24,no-resolve),(IP-SUFFIX,223.5.5.5/24,no-resolve),(IP-SUFFIX,223.6.6.6/24,no-resolve),(IP-SUFFIX,119.29.29.29/24,no-resolve),(IP-SUFFIX,104.26.0.241/24,no-resolve),(IP-SUFFIX,104.26.1.241/24,no-resolve),(IP-SUFFIX,172.67.69.243/24,no-resolve),(IP-SUFFIX,120.53.53.53/24,no-resolve),(IP-SUFFIX,1.12.12.12/24,no-resolve),(IP-SUFFIX,1.12.12.21/24,no-resolve),(IP-SUFFIX,2400:3200:baba::1/32,no-resolve),(IP-SUFFIX,2400:3200::1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:1f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::ac43:45f3/32,no-resolve)),DIRECT
+  - OR,((DOMAIN,dns.google),(DOMAIN,cloudflare-dns.com),(DOMAIN,zns.lehu.in),(DOMAIN,dns.twnic.tw),(IP-SUFFIX,47.76.113.103/24,no-resolve),(IP-SUFFIX,8.8.8.8/24,no-resolve),(IP-SUFFIX,8.8.4.4/24,no-resolve),(IP-SUFFIX,1.1.1.1/24,no-resolve),(IP-SUFFIX,1.0.0.1/24,no-resolve),(IP-SUFFIX,101.102.103.104/24,no-resolve),(IP-SUFFIX,101.101.101.101/24,no-resolve),(IP-SUFFIX,9.9.9.11/24,no-resolve),(IP-SUFFIX,149.112.112.11/24,no-resolve),(IP-SUFFIX,2001:4860:4860::8888/32,no-resolve),(IP-SUFFIX,2001:4860:4860::8844/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1001/32,no-resolve),(IP-SUFFIX,2606:4700:4700::1111/32,no-resolve),(IP-SUFFIX,2001:de4::102/32,no-resolve),(IP-SUFFIX,2001:de4::101/32,no-resolve)),DNS查询
+  - OR,((DOMAIN,dns.alidns.com),(DOMAIN,doh.pub),(DOMAIN,v.recipes),(IP-SUFFIX,223.5.5.5/24,no-resolve),(IP-SUFFIX,223.6.6.6/24,no-resolve),(IP-SUFFIX,119.29.29.29/24,no-resolve),(IP-SUFFIX,104.26.0.241/24,no-resolve),(IP-SUFFIX,104.26.1.241/24,no-resolve),(IP-SUFFIX,172.67.69.243/24,no-resolve),(IP-SUFFIX,120.53.53.53/24,no-resolve),(IP-SUFFIX,1.12.12.12/24,no-resolve),(IP-SUFFIX,1.12.12.21/24,no-resolve),(IP-SUFFIX,2400:3200:baba::1/32,no-resolve),(IP-SUFFIX,2400:3200::1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:1f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::681a:f1/32,no-resolve),(IP-SUFFIX,2606:4700:20::ac43:45f3/32,no-resolve)),DIRECT
+  - RULE-SET,ads,广告拦截
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),PROXY
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),DIRECT
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
   - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
   - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
-  - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
-  - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
-  - OR,((RULE-SET,spotify),(PROCESS-NAME,com.spotify.music)),SPOTIFY
-  - RULE-SET,tiktok,TIKTOK
-  - OR,((RULE-SET,youtube),(PROCESS-NAME,com.google.android.youtube),(PROCESS-NAME,com.google.android.apps.youtube.music)),YOUTUBE
+  - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve),(PROCESS-NAME-REGEX,(?i)Telegram),(PROCESS-NAME,tw.nekomimi.nekogram)),TELEGRAM
+  - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve),(PROCESS-NAME-REGEX,(?i)Twitter)),TWITTER
+  - OR,((RULE-SET,spotify),(PROCESS-NAME-REGEX,(?i)Spotify)),SPOTIFY
+  - OR,((RULE-SET,tiktok),(PROCESS-NAME,com.zhiliaoapp.musically),(PROCESS-NAME,com.ss.android.ugc.trill)),TIKTOK
+  - OR,((RULE-SET,youtube),(PROCESS-NAME-REGEX,(?i)Youtube)),YOUTUBE
   - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
   - RULE-SET,github,GITHUB
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
@@ -411,6 +413,10 @@ rule-providers:
     proxy: DIRECT
     url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml"
     path: ./rules/ads.yaml
+  private:
+    <<: *domain
+    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
+    path: ./rules/private.mrs
   proxy_domain:
     type: http
     interval: 86400
@@ -427,10 +433,6 @@ rule-providers:
     proxy: DIRECT
     url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/direct_domain.list"
     path: ./rules/direct_domain.list
-  private:
-    <<: *domain
-    url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
-    path: ./rules/private.mrs
   googlefcm:
     <<: *domain
     url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs"
