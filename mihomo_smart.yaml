@@ -217,7 +217,7 @@ auto: &auto
 bal: &bal
   type: smart
   policy-priority: ""
-  uselightgbm: false
+  uselightgbm: true
   collectdata: false
   strategy: sticky-sessions
   sample-rate: 1
