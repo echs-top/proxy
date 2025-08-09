@@ -163,7 +163,7 @@ proxy-providers:
       max-failed-times: 5
     override:
       ip-version: ipv6-prefer
-    exclude-filter: "🇦🇶|流量|到期|重置"
+    exclude-filter: "(?i)🇦🇶|流量|到期|重置"
 zl: &zl
   type: select
   proxies:
@@ -305,51 +305,51 @@ proxy-groups:
     icon: https://proxy.echs.top/icon/Network_2.webp
   - name: 香港|自动
     <<: *auto
-    filter: "🇭🇰|香港"
+    filter: "(?i)🇭🇰|香港"
     icon: https://proxy.echs.top/icon/Hong_Kong.webp
   - name: 台湾|自动
     <<: *auto
-    filter: "🇹🇼|台湾"
+    filter: "(?i)🇹🇼|台湾"
     icon: https://proxy.echs.top/icon/Taiwan_Province.webp
   - name: 日本|自动
     <<: *auto
-    filter: "🇯🇵|日本"
+    filter: "(?i)🇯🇵|日本"
     icon: https://proxy.echs.top/icon/Japan.webp
   - name: 新加坡|自动
     <<: *auto
-    filter: "🇸🇬|新加坡"
+    filter: "(?i)🇸🇬|新加坡"
     icon: https://proxy.echs.top/icon/Singapore.webp
   - name: 美国|自动
     <<: *auto
-    filter: "🇺🇸|美国"
+    filter: "(?i)🇺🇸|美国"
     icon: https://proxy.echs.top/icon/USA.webp
   - name: 英国|自动
     <<: *auto
-    filter: "🇬🇧|英国"
+    filter: "(?i)🇬🇧|英国"
     icon: https://proxy.echs.top/icon/UK.webp
   - name: 香港|均衡
     <<: *bal
-    filter: "🇭🇰|香港"
+    filter: "(?i)🇭🇰|香港"
     icon: https://proxy.echs.top/icon/Hong_Kong.webp
   - name: 台湾|均衡
     <<: *bal
-    filter: "🇹🇼|台湾"
+    filter: "(?i)🇹🇼|台湾"
     icon: https://proxy.echs.top/icon/Taiwan_Province.webp
   - name: 日本|均衡
     <<: *bal
-    filter: "🇯🇵|日本"
+    filter: "(?i)🇯🇵|日本"
     icon: https://proxy.echs.top/icon/Japan.webp
   - name: 新加坡|均衡
     <<: *bal
-    filter: "🇸🇬|新加坡"
+    filter: "(?i)🇸🇬|新加坡"
     icon: https://proxy.echs.top/icon/Singapore.webp
   - name: 美国|均衡
     <<: *bal
-    filter: "🇺🇸|美国"
+    filter: "(?i)🇺🇸|美国"
     icon: https://proxy.echs.top/icon/USA.webp
   - name: 英国|均衡
     <<: *bal
-    filter: "🇬🇧|英国"
+    filter: "(?i)🇬🇧|英国"
     icon: https://proxy.echs.top/icon/UK.webp
 rules:
   - RULE-SET,ads,广告拦截
