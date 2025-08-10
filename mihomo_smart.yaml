@@ -5,7 +5,7 @@ providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { Us
 proxy-providers: 
   link1: { url: "订阅链接", path: ./subs/link1.yaml, <<: *providers }
   # link2: { url: "订阅链接", path: ./subs/link2.yaml, <<: *providers }
-  xz: { url: "订阅链接", path: ./providers/xz.yaml, <<: *providers }
+  xz: { url: "订阅链接", path: ./subs/xz.yaml, <<: *providers }
 
 # 主选择包括订阅，如[link1,link2]
 use: &use { use: [link1] }
