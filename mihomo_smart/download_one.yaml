@@ -84,7 +84,7 @@ domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, pr
 rule-providers:
   ads: { type: http, interval: 86400, behavior: domain, format: yaml, proxy: DIRECT, url: "https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
-  download: { type: http, interval: 86400, behavior: classical, format: yaml, proxy: DIRECT, url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/download.yaml", path: ./rules/download.yaml }
+  download: { type: http, interval: 86400, behavior: classical, format: text, proxy: DIRECT, url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/download.list", path: ./rules/download.list }
   proxy_domain: { type: http, interval: 86400, behavior: domain, format: text, proxy: DIRECT, url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/proxy_domain.list", path: ./rules/proxy_domain.list }
   direct_domain: { type: http, interval: 86400, behavior: domain, format: text, proxy: DIRECT, url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/direct_domain.list", path: ./rules/direct_domain.list }
   googlefcm: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs", path: ./rules/googlefcm.mrs }
