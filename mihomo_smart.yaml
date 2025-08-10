@@ -1,5 +1,5 @@
-url: &url
-  url: "订阅链接"
+link: &link
+  url: "https://subscribe-3-emo.xxmad.com/s/d610fe86fc826a9b771714cd8a2379bb"
 
 
 mixed-port: 7890
@@ -13,7 +13,7 @@ ipv6: true
 disable-keep-alive: true
 find-process-mode: strict
 external-controller: 0.0.0.0:9090
-secret: "密码"
+secret: "echs"
 external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 lgbm-auto-update: true
@@ -148,11 +148,12 @@ tun:
   auto-detect-interface: true
   strict-route: true
   udp-timeout: 600
+  include-uid: [10060,10143,10169,10257,10261,10298,10303,10304,10324,10330,10333,10334,10342,10344,10350,10353,10355,10364,10375,10404,10407,10408,10409,10411,10417]
 proxy-providers: 
-  link:
+  save:
     type: http
-    <<: *url
-    path: ./providers/link.yaml
+    <<: *link
+    path: ./providers/save.yaml
     interval: 86400
     proxy: DIRECT
     header:
@@ -175,18 +176,10 @@ zl: &zl
   proxies:
     - DIRECT
     - PROXY
-    - 香港|自动
-    - 香港|均衡
-    - 台湾|自动
-    - 台湾|均衡
-    - 日本|自动
-    - 日本|均衡
-    - 新加坡|自动
-    - 新加坡|均衡
-    - 美国|自动
-    - 美国|均衡
-    - 英国|自动
-    - 英国|均衡
+    - 美国0.01|自动
+    - 美国0.01|均衡
+    - 美国0.02|自动
+    - 美国0.02|均衡
     - 自动选择
     - 故障转移
   include-all-providers: true
@@ -195,18 +188,10 @@ dl: &dl
   proxies:
     - PROXY
     - DIRECT
-    - 香港|自动
-    - 香港|均衡
-    - 台湾|自动
-    - 台湾|均衡
-    - 日本|自动
-    - 日本|均衡
-    - 新加坡|自动
-    - 新加坡|均衡
-    - 美国|自动
-    - 美国|均衡
-    - 英国|自动
-    - 英国|均衡
+    - 美国0.01|自动
+    - 美国0.01|均衡
+    - 美国0.02|自动
+    - 美国0.02|均衡
     - 自动选择
     - 故障转移
   include-all-providers: true
@@ -230,18 +215,10 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - 香港|自动
-      - 香港|均衡
-      - 台湾|自动
-      - 台湾|均衡
-      - 日本|自动
-      - 日本|均衡
-      - 新加坡|自动
-      - 新加坡|均衡
-      - 美国|自动
-      - 美国|均衡
-      - 英国|自动
-      - 英国|均衡
+      - 美国0.01|自动
+      - 美国0.01|均衡
+      - 美国0.02|自动
+      - 美国0.02|均衡
       - 自动选择
       - 故障转移
     include-all-providers: true
@@ -320,54 +297,26 @@ proxy-groups:
     lazy: true
     hidden: true
     icon: https://proxy.echs.top/icon/Network_2.webp
-  - name: 香港|自动
-    <<: *auto
-    filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong"
-    icon: https://proxy.echs.top/icon/Hong_Kong.webp
-  - name: 台湾|自动
-    <<: *auto
-    filter: "(?i)🇹🇼|台湾|TW|taiwan"
-    icon: https://proxy.echs.top/icon/Taiwan_Province.webp
-  - name: 日本|自动
-    <<: *auto
-    filter: "(?i)🇯🇵|日本|JP|japan"
-    icon: https://proxy.echs.top/icon/Japan.webp
-  - name: 新加坡|自动
-    <<: *auto
-    filter: "(?i)🇸🇬|新加坡|SG|singapore"
-    icon: https://proxy.echs.top/icon/Singapore.webp
-  - name: 美国|自动
+  - name: 美国0.01|自动
     <<: *auto
     filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
+    exclude-filter: "(?i)免费|0.02"
     icon: https://proxy.echs.top/icon/USA.webp
-  - name: 英国|自动
+  - name: 美国0.02|自动
     <<: *auto
-    filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom"
-    icon: https://proxy.echs.top/icon/UK.webp
-  - name: 香港|均衡
-    <<: *bal
-    filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong"
-    icon: https://proxy.echs.top/icon/Hong_Kong.webp
-  - name: 台湾|均衡
-    <<: *bal
-    filter: "(?i)🇹🇼|台湾|TW|taiwan"
-    icon: https://proxy.echs.top/icon/Taiwan_Province.webp
-  - name: 日本|均衡
-    <<: *bal
-    filter: "(?i)🇯🇵|日本|JP|japan"
-    icon: https://proxy.echs.top/icon/Japan.webp
-  - name: 新加坡|均衡
-    <<: *bal
-    filter: "(?i)🇸🇬|新加坡|SG|singapore"
-    icon: https://proxy.echs.top/icon/Singapore.webp
-  - name: 美国|均衡
+    filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
+    exclude-filter: "(?i)免费|0.01"
+    icon: https://proxy.echs.top/icon/USA.webp
+  - name: 美国0.01|均衡
     <<: *bal
     filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
+    exclude-filter: "(?i)免费|0.02"
     icon: https://proxy.echs.top/icon/USA.webp
-  - name: 英国|均衡
+  - name: 美国0.02|均衡
     <<: *bal
-    filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom"
-    icon: https://proxy.echs.top/icon/UK.webp
+    filter: "(?i)🇺🇸|美国|US|unitedstates|united states"
+    exclude-filter: "(?i)免费|0.01"
+    icon: https://proxy.echs.top/icon/USA.webp
 rules:
   - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
