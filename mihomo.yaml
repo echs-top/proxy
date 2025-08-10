@@ -1,4 +1,4 @@
-url: &url
+link: &link
   url: "订阅链接"
 
 
@@ -145,10 +145,10 @@ tun:
   strict-route: true
   udp-timeout: 600
 proxy-providers: 
-  link:
+  sub:
     type: http
-    <<: *url
-    path: ./providers/link.yaml
+    <<: *link
+    path: ./providers/sub.yaml
     interval: 86400
     proxy: DIRECT
     header:
