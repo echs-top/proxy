@@ -37,5 +37,7 @@
 
 按量 50G(5T)|¥19
 
+链接: [xn--mes358ag1lu22a.com](https://xn--mes358ag1lu22a.com/#/register?code=SWFecLiq)
+
 ### 弃用
 免费机场(不再便宜)、glados(禁止下载跑满宽带,300MB/s半小时即封,限制访问网站)
