@@ -127,6 +127,18 @@ hosts:
   v.recipes: [104.26.0.241,104.26.1.241,172.67.69.243,"2606:4700:20::681a:1f1","2606:4700:20::681a:f1","2606:4700:20::ac43:45f3"]
   dns.twnic.tw: [101.102.103.104,101.101.101.101,"2001:de4::102","2001:de4::101"]
   services.googleapis.cn: services.googleapis.com
+  mtalk.google.com: [142.251.170.188,142.250.107.188,108.177.125.188,"2404:6800:4008:c1b::bc","2404:6800:4008:c07::bc","2404:6800:4008:c05::bc","2404:6800:4008:c19::bc","2404:6800:4008:c15::bc"]
+  mtalk4.google.com: mtalk.google.com
+  mtalk-dev.google.com: mtalk.google.com
+  mtalk-staging.google.com: mtalk.google.com
+  alt1-mtalk.google.com: mtalk.google.com
+  alt2-mtalk.google.com: mtalk.google.com
+  alt3-mtalk.google.com: mtalk.google.com
+  alt4-mtalk.google.com: mtalk.google.com
+  alt5-mtalk.google.com: mtalk.google.com
+  alt6-mtalk.google.com: mtalk.google.com
+  alt7-mtalk.google.com: mtalk.google.com
+  alt8-mtalk.google.com: mtalk.google.com
 dns: 
   enable: true
   cache-algorithm: arc
