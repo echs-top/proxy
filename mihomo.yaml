@@ -75,7 +75,7 @@ rule-providers:
   pixiv: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/pixiv.mrs", path: ./rules/pixiv.mrs }
   bilibili: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs", path: ./rules/bilibili.mrs }
   biliintl: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs", path: ./rules/biliintl.mrs }
-  apple: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs", path: ./rules/apple.mrs }
+  apple_cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple-cn.mrs", path: ./rules/apple_cn.mrs }
   google: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs", path: ./rules/google.mrs }
   microsoft-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs", path: ./rules/microsoft-cn.mrs }
   non_cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs", path: ./rules/non_cn.mrs }
@@ -116,12 +116,10 @@ tun:
 ## 解析 ##
 hosts: 
   dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
-  zns.lehu.in: [47.76.113.103]
   dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
   doh.pub: [120.53.53.53,1.12.12.21,1.12.12.12]
   cloudflare-dns.com: [1.1.1.1,1.0.0.1,"2606:4700:4700::1111","2606:4700:4700::1001"]
   v.recipes: [104.26.0.241,104.26.1.241,172.67.69.243,"2606:4700:20::681a:1f1","2606:4700:20::681a:f1","2606:4700:20::ac43:45f3"]
-  dns.twnic.tw: [101.102.103.104,101.101.101.101,"2001:de4::102","2001:de4::101"]
   services.googleapis.cn: services.googleapis.com
   mtalk.google.com: [142.251.170.188,142.250.107.188,108.177.125.188,"2404:6800:4008:c1b::bc","2404:6800:4008:c07::bc","2404:6800:4008:c05::bc","2404:6800:4008:c19::bc","2404:6800:4008:c15::bc"]
   mtalk4.google.com: mtalk.google.com
@@ -147,7 +145,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","zns.lehu.in","doh.pub","v.recipes","dns.google","cloudflare-dns.com","dns.twnic.tw","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple,microsoft-cn,cn"]
+  fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple,microsoft-cn,cn"]
   default-nameserver: [223.5.5.5,119.29.29.29]
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
@@ -156,7 +154,7 @@ dns:
   nameserver:
     - "https://dns.google/dns-query#DNS查询&h3=true"
     - "https://cloudflare-dns.com/dns-query#DNS查询&h3=true"
-    - "https://dns.twnic.tw/dns-query#DNS查询&h3=false"
+    - "https://v.recipes/dns-cn#DNS查询&h3=true"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
     - "https://doh.pub/dns-query#DIRECT&h3=false"
@@ -167,8 +165,8 @@ dns:
     "rule-set:ads":
       - rcode://success
     "rule-set:cn,direct_domain":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+      - "https://doh.pub/dns-query#DIRECT&h3=true"
+      - "https://dns.alidns.com/dns-query#DIRECT&h3=false"
       
       
 sniffer: 
@@ -211,7 +209,7 @@ rules:
   - OR,((RULE-SET,openai),(RULE-SET,gemini) ,(DOMAIN-SUFFIX,lingq.com,),(DOMAIN-SUFFIX,youglish.com,),(DOMAIN-SUFFIX,deepl.com,),(DOMAIN-SUFFIX,chat.openai.com,),(DOMAIN-SUFFIX,grammarly.com,),(DOMAIN-KEYWORD,(?i)sci-hub)),AI
   - OR,((RULE-SET,pixiv),(PROCESS-NAME,jp.pxv.android)(PROCESS-NAME,com.perol.play.pixez)),PIXIV
   - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),哔哩哔哩
-  - RULE-SET,apple,APPLE
+  - RULE-SET,apple_cn,APPLE中国
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - RULE-SET,microsoft-cn,微软中国
   - RULE-SET,non_cn,PROXY
@@ -243,7 +241,7 @@ proxy-groups:
   - { name: AI, <<: *dl, icon: https://proxy.echs.top/icon/AI.webp }
   - { name: PIXIV, <<: *dl, icon: https://proxy.echs.top/icon/Pixiv.webp }
   - { name: 哔哩哔哩, <<: *zl, icon: https://proxy.echs.top/icon/Bilibili.webp }
-  - { name: APPLE, <<: *zl, icon: https://proxy.echs.top/icon/Apple_black.webp }
+  - { name: APPLE中国, <<: *zl, icon: https://proxy.echs.top/icon/Apple_black.webp }
   - { name: GOOGLE, <<: *dl, icon: https://proxy.echs.top/icon/Google.webp }
   - { name: 微软中国, <<: *zl, icon: https://proxy.echs.top/icon/Microsoft.webp }
   - { name: DOWNLOAD, type: select, proxies: [PASS,下载专用,PROXY,DIRECT,香港|自动,香港|均衡,台湾|自动,台湾|均衡,日本|自动,日本|均衡,新加坡|自动,新加坡|均衡,美国|自动,美国|均衡,英国|自动,英国|均衡,自动选择,故障转移], <<: *use, icon: https://proxy.echs.top/icon/Download.webp }
