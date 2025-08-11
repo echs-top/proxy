@@ -38,14 +38,8 @@ global-client-fingerprint: random
 external-controller: 0.0.0.0:9090
 # 不建议为空
 secret: "密码"
-profile:
-  store-selected: true
-  store-fake-ip: true
-  smart-collector-size: 1024
-experimental:
-  quic-go-disable-gso: true
-  quic-go-disable-ecn: true
-  dialer-ip4p-convert: false
+profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 1024 }
+experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 
 
 ## 外部资源 ##
@@ -79,10 +73,10 @@ rule-providers:
   pixiv: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/pixiv.mrs", path: ./rules/pixiv.mrs }
   bilibili: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/bilibili.mrs", path: ./rules/bilibili.mrs }
   biliintl: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/biliintl.mrs", path: ./rules/biliintl.mrs }
-  apple_cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple-cn.mrs", path: ./rules/apple_cn.mrs }
+  apple-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple-cn.mrs", path: ./rules/apple-cn.mrs }
   google: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs", path: ./rules/google.mrs }
   microsoft-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs", path: ./rules/microsoft-cn.mrs }
-  non_cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs", path: ./rules/non_cn.mrs }
+  non-cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.mrs", path: ./rules/non-cn.mrs }
   cn: { <<: *domain, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   private_ip: { <<: *ip, url: "https://gcore.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs",  path: ./rules/private_ip.mrs }
   proxy_ip: { type: http, interval: 86400, behavior: ipcidr, format: text, proxy: DIRECT, url: "https://gcore.jsdelivr.net/gh/echs-top/proxy@main/rules/proxy_ip.list", path: ./rules/proxy_ip.list }
@@ -108,11 +102,7 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
-  dns-hijack:
-    - any:53
-    - any:853
-    - tcp://any:53
-    - tcp://any:853
+  dns-hijack: [any:53,any:853,tcp://any:53,tcp://any:853]
   mtu: 9000
   udp-timeout: 600
 
@@ -149,7 +139,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple_cn,microsoft-cn,cn"]
+  fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
   default-nameserver: [223.5.5.5,119.29.29.29]
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
@@ -164,28 +154,20 @@ dns:
     - "https://doh.pub/dns-query#DIRECT&h3=false"
   direct-nameserver-follow-policy: true
   nameserver-policy:
-    "rule-set:private":
-      - system
-    "rule-set:ads":
-      - rcode://success
+    "rule-set:private": [system]
+    "rule-set:ads": [rcode://success]
     "rule-set:cn,direct_domain":
       - "https://doh.pub/dns-query#DIRECT&h3=true"
       - "https://dns.alidns.com/dns-query#DIRECT&h3=false"
-      
-      
 sniffer: 
   enable: true
   force-dns-mapping: false
   parse-pure-ip: false
   override-destination: true
-  sniff: 
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
+  sniff:
+    HTTP: { ports: [80, 8080-8880], override-destination: true }
+    TLS: { ports: [443, 8443] }
+    QUIC: { ports: [443, 8443] }
   skip-domain: ["RULE-SET:private","+.push.apple.com","Mijia Cloud"]
   force-domain: ["RULE-SET:netflix"]
   skip-src-address: ["RULE-SET:private_ip"]
@@ -213,10 +195,10 @@ rules:
   - OR,((RULE-SET,openai),(RULE-SET,gemini) ,(DOMAIN-SUFFIX,lingq.com,),(DOMAIN-SUFFIX,youglish.com,),(DOMAIN-SUFFIX,deepl.com,),(DOMAIN-SUFFIX,chat.openai.com,),(DOMAIN-SUFFIX,grammarly.com,),(DOMAIN-KEYWORD,(?i)sci-hub)),AI
   - OR,((RULE-SET,pixiv),(PROCESS-NAME,jp.pxv.android)(PROCESS-NAME,com.perol.play.pixez)),PIXIV
   - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),哔哩哔哩
-  - RULE-SET,apple_cn,APPLE中国
+  - RULE-SET,apple-cn,APPLE中国
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - RULE-SET,microsoft-cn,微软中国
-  - RULE-SET,non_cn,PROXY
+  - RULE-SET,non-cn,PROXY
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
   - MATCH,PROXY
 
