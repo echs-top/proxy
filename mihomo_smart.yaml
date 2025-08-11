@@ -96,9 +96,9 @@ rule-providers:
 
 ## 入站 ##
 mixed-port: 7890
-# 非安卓建议删除tproxy-port和redir-port
-tproxy-port: 7891
-redir-port: 7892
+# 建议优先tun
+# tproxy-port: 7891
+# redir-port: 7892
 socks-port: 7895
 tun:
   enable: true
@@ -109,10 +109,10 @@ tun:
   auto-detect-interface: true
   strict-route: true
   dns-hijack:
-    - "any:53"
-    - "any:853"
-    - "tcp://any:53"
-    - "tcp://any:853"
+    - any:53
+    - any:853
+    - tcp://any:53
+    - tcp://any:853
   mtu: 9000
   udp-timeout: 600
 
