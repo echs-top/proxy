@@ -55,7 +55,7 @@ external-ui: ./dashboard
 external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 lgbm-auto-update: true
 lgbm-update-interval: 24
-lgbm-url: "https://ghfast.top/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+lgbm-url: "https://ghfast.top/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
 ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: DIRECT }
 domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: DIRECT }
 rule-providers:
