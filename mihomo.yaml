@@ -106,11 +106,10 @@ tun:
 
 ## 解析 ##
 hosts: 
-  dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
   dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
   doh.pub: [120.53.53.53,1.12.12.21,1.12.12.12]
-  cloudflare-dns.com: [1.1.1.1,1.0.0.1,"2606:4700:4700::1111","2606:4700:4700::1001"]
-  v.recipes: [104.26.0.241,104.26.1.241,172.67.69.243,"2606:4700:20::681a:1f1","2606:4700:20::681a:f1","2606:4700:20::ac43:45f3"]
+  dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
+  dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
   services.googleapis.cn: services.googleapis.com
   mtalk.google.com: [142.251.170.188,142.250.107.188,108.177.125.188,"2404:6800:4008:c1b::bc","2404:6800:4008:c07::bc","2404:6800:4008:c05::bc","2404:6800:4008:c19::bc","2404:6800:4008:c15::bc"]
   mtalk4.google.com: mtalk.google.com
@@ -137,24 +136,25 @@ dns:
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
-  default-nameserver: [223.5.5.5,8.8.8.8]
+  default-nameserver: [223.5.5.5,1.1.1.1]
   proxy-server-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
-    - "https://doh.pub/dns-query#DIRECT&h3=false"
-    - "https://v.recipes/dns-cn#DIRECT&h3=true"
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=1.1.1.1/24&ecs-override=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=1.1.1.1/24&ecs-override=true"
   nameserver:
-    - "https://dns.google/dns-query#DNS查询&h3=true"
-    - "https://cloudflare-dns.com/dns-query#DNS查询&h3=true"
+    - "https://dns.google/dns-query#DNS查询&h3=true&ecs=1.1.1.1/24&ecs-override=true"
+    - "https://dns.quad9.net/dns-query/dns-query#DNS查询&h3=true&ecs=1.1.1.1/24&ecs-override=true"
   direct-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
-    - "https://doh.pub/dns-query#DIRECT&h3=false"
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
   direct-nameserver-follow-policy: true
   nameserver-policy:
     "rule-set:private": [system]
     "rule-set:ads": [rcode://success]
     "rule-set:cn,direct_domain":
-      - "https://doh.pub/dns-query#DIRECT&h3=true"
-      - "https://dns.alidns.com/dns-query#DIRECT&h3=false"
+      - "https://doh.pub/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
+      - "https://dns.alidns.com/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
 sniffer: 
   enable: true
   force-dns-mapping: false
