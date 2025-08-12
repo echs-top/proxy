@@ -1,5 +1,5 @@
 ## 订阅 ##
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://www.google.com/generate_204",  interval: 3600, timeout: 10000 }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://www.google.com/generate_204",  interval: 3600, max-failed-times: 2, timeout: 8000 }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
 
 # 订阅组
 proxy-providers: 
@@ -31,15 +31,14 @@ ipv6: true
 keep-alive-interval: 30
 keep-alive-idle: 120
 disable-keep-alive: false
-find-process-mode: strict
+find-process-mode: always
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: random
+global-client-fingerprint: chrome
 external-controller: 0.0.0.0:9090
 # 不建议为空
 secret: "密码"
-profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 1024 }
-experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
+profile: { store-selected: true, store-fake-ip: false, smart-collector-size: 1024 }
 
 
 ## 外部资源 ##
@@ -102,7 +101,7 @@ tun:
   auto-redirect: false
   auto-detect-interface: true
   strict-route: true
-  dns-hijack: [any:53,any:853,tcp://any:53,tcp://any:853]
+  dns-hijack: [any:53,tcp://any:53]
   mtu: 9000
   udp-timeout: 600
 
@@ -140,7 +139,7 @@ dns:
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
-  default-nameserver: [223.5.5.5,119.29.29.29]
+  default-nameserver: [223.5.5.5,8.8.8.8]
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
     - "https://doh.pub/dns-query#DIRECT&h3=false"
@@ -148,7 +147,6 @@ dns:
   nameserver:
     - "https://dns.google/dns-query#DNS查询&h3=true"
     - "https://cloudflare-dns.com/dns-query#DNS查询&h3=true"
-    - "https://v.recipes/dns-cn#DNS查询&h3=true"
   direct-nameserver:
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
     - "https://doh.pub/dns-query#DIRECT&h3=false"
@@ -205,14 +203,14 @@ rules:
 
 ## 策略组 ##
 proxies: [{ name: dns-hijack, type: dns }]
-zl: &zl { type: select, proxies: [DIRECT,PROXY,香港|自动,香港|智能,香港|轮询,香港|故转,台湾|自动,台湾|智能,台湾|轮询,台湾|故转,日本|自动,日本|智能,日本|轮询,日本|故转,新加坡|自动,新加坡|智能,新加坡|轮询,新加坡|故转,美国|自动,美国|智能,美国|轮询,美国|故转,德国|自动,德国|智能,德国|轮询,德国|故转,英国|自动,英国|智能,英国|轮询,英国|故转,荷兰|自动,荷兰|智能,荷兰|轮询,荷兰|故转,自动选择,智能选择,均衡轮询,故障转移], <<: *use } 
-dl: &dl { type: select, proxies: [PROXY,DIRECT,香港|自动,香港|智能,香港|轮询,香港|故转,台湾|自动,台湾|智能,台湾|轮询,台湾|故转,日本|自动,日本|智能,日本|轮询,日本|故转,新加坡|自动,新加坡|智能,新加坡|轮询,新加坡|故转,美国|自动,美国|智能,美国|轮询,美国|故转,德国|自动,德国|智能,德国|轮询,德国|故转,英国|自动,英国|智能,英国|轮询,英国|故转,荷兰|自动,荷兰|智能,荷兰|轮询,荷兰|故转,自动选择,智能选择,均衡轮询,故障转移], <<: *use }
-auto: &auto { type: url-test, <<: *area, tolerance: 50, lazy: true, hidden: true }
-smart: &smart { type: smart, <<: *area, uselightgbm: true, collectdata: false, strategy: round-robin, sample-rate: 1, lazy: true, hidden: true }
-bal: &bal { type: load-balance, <<: *area, strategy: round-robin, lazy: true, hidden: true }
+zl: &zl { type: select, proxies: [DIRECT,PROXY,香港|自动,香港|智能,香港|均衡,香港|故转,台湾|自动,台湾|智能,台湾|均衡,台湾|故转,日本|自动,日本|智能,日本|均衡,日本|故转,新加坡|自动,新加坡|智能,新加坡|均衡,新加坡|故转,美国|自动,美国|智能,美国|均衡,美国|故转,德国|自动,德国|智能,德国|均衡,德国|故转,英国|自动,英国|智能,英国|均衡,英国|故转,荷兰|自动,荷兰|智能,荷兰|均衡,荷兰|故转,自动选择,智能选择,负载均衡,故障转移], <<: *use } 
+dl: &dl { type: select, proxies: [PROXY,DIRECT,香港|自动,香港|智能,香港|均衡,香港|故转,台湾|自动,台湾|智能,台湾|均衡,台湾|故转,日本|自动,日本|智能,日本|均衡,日本|故转,新加坡|自动,新加坡|智能,新加坡|均衡,新加坡|故转,美国|自动,美国|智能,美国|均衡,美国|故转,德国|自动,德国|智能,德国|均衡,德国|故转,英国|自动,英国|智能,英国|均衡,英国|故转,荷兰|自动,荷兰|智能,荷兰|均衡,荷兰|故转,自动选择,智能选择,负载均衡,故障转移], <<: *use }
+auto: &auto { type: url-test, <<: *area, tolerance: 50, max-failed-times: 2, lazy: true, hidden: true }
+smart: &smart { type: smart, <<: *area, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true }
+bal: &bal { type: load-balance, <<: *area, strategy: sticky-sessions, lazy: true, hidden: true }
 fall: &fall { type: fallback, <<: *area, lazy: true, hidden: true }
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [香港|自动,香港|智能,香港|轮询,香港|故转,台湾|自动,台湾|智能,台湾|轮询,台湾|故转,日本|自动,日本|智能,日本|轮询,日本|故转,新加坡|自动,新加坡|智能,新加坡|轮询,新加坡|故转,美国|自动,美国|智能,美国|轮询,美国|故转,德国|自动,德国|智能,德国|轮询,德国|故转,英国|自动,英国|智能,英国|轮询,英国|故转,荷兰|自动,荷兰|智能,荷兰|轮询,荷兰|故转,自动选择,智能选择,均衡轮询,故障转移], <<: *use, icon: https://proxy.echs.top/icon/Global.webp }
+  - { name: PROXY, type: select, proxies: [香港|自动,香港|智能,香港|均衡,香港|故转,台湾|自动,台湾|智能,台湾|均衡,台湾|故转,日本|自动,日本|智能,日本|均衡,日本|故转,新加坡|自动,新加坡|智能,新加坡|均衡,新加坡|故转,美国|自动,美国|智能,美国|均衡,美国|故转,德国|自动,德国|智能,德国|均衡,德国|故转,英国|自动,英国|智能,英国|均衡,英国|故转,荷兰|自动,荷兰|智能,荷兰|均衡,荷兰|故转,自动选择,智能选择,负载均衡,故障转移], <<: *use, icon: https://proxy.echs.top/icon/Global.webp }
   - { name: DNS查询, <<: *dl, icon: https://proxy.echs.top/icon/Server.webp }
   - { name: 广告拦截, type: select, proxies: [REJECT,REJECT-DROP], icon: https://proxy.echs.top/icon/Forbidden.webp }
   - { name: FCM推送, <<: *zl, icon: https://proxy.echs.top/icon/FCM_Firebase_Cloud_Messaging.webp }
@@ -232,11 +230,11 @@ proxy-groups:
   - { name: APPLE中国, <<: *zl, icon: https://proxy.echs.top/icon/Apple_black.webp }
   - { name: GOOGLE, <<: *dl, icon: https://proxy.echs.top/icon/Google.webp }
   - { name: 微软中国, <<: *zl, icon: https://proxy.echs.top/icon/Microsoft.webp }
-  - { name: DOWNLOAD, type: select, proxies: [PASS,下载专用,PROXY,DIRECT,香港|自动,香港|智能,香港|轮询,香港|故转,台湾|自动,台湾|智能,台湾|轮询,台湾|故转,日本|自动,日本|智能,日本|轮询,日本|故转,新加坡|自动,新加坡|智能,新加坡|轮询,新加坡|故转,美国|自动,美国|智能,美国|轮询,美国|故转,德国|自动,德国|智能,德国|轮询,德国|故转,英国|自动,英国|智能,英国|轮询,英国|故转,荷兰|自动,荷兰|智能,荷兰|轮询,荷兰|故转,自动选择,智能选择,均衡轮询,故障转移], <<: *use, icon: https://proxy.echs.top/icon/Download.webp }
-  - { name: 下载专用, type: select, proxies: [日新美|自动,日新美|智能,日新美|轮询,日新美|故转,全部|自动,全部|智能,全部|轮询,全部|故转], <<: *download, icon: https://proxy.echs.top/icon/Download_2.webp }
-  - { name: 自动选择, type: url-test, <<: *use, tolerance: 100, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Flight.webp }
-  - { name: 智能选择, type: smart, <<: *use, uselightgbm: true, collectdata: false, strategy: round-robin, sample-rate: 1, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Failover.webp }
-  - { name: 均衡轮询, type: load-balance, <<: *use, strategy: round-robin, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Network.webp }
+  - { name: DOWNLOAD, type: select, proxies: [PASS,下载专用,PROXY,DIRECT,香港|自动,香港|智能,香港|均衡,香港|故转,台湾|自动,台湾|智能,台湾|均衡,台湾|故转,日本|自动,日本|智能,日本|均衡,日本|故转,新加坡|自动,新加坡|智能,新加坡|均衡,新加坡|故转,美国|自动,美国|智能,美国|均衡,美国|故转,德国|自动,德国|智能,德国|均衡,德国|故转,英国|自动,英国|智能,英国|均衡,英国|故转,荷兰|自动,荷兰|智能,荷兰|均衡,荷兰|故转,自动选择,智能选择,负载均衡,故障转移], <<: *use, icon: https://proxy.echs.top/icon/Download.webp }
+  - { name: 下载专用, type: select, proxies: [日新美|自动,日新美|智能,日新美|均衡,日新美|故转,全部|自动,全部|智能,全部|均衡,全部|故转], <<: *download, icon: https://proxy.echs.top/icon/Download_2.webp }
+  - { name: 自动选择, type: url-test, <<: *use, tolerance: 100, max-failed-times: 2, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Flight.webp }
+  - { name: 智能选择, type: smart, <<: *use, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Failover.webp }
+  - { name: 负载均衡, type: load-balance, <<: *use, strategy: sticky-sessions, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Network.webp }
   - { name: 故障转移, type: fallback, <<: *use, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Network_2.webp }
   - { name: 香港|自动, <<: *auto, filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: https://proxy.echs.top/flag/hk.svg }
   - { name: 台湾|自动, <<: *auto, filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: https://proxy.echs.top/flag/tw.svg }
@@ -254,14 +252,14 @@ proxy-groups:
   - { name: 德国|智能, <<: *smart, filter: "(?i)🇩🇪|德国|DE|germany", icon: https://proxy.echs.top/flag/de.svg }
   - { name: 英国|智能, <<: *smart, filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom", icon: https://proxy.echs.top/flag/gb.svg }
   - { name: 荷兰|智能, <<: *smart, filter: "(?i)🇳🇱|荷兰|NL|Netherland", icon: https://proxy.echs.top/flag/nl.svg }
-  - { name: 香港|轮询, <<: *bal, filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: https://proxy.echs.top/flag/hk.svg }
-  - { name: 台湾|轮询, <<: *bal, filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: https://proxy.echs.top/flag/tw.svg }
-  - { name: 日本|轮询, <<: *bal, filter: "(?i)🇯🇵|日本|JP|japan", icon: https://proxy.echs.top/flag/jp.svg }
-  - { name: 新加坡|轮询, <<: *bal, filter: "(?i)🇸🇬|新加坡|SG|singapore", icon: https://proxy.echs.top/flag/sg.svg }
-  - { name: 美国|轮询, <<: *bal, filter: "(?i)🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/flag/us.svg }
-  - { name: 德国|轮询, <<: *bal, filter: "(?i)🇩🇪|德国|DE|germany", icon: https://proxy.echs.top/flag/de.svg }
-  - { name: 英国|轮询, <<: *bal, filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom", icon: https://proxy.echs.top/flag/gb.svg }
-  - { name: 荷兰|轮询, <<: *bal, filter: "(?i)🇳🇱|荷兰|NL|Netherland", icon: https://proxy.echs.top/flag/nl.svg }
+  - { name: 香港|均衡, <<: *bal, filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: https://proxy.echs.top/flag/hk.svg }
+  - { name: 台湾|均衡, <<: *bal, filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: https://proxy.echs.top/flag/tw.svg }
+  - { name: 日本|均衡, <<: *bal, filter: "(?i)🇯🇵|日本|JP|japan", icon: https://proxy.echs.top/flag/jp.svg }
+  - { name: 新加坡|均衡, <<: *bal, filter: "(?i)🇸🇬|新加坡|SG|singapore", icon: https://proxy.echs.top/flag/sg.svg }
+  - { name: 美国|均衡, <<: *bal, filter: "(?i)🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/flag/us.svg }
+  - { name: 德国|均衡, <<: *bal, filter: "(?i)🇩🇪|德国|DE|germany", icon: https://proxy.echs.top/flag/de.svg }
+  - { name: 英国|均衡, <<: *bal, filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom", icon: https://proxy.echs.top/flag/gb.svg }
+  - { name: 荷兰|均衡, <<: *bal, filter: "(?i)🇳🇱|荷兰|NL|Netherland", icon: https://proxy.echs.top/flag/nl.svg }
   - { name: 香港|故转, <<: *fall, filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: https://proxy.echs.top/flag/hk.svg }
   - { name: 台湾|故转, <<: *fall, filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: https://proxy.echs.top/flag/tw.svg }
   - { name: 日本|故转, <<: *fall, filter: "(?i)🇯🇵|日本|JP|japan", icon: https://proxy.echs.top/flag/jp.svg }
@@ -271,10 +269,10 @@ proxy-groups:
   - { name: 英国|故转, <<: *fall, filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom", icon: https://proxy.echs.top/flag/gb.svg }
   - { name: 荷兰|故转, <<: *fall, filter: "(?i)🇳🇱|荷兰|NL|Netherland", icon: https://proxy.echs.top/flag/nl.svg }
   - { name: 日新美|自动, type: url-test, <<: *download, tolerance: 100, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish_b.webp }
-  - { name: 日新美|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: round-robin, sample-rate: 1, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish_b.webp }
-  - { name: 日新美|轮询, type: load-balance, <<: *download, strategy: round-robin, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish.webp }
+  - { name: 日新美|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish_b.webp }
+  - { name: 日新美|均衡, type: load-balance, <<: *download, strategy: sticky-sessions, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish.webp }
   - { name: 日新美|故转, type: fallback, <<: *download, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://proxy.echs.top/icon/Fish_b.webp }
   - { name: 全部|自动, type: url-test, <<: *download, tolerance: 100, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish_b.webp }
-  - { name: 全部|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: round-robin, sample-rate: 1, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish_b.webp }
-  - { name: 全部|轮询, type: load-balance, <<: *download, strategy: round-robin, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish.webp }
+  - { name: 全部|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish_b.webp }
+  - { name: 全部|均衡, type: load-balance, <<: *download, strategy: sticky-sessions, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish.webp }
   - { name: 全部|故转, type: fallback, <<: *download, lazy: true, hidden: true, icon: https://proxy.echs.top/icon/Fish_b.webp }
