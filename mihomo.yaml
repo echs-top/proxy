@@ -96,7 +96,7 @@ tun:
   device: meta
   stack: mixed
   auto-route: true
-  auto-redirect: true
+  auto-redirect: false
   auto-detect-interface: true
   strict-route: true
   dns-hijack: [any:53,any:853,tcp://any:53,tcp://any:853]
