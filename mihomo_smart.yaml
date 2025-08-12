@@ -39,6 +39,7 @@ external-controller: 0.0.0.0:9090
 # 不建议为空
 secret: "密码"
 profile: { store-selected: true, store-fake-ip: false, smart-collector-size: 1024 }
+experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 
 
 ## 外部资源 ##
