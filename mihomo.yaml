@@ -88,8 +88,8 @@ rule-providers:
 ## 入站 ##
 mixed-port: 7890
 # 建议优先tun
-# tproxy-port: 7891
-# redir-port: 7892
+tproxy-port: 7891
+redir-port: 7892
 socks-port: 7895
 tun:
   enable: true
