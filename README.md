@@ -31,4 +31,4 @@
 链接: [untitled.xxmad.com](https://untitled.xxmad.com/auth/register?code=SWFecLiq)
 
 ### 弃用
-免费机场(不再便宜)、glados(禁止下载跑满宽带,300MB/s半小时即封,限制访问网站)
+免费机场(不再便宜)、glados(禁止下载跑满宽带,300mbps半小时即封,限制访问网站)
