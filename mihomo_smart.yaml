@@ -9,7 +9,7 @@ proxy-providers:
 
 # 主选择包括订阅，如[link1,link2]
 use: &use { use: [link1] }
-# 地区分组策略使用订阅
+# 地区分组策略包括订阅
 area: &area { use: [link1] }
 # 指定下载专用订阅
 download: &download { use: [xz] }
@@ -28,18 +28,17 @@ bind-address: "*"
 mode: rule
 log-level: error
 ipv6: true
-keep-alive-interval: 30
-keep-alive-idle: 120
+keep-alive-interval: 60
+keep-alive-idle: 600
 disable-keep-alive: false
-find-process-mode: always
+find-process-mode: strict
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: chrome
+global-client-fingerprint: random
 external-controller: 0.0.0.0:9090
 # 不建议为空
 secret: "密码"
 profile: { store-selected: true, store-fake-ip: false, smart-collector-size: 1024 }
-experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 
 
 ## 外部资源 ##
@@ -138,7 +137,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ["*","5228","dns.alidns.com","doh.pub","dns.google","cloudflare-dns.com","sharepoint.com","steamcdn-a.akamaihd.net","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
+  fake-ip-filter: ["*","5228","dns.alidns.com","doh.pub","dns.google","cloudflare-dns.com","dl.google.com","dl.l.google.com","sharepoint.com","steamcdn-a.akamaihd.net","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
   default-nameserver: [223.5.5.5,1.1.1.1]
   proxy-server-nameserver:
     # - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
@@ -174,13 +173,13 @@ sniffer:
 
 ## 路由规则 ##
 rules:
-  - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
+  - DST-PORT,53,dns-hijack
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),DIRECT
   - RULE-SET,ads,广告拦截
   - OR,((IN-PORT,7895),(RULE-SET,download)),DOWNLOAD
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),PROXY
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),DIRECT
-  - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
+  - OR,((DST-PORT,5228),(RULE-SET,googlefcm),(DOMAIN,dl.google.com),(DOMAIN,dl.l.google.com)),FCM推送
   - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
   - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve),(PROCESS-NAME-REGEX,(?i)Telegram),(PROCESS-NAME,tw.nekomimi.nekogram)),TELEGRAM
@@ -195,7 +194,7 @@ rules:
   - OR,((RULE-SET,pixiv),(PROCESS-NAME,jp.pxv.android)(PROCESS-NAME,com.perol.play.pixez)),PIXIV
   - OR,((RULE-SET,bilibili),(RULE-SET,biliintl),(PROCESS-NAME-REGEX,.*bilibili.*)(PROCESS-NAME-REGEX,.*bili.*)),哔哩哔哩
   - RULE-SET,apple-cn,APPLE中国
-  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
+  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn),(DOMAIN-SUFFIX,android.apis.google.com),(DOMAIN-SUFFIX,device-provisioning.googleapis.com),(DOMAIN-SUFFIX,firebaseinstallations.googleapis.com)),GOOGLE
   - RULE-SET,microsoft-cn,微软中国
   - RULE-SET,non-cn,PROXY
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),DIRECT
