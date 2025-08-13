@@ -135,26 +135,26 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ["*","5228","sharepoint.com","steamcdn-a.akamaihd.net","dns.alidns.com","doh.pub","v.recipes","dns.google","cloudflare-dns.com","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
+  fake-ip-filter: ["*","5228","dns.alidns.com","doh.pub","dns.google","cloudflare-dns.com","sharepoint.com","steamcdn-a.akamaihd.net","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
   default-nameserver: [223.5.5.5,1.1.1.1]
   proxy-server-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
+    # - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
     - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=1.1.1.1/24&ecs-override=true"
-    - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
+    # - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
     - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=1.1.1.1/24&ecs-override=true"
   nameserver:
     - "https://dns.google/dns-query#DNS查询&h3=true&ecs=1.1.1.1/24&ecs-override=true"
     - "https://dns.quad9.net/dns-query/dns-query#DNS查询&h3=true&ecs=1.1.1.1/24&ecs-override=true"
   direct-nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
-    - "https://doh.pub/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
+    - "https://dns.alidns.com/dns-query#DIRECT&h3=true"
+    - "https://doh.pub/dns-query#DIRECT&h3=false"
   direct-nameserver-follow-policy: true
   nameserver-policy:
     "rule-set:private": [system]
     "rule-set:ads": [rcode://success]
     "rule-set:cn,direct_domain":
-      - "https://doh.pub/dns-query#DIRECT&h3=true&ecs=223.5.5.5/24&ecs-override=true"
-      - "https://dns.alidns.com/dns-query#DIRECT&h3=false&ecs=223.5.5.5/24&ecs-override=true"
+      - "https://doh.pub/dns-query#DIRECT&h3=true"
+      - "https://dns.alidns.com/dns-query#DIRECT&h3=false"
 sniffer: 
   enable: true
   force-dns-mapping: false
