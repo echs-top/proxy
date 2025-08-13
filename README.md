@@ -3,8 +3,6 @@ mihomo: https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml
 
 mihomo_smart: https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml
 
-log: htttps://github.com/echs-top/proxy/main/log.md
-
 ### 代理机场推荐
 
 https://github.com/echs-top/proxy/main/proxyairport.md
