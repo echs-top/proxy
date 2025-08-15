@@ -1,5 +1,5 @@
 ## 订阅 ##
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://www.google.com/generate_204",  interval: 3600, max-failed-times: 2, timeout: 8000 }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://www.gstatic.com/generate_204",  interval: 3600, max-failed-times: 2, timeout: 8000 }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
 
 # 订阅组
 proxy-providers: 
