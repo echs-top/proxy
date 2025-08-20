@@ -56,7 +56,7 @@ ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs, proxy: DIR
 domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs, proxy: DIRECT }
 add: &add { type: http, interval: 86400, format: text, proxy: DIRECT }
 rule-providers:
-  ads: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs", path: ./rules/ads.mrs }
+  ads: { type: http, interval: 86400, format: yaml, behavior: domain, proxy: DIRECT, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", path: ./rules/ads.yaml }
   private: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
   download: { <<: *add, behavior: classical, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/rules/download.list", path: ./rules/download.list }
   proxy_domain: { <<: *add, behavior: domain, format: text, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/rules/proxy_domain.list", path: ./rules/proxy_domain.list }
