@@ -14,6 +14,11 @@ PROCESS-NAME-REGEX,com.coloros.*
 PROCESS-NAME-REGEX,com.oneplus.*
 PROCESS-NAME-REGEX,com.oplus.*
 PROCESS-NAME-REGEX,com.realme.*
+PROCESS-NAME-REGEX,com.miui.* #miui系
+PROCESS-NAME-REGEX,com.xiaomi.*
+PROCESS-NAME-REGEX,com.duokan.*
+PROCESS-NAME-REGEX,com.mi.*
+PROCESS-NAME-REGEX,com.vivo.* #vivo系
 PROCESS-NAME-REGEX,(?i)input #输入法
 PROCESS-NAME-REGEX,(?i)weibo #新浪
 PROCESS-NAME-REGEX,(?i)weico
@@ -61,6 +66,7 @@ PROCESS-NAME-REGEX,(?i)shimo #石墨
 PROCESS-NAME-REGEX,com.jd.* #京东
 PROCESS-NAME-REGEX,cn.gov.* #政府类
 PROCESS-NAME-REGEX,(?i)bank #银行类
+PROCESS-NAME-REGEX,(?i)china
 PROCESS-NAME-REGEX,(?i)chaoxing #超星
 PROCESS-NAME-REGEX,(?i)kurogame #鸣潮
 PROCESS-NAME-REGEX,(?i)wuthering
@@ -69,6 +75,7 @@ PROCESS-NAME-REGEX,(?i)GenshinImpact
 PROCESS-NAME-REGEX,(?i)HoYoverse
 PROCESS-NAME-REGEX,(?i)StarRail
 PROCESS-NAME-REGEX,(?i)pubg #pubg
+PROCESS-NAME-REGEX,(?i)deepseek #deepseek
 PROCESS-NAME,com.dragon.read #番茄小说
 PROCESS-NAME,yyc.xk #星空视频壁纸
 PROCESS-NAME,com.coolapk.market #酷安
@@ -87,3 +94,9 @@ PROCESS-NAME,com.achievo.vipshop #唯品会
 PROCESS-NAME,com.xunmeng.pinduoduo #拼多多
 PROCESS-NAME,com.tmall.wireless #天猫
 PROCESS-NAME,com.taptap #taptap
+PROCESS-NAME,com.max.xiaoheihe #小黑盒
+PROCESS-NAME,com.xingin.xhs #小红书
+PROCESS-NAME,com.mfcloudcalculate.networkdisk #123网盘
+PROCESS-NAME,com.lemon.lv #剪映
+PROCESS-NAME,com.tmri.app.main #12123
+PROCESS-NAME,com.larus.nova #豆包
