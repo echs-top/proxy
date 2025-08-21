@@ -1,2 +1,2 @@
 PROCESS-NAME,idm.internet.download.manager.plus #1dm+
-PROCESS-NAME,com.pikcloud.pikpak #pikpak
+PROCESS-NAME-REGEX,(?i)pikpak #pikpak
