@@ -11,6 +11,12 @@ https://github.com/echs-top/proxy/blob/main/proxyapplication.md
 
 https://github.com/echs-top/proxy/main/proxyairport.md
 
+### 国内软件分流规则(主安卓)
+
+较激进，可能误杀 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application.list
+
+包含注释版本 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application_all.list
+
 ### 问题参考
 
 1.关于dns泄露: 我更倾向于代理流量部分(nameserver)仅使用国外dns代理查询，不能通过dns泄露检测到自己网络ip即可。国内域名分流查询即可，局域网相关域名使用系统dns查询。
