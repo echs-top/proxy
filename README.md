@@ -11,9 +11,11 @@ https://github.com/echs-top/proxy/blob/main/proxyapplication.md
 
 https://github.com/echs-top/proxy/main/proxyairport.md
 
-### 国内软件分流规则(主安卓)
+### 国内软件分流规则
 
-较激进，可能误杀 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application.list
+主要为安卓包名匹配，我自己维护的规则，包含一些常见的国内软件，尽可能精简高效，较为激进可能误杀
+
+规则 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application.list
 
 包含注释版本 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application_all.list
 
