@@ -1,5 +1,5 @@
 ## 订阅 ##
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://www.google.com/generate_204",  interval: 3600, max-failed-times: 2, timeout: 6000 }, override: { udp: true, mptcp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://captive.apple.com",  interval: 3600, max-failed-times: 2, timeout: 6000 }, override: { udp: true, mptcp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
 
 # 订阅组
 proxy-providers: 
@@ -28,7 +28,7 @@ download: &download { use: [xz] }
 allow-lan: true
 bind-address: "*"
 mode: rule
-log-level: error
+log-level: warning
 ipv6: true
 keep-alive-interval: 30
 keep-alive-idle: 600
@@ -38,8 +38,7 @@ unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
 external-controller: 0.0.0.0:9090
-# 不建议为空
-secret: "密码"
+# secret: "密码"
 profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 1024 }
 experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 
@@ -96,8 +95,8 @@ rule-providers:
 ## 入站 ##
 mixed-port: 7890
 # 建议优先tun
-tproxy-port: 7891
-redir-port: 7892
+# tproxy-port: 7891
+# redir-port: 7892
 socks-port: 7895
 tun:
   enable: true
@@ -172,7 +171,7 @@ sniffer:
     HTTP: { ports: [80, 8080-8880], override-destination: true }
     TLS: { ports: [443, 8443] }
     QUIC: { ports: [443, 8443] }
-  skip-domain: ["RULE-SET:private","+.push.apple.com","Mijia Cloud"]
+  skip-domain: ["RULE-SET:private","dns.alidns.com","doh.pub","dns.google","dns.quad9.net","+.push.apple.com","Mijia Cloud"]
   force-domain: ["RULE-SET:netflix"]
   skip-src-address: ["RULE-SET:private_ip"]
 
@@ -212,15 +211,15 @@ rules:
 proxies: [{ name: dns-hijack, type: dns },{ name: 直接连接, type: direct, mptcp: true, udp: true }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use } 
 dl: &dl { type: select, proxies: [代理连接,直接连接,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use }
-auto: &auto { type: url-test, <<: *area, tolerance: 50, max-failed-times: 2, lazy: true, hidden: true }
-smart: &smart { type: smart, <<: *area, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true }
-bal: &bal { type: load-balance, <<: *area, strategy: round-robin, lazy: true, hidden: true }
+auto: &auto { type: url-test, <<: *area, tolerance: 50, max-failed-times: 2, hidden: true }
+smart: &smart { type: smart, <<: *area, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, hidden: true }
+bal: &bal { type: load-balance, <<: *area, strategy: round-robin, hidden: true }
 # 地区分组二
 # zl: &zl { type: select, proxies: [直接连接,代理连接,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,香港²|自动,香港²|智能,香港²|轮询,台湾²|自动,台湾²|智能,台湾²|轮询,日本²|自动,日本²|智能,日本²|轮询,新加坡²|自动,新加坡²|智能,新加坡²|轮询,美国²|自动,美国²|智能,美国²|轮询,欧洲²|自动,欧洲²|智能,欧洲²|轮询,东南亚²|自动,东南亚²|智能,东南亚²|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use } 
 # dl: &dl { type: select, proxies: [代理连接,直接连接,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,香港²|自动,香港²|智能,香港²|轮询,台湾²|自动,台湾²|智能,台湾²|轮询,日本²|自动,日本²|智能,日本²|轮询,新加坡²|自动,新加坡²|智能,新加坡²|轮询,美国²|自动,美国²|智能,美国²|轮询,欧洲²|自动,欧洲²|智能,欧洲²|轮询,东南亚²|自动,东南亚²|智能,东南亚²|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use }
-# auto2: &auto2 { type: url-test, <<: *area2, tolerance: 50, max-failed-times: 2, lazy: true, hidden: true }
-# smart2: &smart2 { type: smart, <<: *area2, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true }
-# bal2: &bal2 { type: load-balance, <<: *area2, strategy: round-robin, lazy: true, hidden: true }
+# auto2: &auto2 { type: url-test, <<: *area2, tolerance: 50, max-failed-times: 2, hidden: true }
+# smart2: &smart2 { type: smart, <<: *area2, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, hidden: true }
+# bal2: &bal2 { type: load-balance, <<: *area2, strategy: round-robin, hidden: true }
 proxy-groups:
   # 地区分组二 - { name: 代理连接, type: select, proxies: [香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,香港²|自动,香港²|智能,香港²|轮询,台湾²|自动,台湾²|智能,台湾²|轮询,日本²|自动,日本²|智能,日本²|轮询,新加坡²|自动,新加坡²|智能,新加坡²|轮询,美国²|自动,美国²|智能,美国²|轮询,欧洲²|自动,欧洲²|智能,欧洲²|轮询,东南亚²|自动,东南亚²|智能,东南亚²|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp }
   - { name: 代理连接, type: select, proxies: [香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,自动选择,智能选择,均衡轮询,故障转移], <<: *use, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp }
@@ -245,10 +244,10 @@ proxy-groups:
   - { name: 微软中国, <<: *zl, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Microsoft.webp }
   - { name: 下载专用, type: select, proxies: [PASS,日新美|自动,日新美|智能,日新美|轮询,全部|自动,全部|智能,全部|轮询], <<: *download, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Download_2.webp }
   - { name: 国内软件, type: select, proxies: [PASS,直接连接], icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Chained_2.webp }
-  - { name: 自动选择, type: url-test, <<: *use, tolerance: 100, max-failed-times: 2, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
-  - { name: 智能选择, type: smart, <<: *use, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
-  - { name: 均衡轮询, type: load-balance, <<: *use, strategy: round-robin, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
-  - { name: 故障转移, type: fallback, <<: *use, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Signal_Light.webp }
+  - { name: 自动选择, type: url-test, <<: *use, tolerance: 100, max-failed-times: 2, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
+  - { name: 智能选择, type: smart, <<: *use, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
+  - { name: 均衡轮询, type: load-balance, <<: *use, strategy: round-robin, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
+  - { name: 故障转移, type: fallback, <<: *use, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Signal_Light.webp }
   - { name: 香港|自动, <<: *auto, filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg }
   - { name: 台湾|自动, <<: *auto, filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/tw.svg }
   - { name: 日本|自动, <<: *auto, filter: "(?i)🇯🇵|日本|JP|japan", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/jp.svg }
@@ -292,11 +291,11 @@ proxy-groups:
   # - { name: 美国²|轮询, <<: *bal2, filter: "(?i)🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/us.svg }
   # - { name: 欧洲²|轮询, <<: *bal2, filter: "(?i)🇬🇧|英国|UK|unitedkingdom|united kingdom|🇫🇷|法国|FR|france|🇩🇪|德国|DE|germany|🇮🇹|意大利|IT|italy|🇪🇸|西班牙|ES|spain|🇳🇱|荷兰|NL|netherland", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/eu.svg }
   # - { name: 东南亚²|轮询, <<: *bal2, filter: "(?i)🇮🇩|印尼|印度尼西亚|ID|Indonesia|🇸🇬|新加坡|SG|singapore|🇹🇭|泰国|TH|Thailand|🇲🇾|马来西亚|MY|Malaysia|🇻🇳|越南|VN|Vietnam", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/asean.svg }
-  - { name: 日新美|自动, type: url-test, <<: *download, tolerance: 100, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
-  - { name: 日新美|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
-  - { name: 日新美|轮询, type: load-balance, <<: *download, strategy: round-robin, lazy: true, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
-  - { name: 全部|自动, type: url-test, <<: *download, tolerance: 100, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
-  - { name: 全部|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
-  - { name: 全部|轮询, type: load-balance, <<: *download, strategy: round-robin, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
-  # 地区分组二 - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,DNS查询,广告拦截,FCM推送,ONEDRIVE下载,STEAM中国,TELEGRAM,TWITTER,SPOTIFY,TIKTOK,YOUTUBE,NETFLIX,GITHUB,CLOUDFLARE,国外AI,PIXIV,哔哩哔哩,APPLE中国,GOOGLE,微软中国,下载专用,国内软件,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,香港²|自动,香港²|智能,香港²|轮询,台湾²|自动,台湾²|智能,台湾²|轮询,日本²|自动,日本²|智能,日本²|轮询,新加坡²|自动,新加坡²|智能,新加坡²|轮询,美国²|自动,美国²|智能,美国²|轮询,欧洲²|自动,欧洲²|智能,欧洲²|轮询,东南亚²|自动,东南亚²|智能,东南亚²|轮询,自动选择,智能选择,均衡轮询,故障转移,日新美|自动,日新美|智能,日新美|轮询,全部|自动,全部|智能,全部|轮询], include-all-providers: true, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp }
-  - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,DNS查询,广告拦截,FCM推送,ONEDRIVE下载,STEAM中国,TELEGRAM,TWITTER,SPOTIFY,TIKTOK,YOUTUBE,NETFLIX,GITHUB,CLOUDFLARE,国外AI,PIXIV,哔哩哔哩,APPLE中国,GOOGLE,微软中国,下载专用,国内软件,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,自动选择,智能选择,均衡轮询,故障转移,日新美|自动,日新美|智能,日新美|轮询,全部|自动,全部|智能,全部|轮询], include-all-providers: true, lazy: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp }
+  - { name: 日新美|自动, type: url-test, <<: *download, tolerance: 100, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
+  - { name: 日新美|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
+  - { name: 日新美|轮询, type: load-balance, <<: *download, strategy: round-robin, hidden: true, filter: "(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|SG|singapore|🇺🇸|美国|US|unitedstates|united states", icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
+  - { name: 全部|自动, type: url-test, <<: *download, tolerance: 100, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Flight.webp }
+  - { name: 全部|智能, type: smart, <<: *download, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Failover.webp }
+  - { name: 全部|轮询, type: load-balance, <<: *download, strategy: round-robin, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp }
+  # 地区分组二 - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,DNS查询,广告拦截,FCM推送,ONEDRIVE下载,STEAM中国,TELEGRAM,TWITTER,SPOTIFY,TIKTOK,YOUTUBE,NETFLIX,GITHUB,CLOUDFLARE,国外AI,PIXIV,哔哩哔哩,APPLE中国,GOOGLE,微软中国,下载专用,国内软件,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,香港²|自动,香港²|智能,香港²|轮询,台湾²|自动,台湾²|智能,台湾²|轮询,日本²|自动,日本²|智能,日本²|轮询,新加坡²|自动,新加坡²|智能,新加坡²|轮询,美国²|自动,美国²|智能,美国²|轮询,欧洲²|自动,欧洲²|智能,欧洲²|轮询,东南亚²|自动,东南亚²|智能,东南亚²|轮询,自动选择,智能选择,均衡轮询,故障转移,日新美|自动,日新美|智能,日新美|轮询,全部|自动,全部|智能,全部|轮询], include-all-providers: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp }
+  - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,DNS查询,广告拦截,FCM推送,ONEDRIVE下载,STEAM中国,TELEGRAM,TWITTER,SPOTIFY,TIKTOK,YOUTUBE,NETFLIX,GITHUB,CLOUDFLARE,国外AI,PIXIV,哔哩哔哩,APPLE中国,GOOGLE,微软中国,下载专用,国内软件,香港|自动,香港|智能,香港|轮询,台湾|自动,台湾|智能,台湾|轮询,日本|自动,日本|智能,日本|轮询,新加坡|自动,新加坡|智能,新加坡|轮询,美国|自动,美国|智能,美国|轮询,欧洲|自动,欧洲|智能,欧洲|轮询,东南亚|自动,东南亚|智能,东南亚|轮询,自动选择,智能选择,均衡轮询,故障转移,日新美|自动,日新美|智能,日新美|轮询,全部|自动,全部|智能,全部|轮询], include-all-providers: true, hidden: true, icon: https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp }
