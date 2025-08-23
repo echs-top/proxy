@@ -9,7 +9,7 @@ https://github.com/echs-top/proxy/blob/main/proxyapplication.md
 
 ### 代理机场推荐
 
-https://github.com/echs-top/proxy/main/proxyairport.md
+https://github.com/echs-top/proxy/blob/main/proxyairport.md
 
 ### 国内软件分流规则
 
