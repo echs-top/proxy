@@ -26,3 +26,5 @@ https://github.com/echs-top/proxy/blob/main/proxyairport.md
 2.tun模式下无法劫持局域网dns，我推荐的解决方案是手动替换wifi dns为0.0.0.0和223.5.5.5(::和2400:3200::1)
 
 3.更推荐fakeip模式，除非你代理节点固定为一个(或者两三个且ip相对距离较近)。
+
+4.关于测速链接方面，它仅仅只是个延迟参考，我选择苹果的测速
