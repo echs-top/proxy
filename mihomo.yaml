@@ -1,5 +1,5 @@
 ## 订阅 ##
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 2500, lazy: true }, override: { udp: true, mptcp: true, tfo: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 3000, lazy: true }, override: { udp: true, mptcp: true, tfo: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
 proxy-providers: 
   link1: { url: "订阅链接", path: ./providers/link1.yaml, <<: *providers }
   link2: { url: "订阅链接", path: ./providers/link2.yaml, <<: *providers }
