@@ -4,7 +4,7 @@ proxy-providers:
   link1: { url: "订阅链接", path: ./providers/link1.yaml, <<: *providers }
   link2: { url: "订阅链接", path: ./providers/link2.yaml, <<: *providers }
 # 地区分组策略订阅
-area: &area { use: [kitty,便宜机场,无名国度] }
+area: &area { use: [link1] }
 
 
 
