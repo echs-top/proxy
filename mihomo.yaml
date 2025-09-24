@@ -192,7 +192,7 @@ rules:
   - MATCH,代理连接
 
 ## 策略组 ##
-proxies: [{ name: dns-hijack, type: dns },{ name: direct+, type: direct, udp: true, mptcp: true, tfo: true } }]
+proxies: [{ name: dns-hijack, type: dns },{ name: direct+, type: direct, udp: true, mptcp: true, tfo: true }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true }
 auto: &auto { type: url-test, tolerance: 20, hidden: true }
