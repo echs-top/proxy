@@ -1,30 +1,16 @@
-### 模板下载
-mihomo: https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml
+### 链接指引
+mihomo模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_one.yaml)
 
-mihomo_smart: https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml
+mihomo_smart模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart_one.yaml)
 
-### 代理软件推荐
-
-https://github.com/echs-top/proxy/blob/main/proxyapplication.md
-
-### 代理机场推荐
-
-https://github.com/echs-top/proxy/blob/main/proxyairport.md
-
-### 国内软件分流规则
-
-主要为安卓包名匹配，我自己维护的规则，包含一些常见的国内软件，尽可能精简高效，较为激进可能误杀
-
-规则 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application.list
-
-包含注释版本 https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/application_all.list
+更多推荐: [代理软件](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
 
 ### 问题参考
 
-1.关于dns泄露: 我更倾向于代理流量部分(nameserver)仅使用国外dns代理查询，不能通过dns泄露检测到自己网络ip即可。国内域名分流查询即可，局域网相关域名使用系统dns查询。
+1.关于dns泄露: 我更倾向于减少国外流量获取到你的dns，是的这个问题理论是上无法完美解决的(或许你可以自建dns查询)
 
-2.tun模式下无法劫持局域网dns，我推荐的解决方案是手动替换wifi dns为0.0.0.0和223.5.5.5(::和2400:3200::1)
+2.tun模式下无法劫持局域网dns：推荐手动替换设备对于wifi/宽带的dns，如0.0.0.0、223.5.5.5 (::、2400:3200::1)
 
-3.更推荐fakeip模式，除非你代理节点固定为一个(或者两三个且ip相对距离较近)。
+3.为什么推荐fakeip模式：多代理节点时dns查询缓存与节点不相近
 
-4.关于测速链接方面，它仅仅只是个延迟参考，我选择苹果的测速
+4.关于测速链接方面：延迟仅供参考，仅代表访问测速链接的延迟
