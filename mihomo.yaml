@@ -1,39 +1,148 @@
-## 订阅 ##
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.3.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 3000, lazy: true }, override: { udp: true, mptcp: true, tfo: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 3000, lazy: false }, override: { udp: true, mptcp: true, tfo: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网" }
 proxy-providers: 
-  link1: { url: "订阅链接", path: ./providers/link1.yaml, <<: *providers }
-  link2: { url: "订阅链接", path: ./providers/link2.yaml, <<: *providers }
-# 地区分组策略订阅
-area: &area { use: [link1] }
+  link1: { <<: *providers, url: "订阅链接1", path: ./providers/link1.yaml }
+  link2: { <<: *providers, url: "订阅链接2", path: ./providers/link2.yaml }
+  link3: { <<: *providers, url: "订阅链接3", path: ./providers/link3.yaml }
+# 自动选择,负载均衡等包含订阅
+use: &use { use: [link1,link2] }
+# 地区分组包含订阅)
+area: &area { use: [link1,link2] }
+# 手动选择节点包含订阅
+finger: &finger { use: [link3] }
 
 
 
 
-
-
-## 设置 ##
+ipv6: true
 allow-lan: true
 bind-address: "*"
 mode: rule
 log-level: error
-ipv6: true
-keep-alive-interval: 30
-keep-alive-idle: 600
-disable-keep-alive: false
-find-process-mode: off
 unified-delay: true
 tcp-concurrent: true
+find-process-mode: off
 global-client-fingerprint: random
+disable-keep-alive: false
+keep-alive-interval: 30
+keep-alive-idle: 600
+etag-support: true
+global-ua: mihomo
 external-controller: 0.0.0.0:9090
 # secret: "密码"
+external-ui: ./zashboard
+external-ui-url: "https://edgeone.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 profile: { store-selected: true, store-fake-ip: true }
 experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 
-## 外部资源 ##
-global-ua: mihomo
-etag-support: true
-external-ui: ./zashboard
-external-ui-url: "https://edgeone.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+mixed-port: 7890
+# tproxy-port: 7891
+# redir-port: 7892
+tun:
+  enable: true
+  device: meta
+  stack: mixed
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+  dns-hijack: [any:53,tcp://any:53,any:853,tcp://any:853]
+  mtu: 9000
+  udp-timeout: 600
+hosts:
+  edgeone.gh-proxy.com: [43.159.99.11,43.159.98.14]
+  dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
+  doh.pub: [120.53.53.53,1.12.12.21,1.12.12.12]
+  dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
+  dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
+  services.googleapis.cn: services.googleapis.com
+  mtalk.google.com: [142.251.170.188,142.250.107.188,108.177.125.188,"2404:6800:4008:c1b::bc","2404:6800:4008:c07::bc","2404:6800:4008:c05::bc","2404:6800:4008:c19::bc","2404:6800:4008:c15::bc"]
+  mtalk4.google.com: mtalk.google.com
+  mtalk-dev.google.com: mtalk.google.com
+  mtalk-staging.google.com: mtalk.google.com
+  alt1-mtalk.google.com: mtalk.google.com
+  alt2-mtalk.google.com: mtalk.google.com
+  alt3-mtalk.google.com: mtalk.google.com
+  alt4-mtalk.google.com: mtalk.google.com
+  alt5-mtalk.google.com: mtalk.google.com
+  alt6-mtalk.google.com: mtalk.google.com
+  alt7-mtalk.google.com: mtalk.google.com
+  alt8-mtalk.google.com: mtalk.google.com
+dns: 
+  enable: true
+  cache-algorithm: arc
+  ipv6: true
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: false
+  respect-rules: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter: ["*","5228","dns.google","dns.quad9.net","sharepoint.com","steamcdn-a.akamaihd.net","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
+  default-nameserver: [223.5.5.5,8.8.8.8]
+  proxy-server-nameserver:
+    # - "https://dns.alidns.com/dns-query#直接连接"
+    - "https://dns.alidns.com/dns-query#直接连接&ecs=8.8.8.8/24&ecs-override=true"
+    # - "https://doh.pub/dns-query#直接连接"
+    - "https://doh.pub/dns-query#直接连接&ecs=8.8.8.8/24&ecs-override=true"
+  nameserver:
+    - "https://dns.google/dns-query#DNS查询&ecs=8.8.8.8/24&ecs-override=true"
+    - "https://dns.quad9.net/dns-query/dns-query#DNS查询&ecs=8.8.8.8/24&ecs-override=true"
+  direct-nameserver:
+    - "https://dns.alidns.com/dns-query#直接连接"
+    - "https://doh.pub/dns-query#直接连接"
+  direct-nameserver-follow-policy: true
+  nameserver-policy:
+    "rule-set:private": [system]
+    "rule-set:ads": [rcode://success]
+    "rule-set:cn,direct_domain":
+      - "https://dns.alidns.com/dns-query#直接连接"
+      - "https://doh.pub/dns-query#直接连接"
+sniffer: 
+  enable: true
+  force-dns-mapping: false
+  parse-pure-ip: false
+  override-destination: true
+  sniff:
+    HTTP: { ports: [80, 8080-8880], override-destination: true }
+    TLS: { ports: [443, 8443] }
+    QUIC: { ports: [443, 8443] }
+  skip-domain: ["RULE-SET:private","+.push.apple.com","Mijia Cloud"]
+  force-domain: ["RULE-SET:netflix"]
+  skip-src-address: ["RULE-SET:private_ip"]
+
+rules:
+  - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
+  - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
+  - RULE-SET,ads,REJECT-DROP
+  - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),代理连接
+  - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
+  - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
+  - OR,((RULE-SET,openai),(RULE-SET,gemini)),国外AI
+  - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
+  - RULE-SET,whatsapp,WHATSAPP
+  - OR,((RULE-SET,facebook),(RULE-SET,facebook_ip,no-resolve)),FACEBOOK
+  - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
+  - RULE-SET,youtube,YOUTUBE
+  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl)),BILIBILI
+  - RULE-SET,tiktok,TIKTOK
+  - RULE-SET,instagram,INSTAGRAM
+  - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
+  - RULE-SET,spotify,SPOTIFY
+  - RULE-SET,pixiv,PIXIV
+  - RULE-SET,github,GITHUB
+  - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
+  - RULE-SET,pikpak,PIKPAK
+  - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
+  - RULE-SET,steam,STEAM
+  - RULE-SET,apple-cn,APPLE中国
+  - RULE-SET,microsoft-cn,微软中国
+  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
+  - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
+  - RULE-SET,non-cn,代理连接
+  - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
+  - MATCH,代理连接
 ip: &ip { type: http, interval: 86400, proxy: DIRECT, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: DIRECT, behavior: domain, format: mrs }
 rule-providers:
@@ -77,124 +186,9 @@ rule-providers:
   cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
-## 入站 ##
-mixed-port: 7890
-# tproxy-port: 7891
-# redir-port: 7892
-tun:
-  enable: true
-  device: meta
-  stack: mixed
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  strict-route: true
-  dns-hijack: [any:53,tcp://any:53,any:853,tcp://any:853]
-  mtu: 9000
-  udp-timeout: 600
-
-## 解析 ##
-hosts:
-  edgeone.gh-proxy.com: [43.159.99.11,43.159.98.14]
-  dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
-  doh.pub: [120.53.53.53,1.12.12.21,1.12.12.12]
-  dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
-  dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
-  services.googleapis.cn: services.googleapis.com
-  mtalk.google.com: [142.251.170.188,142.250.107.188,108.177.125.188,"2404:6800:4008:c1b::bc","2404:6800:4008:c07::bc","2404:6800:4008:c05::bc","2404:6800:4008:c19::bc","2404:6800:4008:c15::bc"]
-  mtalk4.google.com: mtalk.google.com
-  mtalk-dev.google.com: mtalk.google.com
-  mtalk-staging.google.com: mtalk.google.com
-  alt1-mtalk.google.com: mtalk.google.com
-  alt2-mtalk.google.com: mtalk.google.com
-  alt3-mtalk.google.com: mtalk.google.com
-  alt4-mtalk.google.com: mtalk.google.com
-  alt5-mtalk.google.com: mtalk.google.com
-  alt6-mtalk.google.com: mtalk.google.com
-  alt7-mtalk.google.com: mtalk.google.com
-  alt8-mtalk.google.com: mtalk.google.com
-dns: 
-  enable: true
-  cache-algorithm: arc
-  ipv6: true
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: false
-  respect-rules: false
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter: ["*","5228","dns.google","dns.quad9.net","sharepoint.com","steamcdn-a.akamaihd.net","RULE-SET:private,direct_domain,googlefcm,steam-cn,bilibili,apple-cn,microsoft-cn,cn"]
-  default-nameserver: [223.5.5.5,8.8.8.8]
-  proxy-server-nameserver:
-    # - "https://dns.alidns.com/dns-query#直接连接&h3=true"
-    - "https://dns.alidns.com/dns-query#直接连接&h3=true&ecs=8.8.8.8/24&ecs-override=true"
-    # - "https://doh.pub/dns-query#直接连接&h3=false"
-    - "https://doh.pub/dns-query#直接连接&h3=false&ecs=8.8.8.8/24&ecs-override=true"
-  nameserver:
-    - "https://dns.google/dns-query#DNS查询&h3=true&ecs=8.8.8.8/24&ecs-override=true"
-    - "https://dns.quad9.net/dns-query/dns-query#DNS查询&h3=true&ecs=8.8.8.8/24&ecs-override=true"
-  direct-nameserver:
-    - "https://dns.alidns.com/dns-query#直接连接&h3=true"
-    - "https://doh.pub/dns-query#直接连接&h3=false"
-  direct-nameserver-follow-policy: true
-  nameserver-policy:
-    "rule-set:private": [system]
-    "rule-set:ads": [rcode://success]
-    "rule-set:cn,direct_domain":
-      - "https://dns.alidns.com/dns-query#直接连接&h3=false"
-      - "https://doh.pub/dns-query#直接连接&h3=true"
-sniffer: 
-  enable: true
-  force-dns-mapping: false
-  parse-pure-ip: false
-  override-destination: true
-  sniff:
-    HTTP: { ports: [80, 8080-8880], override-destination: true }
-    TLS: { ports: [443, 8443] }
-    QUIC: { ports: [443, 8443] }
-  skip-domain: ["RULE-SET:private","+.push.apple.com","Mijia Cloud"]
-  force-domain: ["RULE-SET:netflix"]
-  skip-src-address: ["RULE-SET:private_ip"]
-
-## 路由规则 ##
-rules:
-  - OR,((DST-PORT,53),(DST-PORT,853)),dns-hijack
-  - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
-  - RULE-SET,ads,REJECT-DROP
-  - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),代理连接
-  - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
-  - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
-  - OR,((RULE-SET,openai),(RULE-SET,gemini)),国外AI
-  - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
-  - RULE-SET,whatsapp,WHATSAPP
-  - OR,((RULE-SET,facebook),(RULE-SET,facebook_ip,no-resolve)),FACEBOOK
-  - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
-  - RULE-SET,youtube,YOUTUBE
-  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl)),BILIBILI
-  - RULE-SET,tiktok,TIKTOK
-  - RULE-SET,instagram,INSTAGRAM
-  - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
-  - RULE-SET,spotify,SPOTIFY
-  - RULE-SET,pixiv,PIXIV
-  - RULE-SET,github,GITHUB
-  - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
-  - RULE-SET,pikpak,PIKPAK
-  - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
-  - RULE-SET,steam,STEAM
-  - RULE-SET,apple-cn,APPLE中国
-  - RULE-SET,microsoft-cn,微软中国
-  - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
-  - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
-  - RULE-SET,non-cn,代理连接
-  - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
-  - MATCH,代理连接
-
-## 策略组 ##
 proxies: [{ name: dns-hijack, type: dns },{ name: direct+, type: direct, udp: true, mptcp: true, tfo: true }]
-zl: &zl { type: select, proxies: [直接连接,代理连接,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true }
-dl: &dl { type: select, proxies: [代理连接,直接连接,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true }
+zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,均衡轮询,故障转移,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转], <<: *finger }
+dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,均衡轮询,故障转移,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转], <<: *finger }
 auto: &auto { type: url-test, tolerance: 20, hidden: true }
 bal: &bal { type: load-balance, strategy: round-robin, hidden: true }
 fall: &fall { type: fallback, hidden: true }
@@ -211,8 +205,8 @@ nl: &nl { filter: "(?i)🇳🇱|荷兰|NL|netherland", icon: "https://edgeone.gh
 eu: &eu { filter: "(?i)🇬🇧|英国|UK|GB|unitedkingdom|united kingdom|🇫🇷|法国|FR|france|🇩🇪|德国|DE|germany|🇮🇹|意大利|IT|italy|🇪🇸|西班牙|ES|spain|🇳🇱|荷兰|NL|netherland|🇫🇮|芬兰|FL|finland|🇬🇷|希腊|GR|greece|🇮🇪|爱尔兰|IE|ireland|🇵🇱|波兰|PL|poland|🇸🇪|瑞典|SE|sweden|🇩🇰|丹麦|DK|denmark", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/eu.svg" }
 asean: &asean { filter: "(?i)🇮🇩|印尼|印度尼西亚|ID|Indonesia|🇸🇬|新加坡|SG|singapore|🇹🇭|泰国|TH|Thailand|🇲🇾|马来西亚|MY|Malaysia|🇻🇳|越南|VN|Vietnam|🇵🇭|菲律宾|PH|philippines|🇲🇲|缅甸|MM|myanmar|🇰🇭|柬埔寨|KH|cambodia|🇱🇦老挝|LA|laos", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/asean.svg" }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp" }
-  - { name: 直接连接, type: select, proxies: [direct+], url: "https://g.alicdn.com", interval: 3600, timeout: 3000, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
+  - { name: 直接连接, type: select, proxies: [direct+], url: "https://g.alicdn.com", interval: 43200, timeout: 3000, lazy: false, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
+  - { name: 代理连接, type: select, proxies: [自动选择,均衡轮询,故障转移,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转], <<: *finger, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp" }
   - { name: DNS查询, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp" }
   - { name: FCM推送, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp" }
   - { name: 国外AI, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp" }
@@ -236,43 +230,43 @@ proxy-groups:
   - { name: 微软中国, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Microsoft.webp" }
   - { name: GOOGLE, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Google.webp" }
   - { name: CLOUDFLARE, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/CloudFlare.webp" }
-  - { name: 香港|自动, <<: [*area,*auto,*hk] }
-  - { name: 台湾|自动, <<: [*area,*auto,*tw] }
-  - { name: 日本|自动, <<: [*area,*auto,*jp] }
-  - { name: 新加坡|自动, <<: [*area,*auto,*sg] }
-  - { name: 韩国|自动, <<: [*area,*auto,*kr] }
-  - { name: 俄罗斯|自动, <<: [*area,*auto,*ru] }
-  - { name: 美国|自动, <<: [*area,*auto,*us] }
-  - { name: 德国|自动, <<: [*area,*auto,*de] }
-  - { name: 英国|自动, <<: [*area,*auto,*uk] }
-  - { name: 荷兰|自动, <<: [*area,*auto,*nl] }
-  - { name: 欧洲|自动, <<: [*area,*auto,*eu] }
-  - { name: 东南亚|自动, <<: [*area,*auto,*asean] }
-  - { name: 香港|轮询, <<: [*area,*bal,*hk] }
-  - { name: 台湾|轮询, <<: [*area,*bal,*tw] }
-  - { name: 日本|轮询, <<: [*area,*bal,*jp] }
-  - { name: 新加坡|轮询, <<: [*area,*bal,*sg] }
-  - { name: 韩国|轮询, <<: [*area,*bal,*kr] }
-  - { name: 俄罗斯|轮询, <<: [*area,*bal,*ru] }
-  - { name: 美国|轮询, <<: [*area,*bal,*us] }
-  - { name: 德国|轮询, <<: [*area,*bal,*de] }
-  - { name: 英国|轮询, <<: [*area,*bal,*uk] }
-  - { name: 荷兰|轮询, <<: [*area,*bal,*nl] }
-  - { name: 欧洲|轮询, <<: [*area,*bal,*eu] }
-  - { name: 东南亚|轮询, <<: [*area,*bal,*asean] }
-  - { name: 香港|故转, <<: [*area,*fall,*hk] }
-  - { name: 台湾|故转, <<: [*area,*fall,*tw] }
-  - { name: 日本|故转, <<: [*area,*fall,*jp] }
-  - { name: 新加坡|故转, <<: [*area,*fall,*sg] }
-  - { name: 韩国|故转, <<: [*area,*fall,*kr] }
-  - { name: 俄罗斯|故转, <<: [*area,*fall,*ru] }
-  - { name: 美国|故转, <<: [*area,*fall,*us] }
-  - { name: 德国|故转, <<: [*area,*fall,*de] }
-  - { name: 英国|故转, <<: [*area,*fall,*uk] }
-  - { name: 荷兰|故转, <<: [*area,*fall,*nl] }
-  - { name: 欧洲|故转, <<: [*area,*fall,*eu] }
-  - { name: 东南亚|故转, <<: [*area,*fall,*asean] }
-  - { name: 自动选择, <<: *auto, include-all-providers: true, tolerance: 100, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Chained.webp" }
-  - { name: 均衡轮询, <<: *bal, include-all-providers: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp" }
-  - { name: 故障转移, <<: *fall, include-all-providers: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Signal_Light.webp" }
-  - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,DNS查询,FCM推送,国外AI,TELEGRAM,WHATSAPP,FACEBOOK,TWITTER,YOUTUBE,BILIBILI,TIKTOK,INSTAGRAM,NETFLIX,SPOTIFY,PIXIV,GITHUB,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE中国,微软中国,GOOGLE,CLOUDFLARE,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转,自动选择,均衡轮询,故障转移], include-all-providers: true, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp" }
+  - { name: 自动选择, <<: [*auto,*use], tolerance: 100, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Chained.webp" }
+  - { name: 均衡轮询, <<: [*bal,*use], icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp" }
+  - { name: 故障转移, <<: [*fall,*use], icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Signal_Light.webp" }
+  - { name: 香港|自动, <<: [*auto,*area,*hk] }
+  - { name: 台湾|自动, <<: [*auto,*area,*tw] }
+  - { name: 日本|自动, <<: [*auto,*area,*jp] }
+  - { name: 新加坡|自动, <<: [*auto,*area,*sg] }
+  - { name: 韩国|自动, <<: [*auto,*area,*kr] }
+  - { name: 俄罗斯|自动, <<: [*auto,*area,*ru] }
+  - { name: 美国|自动, <<: [*auto,*area,*us] }
+  - { name: 德国|自动, <<: [*auto,*area,*de] }
+  - { name: 英国|自动, <<: [*auto,*area,*uk] }
+  - { name: 荷兰|自动, <<: [*auto,*area,*nl] }
+  - { name: 欧洲|自动, <<: [*auto,*area,*eu] }
+  - { name: 东南亚|自动, <<: [*auto,*area,*asean] }
+  - { name: 香港|轮询, <<: [*bal,*area,*hk] }
+  - { name: 台湾|轮询, <<: [*bal,*area,*tw] }
+  - { name: 日本|轮询, <<: [*bal,*area,*jp] }
+  - { name: 新加坡|轮询, <<: [*bal,*area,*sg] }
+  - { name: 韩国|轮询, <<: [*bal,*area,*kr] }
+  - { name: 俄罗斯|轮询, <<: [*bal,*area,*ru] }
+  - { name: 美国|轮询, <<: [*bal,*area,*us] }
+  - { name: 德国|轮询, <<: [*bal,*area,*de] }
+  - { name: 英国|轮询, <<: [*bal,*area,*uk] }
+  - { name: 荷兰|轮询, <<: [*bal,*area,*nl] }
+  - { name: 欧洲|轮询, <<: [*bal,*area,*eu] }
+  - { name: 东南亚|轮询, <<: [*bal,*area,*asean] }
+  - { name: 香港|故转, <<: [*fall,*area,*hk] }
+  - { name: 台湾|故转, <<: [*fall,*area,*tw] }
+  - { name: 日本|故转, <<: [*fall,*area,*jp] }
+  - { name: 新加坡|故转, <<: [*fall,*area,*sg] }
+  - { name: 韩国|故转, <<: [*fall,*area,*kr] }
+  - { name: 俄罗斯|故转, <<: [*fall,*area,*ru] }
+  - { name: 美国|故转, <<: [*fall,*area,*us] }
+  - { name: 德国|故转, <<: [*fall,*area,*de] }
+  - { name: 英国|故转, <<: [*fall,*area,*uk] }
+  - { name: 荷兰|故转, <<: [*fall,*area,*nl] }
+  - { name: 欧洲|故转, <<: [*fall,*area,*eu] }
+  - { name: 东南亚|故转, <<: [*fall,*area,*asean] }
+  - { name: GLOBAL, type: select, proxies: [直接连接,代理连接,DNS查询,FCM推送,国外AI,TELEGRAM,WHATSAPP,FACEBOOK,TWITTER,YOUTUBE,BILIBILI,TIKTOK,INSTAGRAM,NETFLIX,SPOTIFY,PIXIV,GITHUB,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE中国,微软中国,GOOGLE,CLOUDFLARE,自动选择,均衡轮询,故障转移,香港|自动,香港|轮询,香港|故转,台湾|自动,台湾|轮询,台湾|故转,日本|自动,日本|轮询,日本|故转,新加坡|自动,新加坡|轮询,新加坡|故转,韩国|自动,韩国|轮询,韩国|故转,俄罗斯|自动,俄罗斯|轮询,俄罗斯|故转,美国|自动,美国|轮询,美国|故转,德国|自动,德国|轮询,德国|故转,英国|自动,英国|轮询,英国|故转,荷兰|自动,荷兰|轮询,荷兰|故转,欧洲|自动,欧洲|轮询,欧洲|故转,东南亚|自动,东南亚|轮询,东南亚|故转], include-all-providers: true, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp" }
