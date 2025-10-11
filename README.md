@@ -1,10 +1,10 @@
 ### 链接指引
 mihomo模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_one.yaml)
 
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text | 
+| / | **多订阅** | **单订阅** |
+| ----------- | ----------- | ----------- |
+| **精简选择** | Title | Title |
+| **完整选择** | Text | Title |
 
 mihomo_smart模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart_one.yaml)
 
