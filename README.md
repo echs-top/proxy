@@ -1,6 +1,11 @@
 ### 链接指引
 mihomo模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_one.yaml)
 
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text | 
+
 mihomo_smart模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)、[单订阅](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart_one.yaml)
 
 更多推荐: [代理软件](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
