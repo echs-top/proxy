@@ -21,6 +21,10 @@ external-controller: 0.0.0.0:9090
 # secret: "密码"
 external-ui: ./zashboard
 external-ui-url: "https://edgeone.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+geox-url: { asn: "https://edgeone.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb" }
 lgbm-auto-update: true
 lgbm-update-interval: 24
 lgbm-url: "https://edgeone.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
