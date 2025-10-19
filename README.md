@@ -5,6 +5,10 @@ mihomo_smart模板: [多订阅](https://raw.githubusercontent.com/echs-top/proxy
 
 更多推荐: [代理软件](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
 
+### 自用规则
+
+自维护部分规则:direct_domain(cn规则未收录)、direct_ip、proxy_domain(强制代理的域名，目前只有ipwho.is)、proxy_ip、fake-ip_add(除cn与direct_domain外不适合fake-ip的补充)
+
 ### 问题参考
 
 1.关于dns泄露: 我更倾向于减少国外流量获取到你的dns，是的这个问题理论是上无法完美解决的(或许你可以自建dns查询)
