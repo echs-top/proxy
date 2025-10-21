@@ -5,7 +5,7 @@
 
 ![](./img/mojie.webp)
 
-链接：[mojie.kim](https://mojie.kim/register?aff=zBuQHqPk)
+链接：[mojie.link](https://mojie.link/register?aff=zBuQHqPk)
 
 ### 二、八戒(2023.02使用至今|已购390G不限时)
 贵，按量/周期，港日美新等专线，速度上佳，貌似送中节点
@@ -19,7 +19,7 @@
 
 128G每月|¥24一年¥36两年、512G每月|¥15季付¥50年付、1024G每月|¥9月付¥90年付
 
-链接：[kitty.ceo](https://kitty.ceo/#/register?code=MARAkheO)
+链接：[kitty.su](https://kitty.su/#/register?code=MARAkheO)
 
 ### 四、无名国度(已购1元特价，混用中)
 便宜，按量/周期，速度不错，流量较多，节点分倍率，低倍率节点反应略慢速度拉满
