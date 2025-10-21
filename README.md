@@ -1,4 +1,15 @@
+### 模板更新原则
+
+1.填入订阅即可使用，并兼容多订阅
+
+2.较完善的分流策略，偏向裸核使用
+
+3.使用地区分组，偏向性能和速度优化
+
+4.更多的是自用需求，所以……
+
 ### 链接指引
+
 模板: [mihomo](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
 更多推荐: [代理软件](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
