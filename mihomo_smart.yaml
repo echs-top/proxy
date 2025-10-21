@@ -8,7 +8,7 @@ use: &use { use: [link1,link2] }
 # 地区分组包含订阅
 area: &area { use: [link1,link2] }
 # 手动选择包含订阅
-finger: &finger { use: [link3] }
+select: &select { use: [link3] }
 
 
 
