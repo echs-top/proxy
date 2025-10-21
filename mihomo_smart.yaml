@@ -197,7 +197,7 @@ rule-providers:
 proxies: [{ name: DNS劫持, type: dns },{ name: 直连, type: direct, udp: true, mptcp: true, tfo: true }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,智能选择,负载均衡,香港|智能,香港|均衡,台湾|智能,台湾|均衡,日本|智能,日本|均衡,新加坡|智能,新加坡|均衡,韩国|智能,韩国|均衡,俄罗斯|智能,俄罗斯|均衡,美国|智能,美国|均衡,德国|智能,德国|均衡,英国|智能,英国|均衡,荷兰|智能,荷兰|均衡,欧洲|智能,欧洲|均衡,东南亚|智能,东南亚|均衡], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,智能选择,负载均衡,香港|智能,香港|均衡,台湾|智能,台湾|均衡,日本|智能,日本|均衡,新加坡|智能,新加坡|均衡,韩国|智能,韩国|均衡,俄罗斯|智能,俄罗斯|均衡,美国|智能,美国|均衡,德国|智能,德国|均衡,英国|智能,英国|均衡,荷兰|智能,荷兰|均衡,欧洲|智能,欧洲|均衡,东南亚|智能,东南亚|均衡], <<: *select }
-smart: &smart { type: smart, strategy: round-robin, uselightgbm: true, collectdata: false, sample-rate: 1, <<: *use, hidden: true }
+smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, <<: *use, hidden: true }
 bal: &bal { type: load-balance, strategy: round-robin, <<: *use, hidden: true }
 hk: &hk { filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg" }
 tw: &tw { filter: "(?i)🇹🇼|台湾|TW|taiwan", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/tw.svg" }
@@ -245,7 +245,7 @@ proxy-groups:
   - { name: 微软, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Microsoft.webp" }
   - { name: CLOUDFLARE, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/CloudFlare.webp" }
   - { name: 兜底选择, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp" }
-  - { name: 智能选择, <<: *smart, strategy: sticky-sessions, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Bytedance.webp" }
+  - { name: 智能选择, <<: *smart, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Bytedance.webp" }
   - { name: 负载均衡, <<: *bal, strategy: sticky-sessions, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp" }
   - { name: 香港|智能, <<: [*smart,*hk] }
   - { name: 台湾|智能, <<: [*smart,*tw] }
