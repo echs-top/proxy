@@ -49,7 +49,7 @@
   "config/number-of-charts-in-sidebar": "2",
   "config/proxy-group-icon-size": "20",
   "config/group-test-urls": "[]",
-  "config/import-settings-url": "./zashboard-settings.json",
+  "config/import-settings-url": "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/zashboard-settings.json",
   "config/swipe-in-tabs": "false",
   "config/display-proxies-relationship": "false",
   "setup/api-list": "",
