@@ -87,8 +87,8 @@ dns:
       - "https://doh.pub/dns-query#直接连接"
 sniffer: 
   enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
+  force-dns-mapping: false
+  parse-pure-ip: false
   override-destination: true
   sniff:
     HTTP: { ports: [80, 8080-8880], override-destination: true }
@@ -107,19 +107,19 @@ rules:
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
-  - RULE-SET,whatsapp,WHATSAPP
-  - OR,((RULE-SET,facebook),(RULE-SET,facebook_ip,no-resolve)),FACEBOOK
+  - RULE-SET,reddit,REDDIT
   - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
-  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl)),BILIBILI
   - RULE-SET,tiktok,TIKTOK
+  - OR,((RULE-SET,bilibili),(RULE-SET,biliintl)),BILIBILI
   - OR,((RULE-SET,netflix),(RULE-SET,netflix_ip,no-resolve)),NETFLIX
   - RULE-SET,spotify,SPOTIFY
   - RULE-SET,pixiv,PIXIV
+  - OR,((RULE-SET,meta),(RULE-SET,facebook_ip,no-resolve)),META
   - RULE-SET,discord,DISCORD
-  - RULE-SET,instagram,INSTAGRAM
   - RULE-SET,twitch,TWITCH
-  - RULE-SET,github,GITHUB
+  - RULE-SET,paypal,PAYPAL
   - OR,((RULE-SET,ai),(RULE-SET,ai_add)),国外AI
+  - RULE-SET,github,GITHUB
   - DOMAIN-SUFFIX,sharepoint.com,ONEDRIVE下载
   - RULE-SET,pikpak,PIKPAK
   - OR,((DOMAIN,steamcdn-a.akamaihd.net),(RULE-SET,steam-cn)),STEAM中国
@@ -128,7 +128,6 @@ rules:
   - RULE-SET,microsoft,MICROSOFT
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
-  - RULE-SET,non-cn,代理连接
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
   - MATCH,代理连接
 ip: &ip { type: http, interval: 259200, proxy: DIRECT, behavior: ipcidr, format: mrs }
@@ -145,24 +144,24 @@ rule-providers:
   googlefcm: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs", path: ./rules/googlefcm.mrs }
   telegram: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs", path: ./rules/telegram.mrs }
   telegram_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs", path: ./rules/telegram_ip.mrs }
-  whatsapp: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/whatsapp.mrs", path: ./rules/whatsapp.mrs }
-  facebook: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs", path: ./rules/facebook.mrs }
-  facebook_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs", path: ./rules/facebook_ip.mrs }
+  reddit: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs", path: ./rules/reddit.mrs }
   twitter: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs", path: ./rules/twitter.mrs }
   twitter_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs", path: ./rules/twitter_ip.mrs }
+  tiktok: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs", path: ./rules/tiktok.mrs }
   bilibili: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs", path: ./rules/bilibili.mrs }
   biliintl: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/biliintl.mrs", path: ./rules/biliintl.mrs }
-  tiktok: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs", path: ./rules/tiktok.mrs }
   netflix: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs", path: ./rules/netflix.mrs }
   netflix_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs", path: ./rules/netflix_ip.mrs }
   spotify: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs", path: ./rules/spotify.mrs }
   pixiv: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.mrs", path: ./rules/pixiv.mrs }
+  meta: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/meta.mrs", path: ./rules/meta.mrs }
+  facebook_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs", path: ./rules/facebook_ip.mrs }
   discord: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/discord.mrs", path: ./rules/discord.mrs }
-  instagram: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs", path: ./rules/instagram.mrs }
   twitch: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitch.mrs", path: ./rules/twitch.mrs }
-  github: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs", path: ./rules/github.mrs }
+  paypal: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs", path: ./rules/paypal.mrs }
   ai: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs", path: ./rules/ai.mrs }
   ai_add: { <<: *domain, format: text, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/rules/ai_add.list", path: ./rules/ai_add.list }
+  github: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs", path: ./rules/github.mrs }
   pikpak: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pikpak.mrs", path: ./rules/pikpak.mrs }
   steam-cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs", path: ./rules/steam-cn.mrs }
   steam: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs", path: ./rules/steam.mrs }
@@ -172,7 +171,6 @@ rule-providers:
   google_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs", path: ./rules/google_ip.mrs }
   cloudflare: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs", path: ./rules/cloudflare.mrs }
   cloudflare_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs", path: ./rules/cloudflare_ip.mrs }
-  non-cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs", path: ./rules/non-cn.mrs }
   cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
@@ -201,19 +199,19 @@ proxy-groups:
   - { name: 国外QUIC, type: select, proxies: [PASS,REJECT], icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Settings.webp" }
   - { name: FCM推送, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp" }
   - { name: TELEGRAM, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp" }
-  - { name: WHATSAPP, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/WhatsApp.webp" }
-  - { name: FACEBOOK, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Facebook.webp" }
+  - { name: REDDIT, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Reddit.webp" }
   - { name: TWITTER, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/X.webp" }
-  - { name: BILIBILI, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Bilibili.webp" }
   - { name: TIKTOK, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/TikTok.webp" }
+  - { name: BILIBILI, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Bilibili.webp" }
   - { name: NETFLIX, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Netflix.webp" }
   - { name: SPOTIFY, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Spotify.webp" }
   - { name: PIXIV, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Pixiv.webp" }
+  - { name: META, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Meta_1.webp" }
   - { name: DISCORD, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Discord.webp" }
-  - { name: INSTAGRAM, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Instagram.webp" }
   - { name: TWITCH, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Twitch.webp" }
-  - { name: GITHUB, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/GitHub.webp" }
+  - { name: PAYPAL, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/PayPal.webp" }
   - { name: 国外AI, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp" }
+  - { name: GITHUB, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/GitHub.webp" }
   - { name: ONEDRIVE下载, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/OneDrive.webp" }
   - { name: PIKPAK, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/PikPak.webp" }
   - { name: STEAM中国, <<: *zl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Steam.webp" }
@@ -248,4 +246,4 @@ proxy-groups:
   - { name: 荷兰|均衡, <<: [*bal,*nl] }
   - { name: 欧洲|均衡, <<: [*bal,*eu] }
   - { name: 东南亚|均衡, <<: [*bal,*asean] }
-  - { name: GLOBAL, type: select, proxies: [直接连接,代理连接,DNS查询,国外QUIC,FCM推送,TELEGRAM,WHATSAPP,FACEBOOK,TWITTER,BILIBILI,TIKTOK,NETFLIX,SPOTIFY,PIXIV,DISCORD,INSTAGRAM,TWITCH,GITHUB,国外AI,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE,MICROSOFT,GOOGLE,CLOUDFLARE,自动选择,常用|故转,香港|故转,香港|均衡,台湾|故转,台湾|均衡,日本|故转,日本|均衡,新加坡|故转,新加坡|均衡,韩国|故转,韩国|均衡,俄罗斯|故转,俄罗斯|均衡,美国|故转,美国|均衡,德国|故转,德国|均衡,英国|故转,英国|均衡,荷兰|故转,荷兰|均衡,欧洲|故转,欧洲|均衡,东南亚|故转,东南亚|均衡], include-all-providers: true, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp" }
+  - { name: GLOBAL, type: select, proxies: [直接连接,代理连接,DNS查询,国外QUIC,FCM推送,TELEGRAM,REDDIT,TWITTER,TIKTOK,BILIBILI,NETFLIX,SPOTIFY,PIXIV,META,DISCORD,TWITCH,PAYPAL,国外AI,GITHUB,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE,MICROSOFT,GOOGLE,CLOUDFLARE,自动选择,常用|故转,香港|故转,香港|均衡,台湾|故转,台湾|均衡,日本|故转,日本|均衡,新加坡|故转,新加坡|均衡,韩国|故转,韩国|均衡,俄罗斯|故转,俄罗斯|均衡,美国|故转,美国|均衡,德国|故转,德国|均衡,英国|故转,英国|均衡,荷兰|故转,荷兰|均衡,欧洲|故转,欧洲|均衡,东南亚|故转,东南亚|均衡], include-all-providers: true, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp" }
