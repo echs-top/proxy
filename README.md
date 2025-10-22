@@ -20,7 +20,7 @@
 
 强制代理：proxy_domain(强制代理的域名，目前只有ipwho.is)、proxy_ip
 
-补充类：fake-ip_add(少量fake-ip补充)、ai_add(补充ai相关域名)
+补充类：fake-ip_add(补充少量fake-ip域名)、ai_add(补充ai相关域名)
 
 欢迎网友一起补充完善
 
