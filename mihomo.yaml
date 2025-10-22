@@ -1,4 +1,4 @@
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 3000, lazy: false }, override: { udp: true, ip-version: ipv6-prefer, skip-cert-verify: true, mptcp: true, tfo: true }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://captive.apple.com/generate_204",  interval: 3600, timeout: 3000, lazy: false }, override: { udp: true }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
 proxy-providers:
 # 按需添加删除即可
   link1: { <<: *providers, url: "订阅链接1", path: ./providers/link1.yaml }
@@ -31,7 +31,7 @@ external-controller: 0.0.0.0:9090
 external-ui: ./zashboard
 external-ui-url: "https://edgeone.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 profile: { store-selected: true, store-fake-ip: true }
-experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
+experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: false, dialer-ip4p-convert: false }
 
 mixed-port: 7890
 # tproxy-port: 7891
@@ -87,8 +87,8 @@ dns:
       - "https://doh.pub/dns-query#直接连接"
 sniffer: 
   enable: true
-  force-dns-mapping: false
-  parse-pure-ip: false
+  force-dns-mapping: true
+  parse-pure-ip: true
   override-destination: true
   sniff:
     HTTP: { ports: [80, 8080-8880], override-destination: true }
@@ -174,7 +174,7 @@ rule-providers:
   cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
-proxies: [{ name: DNS劫持, type: dns },{ name: 直连, type: direct, udp: true, mptcp: true, tfo: true }]
+proxies: [{ name: DNS劫持, type: dns }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,常用|故转,香港|故转,香港|均衡,台湾|故转,台湾|均衡,日本|故转,日本|均衡,新加坡|故转,新加坡|均衡,韩国|故转,韩国|均衡,俄罗斯|故转,俄罗斯|均衡,美国|故转,美国|均衡,德国|故转,德国|均衡,英国|故转,英国|均衡,荷兰|故转,荷兰|均衡,欧洲|故转,欧洲|均衡,东南亚|故转,东南亚|均衡], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,常用|故转,香港|故转,香港|均衡,台湾|故转,台湾|均衡,日本|故转,日本|均衡,新加坡|故转,新加坡|均衡,韩国|故转,韩国|均衡,俄罗斯|故转,俄罗斯|均衡,美国|故转,美国|均衡,德国|故转,德国|均衡,英国|故转,英国|均衡,荷兰|故转,荷兰|均衡,欧洲|故转,欧洲|均衡,东南亚|故转,东南亚|均衡], <<: *select }
 auto: &auto { type: url-test, tolerance: 150, <<: *use, hidden: true }
@@ -193,7 +193,7 @@ nl: &nl { filter: "(?i)🇳🇱|荷兰|NL|netherland", icon: "https://edgeone.gh
 eu: &eu { filter: "(?i)🇬🇧|英国|UK|GB|unitedkingdom|united kingdom|🇫🇷|法国|FR|france|🇩🇪|德国|DE|germany|🇮🇹|意大利|IT|italy|🇪🇸|西班牙|ES|spain|🇳🇱|荷兰|NL|netherland|🇫🇮|芬兰|FL|finland|🇬🇷|希腊|GR|greece|🇮🇪|爱尔兰|IE|ireland|🇵🇱|波兰|PL|poland|🇸🇪|瑞典|SE|sweden|🇩🇰|丹麦|DK|denmark", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/eu.svg" }
 asean: &asean { filter: "(?i)🇮🇩|印尼|印度尼西亚|ID|Indonesia|🇸🇬|新加坡|SG|singapore|🇹🇭|泰国|TH|Thailand|🇲🇾|马来西亚|MY|Malaysia|🇻🇳|越南|VN|Vietnam|🇵🇭|菲律宾|PH|philippines|🇲🇲|缅甸|MM|myanmar|🇰🇭|柬埔寨|KH|cambodia|🇱🇦老挝|LA|laos", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/asean.svg" }
 proxy-groups:
-  - { name: 直接连接, type: select, proxies: [直连], url: "https://g.alicdn.com", interval: 7200, timeout: 3000, lazy: false, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
+  - { name: 直接连接, type: select, proxies: [DIRECT], url: "https://g.alicdn.com", interval: 7200, timeout: 3000, lazy: false, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
   - { name: 代理连接, type: select, proxies: [自动选择,常用|故转,香港|故转,香港|均衡,台湾|故转,台湾|均衡,日本|故转,日本|均衡,新加坡|故转,新加坡|均衡,韩国|故转,韩国|均衡,俄罗斯|故转,俄罗斯|均衡,美国|故转,美国|均衡,德国|故转,德国|均衡,英国|故转,英国|均衡,荷兰|故转,荷兰|均衡,欧洲|故转,欧洲|均衡,东南亚|故转,东南亚|均衡], <<: *select, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp" }
   - { name: DNS查询, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp" }
   - { name: 国外QUIC, type: select, proxies: [PASS,REJECT], icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Settings.webp" }
