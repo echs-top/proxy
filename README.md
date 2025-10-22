@@ -16,7 +16,11 @@
 
 ### 自用规则
 
-自维护部分规则:direct_domain(cn规则未收录)、direct_ip、proxy_domain(强制代理的域名，目前只有ipwho.is)、proxy_ip、fake-ip_add(除cn与direct_domain外不适合fake-ip的补充)
+强制直连：direct_domain(cn规则未收录)、direct_ip
+
+强制代理：proxy_domain(强制代理的域名，目前只有ipwho.is)、proxy_ip
+
+补充类：fake-ip_add(少量fake-ip补充)、ai_add(补充ai相关域名)
 
 欢迎网友一起补充完善
 
