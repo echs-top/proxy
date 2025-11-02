@@ -61,11 +61,11 @@ hosts:
   dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
   dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
   edgeone.gh-proxy.com: [43.159.99.11,43.159.98.14]
-dns-al: &dns-al "https://alidns.com/dns-query#直接连接"
-dns-tx: &dns-tx "https://doh.pub/dns-query#直接连接"
-ecs-v: &ecs-v "https://v.recipes/dns-ecs#直接连接&ecs=8.8.8.8/24&ecs-override=true"
-proxy-g: &proxy-g "https://dns.google/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
-proxy-q: &proxy-q "https://dns.quad9.net/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
+al: &al "https://alidns.com/dns-query#直接连接"
+tx: &tx "https://doh.pub/dns-query#直接连接"
+vr: &vr "https://v.recipes/dns-ecs#直接连接&ecs=8.8.8.8/24&ecs-override=true"
+gg: &gg "https://dns.google/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
+q9: &q9 "https://dns.quad9.net/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
 dns: 
   enable: true
   cache-algorithm: arc
@@ -80,14 +80,14 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter: ["*","5228","RULE-SET:private,fake-ip_add,googlefcm,direct_domain,cn"]
   default-nameserver: [223.5.5.5,8.8.8.8]
-  proxy-server-nameserver: [*dns-al,*dns-tx,*ecs-v]
-  nameserver: [*ecs-v,*proxy-g,*proxy-q]
-  direct-nameserver: [system,*dns-al,*dns-tx]
+  proxy-server-nameserver: [*al,*tx,*vr]
+  nameserver: [*vr,*gg,*q9]
+  direct-nameserver: [system,*al,*tx]
   direct-nameserver-follow-policy: true
   nameserver-policy:
     "rule-set:private": [system]
     "rule-set:ads": [rcode://success]
-    "rule-set:cn,direct_domain": [system,*dns-al,*dns-tx]
+    "rule-set:cn,direct_domain": [system,*al,*tx]
 sniffer: 
   enable: true
   force-dns-mapping: true
