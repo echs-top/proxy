@@ -180,7 +180,7 @@ proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,港澳台|故转,港澳台|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,港澳台|故转,港澳台|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 auto: &auto { type: url-test, tolerance: 150, <<: *use, hidden: true }
-smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, <<: *use, hidden: true }
+smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
 bal: &bal { type: load-balance, strategy: sticky-sessions, <<: *use, hidden: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 hk: &hk { filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg" }
