@@ -1,4 +1,4 @@
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://www.google.com/favicon.ico",  interval: 1800, timeout: 3000, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://www.google.com/favicon.ico", expected-status: 200,  interval: 1800, timeout: 3000, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
 proxy-providers:
 # 按需添加删除即可
   link1: { <<: *providers, url: "订阅链接1", path: ./providers/link1.yaml }
@@ -51,8 +51,8 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
-  dns-hijack: [tcp://any:53,tcp://any:853,any:53,any:853]
-  mtu: 9000
+  dns-hijack: [tcp://any:53,tcp://any:853,udp://any:53,udp://any:853]
+  # mtu: 9000
   udp-timeout: 600
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
@@ -83,15 +83,13 @@ dns:
   proxy-server-nameserver: [*al,*tx,*vr]
   nameserver: [*vr,*gg,*q9]
   direct-nameserver: [system,*al,*tx]
-  direct-nameserver-follow-policy: true
+  direct-nameserver-follow-policy: false
   nameserver-policy:
-    "rule-set:private": [system]
     "rule-set:ads": [rcode://success]
-    "rule-set:cn,direct_domain": [system,*al,*tx]
 sniffer: 
   enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
+  force-dns-mapping: false
+  parse-pure-ip: false
   override-destination: true
   sniff:
     HTTP: { ports: [80, 8080-8880], override-destination: true }
@@ -102,7 +100,7 @@ sniffer:
   skip-src-address: ["RULE-SET:private_ip,direct_ip,cn_ip"]
 
 rules:
-  - OR,((DST-PORT,53),(DST-PORT,853)),DNS劫持
+  # - OR,((DST-PORT,53),(DST-PORT,853)),DNS劫持
   - RULE-SET,ads,REJECT-DROP
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
@@ -177,7 +175,8 @@ rule-providers:
   cn: { <<: *domain, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
-proxies: [{ name: DNS劫持, type: dns },{ name: P2P, type: direct, udp: true, ip-version: ipv6-prefer }]
+# { name: DNS劫持, type: dns }
+proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,港澳台|故转,港澳台|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,港澳台|故转,港澳台|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 auto: &auto { type: url-test, tolerance: 150, <<: *use, hidden: true }
@@ -198,7 +197,7 @@ asean: &asean { filter: "(?i)🇮🇩|印尼|印度尼西亚|ID|Indonesia|🇸�
 nea: &nea { filter: "(?i)🇷🇺|俄罗斯|RU|russia|🇰🇷|韩国|KR|korea|🇰🇵|朝鲜|KP|north korea|northkorea|🇯🇵|日本|JP|japan", icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/nea.svg" }
 often: &often { exclude-filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong|🇲🇴|澳门|MO|macau|macao|🇹🇼|台湾|TW|taiwan" }
 proxy-groups:
-  - { name: 直接连接, type: select, proxies: [P2P], url: "https://g.alicdn.com", interval: 7200, timeout: 3000, lazy: false, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
+  - { name: 直接连接, type: select, proxies: [LOCAL], url: "https://g.alicdn.com", interval: 7200, timeout: 3000, lazy: false, hidden: true, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp" }
   - { name: 代理连接, type: select, proxies: [自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,港澳台|故转,港澳台|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp" }
   - { name: 国外DNS, <<: *dl, icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp" }
   - { name: 国外QUIC, type: select, proxies: [PASS,REJECT], icon: "https://edgeone.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Settings.webp" }
