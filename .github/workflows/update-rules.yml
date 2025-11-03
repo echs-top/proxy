@@ -1,0 +1,116 @@
+name: Mihomo Rules Update
+
+# 每天 UTC 时间 4 点运行
+# 注意：GitHub Actions 的定时任务使用 UTC 时间，
+# 如果您想在**北京时间**每天早上 4 点运行，
+# 则需要设置为 UTC 每天 20 点（20:00），即 '0 20 * * *'。
+on:
+  workflow_dispatch: # 允许手动触发
+  schedule:
+    # 每天 UTC 20:00 运行 (相当于北京时间次日 04:00)
+    - cron: '0 20 * * *' 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        # 需要 fetch 历史记录才能正确使用 git log 进行文件时间判断
+        with:
+          fetch-depth: 0 
+
+      # --- 1. Mihomo 缓存和更新 ---
+      - name: ⚙️ Setup Mihomo Cache
+        id: cache-mihomo
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/mihomo # Mihomo 的安装路径
+          key: ${{ runner.os }}-mihomo-v1 
+          
+      - name: 📥 Download or Update Mihomo
+        if: steps.cache-mihomo.outputs.cache-hit != 'true'
+        # 这是一个示例，您需要根据 mihomo 的实际下载链接来调整
+        run: |
+          MIHOMO_VERSION="v1.17.0" # 替换为您需要的版本
+          MIHOMO_URL="https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-${MIHOMO_VERSION}"
+          
+          echo "Downloading Mihomo from: ${MIHOMO_URL}"
+          curl -L -o mihomo "${MIHOMO_URL}"
+          chmod +x mihomo
+          sudo mv mihomo /usr/local/bin/mihomo
+          echo "mihomo downloaded and installed."
+          
+      # 检查 Mihomo 版本（可选步骤，用于检测更新，如果每次都使用固定版本可以省略）
+      - name: 🔍 Check Mihomo Version
+        run: mihomo -v
+      
+      # --- 2. 准备工作目录 ---
+      - name: 📂 Create Output Directory
+        run: mkdir -p mrs
+
+      # --- 3. 处理本地 rules 规则文件 ---
+      - name: ⏳ Check Local Rules Update Time
+        id: check-local-rules
+        # 使用 git log 检查 rules 文件夹中所有文件的最新修改时间
+        run: |
+          LAST_COMMIT_TIME=$(git log -1 --pretty=format:%at -- rules)
+          # 获取当前时间戳
+          CURRENT_TIME=$(date +%s)
+          # 设置一个缓存文件来存储上次生成的时间戳
+          CACHE_LOG_FILE="${{ runner.temp }}/last_rules_build_time.log"
+          
+          if [ -f "$CACHE_LOG_FILE" ]; then
+            LAST_BUILD_TIME=$(cat "$CACHE_LOG_FILE")
+          else
+            # 第一次运行或缓存失效时，使用一个非常早的时间戳确保生成
+            LAST_BUILD_TIME=0 
+          fi
+          
+          echo "Last Rules Commit Time (Unix): $LAST_COMMIT_TIME"
+          echo "Last Rules Build Time (Cache): $LAST_BUILD_TIME"
+          
+          # 如果规则文件有更新，或者上次生成时间比规则提交时间早，则设置标志
+          if [ "$LAST_COMMIT_TIME" -gt "$LAST_BUILD_TIME" ]; then
+            echo "Rules folder has updates. Will regenerate."
+            echo "SHOULD_REGENERATE=true" >> $GITHUB_ENV
+          else
+            echo "Rules folder has no updates since last build. Skipping regeneration."
+            echo "SHOULD_REGENERATE=false" >> $GITHUB_ENV
+          fi
+          
+          # 无论是否生成，都将当前时间戳写入日志文件，供下次使用
+          echo "$CURRENT_TIME" > "$CACHE_LOG_FILE"
+          
+      - name: 🛠️ Convert Local Rules to MRS
+        if: env.SHOULD_REGENERATE == 'true'
+        run: |
+          echo "Converting local rules..."
+          find rules -type f -name "*.list" | while read -r file; do
+            filename=$(basename "$file" .list)
+            /usr/local/bin/mihomo rule convert -F "$file" -O "mrs/${filename}.mrs"
+          done
+          echo "Local rules conversion complete."
+          
+      # --- 4. 处理远程 YAML 规则文件 ---
+      - name: 🌐 Download Remote YAML Rule
+        run: |
+          REMOTE_URL="https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+          curl -L -o remote-rule.yaml "$REMOTE_URL"
+          echo "Remote YAML rule downloaded."
+          
+      - name: 🔄 Convert Remote Rule to MRS
+        run: |
+          /usr/local/bin/mihomo rule convert -F remote-rule.yaml -O mrs/AWAvenue-Ads-Rule.mrs
+          echo "Remote rule conversion complete."
+
+      # --- 5. 提交更改回仓库 ---
+      - name: ⬆️ Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Feat: Update Mihomo MRS Rules"
+          branch: ${{ github.ref_name }} # 提交到当前分支
+          file_pattern: 'mrs/*'
+          # 只有当 mrs 文件夹中的文件有变化时才执行提交
+          commit_options: '--allow-empty --no-edit'
