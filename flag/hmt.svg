@@ -3,11 +3,11 @@
     <circle id="hmt-ring" r="50" fill="none" stroke="#FFFFFF" stroke-width="8"/>
   </defs>
 
-  <path fill="#0057B8" d="M0 0h640v160H0z"/>
+  <path fill="#ee1c25" d="M0 0h640v160H0z"/>
   <path fill="#FFFFFF" d="M0 160h640v160H0z"/>
-  <path fill="#0057B8" d="M0 320h640v160H0z"/>
+  <path fill="#ee1c25" d="M0 320h640v160H0z"/>
   
-  <g transform="translate(320 240)" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#0057B8">
+  <g transform="translate(320 240)" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#ee1c25">
     
     <g transform="translate(-150 0)">
         <use xlink:href="#hmt-ring"/>
