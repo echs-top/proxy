@@ -7,7 +7,6 @@ on:
     - cron: '0 20 * * *' 
 
 env:
-  # 定义 mihomo 的仓库信息
   MIHOMO_OWNER: MetaCubeX
   MIHOMO_REPO: mihomo
 
@@ -21,14 +20,13 @@ jobs:
         with:
           fetch-depth: 0 
 
-      # --- 1. 获取最新版本并检测更新 ---
+      # --- 1. 自动获取最新版本并检测更新 ---
       - name: 🔍 Get Latest Mihomo Release Tag
         id: get-version
         run: |
-          # 使用 GitHub API 获取最新的 Release Tag (例如 v1.19.15)
+          # 获取最新 Release Tag (例如 v1.19.15)
           LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
           
-          # 检查是否成功获取版本号
           if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
             echo "::error::Failed to retrieve latest Mihomo tag from GitHub API."
             exit 1
@@ -42,17 +40,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /usr/local/bin/mihomo
-          # 使用最新的 Tag 作为 Key 的一部分，当版本更新时，Key 会改变，缓存会失效
+          # 使用最新的 Tag 作为 Key 的一部分
           key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }} 
           
       - name: 📥 Download, Unzip, and Install Mihomo
-        # 只有在缓存未命中（即版本更新或首次运行）时才执行
         if: steps.cache-mihomo.outputs.cache-hit != 'true'
         run: |
           MIHOMO_VERSION="${{ env.LATEST_TAG }}"
           
           # 根据版本号和文件名模式构造 URL
-          # 文件名模式: mihomo-linux-amd64-{version}.gz
           FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}.gz" 
           MIHOMO_URL="https://github.com/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
           TEMP_FILE="mihomo_temp.gz"
@@ -91,11 +87,10 @@ jobs:
       - name: 📂 Create Output Directory
         run: mkdir -p mrs
 
-      # --- 3. 处理本地 rules 规则文件 ---
+      # --- 3. 处理本地 rules 规则文件 (使用 rule convert) ---
       - name: ⏳ Check Local Rules Update Time
         id: check-local-rules
         run: |
-          # 获取 rules 文件夹中文件的最新提交时间
           LAST_COMMIT_TIME=$(git log -1 --pretty=format:%at -- rules || echo 0)
           
           echo "Last Rules Commit Time (Unix): $LAST_COMMIT_TIME"
@@ -111,26 +106,30 @@ jobs:
       - name: 🛠️ Convert Local Rules to MRS
         if: env.SHOULD_REGENERATE == 'true'
         run: |
-          echo "Converting local rules..."
+          echo "Converting local rules using 'mihomo rule convert'..."
+          # 处理 _domain.list 和 _ip.list 等普通 Rule File
           find rules -type f -name "*.list" | while read -r file; do
             filename=$(basename "$file" .list)
+            # 使用 rule convert 即可，无需额外参数
             /usr/local/bin/mihomo rule convert -F "$file" -O "mrs/${filename}.mrs"
             echo "Converted ${file} to mrs/${filename}.mrs"
           done
           echo "Local rules conversion complete."
           
-      # --- 4. 处理远程 YAML 规则文件 (每次都重新生成) ---
-      - name: 🌐 Download Remote YAML Rule (Always Regenerate)
+      # --- 4. 处理远程 YAML 规则集 (使用 convert-ruleset) ---
+      - name: 🌐 Download Remote YAML RuleSet
         run: |
           REMOTE_URL="https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-          echo "Downloading remote rule: ${REMOTE_URL}"
+          echo "Downloading remote RuleSet: ${REMOTE_URL}"
           curl -L -o remote-rule.yaml "$REMOTE_URL"
-          echo "Remote YAML rule downloaded."
+          echo "Remote YAML RuleSet downloaded."
           
-      - name: 🔄 Convert Remote Rule to MRS
+      - name: 🔄 Convert Remote RuleSet to MRS
         run: |
-          /usr/local/bin/mihomo rule convert -F remote-rule.yaml -O mrs/AWAvenue-Ads-Rule.mrs
-          echo "Remote rule conversion complete."
+          echo "Converting remote RuleSet using 'mihomo convert-ruleset'..."
+          # 使用 convert-ruleset domain yaml 转换远程的 RuleSet 文件
+          /usr/local/bin/mihomo convert-ruleset domain yaml remote-rule.yaml mrs/AWAvenue-Ads-Rule.mrs
+          echo "Remote RuleSet conversion complete."
 
       # --- 5. 提交更改回仓库 ---
       - name: ⬆️ Commit and Push Changes
