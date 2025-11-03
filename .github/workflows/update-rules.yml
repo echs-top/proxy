@@ -2,10 +2,14 @@ name: Mihomo Rules Update
 
 # 每天 UTC 时间 20:00 运行 (相当于北京时间次日 04:00)
 on:
-  workflow_dispatch: # 允许手动触发
+  workflow_dispatch:
   schedule:
-    # UTC 20:00 (北京时间 04:00)
     - cron: '0 20 * * *' 
+
+env:
+  # 定义 mihomo 的仓库信息
+  MIHOMO_OWNER: MetaCubeX
+  MIHOMO_REPO: mihomo
 
 jobs:
   build-and-deploy:
@@ -14,52 +18,74 @@ jobs:
     steps:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
-        # 需要 fetch 历史记录才能正确使用 git log 进行文件时间判断
         with:
           fetch-depth: 0 
 
-      # --- 1. Mihomo 缓存和更新 (Key 更改为 v2 以清除潜在的错误缓存) ---
-      - name: ⚙️ Setup Mihomo Cache
+      # --- 1. 获取最新版本并检测更新 ---
+      - name: 🔍 Get Latest Mihomo Release Tag
+        id: get-version
+        run: |
+          # 使用 GitHub API 获取最新的 Release Tag (例如 v1.19.15)
+          LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
+          
+          # 检查是否成功获取版本号
+          if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
+            echo "::error::Failed to retrieve latest Mihomo tag from GitHub API."
+            exit 1
+          fi
+
+          echo "Latest Mihomo Tag: $LATEST_TAG"
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+        
+      - name: ⚙️ Setup Mihomo Cache (Check for Update)
         id: cache-mihomo
         uses: actions/cache@v4
         with:
           path: /usr/local/bin/mihomo
-          # 缓存 Key 更改为 v2，以绕过可能已缓存的损坏文件
-          key: ${{ runner.os }}-mihomo-v2 
+          # 使用最新的 Tag 作为 Key 的一部分，当版本更新时，Key 会改变，缓存会失效
+          key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }} 
           
-      - name: 📥 Download and Install Mihomo
+      - name: 📥 Download, Unzip, and Install Mihomo
+        # 只有在缓存未命中（即版本更新或首次运行）时才执行
         if: steps.cache-mihomo.outputs.cache-hit != 'true'
         run: |
-          MIHOMO_VERSION="v1.17.0" # <-- 请根据需要修改为您的目标版本
-          # 确保文件名称与 GitHub Release 页面上的名称一致
-          FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}" 
-          MIHOMO_URL="https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
+          MIHOMO_VERSION="${{ env.LATEST_TAG }}"
           
-          echo "Downloading Mihomo from: ${MIHOMO_URL}"
+          # 根据版本号和文件名模式构造 URL
+          # 文件名模式: mihomo-linux-amd64-{version}.gz
+          FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}.gz" 
+          MIHOMO_URL="https://github.com/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
+          TEMP_FILE="mihomo_temp.gz"
+          EXEC_FILE="mihomo_temp"
           
-          # 使用 curl 下载到临时文件
-          if ! curl -fsSL -o mihomo_temp "${MIHOMO_URL}"; then
-              echo "::error::Failed to download Mihomo from ${MIHOMO_URL}"
+          echo "Cache Miss or Version Updated. Downloading Mihomo from: ${MIHOMO_URL}"
+          
+          # 1. 下载 .gz 文件
+          if ! curl -fsSL -o "${TEMP_FILE}" "${MIHOMO_URL}"; then
+              echo "::error::Failed to download Mihomo. Please verify the file name pattern."
               exit 1
           fi
           
-          # 验证下载的文件是否是有效的 Linux 可执行二进制文件
-          # 避免下载到 HTML 错误页面导致的 'Not: command not found' 错误
-          if ! file mihomo_temp | grep -q 'ELF 64-bit LSB executable'; then
-            echo "::error::Mihomo download failed or file is not a valid Linux binary. Please check the URL and filename."
-            echo "--- Downloaded File Content Preview (First 10 lines) ---"
-            head mihomo_temp
-            echo "--------------------------------------------------------"
+          # 2. 解压缩 .gz 文件
+          echo "Unzipping Mihomo..."
+          if ! gunzip "${TEMP_FILE}"; then
+              echo "::error::Failed to unzip Mihomo. The downloaded file may be corrupted."
+              exit 1
+          fi
+
+          # 3. 验证解压后的文件
+          if ! file "${EXEC_FILE}" | grep -q 'ELF 64-bit LSB executable'; then
+            echo "::error::Mihomo file is not a valid Linux binary after decompression."
             exit 1 
           fi
           
-          # 赋予执行权限并安装到系统路径
-          chmod +x mihomo_temp
-          sudo mv mihomo_temp /usr/local/bin/mihomo
-          echo "Mihomo installed successfully."
+          # 4. 赋予执行权限并安装到系统路径
+          chmod +x "${EXEC_FILE}"
+          sudo mv "${EXEC_FILE}" /usr/local/bin/mihomo
+          echo "Mihomo installed successfully: ${MIHOMO_VERSION}"
           
       - name: 🔍 Verify Mihomo Installation
-        run: mihomo -v # 验证安装是否成功，如果失败会再次报错
+        run: mihomo -v
 
       # --- 2. 准备工作目录 ---
       - name: 📂 Create Output Directory
@@ -68,30 +94,13 @@ jobs:
       # --- 3. 处理本地 rules 规则文件 ---
       - name: ⏳ Check Local Rules Update Time
         id: check-local-rules
-        # 使用 git log 检查 rules 文件夹中所有文件的最新修改时间
         run: |
           # 获取 rules 文件夹中文件的最新提交时间
           LAST_COMMIT_TIME=$(git log -1 --pretty=format:%at -- rules || echo 0)
-          CURRENT_TIME=$(date +%s)
-          
-          # 使用缓存文件来存储上次生成的时间戳，实现无更新不生成
-          # 默认情况下，GitHub Actions 不在作业之间保留文件，但通过缓存 Action 间接实现
-          # 在此处我们依赖一个简单的环境判断来模拟日志/缓存效果
-          
-          # 简化：由于每次运行都是一个新环境，我们不使用持久化的日志文件，
-          # 而是依赖 Git Log 和一个临时的环境变量。
-          # 实际的“判断rules文件夹下文件更新时间，如无更新则不重新生成”
-          # 应该依赖一个持久化的文件（例如提交到仓库的日志文件），
-          # 
-          # ⚠️ 提示：如果要实现跨 Job 的持久化时间戳检查，您需要将上次生成时间
-          # 提交到仓库的一个日志文件（如 `.last_build_time`），并在下一 Job
-          # 中读取它。由于您没有要求提交日志文件，这里使用一个简化的逻辑：
-          # 只要 rules 文件夹有新的提交，就重新生成。
           
           echo "Last Rules Commit Time (Unix): $LAST_COMMIT_TIME"
           
           if [ "$LAST_COMMIT_TIME" -gt 0 ]; then
-            # 假设只要 rules 文件夹有提交，就需要生成
             echo "Rules folder has updates. Will regenerate."
             echo "SHOULD_REGENERATE=true" >> $GITHUB_ENV
           else
@@ -100,7 +109,6 @@ jobs:
           fi
           
       - name: 🛠️ Convert Local Rules to MRS
-        # 仅当检测到 rules 文件夹有提交时才运行
         if: env.SHOULD_REGENERATE == 'true'
         run: |
           echo "Converting local rules..."
@@ -130,7 +138,5 @@ jobs:
         with:
           commit_message: "🤖 Feat: Update Mihomo MRS Rules"
           branch: ${{ github.ref_name }}
-          # 严格限定只提交 mrs 目录下的文件
           file_pattern: 'mrs/*'
-          # 允许空提交，即使没有文件改动也不会失败
           commit_options: '--allow-empty --no-edit'
