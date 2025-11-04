@@ -9,7 +9,9 @@ on:
 env:
   MIHOMO_OWNER: MetaCubeX
   MIHOMO_REPO: mihomo
-
+  REMOTE_RULES_URL: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+  REMOTE_RULES_MRS_FILE: mrs/AWAvenue-Ads-Rule.mrs
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,63 +22,34 @@ jobs:
         with:
           fetch-depth: 0 
 
-      # --- 1. 自动获取最新版本并检测更新 ---
+      # --- 1. 安装 Mihomo (保持不变) ---
       - name: 🔍 Get Latest Mihomo Release Tag
         id: get-version
         run: |
-          # 获取最新 Release Tag 
-          # 需要安装 jq 来解析 JSON，GitHub Runner 默认包含
           LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
-          
           if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
             echo "::error::Failed to retrieve latest Mihomo tag from GitHub API."
             exit 1
           fi
-
-          echo "Latest Mihomo Tag: $LATEST_TAG"
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
         
-      - name: ⚙️ Setup Mihomo Cache (Check for Update)
+      - name: ⚙️ Setup Mihomo Cache
         id: cache-mihomo
         uses: actions/cache@v4
         with:
           path: /usr/local/bin/mihomo
-          # 使用最新的 Tag 作为 Key 的一部分，新版本发布时缓存失效
           key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }} 
           
       - name: 📥 Download, Unzip, and Install Mihomo
         if: steps.cache-mihomo.outputs.cache-hit != 'true'
         run: |
           MIHOMO_VERSION="${{ env.LATEST_TAG }}"
-          
-          # 根据版本号和文件名模式构造 URL
           FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}.gz" 
           MIHOMO_URL="https://github.com/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
           TEMP_FILE="mihomo_temp.gz"
           EXEC_FILE="mihomo_temp"
-          
-          echo "Cache Miss or Version Updated. Downloading Mihomo from: ${MIHOMO_URL}"
-          
-          # 1. 下载 .gz 文件
-          if ! curl -fsSL -o "${TEMP_FILE}" "${MIHOMO_URL}"; then
-              echo "::error::Failed to download Mihomo. Please verify the file name pattern."
-              exit 1
-          fi
-          
-          # 2. 解压缩 .gz 文件
-          echo "Unzipping Mihomo..."
-          if ! gunzip "${TEMP_FILE}"; then
-              echo "::error::Failed to unzip Mihomo. The downloaded file may be corrupted."
-              exit 1
-          fi
-
-          # 3. 验证解压后的文件
-          if ! file "${EXEC_FILE}" | grep -q 'ELF 64-bit LSB executable'; then
-            echo "::error::Mihomo file is not a valid Linux binary after decompression."
-            exit 1 
-          fi
-          
-          # 4. 赋予执行权限并安装到系统路径
+          curl -fsSL -o "${TEMP_FILE}" "${MIHOMO_URL}" || exit 1
+          gunzip "${TEMP_FILE}" || exit 1
           chmod +x "${EXEC_FILE}"
           sudo mv "${EXEC_FILE}" /usr/local/bin/mihomo
           echo "Mihomo installed successfully: ${MIHOMO_VERSION}"
@@ -84,72 +57,131 @@ jobs:
       - name: 🔍 Verify Mihomo Installation
         run: mihomo -v
 
-      # --- 2. 准备工作目录 ---
       - name: 📂 Create Output Directory
         run: mkdir -p mrs
 
-      # --- 3. 处理本地 rules 规则文件 (全部使用 convert-ruleset) ---
-      - name: ⏳ Check Local Rules Update Time
-        id: check-local-rules
+      # --- 2. 处理本地 rules 规则文件 (增加 Git HASH 比对，跳过未修改的文件) ---
+      - name: 🛠️ Convert Local Rules to MRS (Skip Unchanged Files)
         run: |
-          LAST_COMMIT_TIME=$(git log -1 --pretty=format:%at -- rules || echo 0)
-          
-          echo "Last Rules Commit Time (Unix): $LAST_COMMIT_TIME"
-          
-          if [ "$LAST_COMMIT_TIME" -gt 0 ]; then
-            echo "Rules folder has updates. Will regenerate."
-            echo "SHOULD_REGENERATE=true" >> $GITHUB_ENV
-          else
-            echo "Rules folder has no updates or is empty. Skipping regeneration."
-            echo "SHOULD_REGENERATE=false" >> $GITHUB_ENV
-          fi
-          
-      - name: 🛠️ Convert Local Rules to MRS (Use convert-ruleset)
-        if: env.SHOULD_REGENERATE == 'true'
-        run: |
-          echo "Converting local rules using 'mihomo convert-ruleset'..."
-          
+          echo "Starting local rules conversion..."
+          # 获取 rules 目录下所有 .list 文件的 HASH 并对比
           find rules -type f -name "*.list" | while read -r file; do
             filename=$(basename "$file" .list)
+            mrs_file="mrs/${filename}.mrs"
             
-            # 判断文件类型并设置 behavior
+            # 1. 检查本地文件是否有更改 (使用 Git hash)
+            CURRENT_HASH=$(git hash-object "$file")
+            LAST_HASH=$(git cat-file -p "HEAD:$file" 2>/dev/null | git hash-object --stdin 2>/dev/null || echo "")
+
+            if [ "$CURRENT_HASH" == "$LAST_HASH" ] && [ -f "$mrs_file" ]; then
+              echo "  - Skipping (No change to rules file): ${file}"
+              continue
+            fi
+            
+            # 2. 判断文件类型并设置 behavior
             if [[ "$file" == *"_domain.list" ]]; then
               BEHAVIOR="domain"
-              echo "  - Identified as DOMAIN list: ${file}"
             elif [[ "$file" == *"_ip.list" ]]; then
               BEHAVIOR="ipcidr"
-              echo "  - Identified as IPCIDR list: ${file}"
             else
               echo "  - Skipping file (unknown type): ${file}"
-              continue # 跳过无法识别的类型
+              continue
             fi
+            
+            # 3. 预清理内容
+            CLEANED_CONTENT=$(
+              grep -v '^[[:space:]]*[#;]' "$file" | # 移除以 # 或 ; 开头的行
+              grep -v '^[[:space:]]*$' |           # 移除空行
+              sed 's/[[:space:]]*[#;].*//'         # 移除行尾的注释
+            )
+            
+            # 4. 检查清理后的内容是否为空 (避免 panic: empty rule)
+            if [ -z "$CLEANED_CONTENT" ]; then
+              echo "  - **Skipping file (Empty/Only Comments):** ${file}"
+              # 确保删除空的 mrs 文件，以防被提交
+              [ -f "$mrs_file" ] && rm "$mrs_file"
+              continue
+            fi
+            
+            echo "  - Converting ${file} to ${mrs_file}"
 
-            # 统一使用 convert-ruleset, format 为 text
-            /usr/local/bin/mihomo convert-ruleset ${BEHAVIOR} text "$file" "mrs/${filename}.mrs"
-            echo "Converted ${file} to mrs/${filename}.mrs"
+            # 5. 转换
+            echo "$CLEANED_CONTENT" | /usr/local/bin/mihomo convert-ruleset ${BEHAVIOR} text - "$mrs_file"
+            echo "Converted successfully."
           done
           echo "Local rules conversion complete."
           
-      # --- 4. 处理远程 YAML 规则集 (使用 convert-ruleset) ---
-      - name: 🌐 Download Remote YAML RuleSet
+      # --- 3. 处理远程 YAML 规则集 (引入版本检测) ---
+      - name: 💾 Get Remote Rules Previous Version
+        id: cache-remote-version
+        uses: actions/cache@v4
+        with:
+          # 缓存 key 依赖于固定的文件名
+          path: remote-version.txt
+          key: remote-rules-version-${{ hashFiles('remote-version.txt') }}
+          restore-keys: |
+            remote-rules-version-
+
+      - name: 🌐 Download and Check Remote RuleSet Version
+        id: remote-check
         run: |
-          REMOTE_URL="https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-          echo "Downloading remote RuleSet: ${REMOTE_URL}"
-          curl -L -o remote-rule.yaml "$REMOTE_URL"
-          echo "Remote YAML RuleSet downloaded."
+          # 1. 下载远程规则
+          echo "Downloading remote RuleSet from: ${{ env.REMOTE_RULES_URL }}"
+          curl -L -o remote-rule.yaml "${{ env.REMOTE_RULES_URL }}"
           
+          # 2. 提取当前下载规则的版本号
+          # 查找 #Version: 开头的行，提取后面的版本号
+          CURRENT_VERSION=$(grep '^[[:space:]]*#Version:' remote-rule.yaml | head -n 1 | sed 's/^[[:space:]]*#Version:[[:space:]]*//')
+          
+          if [ -z "$CURRENT_VERSION" ]; then
+            echo "::warning::Could not find Version tag in remote YAML file. Forcing conversion."
+            CURRENT_VERSION="FORCE_CONVERT_$(date +%s)"
+          fi
+
+          echo "Current Remote Version: $CURRENT_VERSION"
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+          
+          # 3. 读取缓存的旧版本号
+          if [ -f "remote-version.txt" ]; then
+            OLD_VERSION=$(cat remote-version.txt)
+          else
+            OLD_VERSION=""
+          fi
+
+          echo "Previous Remote Version: ${OLD_VERSION:-N/A (First Run)}"
+          
+          # 4. 对比版本号
+          if [ "$CURRENT_VERSION" == "$OLD_VERSION" ]; then
+            echo "Remote rule version is unchanged. Skipping conversion."
+            echo "SHOULD_CONVERT_REMOTE=false" >> $GITHUB_ENV
+          else
+            echo "Remote rule version updated (${OLD_VERSION} -> ${CURRENT_VERSION}). Converting."
+            echo "SHOULD_CONVERT_REMOTE=true" >> $GITHUB_ENV
+            # 准备写入新的版本号
+            echo "$CURRENT_VERSION" > remote-version.txt
+          fi
+
       - name: 🔄 Convert Remote RuleSet to MRS
+        if: env.SHOULD_CONVERT_REMOTE == 'true'
         run: |
           echo "Converting remote RuleSet using 'mihomo convert-ruleset'..."
           # 远程文件是 domain yaml 格式
-          /usr/local/bin/mihomo convert-ruleset domain yaml remote-rule.yaml mrs/AWAvenue-Ads-Rule.mrs
+          /usr/local/bin/mihomo convert-ruleset domain yaml remote-rule.yaml ${{ env.REMOTE_RULES_MRS_FILE }}
           echo "Remote RuleSet conversion complete."
+      
+      # 💾 Save Remote Rules New Version to Cache (必须在 Job 结束前运行)
+      - name: 💾 Save Remote Rules New Version Cache
+        uses: actions/cache/save@v4
+        if: success() && steps.remote-check.outputs.cache-hit != 'true' && env.SHOULD_CONVERT_REMOTE == 'true'
+        with:
+          path: remote-version.txt
+          key: remote-rules-version-${{ hashFiles('remote-version.txt') }}
 
-      # --- 5. 提交更改回仓库 ---
+      # --- 4. 提交更改回仓库 ---
       - name: ⬆️ Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Feat: Update Mihomo MRS Rules"
+          commit_message: "🤖 Feat: Update Mihomo MRS Rules (v${{ env.CURRENT_VERSION }})"
           branch: ${{ github.ref_name }}
           # 严格限定只提交 mrs 目录下的文件
           file_pattern: 'mrs/*'
