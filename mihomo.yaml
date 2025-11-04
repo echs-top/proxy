@@ -94,7 +94,7 @@ sniffer:
 rules:
   # - OR,((DST-PORT,53),(DST-PORT,853)),DNS劫持
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
-  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
+  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),代理连接
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
@@ -123,6 +123,7 @@ rules:
   - RULE-SET,microsoft,MICROSOFT
   - OR,((RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
+  - RULE-SET,gfw,代理连接
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
   - MATCH,代理连接
 ip: &ip { type: http, interval: 259200, proxy: 直接连接, behavior: ipcidr, format: mrs }
@@ -173,6 +174,7 @@ rule-providers:
   google_ip: { <<: *ip, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs", path: ./rules/google_ip.mrs }
   cloudflare: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs", path: ./rules/cloudflare.mrs }
   cloudflare_ip: { <<: *ip, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs", path: ./rules/cloudflare_ip.mrs }
+  gfw: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs", path: ./rules/gfw.mrs }
   cn: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
