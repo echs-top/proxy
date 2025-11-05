@@ -20,12 +20,4 @@ ai_add_domain(ai域名补充)
 
 media_add_domain(国外特殊媒体)
 
-### 问题参考
-
-1. dns泄露难以完美解决，如果在意，请自建dns解析服务
-
-2. tun模式下无法劫持局域网dns(比如wifi,三方客户端都会自动处理)，如果你跑裸核需要手动修改dns，如223.5.5.5、8.8.8.8 (2400:3200::1、2001:4860:4860::8888)
-
-3. 为什么推荐fakeip模式：多代理节点时dns查询缓存与节点不相近，而fakeip解决了这个问题
-
-4. 国外QUIC容易被GFW及运营商(qos)阻断，造成报错ERR_CONNECTION_CLOSED，禁用外QUIC可能能带来更好的体验
+### [更多](https://echs.top/BLOG/MIHOMO)
