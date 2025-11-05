@@ -1,16 +1,12 @@
-### 更新原则
+### 原则
 
-1.多订阅模板，使用TUN模式
+多订阅、TUN、完善分流、地区分组
 
-2.完善分流策略，按地区分组
+### 链接
 
-3.模板主要自用，按需维护
+[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
-### 链接指引
-
-模板: [mihomo](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
-
-更多推荐: [代理软件](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
+[代理软件推荐](https://github.com/echs-top/proxy/blob/main/proxyapplication.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/proxyairport.md)
 
 ### 自用规则
 
