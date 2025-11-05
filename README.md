@@ -10,13 +10,15 @@
 
 ### 自用规则
 
-强制直连：direct_domain(cn规则未收录)、direct_ip
+direct_domain、direct_ip(直连规则补充)
 
-强制代理：proxy_domain(强制代理的域名，目前只有ipwho.is)、proxy_ip
+proxy_domain、proxy_ip(代理规则补充)
 
-补充类：fake-ip_add(补充少量fake-ip域名)、ai_add(补充ai相关域名)
+fake-ip_add_domain(fake-ip补充)、
 
-欢迎网友一起补充完善
+ai_add_domain(ai域名补充)
+
+media_add_domain(国外特殊媒体)
 
 ### 问题参考
 
