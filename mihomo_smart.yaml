@@ -1,4 +1,4 @@
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://www.google.com/favicon.ico", expected-status: 200,  interval: 1800, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.4.2"] }, health-check: { enable: true, url: "https://8.8.8.8/generate_204", expected-status: 204,  interval: 1800, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: "(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止" }
 proxy-providers:
 # 按需添加删除即可
   link1: { <<: *providers, url: "订阅链接1", path: ./providers/link1.yaml }
@@ -52,18 +52,18 @@ tun:
   auto-detect-interface: true
   strict-route: true
   dns-hijack: [tcp://any:53,tcp://any:853,udp://any:53,udp://any:853]
-  #理论无需设置 mtu: 9000
+  # mtu: 9000
   udp-timeout: 600
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,"2400:3200::1","2400:3200:baba::1"]
   doh.pub: [120.53.53.53,1.12.12.21,1.12.12.12]
   dns.google: [8.8.8.8,8.8.4.4,"2001:4860:4860::8888","2001:4860:4860::8844"]
   dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
-  cdn.gh-proxy.com: [151.101.91.52,146.75.47.52,151.101.111.52,199.232.151.52,151.101.79.52,146.75.115.52,151.101.195.52,151.101.67.52,151.101.131.52,151.101.3.52,"2a04:4e42:15::820","2a04:4e42:7b::820","2a04:4e42:1a::820","2a04:4e42:8c::820","2a04:4e42:65::820","2a04:4e42:12::820","2a04:4e42:200::820","2a04:4e42:400::820"]
-al: &al "https://alidns.com/dns-query#直接连接"
+  services.googleapis.cn: services.googleapis.com
+al: &al "https://223.5.5.5/dns-query#直接连接"
 tx: &tx "https://doh.pub/dns-query#直接连接"
-gg: &gg "https://dns.google/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
-q9: &q9 "https://dns.quad9.net/dns-query#国外DNS&ecs=8.8.8.8/24&ecs-override=true"
+gg: &gg "https://8.8.8.8/dns-query#国外DNS&ecs=8.8.8.8/32&ecs-override=true"
+q9: &q9 "https://9.9.9.9/dns-query#国外DNS&ecs=9.9.9.9/32&ecs-override=true"
 dns: 
   enable: true
   cache-algorithm: arc
@@ -99,7 +99,6 @@ sniffer:
   skip-src-address: ["RULE-SET:private_ip,direct_ip,cn_ip"]
 
 rules:
-  # - OR,((DST-PORT,53),(DST-PORT,853)),DNS劫持
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
@@ -185,7 +184,6 @@ rule-providers:
   cn: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs", path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs", path: ./rules/cn_ip.mrs }
 
-# { name: DNS劫持, type: dns }
 proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,荷兰|故转,荷兰|智能,港澳台|故转,港澳台|智能,北美|故转,北美|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,荷兰|故转,荷兰|智能,港澳台|故转,港澳台|智能,北美|故转,北美|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
