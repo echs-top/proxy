@@ -54,7 +54,7 @@ hosts:
   dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
   services.googleapis.cn: services.googleapis.com
 al: &al "https://223.5.5.5/dns-query#直接连接"
-tx: &tx "https://doh.pub/dns-query#直接连接"
+tx: &tx "https://doh.pub/dns-query#直接连接&h3=false"
 gg: &gg "https://8.8.8.8/dns-query#国外DNS&ecs=8.8.8.8/32&ecs-override=true"
 q9: &q9 "https://9.9.9.9/dns-query#国外DNS&ecs=9.9.9.9/32&ecs-override=true"
 dns: 
@@ -126,8 +126,8 @@ rules:
   - RULE-SET,gfw,代理连接
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
   - MATCH,代理连接
-ip: &ip { type: http, interval: 259200, proxy: 直接连接, behavior: ipcidr, format: mrs }
-domain: &domain { type: http, interval: 259200, proxy: 直接连接, behavior: domain, format: mrs }
+ip: &ip { type: http, interval: 86400, proxy: 直接连接, behavior: ipcidr, format: mrs }
+domain: &domain { type: http, interval: 86400, proxy: 直接连接, behavior: domain, format: mrs }
 rule-providers:
   AWAvenue-Ads-Rule: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/AWAvenue-Ads-Rule.mrs", path: ./rules/AWAvenue-Ads-Rule.mrs }
   private: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
