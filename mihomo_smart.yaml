@@ -30,12 +30,12 @@ external-controller: 0.0.0.0:9090
 # secret: "密码"
 external-ui: ./zashboard
 external-ui-url: "https://cdn.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-geodata-loader: standard
-geo-auto-update: true
-geo-update-interval: 72
-geox-url: { asn: "https://cdn.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb" }
+# geodata-loader: standard
+# geo-auto-update: true
+# geo-update-interval: 24
+# geox-url: { asn: "https://cdn.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb" }
 lgbm-auto-update: true
-lgbm-update-interval: 72
+lgbm-update-interval: 24
 lgbm-url: "https://cdn.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
 profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 1024 }
 # experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: false, dialer-ip4p-convert: false }
@@ -61,7 +61,7 @@ hosts:
   dns.quad9.net: [9.9.9.9,149.112.112.112,"2620:fe::fe","2620:fe::9"]
   services.googleapis.cn: services.googleapis.com
 al: &al "https://223.5.5.5/dns-query#直接连接"
-tx: &tx "https://doh.pub/dns-query#直接连接"
+tx: &tx "https://doh.pub/dns-query#直接连接&h3=false"
 gg: &gg "https://8.8.8.8/dns-query#国外DNS&ecs=8.8.8.8/32&ecs-override=true"
 q9: &q9 "https://9.9.9.9/dns-query#国外DNS&ecs=9.9.9.9/32&ecs-override=true"
 dns: 
@@ -133,8 +133,8 @@ rules:
   - RULE-SET,gfw,代理连接
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
   - MATCH,代理连接
-ip: &ip { type: http, interval: 259200, proxy: 直接连接, behavior: ipcidr, format: mrs }
-domain: &domain { type: http, interval: 259200, proxy: 直接连接, behavior: domain, format: mrs }
+ip: &ip { type: http, interval: 86400, proxy: 直接连接, behavior: ipcidr, format: mrs }
+domain: &domain { type: http, interval: 86400, proxy: 直接连接, behavior: domain, format: mrs }
 rule-providers:
   AWAvenue-Ads-Rule: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/AWAvenue-Ads-Rule.mrs", path: ./rules/AWAvenue-Ads-Rule.mrs }
   private: { <<: *domain, url: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs", path: ./rules/private.mrs }
@@ -189,7 +189,7 @@ proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,荷兰|故转,荷兰|智能,港澳台|故转,港澳台|智能,北美|故转,北美|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,自动选择,智能选择,香港|故转,香港|智能,台湾|故转,台湾|智能,日本|故转,日本|智能,新加坡|故转,新加坡|智能,韩国|故转,韩国|智能,美国|故转,美国|智能,德国|故转,德国|智能,英国|故转,英国|智能,荷兰|故转,荷兰|智能,港澳台|故转,港澳台|智能,北美|故转,北美|智能,欧洲|故转,欧洲|智能,东南亚|故转,东南亚|智能,东北亚|故转,东北亚|智能], <<: *select }
 auto: &auto { type: url-test, tolerance: 150, <<: *use, hidden: true }
-smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
+smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, <<: *use, hidden: true }
 bal: &bal { type: load-balance, strategy: sticky-sessions, <<: *use, hidden: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 hk: &hk { filter: "(?i)🇭🇰|香港|HK|hongkong|hong kong", icon: "https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg" }
