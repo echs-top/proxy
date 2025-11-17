@@ -8,16 +8,12 @@
 
 [代理软件推荐](https://echs.top/BLOG/MIHOMO)、[机场推荐](https://github.com/echs-top/proxy/blob/main/机场推荐.md)
 
-### 自用规则
+### 特殊规则
 
-direct_domain、direct_ip(直连规则补充)
+自用补充：direct_domain|direct_ip(直连)、proxy_domain|proxy_ip(代理)、fake-ip_add_domain(fake-ip补充)
 
-proxy_domain、proxy_ip(代理规则补充)
+AI域名补充：[ai_add_domain](https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/ai_add_domain.list)
 
-fake-ip_add_domain(fake-ip补充)、
+国外特殊媒体：disney、bbc、hulu、hbo、category-emby、[media_add_domain(补充)](https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/media_add_domain.list)
 
-ai_add_domain(ai域名补充)
-
-media_add_domain(国外特殊媒体)
-
-秋风去广告yaml转mrs
+AWAvenue-Ads-Rule：秋风去广告转换mrs
