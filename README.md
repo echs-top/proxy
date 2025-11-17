@@ -10,10 +10,10 @@
 
 ### 特殊规则
 
-自用补充：direct_domain|direct_ip(直连)、proxy_domain|proxy_ip(代理)、fake-ip_add_domain(fake-ip补充)
+自用补充：direct_domain|direct_ip(直连)、proxy_domain|proxy_ip(代理)
+
+FAKE-IP补充：[fake-ip_add_domain](https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/fake-ip_add_domain.list)
 
 AI域名补充：[ai_add_domain](https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/ai_add_domain.list)
-
-国外特殊媒体：disney、bbc、hulu、hbo、category-emby、[media_add_domain(补充)](https://raw.githubusercontent.com/echs-top/proxy/heads/main/rules/media_add_domain.list)
 
 AWAvenue-Ads-Rule：秋风去广告转换mrs
