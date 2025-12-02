@@ -30,7 +30,14 @@ external-controller: 0.0.0.0:9090
 # secret: '密码'
 external-ui: ./zashboard
 external-ui-url: 'https://cdn.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-profile: { store-selected: true, store-fake-ip: true }
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+geox-url: { asn: 'https://cdn.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb' }
+lgbm-auto-update: true
+lgbm-update-interval: 24
+lgbm-url: 'https://cdn.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin'
+profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 1024 }
 # experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: false, dialer-ip4p-convert: false }
 
 mixed-port: 7890
@@ -169,9 +176,10 @@ rule-providers:
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs', path: ./rules/cn_ip.mrs }
 
 proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
-zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,欧洲|故转,欧洲|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询], <<: *select }
-dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,欧洲|故转,欧洲|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询], <<: *select }
+zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,智能选择,香港|智能,香港|轮询,台湾|智能,台湾|轮询,日本|智能,日本|轮询,新加坡|智能,新加坡|轮询,韩国|智能,韩国|轮询,美国|智能,美国|轮询,德国|智能,德国|轮询,英国|智能,英国|轮询,荷兰|智能,荷兰|轮询,港澳台|智能,港澳台|轮询,北美|智能,北美|轮询,欧洲|智能,欧洲|轮询,东南亚|智能,东南亚|轮询,东北亚|智能,东北亚|轮询], <<: *select }
+dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,智能选择,香港|智能,香港|轮询,台湾|智能,台湾|轮询,日本|智能,日本|轮询,新加坡|智能,新加坡|轮询,韩国|智能,韩国|轮询,美国|智能,美国|轮询,德国|智能,德国|轮询,英国|智能,英国|轮询,荷兰|智能,荷兰|轮询,港澳台|智能,港澳台|轮询,北美|智能,北美|轮询,欧洲|智能,欧洲|轮询,东南亚|智能,东南亚|轮询,东北亚|智能,东北亚|轮询], <<: *select }
 auto: &auto { type: url-test, tolerance: 150, <<: *use, hidden: true }
+smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, <<: *use, hidden: true }
 bal: &bal { type: load-balance, strategy: round-robin, <<: *use, hidden: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 hk: &hk { filter: '(?i)🇭🇰|香港|HK|hongkong|hong kong', icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg' }
@@ -190,7 +198,7 @@ asean: &asean { filter: '(?i)🇮🇩|印尼|印度尼西亚|ID|Indonesia|🇸�
 nea: &nea { filter: '(?i)🇷🇺|俄罗斯|RU|russia|🇰🇷|韩国|KR|korea|🇰🇵|朝鲜|KP|north korea|northkorea|🇯🇵|日本|JP|japan|🇲🇳|蒙古|MN|mongolia', icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/flag/nea.svg' }
 proxy-groups:
   - { name: 直接连接, type: select, proxies: [LOCAL], url: 'https://captive.apple.com/generate_204', expected-status: 204, interval: 7200, timeout: 3000, lazy: false, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp' }
-  - { name: 代理连接, type: select, proxies: [最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,欧洲|故转,欧洲|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询], <<: *select, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
+  - { name: 代理连接, type: select, proxies: [最低延迟,智能选择,香港|智能,香港|轮询,台湾|智能,台湾|轮询,日本|智能,日本|轮询,新加坡|智能,新加坡|轮询,韩国|智能,韩国|轮询,美国|智能,美国|轮询,德国|智能,德国|轮询,英国|智能,英国|轮询,荷兰|智能,荷兰|轮询,港澳台|智能,港澳台|轮询,北美|智能,北美|轮询,欧洲|智能,欧洲|轮询,东南亚|智能,东南亚|轮询,东北亚|智能,东北亚|轮询], <<: *select, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
   - { name: 国外DNS, <<: *dl, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
   - { name: 国外QUIC, type: select, proxies: [PASS,REJECT], icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Settings.webp' }
   - { name: FCM推送, <<: *zl, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
@@ -217,21 +225,21 @@ proxy-groups:
   - { name: GOOGLE, <<: *dl, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Google.webp' }
   - { name: CLOUDFLARE, <<: *dl, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/CloudFlare.webp' }
   - { name: 最低延迟, <<: *auto, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Fast.webp' }
-  - { name: 故障转移, <<: *fall, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp' }
-  - { name: 香港|故转, <<: [*fall,*hk] }
-  - { name: 台湾|故转, <<: [*fall,*tw] }
-  - { name: 日本|故转, <<: [*fall,*jp] }
-  - { name: 新加坡|故转, <<: [*fall,*sg] }
-  - { name: 韩国|故转, <<: [*fall,*kr] }
-  - { name: 美国|故转, <<: [*fall,*us] }
-  - { name: 德国|故转, <<: [*fall,*de] }
-  - { name: 英国|故转, <<: [*fall,*uk] }
-  - { name: 荷兰|故转, <<: [*fall,*nl] }
-  - { name: 港澳台|故转, <<: [*fall,*hmt] }
-  - { name: 北美|故转, <<: [*fall,*usa] }
-  - { name: 欧洲|故转, <<: [*fall,*eu] }
-  - { name: 东南亚|故转, <<: [*fall,*asean] }
-  - { name: 东北亚|故转, <<: [*fall,*nea] }
+  - { name: 智能选择, <<: *smart, prefer-asn: true, policy-priority: '(?i)🇯🇵|日本|JP|japan|🇸🇬|新加坡|狮城|SG|singapore|🇺🇸|美国|US|unitedstates|united states:1.5;(?i)🇭🇰|香港|HK|hongkong|hong kong|🇲🇴|澳门|MO|macau|macao|🇹🇼|台湾|TW|taiwan:0.2;(?i)🇬🇧|英国|UK|GB|unitedkingdom|united kingdom|🇩🇪|德国|DE|germany|🇳🇱|荷兰|NL|netherland:1.2', icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Chained.webp' }
+  - { name: 香港|智能, <<: [*smart,*hk] }
+  - { name: 台湾|智能, <<: [*smart,*tw] }
+  - { name: 日本|智能, <<: [*smart,*jp] }
+  - { name: 新加坡|智能, <<: [*smart,*sg] }
+  - { name: 韩国|智能, <<: [*smart,*kr] }
+  - { name: 美国|智能, <<: [*smart,*us] }
+  - { name: 德国|智能, <<: [*smart,*de] }
+  - { name: 英国|智能, <<: [*smart,*uk] }
+  - { name: 荷兰|智能, <<: [*smart,*nl] }
+  - { name: 港澳台|智能, <<: [*smart,*hmt] }
+  - { name: 北美|智能, <<: [*smart,*usa], policy-priority: '(?i)🇺🇸|美国|US|unitedstates|united states:1.2' }
+  - { name: 欧洲|智能, <<: [*smart,*eu], policy-priority: '(?i)🇬🇧|英国|UK|GB|unitedkingdom|united kingdom|🇩🇪|德国|DE|germany|🇳🇱|荷兰|NL|netherland:1.2' }
+  - { name: 东南亚|智能, <<: [*smart,*asean], policy-priority: '(?i)🇸🇬|新加坡|狮城|SG|singapore:1.2' }
+  - { name: 东北亚|智能, <<: [*smart,*nea], policy-priority: '(?i)🇯🇵|日本|JP|japan:1.2' }
   - { name: 香港|轮询, <<: [*bal,*hk] }
   - { name: 台湾|轮询, <<: [*bal,*tw] }
   - { name: 日本|轮询, <<: [*bal,*jp] }
@@ -246,4 +254,4 @@ proxy-groups:
   - { name: 欧洲|轮询, <<: [*bal,*eu] }
   - { name: 东南亚|轮询, <<: [*bal,*asean] }
   - { name: 东北亚|轮询, <<: [*bal,*nea] }
-  - { name: GLOBAL, type: select, proxies: [直接连接,代理连接,国外DNS,国外QUIC,FCM推送,TELEGRAM,REDDIT,TWITTER,TIKTOK,BILIBILI,NETFLIX,SPOTIFY,PIXIV,META,DISCORD,TWITCH,PAYPAL,国外AI,GITHUB,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE,MICROSOFT,GOOGLE,CLOUDFLARE,最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,欧洲|故转,欧洲|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询], include-all-providers: true, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp' }
+  - { name: GLOBAL, type: select, proxies: [直接连接,代理连接,国外DNS,国外QUIC,FCM推送,TELEGRAM,REDDIT,TWITTER,TIKTOK,BILIBILI,NETFLIX,SPOTIFY,PIXIV,META,DISCORD,TWITCH,PAYPAL,国外AI,GITHUB,ONEDRIVE下载,PIKPAK,STEAM中国,STEAM,APPLE,MICROSOFT,GOOGLE,CLOUDFLARE,最低延迟,智能选择,香港|智能,香港|轮询,台湾|智能,台湾|轮询,日本|智能,日本|轮询,新加坡|智能,新加坡|轮询,韩国|智能,韩国|轮询,美国|智能,美国|轮询,德国|智能,德国|轮询,英国|智能,英国|轮询,荷兰|智能,荷兰|轮询,港澳台|智能,港澳台|轮询,北美|智能,北美|轮询,欧洲|智能,欧洲|轮询,东南亚|智能,东南亚|轮询,东北亚|智能,东北亚|轮询], include-all-providers: true, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp' }
