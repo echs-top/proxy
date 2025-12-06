@@ -1,7 +1,5 @@
 ### 自用mihomo模板
 
-update: 2025-12-07
-
 多订阅、FAKEIP、TUN、地区分组、完善分流
 
 规则库：MetaCubeX/meta-rules-dat、秋风去广告、自用补充
