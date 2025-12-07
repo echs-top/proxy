@@ -4,7 +4,7 @@
 # 图标库：lipis/flag-icons、Vbaethon/HOMOMIX
 # GITHUB文件加速：gh-proxy
 
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.3'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: true }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.3'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)🇦🇶|流量|到期|重置|频道|订阅|官网|禁止' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
