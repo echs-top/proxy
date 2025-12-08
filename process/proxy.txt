@@ -1,0 +1,2 @@
+PROCESS-NAME-REGEX,(?i).*browser.* #浏览器
+PROCESS-NAME-REGEX,(?i).*apkpure.* #apkpure
