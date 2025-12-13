@@ -1,11 +1,11 @@
-# update: 2025-12-08
+# update: 2025-12-14
 # 多订阅、FAKEIP、TUN、地区分组、完善分流
 # 规则库：MetaCubeX/meta-rules-dat、秋风去广告、自用补充
 # 图标库：lipis/flag-icons、Vbaethon/HOMOMIX
 # GITHUB文件加速：gh-proxy
 # 注：存在少量进程匹配规则需要启用find-process-mode(always)才会生效，轻微性能损耗但能增强匹配(若需要pikpak分流则建议启用，当前仅靠域名规则无法完全对pikpak分流)
 
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.3'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.3'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 900, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -26,9 +26,9 @@ log-level: error
 unified-delay: true
 tcp-concurrent: true
 find-process-mode: off
-global-client-fingerprint: random
+global-client-fingerprint: chrome
 disable-keep-alive: false
-keep-alive-interval: 30
+keep-alive-interval: 45
 keep-alive-idle: 600
 etag-support: true
 global-ua: mihomo
@@ -37,7 +37,7 @@ external-controller: 0.0.0.0:9090
 external-ui: ./zashboard
 external-ui-url: 'https://cdn.gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 profile: { store-selected: true, store-fake-ip: true }
-# experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: false, dialer-ip4p-convert: false }
+# experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: false, dialer-ip4p-convert: false }
 
 mixed-port: 7890
 # tproxy-port: 7891
@@ -45,14 +45,17 @@ mixed-port: 7890
 tun:
   enable: true
   device: meta
-  stack: mixed
+  # 优先级 system>mixed>gvisor
+  stack: system
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
-  dns-hijack: [tcp://any:53,tcp://any:853,udp://any:53,udp://any:853]
+  # 排除常见局域网
+  # route-exclude-address: ['0.0.0.0/8', '10.0.0.0/8', '127.0.0.0/8', '169.254.0.0/16', '172.16.0.0/12', '192.168.0.0/16', '224.0.0.0/4', '255.255.255.255/32', '::1/128', 'fe80::/10', 'ff00::/8']
+  dns-hijack: [any:53,tcp://any:53,any:853,tcp://any:853]
   # mtu: 9000
-  udp-timeout: 600
+  udp-timeout: 300
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
@@ -92,7 +95,7 @@ sniffer:
   parse-pure-ip: true
   override-destination: true
   sniff:
-    HTTP: { ports: [80, 8080-8880], override-destination: true }
+    HTTP: { ports: [80, 8080-8880] }
     TLS: { ports: [443, 8443] }
     QUIC: { ports: [443, 8443] }
   skip-domain: ['RULE-SET:private,fake-ip_add,connectivity-check,googlefcm,direct_domain,cn,AWAvenue-Ads-Rule']
@@ -100,6 +103,7 @@ sniffer:
   skip-src-address: ['RULE-SET:private_ip,direct_ip,cn_ip']
 
 rules:
+  - DST-PORT,53,DNS劫持
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
@@ -129,9 +133,12 @@ rules:
   - OR,((PROCESS-NAME-REGEX,(?i).*google.*),(PROCESS-NAME,com.android.vending),(RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
+  # - RULE-SET,process-proxy,代理连接
+  # - RULE-SET,process-cn,直接连接
   - MATCH,代理连接
 ip: &ip { type: http, interval: 86400, proxy: 直接连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 直接连接, behavior: domain, format: mrs }
+# process: &process { type: http, interval: 86400, proxy: 直接连接, behavior: classical, format: text }
 rule-providers:
   AWAvenue-Ads-Rule: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/AWAvenue-Ads-Rule.mrs', path: ./rules/AWAvenue-Ads-Rule.mrs }
   private: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs', path: ./rules/private.mrs }
@@ -174,8 +181,10 @@ rule-providers:
   cloudflare_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs', path: ./rules/cloudflare_ip.mrs }
   cn: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs', path: ./rules/cn.mrs }
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs', path: ./rules/cn_ip.mrs }
+  # process-cn: { <<: *process, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/process/process-cn.list', path: ./rules/process-cn.list }
+  # process-proxy: { <<: *process, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/process/process-proxy.list', path: ./rules/process-proxy.list }
 
-proxies: [{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
+proxies: [{name: DNS劫持, type: dns},{ name: LOCAL, type: direct, udp: true, ip-version: ipv6-prefer }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,南美|故转,南美|轮询,西欧|故转,西欧|轮询,东欧|故转,东欧|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询,非洲|故转,非洲|轮询], <<: *select }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,故障转移,香港|故转,香港|轮询,台湾|故转,台湾|轮询,日本|故转,日本|轮询,新加坡|故转,新加坡|轮询,韩国|故转,韩国|轮询,美国|故转,美国|轮询,德国|故转,德国|轮询,英国|故转,英国|轮询,荷兰|故转,荷兰|轮询,港澳台|故转,港澳台|轮询,北美|故转,北美|轮询,南美|故转,南美|轮询,西欧|故转,西欧|轮询,东欧|故转,东欧|轮询,东南亚|故转,东南亚|轮询,东北亚|故转,东北亚|轮询,非洲|故转,非洲|轮询], <<: *select }
 auto: &auto { type: url-test, tolerance: 30, <<: *use, hidden: true }
