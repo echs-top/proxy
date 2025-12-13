@@ -44,7 +44,7 @@ mixed-port: 7890
 # redir-port: 7892
 tun:
   enable: true
-  device: meta
+  device: utun9
   # 优先级 system>mixed>gvisor
   stack: system
   auto-route: true
