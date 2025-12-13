@@ -51,6 +51,7 @@ mixed-port: 7890
 # redir-port: 7892
 tun:
   enable: true
+  # 推荐 net9(Linux/Android)、eth9(Windows)、utun9(macOS/iOS)
   device: utun9
   # 优先级 system>mixed>gvisor
   stack: system
