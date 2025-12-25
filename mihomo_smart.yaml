@@ -1,11 +1,11 @@
-# update: 2025-12-14
+# update: 2025-12-26
 # 多订阅、FAKEIP、TUN、地区分组、完善分流
 # 规则库：MetaCubeX/meta-rules-dat、秋风去广告、自用补充
 # 图标库：lipis/flag-icons、Vbaethon/HOMOMIX
 # GITHUB文件加速：gh-proxy
 # 注：存在少量进程匹配规则需要启用find-process-mode(always)才会生效，轻微性能损耗但能增强匹配(若需要pikpak分流则建议启用，当前仅靠域名规则无法完全对pikpak分流)
 
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.3'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 900, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.4'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 900, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -86,9 +86,9 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 100.127.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  fake-ip-ttl: 1
+  fake-ip-ttl: 2
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ['*','5228','RULE-SET:private,fake-ip_add,connectivity-check,googlefcm,direct_domain,cn,AWAvenue-Ads-Rule']
+  fake-ip-filter: ['*','5228','RULE-SET:AWAvenue-Ads-Rule,private,fake-ip_add,direct_domain,googlefcm,bilibili,cn']
   default-nameserver: [223.5.5.5,8.8.8.8]
   proxy-server-nameserver: [*al,*tx]
   nameserver: [*gg,*q9]
@@ -96,25 +96,25 @@ dns:
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:AWAvenue-Ads-Rule': [rcode://name_error]
-    'rule-set:private,cn,direct_domain': [system,*al,*tx]
+    'rule-set:private,direct_domain,cn': [system,*al,*tx]
 sniffer: 
   enable: true
-  force-dns-mapping: true
+  force-dns-mapping: false
   parse-pure-ip: true
   override-destination: true
   sniff:
     HTTP: { ports: [80, 8080-8880] }
     TLS: { ports: [443, 8443] }
     QUIC: { ports: [443, 8443] }
-  skip-domain: ['RULE-SET:private,fake-ip_add,connectivity-check,googlefcm,direct_domain,cn,AWAvenue-Ads-Rule']
-  force-domain: ['RULE-SET:netflix']
-  skip-src-address: ['RULE-SET:private_ip,direct_ip,cn_ip']
+  skip-domain: ['RULE-SET:proxy_domain,telegram,reddit,twitter,tiktok,biliintl,netflix,spotify,pixiv,meta,discord,twitch,paypal,category-ai-!cn,ai_add,github,pikpak,steam@cn,steam,apple,microsoft,google,cloudflare']
+  skip-src-address: ['RULE-SET:private_ip,proxy_ip,direct_ip,telegram_ip,twitter_ip,netflix_ip,facebook_ip,google_ip,cloudflare_ip,cn_ip']
 
 rules:
   - DST-PORT,53,DNS劫持
+  - DST-PORT,853,DNS劫持
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
-  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve)),直接连接
+  - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),代理连接
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
   - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
@@ -138,7 +138,7 @@ rules:
   - OR,((PROCESS-NAME-REGEX,(?i).*steam.*),(RULE-SET,steam)),STEAM
   - RULE-SET,apple,APPLE
   - RULE-SET,microsoft,MICROSOFT
-  - OR,((PROCESS-NAME-REGEX,(?i).*google.*),(PROCESS-NAME,com.android.vending),(RULE-SET,google),(RULE-SET,google_ip,no-resolve),(DOMAIN-SUFFIX,googleapis.cn)),GOOGLE
+  - OR,((PROCESS-NAME-REGEX,(?i).*google.*),(PROCESS-NAME,com.android.vending),(RULE-SET,google),(RULE-SET,google_ip,no-resolve)),GOOGLE
   - OR,((RULE-SET,cloudflare),(RULE-SET,cloudflare_ip,no-resolve)),CLOUDFLARE
   - OR,((RULE-SET,cn),(RULE-SET,cn_ip)),直接连接
   # - RULE-SET,process-proxy,代理连接
@@ -152,7 +152,6 @@ rule-providers:
   private: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs', path: ./rules/private.mrs }
   private_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs',  path: ./rules/private_ip.mrs }
   fake-ip_add: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/fake-ip_add_domain.mrs', path: ./rules/fake-ip_add.mrs }
-  connectivity-check: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/connectivity-check.mrs', path: ./rules/connectivity-check.mrs }
   proxy_domain: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/proxy_domain.mrs', path: ./rules/proxy_domain.mrs }
   proxy_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/proxy_ip.mrs', path: ./rules/proxy_ip.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
