@@ -1,11 +1,11 @@
-# update: 2025-12-26
-# 多订阅、FAKEIP、TUN、地区分组、完善分流
+# update: 2025-12-27
+# 多订阅、FAKEIP、TUN、DNS与嗅探、地区分组、完善分流
 # 规则库：MetaCubeX/meta-rules-dat、秋风去广告、自用补充
 # 图标库：lipis/flag-icons、Vbaethon/HOMOMIX
 # GITHUB文件加速：gh-proxy
 # 注：存在少量进程匹配规则需要启用find-process-mode(always)才会生效，轻微性能损耗但能增强匹配(若需要pikpak分流则建议启用，当前仅靠域名规则无法完全对pikpak分流)
 
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.4'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 900, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ['clash-verge/v2.4.4'] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, override: { udp: true, ip-version: ipv6-prefer }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -94,13 +94,15 @@ sniffer:
   enable: true
   force-dns-mapping: false
   parse-pure-ip: true
-  override-destination: true
+  override-destination: false
   sniff:
-    HTTP: { ports: [80, 8080-8880] }
-    TLS: { ports: [443, 8443] }
-    QUIC: { ports: [443, 8443] }
-  skip-domain: ['RULE-SET:proxy_domain,telegram,reddit,twitter,tiktok,biliintl,netflix,spotify,pixiv,meta,discord,twitch,paypal,category-ai-!cn,ai_add,github,pikpak,steam@cn,steam,apple,microsoft,google,cloudflare']
-  skip-src-address: ['RULE-SET:private_ip,proxy_ip,direct_ip,telegram_ip,twitter_ip,netflix_ip,facebook_ip,google_ip,cloudflare_ip,cn_ip']
+    # 扩充：Cloudflare非标准端口
+    HTTP: { ports: [80,8080-8880,2052,2082,2086,2095], override-destination: true }
+    TLS: { ports: [443,8443,2053,2083,2087,2096], override-destination: true }
+    QUIC: { ports: [443,8443,2053,2083,2087,2096], override-destination: true }
+  skip-domain: ['RULE-SET:proxy_domain,telegram,reddit,twitter,tiktok,biliintl,spotify,pixiv,meta,discord,twitch,paypal,category-ai-!cn,ai_add,github,pikpak,steam@cn,steam,apple,microsoft,google,cloudflare']
+  force-domain: ['RULE-SET:netflix']
+  skip-src-address: ['RULE-SET:private_ip,proxy_ip,direct_ip,telegram_ip,twitter_ip,facebook_ip,google_ip,cloudflare_ip,cn_ip']
 
 rules:
   - DST-PORT,53,DNS劫持
