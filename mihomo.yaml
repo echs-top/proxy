@@ -82,7 +82,7 @@ dns:
   fake-ip-range6: fd00:bada:55ed::1/64
   fake-ip-ttl: 2
   fake-ip-filter-mode: blacklist
-  fake-ip-filter: ['*','5228','RULE-SET:AWAvenue-Ads-Rule,private,fake-ip_add,direct_domain,googlefcm,bilibili,cn']
+  fake-ip-filter: ['*','5228','5229','5230','RULE-SET:AWAvenue-Ads-Rule,private,fake-ip_add,direct_domain,googlefcm,bilibili,cn']
   default-nameserver: [223.5.5.5,8.8.8.8]
   proxy-server-nameserver: [*al,*tx]
   nameserver: [*gg,*q9]
@@ -113,7 +113,7 @@ rules:
   - AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((OR,((RULE-SET,private),(RULE-SET,private_ip,no-resolve),(RULE-SET,bilibili),(RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve),(RULE-SET,cn),(RULE-SET,cn_ip,no-resolve)))))),国外QUIC
   - OR,((RULE-SET,proxy_domain),(RULE-SET,proxy_ip,no-resolve)),代理连接
   - OR,((RULE-SET,direct_domain),(RULE-SET,direct_ip,no-resolve)),直接连接
-  - OR,((DST-PORT,5228),(RULE-SET,googlefcm)),FCM推送
+  - OR,((DST-PORT,5228),(DST-PORT,5229),(DST-PORT,5230),(RULE-SET,googlefcm)),FCM推送
   - OR,((RULE-SET,telegram),(RULE-SET,telegram_ip,no-resolve)),TELEGRAM
   - OR,((RULE-SET,meta),(RULE-SET,facebook_ip,no-resolve)),META
   - OR,((RULE-SET,twitter),(RULE-SET,twitter_ip,no-resolve)),TWITTER
@@ -143,7 +143,7 @@ rule-providers:
   proxy_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/proxy_ip.mrs', path: ./rules/proxy_ip.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
   direct_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
-  googlefcm: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs', path: ./rules/googlefcm.mrs }
+  googlefcm: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/googlefcm_domain.mrs', path: ./rules/googlefcm.mrs }
   telegram: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
   telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs', path: ./rules/telegram_ip.mrs }
   meta: { <<: *domain, url: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/meta.mrs', path: ./rules/meta.mrs }
