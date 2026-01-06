@@ -1,8 +1,8 @@
 ### 自用mihomo模板
 
-多订阅、FAKEIP、TUN、DNS与嗅探、地区分组、完善分流
+多订阅、完善DNS与嗅探、地区分组、Android/Windows
 
-规则库：MetaCubeX/meta-rules-dat、秋风去广告、自用补充
+规则库：部分MetaCubeX/meta-rules-dat、秋风去广告、自用FCM补充
 
 图标库：lipis/flag-icons、Vbaethon/HOMOMIX
 
