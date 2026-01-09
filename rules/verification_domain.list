@@ -11,3 +11,10 @@ ajax.cloudflare.com
 
 # hCaptcha
 +.hcaptcha.com
+
+# Arkose
++.arkoselabs.com
++.arkose-verify.com
+
+# Friendly
++.friendlycaptcha.com
