@@ -2,13 +2,13 @@
 
 多订阅、完善设置、地区分组、Android/Windows
 
-规则：部分MetaCubeX/meta-rules-dat、秋风去广告、自用补充(FCM、人机验证、fake-ip_add、ai_add、webrtc)
+规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告]([https://github.com/](https://awavenue.top/))、自用补充(FCM、人机验证、fake-ip_add、ai_add、webrtc)
 
-图标：lipis/flag-icons、Vbaethon/HOMOMIX
+图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
-GITHUB加速：gh-proxy
+GITHUB加速：[gh-proxy](https://gh-proxy.com)
 
-FCM hosts规则推荐: yangFenTuoZi/fcm-hosts
+FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/fcm-hosts)
 
 ### 链接
 
