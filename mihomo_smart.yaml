@@ -27,15 +27,15 @@ log-level: error
 unified-delay: true
 tcp-concurrent: true
 find-process-mode: off
-disable-keep-alive: true
-keep-alive-interval: 30
-keep-alive-idle: 30
+disable-keep-alive: false
+keep-alive-interval: 15
+keep-alive-idle: 600
 etag-support: true
 global-ua: 'clash-verge/v2.4.4'
-external-controller: 0.0.0.0:9090
+# external-controller: 0.0.0.0:9090
 # secret: '密码'
-external-ui: ./zashboard
-external-ui-url: 'https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+# external-ui: ./zashboard
+# external-ui-url: 'https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 lgbm-auto-update: true
 lgbm-update-interval: 24
 lgbm-url: 'https://cdn.gh-proxy.org/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin'
