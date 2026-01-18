@@ -1,3 +1,4 @@
+# 非3478,3479,5349,5350,10000,19302-19309等常见端口补充
 # Mozilla/Twilio/Cloudflare
 global.turn.twilio.com
 turn.cloudflare.com
