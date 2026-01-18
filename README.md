@@ -2,7 +2,7 @@
 
 多订阅、完善设置、地区分组、Android/Windows
 
-规则：部分MetaCubeX/meta-rules-dat、秋风去广告、自用补充(FCM、人机验证、fake-ip_add、ai_add)
+规则：部分MetaCubeX/meta-rules-dat、秋风去广告、自用补充(FCM、人机验证、fake-ip_add、ai_add、webrtc)
 
 图标：lipis/flag-icons、Vbaethon/HOMOMIX
 
