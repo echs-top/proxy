@@ -66,10 +66,11 @@ hosts:
   doh.pub: [120.53.53.53,1.12.12.21]
   dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
   cloudflare-dns.com: [1.1.1.1,1.0.0.1,'2606:4700:4700::1111','2606:4700:4700::1001']
+  google.com.hk: google.com
   google.cn: google.com
   services.googleapis.cn: services.googleapis.com
-direct-dns: &direct-dns [system,'https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
-cn-dns: &cn-dns ['https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
+direct-dns: &direct-dns [system,'https://223.5.5.5/dns-query#LOCAL','https://doh.pub/dns-query#LOCAL']
+cn-dns: &cn-dns ['https://223.5.5.5/dns-query#LOCAL','https://doh.pub/dns-query#LOCAL']
 dns: 
   enable: true
   cache-algorithm: arc
@@ -83,7 +84,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  fake-ip-ttl: 2
+  fake-ip-ttl: 5
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads-Rule,real-ip
@@ -95,6 +96,7 @@ dns:
     - RULE-SET,verification,fake-ip
     - RULE-SET,bilibili,fake-ip
     - RULE-SET,biliintl,fake-ip
+    - RULE-SET,ai_add,fake-ip
     - RULE-SET,telegram,fake-ip
     - RULE-SET,meta,fake-ip
     - RULE-SET,twitter,fake-ip
@@ -102,8 +104,6 @@ dns:
     - RULE-SET,netflix,fake-ip
     - RULE-SET,spotify,fake-ip
     - RULE-SET,category-ai-!cn,fake-ip
-    - RULE-SET,ai_add,fake-ip
-    - RULE-SET,github,fake-ip
     - RULE-SET,google,fake-ip
     - DOMAIN,steamcdn-a.akamaihd.net,fake-ip
     - RULE-SET,steam@cn,fake-ip
@@ -153,24 +153,23 @@ rules:
   - DST-PORT,5228,FCM
   - DST-PORT,5229,FCM
   - DST-PORT,5230,FCM
-  - RULE-SET,private_ip,DIRECT,no-resolve
+  - RULE-SET,private_ip,LOCAL,no-resolve
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
-  - RULE-SET,private,DIRECT
+  - RULE-SET,private,LOCAL
   - RULE-SET,direct_domain,DIRECT
   - RULE-SET,webrtc,WebRTC
   - RULE-SET,googlefcm,FCM
   - RULE-SET,verification,BOTTEST
   - RULE-SET,bilibili,BILIBILI
   - RULE-SET,biliintl,BILIBILI
+  - RULE-SET,category-ai-!cn,AI
+  - RULE-SET,ai_add,AI
   - RULE-SET,telegram,TELEGRAM
   - RULE-SET,meta,META
   - RULE-SET,twitter,TWITTER
   - RULE-SET,tiktok,TIKTOK
   - RULE-SET,netflix,NETFLIX
   - RULE-SET,spotify,SPOTIFY
-  - RULE-SET,category-ai-!cn,AI
-  - RULE-SET,ai_add,AI
-  - RULE-SET,github,GITHUB
   - RULE-SET,google,GOOGLE
   - DOMAIN,steamcdn-a.akamaihd.net,STEAM-CN
   - RULE-SET,steam@cn,STEAM-CN
@@ -178,14 +177,14 @@ rules:
   - DOMAIN-SUFFIX,sharepoint.com,MICROSOFT-CN
   - RULE-SET,microsoft@cn,MICROSOFT-CN
   - RULE-SET,geolocation-!cn,PROXY
-  - RULE-SET,cn,DIRECT
-  - RULE-SET,direct_ip,DIRECT
+  - RULE-SET,cn,LOCAL
+  - RULE-SET,direct_ip,LOCAL
   - RULE-SET,telegram_ip,TELEGRAM
   - RULE-SET,facebook_ip,META
   - RULE-SET,twitter_ip,TWITTER
   - RULE-SET,netflix_ip,NETFLIX
   - RULE-SET,google_ip,GOOGLE
-  - RULE-SET,cn_ip,DIRECT
+  - RULE-SET,cn_ip,LOCAL
   - MATCH,PROXY
 ip: &ip { type: http, interval: 86400, proxy: DIRECT, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: DIRECT, behavior: domain, format: mrs }
@@ -200,15 +199,14 @@ rule-providers:
   verification: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/verification_domain.mrs', path: ./rules/verification.mrs }
   bilibili: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs', path: ./rules/bilibili.mrs }
   biliintl: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/biliintl.mrs', path: ./rules/biliintl.mrs }
+  category-ai-!cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs', path: ./rules/category-ai-!cn.mrs }
+  ai_add: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ai_add_domain.mrs', path: ./rules/ai_add.mrs }
   telegram: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
   meta: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/meta.mrs', path: ./rules/meta.mrs }
   twitter: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs', path: ./rules/twitter.mrs }
   tiktok: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs', path: ./rules/tiktok.mrs }
   netflix: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs', path: ./rules/netflix.mrs }
   spotify: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs', path: ./rules/spotify.mrs }
-  category-ai-!cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs', path: ./rules/category-ai-!cn.mrs }
-  ai_add: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ai_add_domain.mrs', path: ./rules/ai_add.mrs }
-  github: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs', path: ./rules/github.mrs }
   google: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs', path: ./rules/google.mrs }
   steam@cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs', path: ./rules/steam@cn.mrs }
   apple@cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs', path: ./rules/apple@cn.mrs }
@@ -223,27 +221,27 @@ rule-providers:
   google_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs', path: ./rules/google_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs', path: ./rules/cn_ip.mrs }
 proxies: [{ name: DIRECT-X, type: direct, ip-version: ipv6-prefer, udp: true, tfo: true, mptcp: true }]
-zl: &zl { type: select, proxies: [DIRECT,DIRECT-X,PROXY,PASS,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select }
-dl: &dl { type: select, proxies: [PROXY,PASS,DIRECT,DIRECT-X,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select }
+zl: &zl { type: select, proxies: [LOCAL,DIRECT,DIRECT-X,PROXY,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select }
+dl: &dl { type: select, proxies: [PROXY,LOCAL,DIRECT,DIRECT-X,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select }
 auto: &auto { type: url-test, tolerance: 20, <<: *use, hidden: true }
 smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
 bal: &bal { type: load-balance, strategy: round-robin, <<: *use, hidden: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 proxy-groups:
   - { name: PROXY, type: select, proxies: [URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
+  - { name: LOCAL, type: select, proxies: [DIRECT,DIRECT-X], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp' }
   - { name: PROXYDNS, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
-  - { name: WebRTC, type: select, proxies: [PASS,REJECT-DROP,REJECT], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Forbidden.webp' }
+  - { name: WebRTC, type: select, proxies: [PASS,REJECT-DROP,REJECT], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Settings.webp' }
   - { name: FCM, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
   - { name: BOTTEST, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/CloudFlare.webp' }
   - { name: BILIBILI, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Bilibili.webp' }
+  - { name: AI, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp' }
   - { name: TELEGRAM, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
   - { name: META, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Meta_1.webp' }
   - { name: TWITTER, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/X.webp' }
   - { name: TIKTOK, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/TikTok.webp' }
   - { name: NETFLIX, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Netflix.webp' }
   - { name: SPOTIFY, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Spotify.webp' }
-  - { name: AI, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp' }
-  - { name: GITHUB, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/GitHub.webp' }
   - { name: GOOGLE, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Google.webp' }
   - { name: STEAM-CN, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Steam.webp' }
   - { name: APPLE-CN, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Apple.webp' }
@@ -258,4 +256,4 @@ proxy-groups:
   - { name: 德国|SMART, <<: *smart, filter: '(?i)🇩🇪|德国|\bDE\b|\bgermany\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/de.svg' }
   - { name: 英国|SMART, <<: *smart, filter: '(?i)🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/gb.svg' }
   - { name: 荷兰|SMART, <<: *smart, filter: '(?i)🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/nl.svg' }
-  - { name: GLOBAL, type: select, proxies: [PROXY,PROXYDNS,WebRTC,FCM,BOTTEST,BILIBILI,TELEGRAM,META,TWITTER,TIKTOK,NETFLIX,SPOTIFY,AI,GITHUB,GOOGLE,STEAM-CN,APPLE-CN,MICROSOFT-CN,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], include-all-providers: true, hidden: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp' }
+  - { name: GLOBAL, type: select, proxies: [PROXY,LOCAL,PROXYDNS,WebRTC,FCM,BOTTEST,BILIBILI,AI,TELEGRAM,META,TWITTER,TIKTOK,NETFLIX,SPOTIFY,GOOGLE,STEAM-CN,APPLE-CN,MICROSOFT-CN,URLTEST,国外|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], include-all-providers: true, hidden: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp' }
