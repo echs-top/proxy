@@ -68,7 +68,8 @@ hosts:
   cloudflare-dns.com: [1.1.1.1,1.0.0.1,'2606:4700:4700::1111','2606:4700:4700::1001']
   google.cn: google.com
   services.googleapis.cn: services.googleapis.com
-cn-dns: &cn-dns [system,'https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
+direct-dns: &direct-dns [system,'https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
+cn-dns: &cn-dns ['https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
 dns: 
   enable: true
   cache-algorithm: arc
@@ -83,18 +84,53 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
   fake-ip-ttl: 2
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter: ['*','rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:direct_domain','rule-set:webrtc','rule-set:googlefcm','rule-set:bilibili','steamcdn-a.akamaihd.net','rule-set:steam@cn','rule-set:apple@cn','+.sharepoint.com','rule-set:microsoft@cn','rule-set:cn']
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,AWAvenue-Ads-Rule,real-ip
+    - RULE-SET,private,real-ip
+    - RULE-SET,fake-ip_add,real-ip
+    - RULE-SET,direct_domain,real-ip
+    - RULE-SET,webrtc,real-ip
+    - RULE-SET,googlefcm,real-ip
+    - RULE-SET,verification,fake-ip
+    - RULE-SET,bilibili,fake-ip
+    - RULE-SET,biliintl,fake-ip
+    - RULE-SET,telegram,fake-ip
+    - RULE-SET,meta,fake-ip
+    - RULE-SET,twitter,fake-ip
+    - RULE-SET,tiktok,fake-ip
+    - RULE-SET,netflix,fake-ip
+    - RULE-SET,spotify,fake-ip
+    - RULE-SET,category-ai-!cn,fake-ip
+    - RULE-SET,ai_add,fake-ip
+    - RULE-SET,github,fake-ip
+    - RULE-SET,google,fake-ip
+    - DOMAIN,steamcdn-a.akamaihd.net,fake-ip
+    - RULE-SET,steam@cn,fake-ip
+    - RULE-SET,apple@cn,fake-ip
+    - DOMAIN-SUFFIX,sharepoint.com,fake-ip
+    - RULE-SET,microsoft@cn,fake-ip
+    - RULE-SET,geolocation-!cn,fake-ip
+    - RULE-SET,cn,real-ip
+    - MATCH,fake-ip
   default-nameserver: ['tls://223.5.5.5:853',8.8.8.8]
-  proxy-server-nameserver: ['https://223.5.5.5/dns-query#DIRECT-X','https://doh.pub/dns-query#DIRECT-X']
+  proxy-server-nameserver: *cn-dns
   nameserver: ['https://8.8.8.8/dns-query#PROXYDNS','https://1.1.1.1/dns-query#PROXYDNS']
-  direct-nameserver: *cn-dns
+  direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:AWAvenue-Ads-Rule': [rcode://name_error]
-    'rule-set:private': *cn-dns
-    'rule-set:direct_domain': *cn-dns
-    'rule-set:cn': *cn-dns
+    'rule-set:private': *direct-dns
+    'rule-set:fake-ip_add': *direct-dns
+    'rule-set:direct_domain': *direct-dns
+    'rule-set:googlefcm': *cn-dns
+    'rule-set:bilibili': *direct-dns
+    'steamcdn-a.akamaihd.net': *cn-dns
+    'rule-set:steam@cn': *cn-dns
+    'rule-set:apple@cn': *direct-dns
+    '+.sharepoint.com': *cn-dns
+    'rule-set:microsoft@cn': *cn-dns
+    'rule-set:cn': *direct-dns
 sniffer: 
   enable: true
   force-dns-mapping: false
@@ -104,9 +140,9 @@ sniffer:
     HTTP: { ports: [80,8080-8880], override-destination: true }
     TLS: { ports: [443,8443], override-destination: true }
     QUIC: { ports: [443,8443] }
-  skip-domain: ['*','rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:direct_domain','rule-set:webrtc','rule-set:googlefcm','rule-set:bilibili','steamcdn-a.akamaihd.net','rule-set:steam@cn','rule-set:apple@cn','+.sharepoint.com','rule-set:microsoft@cn','rule-set:cn']
+  skip-domain: ['rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:fake-ip_add','rule-set:direct_domain','rule-set:webrtc','rule-set:cn']
   force-domain: ['RULE-SET:netflix']
-  skip-src-address: ['rule-set:private_ip','rule-set:direct_ip','rule-set:telegram_ip','rule-set:facebook_ip','rule-set:twitter_ip','rule-set:google_ip','rule-set:cn_ip']
+  skip-src-address: ['rule-set:private_ip','rule-set:direct_ip','rule-set:cn_ip']
 rules:
   - DST-PORT,3478,WebRTC
   - DST-PORT,3479,WebRTC
@@ -213,7 +249,7 @@ proxy-groups:
   - { name: APPLE-CN, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Apple.webp' }
   - { name: MICROSOFT-CN, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Microsoft.webp' }
   - { name: URLTEST, <<: *auto, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Fast.webp' }
-  - { name: 国外|SMART, <<: *smart, exclude-filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b|🇲🇴|澳门|\bMO\b|\bmacau\b|\bmacao\b|🇹🇼|台湾|\bTW\b|\btaiwan\b', policy-priority: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b|🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b:2', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp' }
+  - { name: 国外|SMART, <<: *smart, exclude-filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b|🇲🇴|澳门|\bMO\b|\bmacau\b|\bmacao\b|🇹🇼|台湾|\bTW\b|\btaiwan\b', policy-priority: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b|🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b:2;(?i)🇩🇪|德国|\bDE\b|\bgermany\b|🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b|🇳🇱|荷兰|\bNL\b|\bnetherlands?\b:1.5', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Network_2.webp' }
   - { name: 香港|SMART, <<: *smart, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/hk.svg' }
   - { name: 台湾|SMART, <<: *smart, filter: '(?i)🇹🇼|台湾|\bTW\b|\btaiwan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/tw.svg' }
   - { name: 日本|SMART, <<: *smart, filter: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/flag/jp.svg' }
