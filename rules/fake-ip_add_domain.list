@@ -1,6 +1,9 @@
+# 单名
+*
 # dns
 dns.google
 dns.quad9.net
+cloudflare-dns.com
 # 联网检测
 +.msftconnecttest.com
 +.msftncsi.com
@@ -11,17 +14,3 @@ time.windows.com
 time.google.com
 time.cloudflare.com
 +.ntp.org
-# 杂项
-proxy.golang.org
-xnotify.xboxlive.com
-lens.l.google.com
-heartbeat.belkin.com
-+.xboxlive.com
-+.srv.nintendo.net
-+.srv.nintendo.net
-+.pvp.net
-*.linksys.com
-*.linksyssmartwifi.com
-*.square-enix.com
-*.finalfantasyxiv.com
-*.ffxiv.com
