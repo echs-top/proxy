@@ -5,7 +5,6 @@
 # GITHUB加速：gh-proxy
 # FCM hosts规则推荐: yangFenTuoZi/fcm-hosts
 
-# 运营商QOS严重推荐“ override: { tfo: true, udp-over-tcp: true, udp-over-tcp-version: 2 } ”
 providers: &providers { type: http, interval: 86400, proxy: DIRECT, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
@@ -44,9 +43,8 @@ mixed-port: 7890
 # redir-port: 7892
 tun:
   enable: true
-  # device: utun0
-  # 理论 system>mixed>gvisor
-  stack: system
+  # device: meta
+  stack: mixed
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -128,25 +126,19 @@ dns:
 sniffer: 
   enable: true
   force-dns-mapping: false
-  parse-pure-ip: false
+  parse-pure-ip: true
   override-destination: false
   sniff:
     HTTP: { ports: [80,8080-8880] }
     TLS: { ports: [443,8443] }
     QUIC: { ports: [443,8443] }
-  skip-domain: ['rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:fake-ip_add','rule-set:direct_domain','rule-set:webrtc','rule-set:cn']
+  skip-domain: ['rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:fake-ip_add','rule-set:direct_domain','rule-set:webrtc','rule-set:googlefcm','rule-set:cn']
   force-domain: ['RULE-SET:netflix']
   skip-src-address: ['rule-set:private_ip','rule-set:direct_ip','rule-set:cn_ip']
 rules:
-  - DST-PORT,3478,WebRTC
-  - DST-PORT,3479,WebRTC
-  - DST-PORT,5349,WebRTC
-  - DST-PORT,5350,WebRTC
+  - DST-PORT,3478-3479/5349-5350/19302-19309,WebRTC
   # - DST-PORT,10000,WebRTC
-  - DST-PORT,19302-19309,WebRTC
-  - DST-PORT,5228,FCM
-  - DST-PORT,5229,FCM
-  - DST-PORT,5230,FCM
+  - DST-PORT,5228-5230,FCM
   - RULE-SET,private_ip,DIRECT,no-resolve
   - RULE-SET,AWAvenue-Ads-Rule,REJECT-DROP
   - RULE-SET,private,DIRECT
