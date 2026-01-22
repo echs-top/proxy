@@ -10,7 +10,7 @@ env:
   MIHOMO_OWNER: MetaCubeX
   MIHOMO_REPO: mihomo
   REMOTE_RULES_URL: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-  REMOTE_RULES_MRS_FILE: mrs/AWAvenue-Ads-Rule.mrs
+  REMOTE_RULES_MRS_FILE: rules/mrs/AWAvenue-Ads-Rule.mrs
   
 jobs:
   build-and-deploy:
@@ -58,7 +58,7 @@ jobs:
         run: mihomo -v
 
       - name: 📂 Create Output Directory
-        run: mkdir -p mrs
+        run: mkdir -p rules/mrs
 
       # --- 2. 处理本地 rules 规则文件 (基于最后提交时间) ---
       - name: 🛠️ Convert Local Rules to MRS (Use Last Commit Time)
@@ -66,14 +66,14 @@ jobs:
           echo "Starting local rules conversion..."
           TEMP_DIR=$(mktemp -d)
           
-          if [ ! -d "rules" ]; then
+          if [ ! -d "rules/list" ]; then
               echo "Rules directory not found. Skipping local rules conversion."
               exit 0
           fi
           
-          find rules -type f -name "*.list" | while read -r file; do
+          find rules/list -type f -name "*.list" | while read -r file; do
             filename=$(basename "$file" .list)
-            mrs_file="mrs/${filename}.mrs"
+            mrs_file="rules/mrs/${filename}.mrs"
             temp_list="${TEMP_DIR}/${filename}.list.tmp"
             
             # 1. 获取输入规则文件的最后提交时间 (%at: Author date, Unix timestamp)
@@ -127,7 +127,7 @@ jobs:
             
             echo "  - Executing conversion to ${mrs_file}"
 
-            # 7. 转换：使用临时文件作为输入 (已修复 open - 错误)
+            # 7. 转换：使用临时文件作为输入
             /usr/local/bin/mihomo convert-ruleset ${BEHAVIOR} text "$temp_list" "$mrs_file"
             echo "Converted successfully."
             
@@ -206,6 +206,6 @@ jobs:
         with:
           commit_message: "🤖 Feat: Update Mihomo MRS and Processed Rules (v${{ env.CURRENT_VERSION }})"
           branch: ${{ github.ref_name }}
-          # 提交 mrs 目录下所有文件 和 process 目录下所有 .list 文件
-          file_pattern: 'mrs/* process/*.list' 
+          # 提交 rules/mrs 目录下所有文件 和 process 目录下所有 .list 文件
+          file_pattern: 'rules/mrs/* process/*.list' 
           commit_options: '--allow-empty --no-edit'
