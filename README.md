@@ -1,4 +1,8 @@
-### 自用mihomo模板
+### 自用MIHOMO模板
+
+[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
+
+### 备注
 
 多订阅、完善设置、地区分组、Android/Windows
 
@@ -10,8 +14,6 @@ GITHUB加速：[gh-proxy](https://gh-proxy.com)
 
 FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/fcm-hosts)
 
-### 链接
-
-[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
+### POST
 
 [代理软件推荐](https://links.echs.top/memos/7fJcnySiYfGprfCXm4vmvw)、[机场推荐](https://github.com/echs-top/proxy/blob/main/post/机场推荐.md)
