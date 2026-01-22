@@ -30,8 +30,12 @@ FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/
 ### 机场
 
 *注: 均为本人使用中，追求廉价*
+*使用年份: 魔戒2020.10~、八戒2023.02~、kitty2025.06~*
 
 **按量付费**:
-[魔戒|202010|用量极少首选/备用机场](https://mojie.link/register?aff=zBuQHqPk)
+[魔戒(中转)](https://mojie.link/register?aff=zBuQHqPk)
+[八戒(IEPL)](https://bajie.xyz/#/register?code=WIzk3Sw0)
 
-[机场](https://github.com/echs-top/proxy/blob/main/post/机场.md)
+**周期付费**:
+[kitty(直连)](https://kitty.su/#/register?code=MARAkheO)
+[便宜机场(可白嫖)](https://便宜机场.co/#/register?code=wsCjg20P)
