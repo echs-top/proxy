@@ -75,7 +75,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  fake-ip-ttl: 5
+  # fake-ip-ttl: 2
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads-Rule,real-ip
@@ -132,9 +132,6 @@ sniffer:
     HTTP: { ports: [80,8080-8880] }
     TLS: { ports: [443,8443] }
     QUIC: { ports: [443,8443] }
-  skip-domain: ['rule-set:AWAvenue-Ads-Rule','rule-set:private','rule-set:fake-ip_add','rule-set:direct_domain','rule-set:webrtc','rule-set:googlefcm','rule-set:cn']
-  force-domain: ['RULE-SET:netflix']
-  skip-src-address: ['rule-set:private_ip','rule-set:direct_ip','rule-set:cn_ip']
 rules:
   - DST-PORT,3478-3479/5349-5350/19302-19309,WebRTC
   # - DST-PORT,10000,WebRTC
