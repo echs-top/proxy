@@ -14,6 +14,15 @@ GITHUB加速：[gh-proxy](https://gh-proxy.com)
 
 FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/fcm-hosts)
 
-### POST
+### 软件
 
-[代理软件推荐](https://github.com/echs-top/proxy/blob/main/post/软件推荐.md)、[机场推荐](https://github.com/echs-top/proxy/blob/main/post/机场推荐.md)
+**Android**:
+[Box(magisk)](https://github.com/boxproxy/box)
+[Flclash](https://github.com/chen08209/FlClash)
+
+**Windows**:
+[minihomo(裸核)](https://github.com/bestruirui/minihomo)
+[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+[Pandora-Box](https://github.com/snakem982/Pandora-Box)
+
+[机场推荐](https://github.com/echs-top/proxy/blob/main/post/机场推荐.md)
