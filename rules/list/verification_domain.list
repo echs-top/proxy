@@ -1,0 +1,39 @@
+# Cloudflare
+challenges.cloudflare.com
+turnstile.cloudflare.com
+ajax.cloudflare.com
++.cloudflareinsights.com
+static.cloudflareinsights.com
+cloudflare-eth.com
+
+# reCAPTCHA
++.recaptcha.net
+recaptcha.google.com
+# www.gstatic.com
+# fonts.googleapis.com
+
+# Akamai Bot Manager
++.akamaihd.net
++.edgekey.net
+
+# GeeTest
++.geetest.com
++.staticfile.org
+
+# hCaptcha
++.hcaptcha.com
+
+# Amazon Captcha
++.captcha.awswaf.com
++.awswaf.com
+
+# Arkose
++.arkoselabs.com
++.arkose-verify.com
+
+# Friendly
++.friendlycaptcha.com
+
+# PerimeterX
++.perimeterx.net
++.perimeterx.io

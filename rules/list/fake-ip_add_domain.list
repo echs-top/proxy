@@ -1,0 +1,16 @@
+# 单名
+*
+# dns
+dns.google
+dns.quad9.net
+cloudflare-dns.com
+# 联网检测
++.msftconnecttest.com
++.msftncsi.com
++.ipv6.microsoft.com
+# NTP时间同步
+time.apple.com
+time.windows.com
+time.google.com
+time.cloudflare.com
++.ntp.org
