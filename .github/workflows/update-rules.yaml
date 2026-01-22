@@ -204,8 +204,8 @@ jobs:
       - name: ⬆️ Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Feat: Update Mihomo MRS and Processed Rules (v${{ env.CURRENT_VERSION }})"
+          commit_message: "🤖 Feat: Update Mihomo MRS (v${{ env.CURRENT_VERSION }})"
           branch: ${{ github.ref_name }}
-          # 提交 rules/mrs 目录下所有文件 和 process 目录下所有 .list 文件
-          file_pattern: 'rules/mrs/* process/*.list' 
+          # 仅提交 rules/mrs 目录下的内容，不再包含 process
+          file_pattern: 'rules/mrs/*' 
           commit_options: '--allow-empty --no-edit'
