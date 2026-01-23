@@ -35,7 +35,7 @@ FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/
 
 **直连**: 单线直连!!! 廉价普通线路，高峰期必炸，往往稳定性欠佳
 
-**CDN**: 机场为了抗攻击/拯救破线路经常会使用cloudflare cdn，这样本质上你还是在使用cf在连接世界，可通过[cf trace](https://www.cloudflare.com/cdn-cgi/trace)判断节点是否使用了cf cdn。
+**CDN**: 机场为了抗攻击/拯救破线路经常会使用cloudflare cdn，这样本质上你还是在使用cf在连接世界，可通过IP查询如[ip.sb](https://ip.sb)判断节点是否使用了cf cdn。
 
 **CF线路**: 纯免费+想办法“自选ip”，往往被称为“伪中转”，该卡还卡，尤其是高峰期；付费Argo路由，质量好不少，晚高峰可用，但这玩意是按量付费，费用还不算低；至于昂贵的Enterprise(往往响应头包含True-Client-IP)低价/平价机场根本不可能有
 
