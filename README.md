@@ -4,7 +4,7 @@
 
 ### 备注
 
-多订阅、完善设置、地区分组、Android/Windows
+多订阅、追求精准、地区分组、Android/Windows
 
 规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、自用补充(FCM、人机验证、fake-ip_add、ai_add、webrtc)
 
