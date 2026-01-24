@@ -18,14 +18,11 @@ FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/
 
 **Android**:
 [Box(magisk)](https://github.com/boxproxy/box)
-[Flclash](https://github.com/chen08209/FlClash)
 [LiClash](https://t.me/appshub_channel)
-[YumeBox](https://github.com/YumeLira/YumeBox)
 
 **Windows**:
 [minihomo(裸核)](https://github.com/bestruirui/minihomo)
 [ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
-[Pandora-Box](https://github.com/snakem982/Pandora-Box)
 
 ### 科普
 
