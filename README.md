@@ -12,7 +12,7 @@
 
 GITHUB加速：[gh-proxy](https://gh-proxy.com)
 
-FCM hosts规则推荐: [yangFenTuoZi/fcm-hosts](https://github.com/yangFenTuoZi/fcm-hosts)
+FCM hosts规则推荐: [Mice-Tailor-Infra/fcm-hosts-next](https://github.com/Mice-Tailor-Infra/fcm-hosts-next)
 
 ### 软件
 
