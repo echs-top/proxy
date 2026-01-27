@@ -2,6 +2,16 @@
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
+### 测速
+
+mihomo缺少下载测速，gemini写了一个简单的sh脚本，通过mihomo api测速，我默认已添加了测速需要配置，测速使用https://speed.cloudflare.com。
+
+脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
+
+环境需要: curl、jq
+
+软件推荐：[MSYS2(windows)](https://github.com/msys2/msys2-installer)、[termux(android)](https://github.com/termux/termux-app)
+
 ### 备注
 
 多订阅、追求精准、地区分组、Android/Windows
