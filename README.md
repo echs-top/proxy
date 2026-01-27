@@ -6,6 +6,8 @@
 
 mihomo缺少下载测速，找gemini写了一个sh脚本，通过mihomo api测速，默认已添加了测速需要配置，测速默认使用 https://speed.cloudflare.com
 
+安全性：纯本地脚本，不信自己检查
+
 脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
 
 环境需要: curl、jq
