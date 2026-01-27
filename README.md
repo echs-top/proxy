@@ -4,7 +4,7 @@
 
 ### 测速
 
-mihomo缺少下载测速，gemini写了一个简单的sh脚本，通过mihomo api测速，我默认已添加了测速需要配置，测速使用https://speed.cloudflare.com
+mihomo缺少下载测速，找gemini写了一个sh脚本，通过mihomo api测速，默认已添加了测速需要配置，测速默认使用 https://speed.cloudflare.com
 
 脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
 
@@ -16,7 +16,7 @@ mihomo缺少下载测速，gemini写了一个简单的sh脚本，通过mihomo ap
 
 多订阅、追求精准、地区分组、Android/Windows
 
-规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、自用补充(FCM、人机验证、fake-ip_add、ai_add、webrtc)
+规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、人机验证、fake-ip_add、ai_add、webrtc)
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
