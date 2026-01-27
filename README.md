@@ -4,7 +4,7 @@
 
 ### 测速
 
-mihomo缺少下载测速，gemini写了一个简单的sh脚本，通过mihomo api测速，我默认已添加了测速需要配置，测速使用https://speed.cloudflare.com。
+mihomo缺少下载测速，gemini写了一个简单的sh脚本，通过mihomo api测速，我默认已添加了测速需要配置，测速使用https://speed.cloudflare.com
 
 脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
 
