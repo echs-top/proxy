@@ -2,11 +2,11 @@
 
 # --- [ 1. 核心参数配置 ] ---
 API_BASE="http://127.0.0.1:9090"
-API_SECRET="echs"
+API_SECRET=""
 PROXY_ADDR="socks5h://127.0.0.1:9870"
-PROXY_USER="echs"
-PROXY_PASS="echs"
-TEST_GROUP="下载测速"
+PROXY_USER=""
+PROXY_PASS=""
+TEST_GROUP="全部节点"
 WARM_SIZE_MB="0.5" 
 DL_SIZE_MB=25  
 UP_SIZE_MB=10  
