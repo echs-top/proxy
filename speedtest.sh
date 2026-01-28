@@ -3,13 +3,15 @@
 # --- [ 1. 核心参数配置 ] ---
 API_BASE="http://127.0.0.1:9090"
 API_SECRET="echs"
-PROXY_ADDR="socks5h://127.0.0.1:9870"
-PROXY_USER="echs"
-PROXY_PASS="echs"
+# 若在在路由外，例如填socks5h://127.0.0.1:7890
+PROXY_ADDR=""
+PROXY_USER=""
+PROXY_PASS=""
 TEST_GROUP="SPEEDTEST"
 WARM_SIZE_MB="0.5" 
 DL_SIZE_MB=25  
 UP_SIZE_MB=10  
+SLEEP_INTERVAL=2.5
 URL_WARM="https://speed.cloudflare.com/__down?bytes=$(echo "$WARM_SIZE_MB * 1024 * 1024" | bc | cut -d. -f1)"
 URL_DL="https://speed.cloudflare.com/__down?bytes=$(echo "$DL_SIZE_MB * 1024 * 1024" | bc | cut -d. -f1)"
 URL_UP="https://speed.cloudflare.com/__up"
@@ -18,8 +20,11 @@ FILE_OUT="speed_simple.txt"
 # --- [ 2. 动态参数构建 ] ---
 CURL_AUTH=()
 [[ -n "$API_SECRET" ]] && CURL_AUTH=(-H "Authorization: Bearer $API_SECRET")
-CURL_PROXY=(--proxy "$PROXY_ADDR")
-[[ -n "$PROXY_USER" && -n "$PROXY_PASS" ]] && CURL_PROXY+=(--proxy-user "$PROXY_USER:$PROXY_PASS")
+CURL_PROXY=()
+if [[ -n "$PROXY_ADDR" ]]; then
+    CURL_PROXY+=(--proxy "$PROXY_ADDR")
+    [[ -n "$PROXY_USER" && -n "$PROXY_PASS" ]] && CURL_PROXY+=(--proxy-user "$PROXY_USER:$PROXY_PASS")
+fi
 
 # --- [ 3. 初始环境准备 ] ---
 {
@@ -40,14 +45,23 @@ for name in "${nodes[@]}"; do
     # A. 切换节点
     payload=$(jq -n --arg nm "$name" '{name: $nm}')
     curl -s -X PUT "${CURL_AUTH[@]}" -d "$payload" "$API_BASE/proxies/$TEST_GROUP" > /dev/null
-    sleep 2.0
+    sleep $SLEEP_INTERVAL
 
-    # B. 0.5MB 预热并锁定协议 (优先 HTTP/3)
-    warm_info=$(curl -s "${CURL_PROXY[@]}" --http3 --connect-timeout 5 -m 10 \
-                -w "%{http_version}|%{http_code}" -o /dev/null "$URL_WARM")
-    
-    proto_raw=$(echo "$warm_info" | cut -d'|' -f1)
-    status_code=$(echo "$warm_info" | cut -d'|' -f2)
+    # B. 0.5MB 预热并锁定协议
+    status_code="000"
+    proto_raw=""
+    for i in {1..3}; do
+        warm_info=$(curl -s "${CURL_PROXY[@]}" --http3 --connect-timeout 5 -m 10 \
+                    -w "%{http_version}|%{http_code}" -o /dev/null "$URL_WARM")
+        
+        proto_raw=$(echo "$warm_info" | cut -d'|' -f1)
+        status_code=$(echo "$warm_info" | cut -d'|' -f2)
+
+        if [[ "$status_code" == "200" ]]; then
+            break
+        fi
+        sleep 1
+    done
 
     if [[ "$status_code" != "200" ]]; then
         printf "→ [No]\n"
@@ -72,10 +86,9 @@ for name in "${nodes[@]}"; do
     else
         dl_res=$(awk "BEGIN {printf \"%.2f Mbps\", $dl_raw * 8 / 1048576}")
     fi
-
-    # D. 正式上传 (遵循小包锁定的协议)
     up_raw=$(dd if=/dev/urandom bs=1M count=$UP_SIZE_MB 2>/dev/null | \
              curl -s --no-buffer "${CURL_PROXY[@]}" $PROTO_OPT \
+             -H "Expect:" \
              --connect-timeout 5 -m 25 -w "%{speed_upload}" -o /dev/null \
              -X POST -H "Content-Type: application/octet-stream" --data-binary @- "$URL_UP")
     
