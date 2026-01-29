@@ -7,6 +7,14 @@ dl.l.google.com
 # 规则订阅
 +.anti-ad.net
 +.adrules.top
+# 电信
++.3gppnetwork.org
+# 极光
++.kk-rays.com
+# 路由器
++.router.asus.com
++.linksys.com
++.linksyssmartwifi.com
 # 杂项
 +.edu.cn
 +.ipip.net
@@ -14,4 +22,4 @@ dl.l.google.com
 +.808yun.cn
 +.xiaobaotxt.net
 +.xiaobaotxt.org
-+.3gppnetwork.org
+heartbeat.belkin.com
