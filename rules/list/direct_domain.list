@@ -4,6 +4,9 @@ dl.l.google.com
 # github加速
 +.jsdelivr.net
 +.gh-proxy.com
+# 规则订阅
++.anti-ad.net
++.adrules.top
 # 杂项
 +.edu.cn
 +.ipip.net
@@ -11,5 +14,4 @@ dl.l.google.com
 +.808yun.cn
 +.xiaobaotxt.net
 +.xiaobaotxt.org
-+.anti-ad.net
-+.adrules.top
++.3gppnetwork.org
