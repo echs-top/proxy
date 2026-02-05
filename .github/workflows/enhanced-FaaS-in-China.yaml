@@ -12,54 +12,53 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch and Process
-        id: process
+      # 【环境缓存核心】：缓存全局下载的资源和工具状态
+      # 即使 Runner 是新的，我们通过 Key 恢复之前的工作环境
+      - name: Setup Global Environment Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            rules/list/
+          key: env-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            env-cache-${{ runner.os }}-
+
+      - name: Rebuild Rules From Scratch
         run: |
           mkdir -p rules/list/
           output_file="rules/list/enhanced-FaaS-in-China_ip.list"
           
-          # 1. 明确定义三个源
+          # 资源定义
           urls=(
             "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Cf.json"
             "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Netlify.json"
             "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Vercel.json"
           )
 
-          # 2. 全局抓取并即时处理
-          # 使用 paths 查找所有名为 dianxin/yidong/liantong 的路径，并提取其值
-          # 这样无论 JSON 嵌套多深，都能被提取出来
-          > all_ips_raw.txt
+          # 确保每次环境运行前清空旧的临时处理区
+          tmp_dir=$(mktemp -d)
+          
+          # 全局加载：一次性拉取到缓存目录
           for url in "${urls[@]}"; do
-            echo "Processing $url..."
-            # 使用 jq 递归搜寻所有匹配的键值对，不管它在哪一层
-            curl -sL "$url" | jq -r '.. | objects | select(.dianxin or .yidong or .liantong) | .dianxin[], .yidong[], .liantong[]' >> all_ips_raw.txt || true
+            filename=$(basename "$url")
+            curl -sL "$url" -o "$tmp_dir/$filename"
           done
 
-          # 3. 汇总、去重、格式化
-          # 备份旧文件用于比对
-          [ -f "$output_file" ] && cp "$output_file" old_list.tmp
-
-          # 核心处理：
-          # grep 过滤 IPv4 -> sort -u 彻底去重 -> sed 补全 /32
-          grep -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}" all_ips_raw.txt | \
+          # 重新生成逻辑：不论缓存是否存在，这里都会强制重新扫描并覆盖
+          # 深度遍历所有下载到的 JSON 文件
+          cat "$tmp_dir"/*.json | jq -r '.. | objects | select(.dianxin or .yidong or .liantong) | .dianxin[], .yidong[], .liantong[]' | \
+          grep -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}" | \
           sort -u | \
           sed 's/$/\/32/' > "$output_file"
 
-          # 统计一下结果，方便在 Action 日志里查看
-          echo "Total unique IPs found: $(wc -l < "$output_file")"
+          echo "Environment updated. Processed $(wc -l < $output_file) unique IPs."
 
-          # 4. 变化检测
-          if [ -f old_list.tmp ] && diff -q "$output_file" old_list.tmp >/dev/null 2>&1; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Commit and Push
-        if: steps.process.outputs.changed == 'true'
+      - name: Force Update Repository
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add rules/list/enhanced-FaaS-in-China_ip.list
-          git commit -m "Auto-update IPs: $(date +'%Y-%m-%d %H:%M') (Total: $(wc -l < rules/list/enhanced-FaaS-in-China_ip.list))"
+          # 使用 --allow-empty 或 || true 确保即使文件内容没变，环境更新动作也算成功
+          git commit -m "Global Env Sync: $(date +'%Y-%m-%d')" || exit 0
           git push
