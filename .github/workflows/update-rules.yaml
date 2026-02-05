@@ -1,17 +1,14 @@
 name: Mihomo Rules Update
 
-# 每天 UTC 时间 20:00 运行 (相当于北京时间次日 04:00)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 20 * * *' 
+    - cron: '0 20 * * *'
 
 env:
   MIHOMO_OWNER: MetaCubeX
   MIHOMO_REPO: mihomo
-  REMOTE_RULES_URL: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-  REMOTE_RULES_MRS_FILE: rules/mrs/AWAvenue-Ads-Rule.mrs
-  
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,18 +17,13 @@ jobs:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
         with:
-          # 需要完整的 Git 历史来获取提交时间
-          fetch-depth: 0 
+          fetch-depth: 0
 
-      # --- 1. 安装 Mihomo ---
+      # --- 1. 安装/缓存 Mihomo ---
       - name: 🔍 Get Latest Mihomo Release Tag
         id: get-version
         run: |
           LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
-          if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
-            echo "::error::Failed to retrieve latest Mihomo tag from GitHub API."
-            exit 1
-          fi
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
         
       - name: ⚙️ Setup Mihomo Cache
@@ -39,173 +31,121 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /usr/local/bin/mihomo
-          key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }} 
+          key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }}
           
-      - name: 📥 Download, Unzip, and Install Mihomo
+      - name: 📥 Download and Install Mihomo
         if: steps.cache-mihomo.outputs.cache-hit != 'true'
         run: |
           MIHOMO_VERSION="${{ env.LATEST_TAG }}"
-          FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}.gz" 
-          MIHOMO_URL="https://github.com/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
-          TEMP_FILE="mihomo_temp.gz"
-          EXEC_FILE="mihomo_temp"
-          curl -fsSL -o "${TEMP_FILE}" "${MIHOMO_URL}" || exit 1
-          gunzip "${TEMP_FILE}" || exit 1
-          chmod +x "${EXEC_FILE}"
-          sudo mv "${EXEC_FILE}" /usr/local/bin/mihomo
-          
-      - name: 🔍 Verify Mihomo Installation
-        run: mihomo -v
+          FILE_NAME="mihomo-linux-amd64-${MIHOMO_VERSION}.gz"
+          curl -fsSL -o "mihomo.gz" "https://github.com/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/download/${MIHOMO_VERSION}/${FILE_NAME}"
+          gunzip "mihomo.gz"
+          chmod +x mihomo
+          sudo mv mihomo /usr/local/bin/mihomo
 
-      - name: 📂 Create Output Directory
-        run: mkdir -p rules/mrs
-
-      # --- 2. 处理本地 rules 规则文件 (基于最后提交时间) ---
-      - name: 🛠️ Convert Local Rules to MRS (Use Last Commit Time)
-        run: |
-          echo "Starting local rules conversion..."
-          TEMP_DIR=$(mktemp -d)
-          
-          if [ ! -d "rules/list" ]; then
-              echo "Rules directory not found. Skipping local rules conversion."
-              exit 0
-          fi
-          
-          find rules/list -type f -name "*.list" | while read -r file; do
-            filename=$(basename "$file" .list)
-            mrs_file="rules/mrs/${filename}.mrs"
-            temp_list="${TEMP_DIR}/${filename}.list.tmp"
-            
-            # 1. 获取输入规则文件的最后提交时间 (%at: Author date, Unix timestamp)
-            INPUT_COMMIT_TIME=$(git log -1 --format=%at -- "$file" 2>/dev/null || echo 0)
-            
-            # 2. 获取输出 MRS 文件的最后提交时间 (如果文件不存在，则时间为 0)
-            if [ -f "$mrs_file" ]; then
-                MRS_COMMIT_TIME=$(git log -1 --format=%at -- "$mrs_file" 2>/dev/null || echo 0)
-            else
-                MRS_COMMIT_TIME=0
-            fi
-
-            echo "  -> ${file} Commit Time: ${INPUT_COMMIT_TIME}"
-            echo "  -> ${mrs_file} Commit Time: ${MRS_COMMIT_TIME}"
-            
-            # 3. 判断是否需要转换
-            if [ "$INPUT_COMMIT_TIME" -gt "$MRS_COMMIT_TIME" ] || [ "$MRS_COMMIT_TIME" -eq 0 ]; then
-                SHOULD_CONVERT="true"
-                echo "  - **Action:** Converting (Input is newer or MRS missing)."
-            else
-                SHOULD_CONVERT="false"
-                echo "  - Skipping (MRS is up-to-date): ${file}"
-            fi
-            
-            if [ "$SHOULD_CONVERT" == "false" ]; then
-                continue
-            fi
-            
-            # 4. 判断文件类型并设置 behavior
-            if [[ "$file" == *"_domain.list" ]]; then
-              BEHAVIOR="domain"
-            elif [[ "$file" == *"_ip.list" ]]; then
-              BEHAVIOR="ipcidr"
-            else
-              echo "  - Skipping file (unknown type, must contain _domain.list or _ip.list): ${file}"
-              continue
-            fi
-            
-            # 5. 预清理：去除注释和空行，并写入临时文件
-            grep -v '^[[:space:]]*[#;]' "$file" | \
-            grep -v '^[[:space:]]*$' | \
-            sed 's/[[:space:]]*[#;].*//' > "$temp_list"
-            
-            # 6. 检查临时文件是否为空 (避免 panic: empty rule)
-            if [ ! -s "$temp_list" ]; then
-              echo "  - **Skipping file (Empty/Only Comments):** ${file}"
-              [ -f "$mrs_file" ] && rm "$mrs_file"
-              rm "$temp_list" 
-              continue
-            fi
-            
-            echo "  - Executing conversion to ${mrs_file}"
-
-            # 7. 转换：使用临时文件作为输入
-            /usr/local/bin/mihomo convert-ruleset ${BEHAVIOR} text "$temp_list" "$mrs_file"
-            echo "Converted successfully."
-            
-            # 8. 清理本次循环的临时文件
-            rm "$temp_list"
-          done
-          echo "Local rules conversion complete."
-          
-          rm -rf "$TEMP_DIR"
-      
-      # --- 3. 处理远程 YAML 规则集 (引入版本检测及缓存) ---
-      - name: 💾 Get Remote Rules Previous Version
-        id: cache-remote-version
-        uses: actions/cache@v4
+      # --- 2. 远程规则哈希缓存加载 ---
+      - name: 💾 Restore Remote Hashes Cache
+        id: restore-hash
+        uses: actions/cache/restore@v4
         with:
-          path: remote-version.txt
-          key: remote-rules-version-${{ hashFiles('remote-version.txt') }}
+          path: remote-hashes.txt
+          key: remote-hashes-${{ github.run_id }}
           restore-keys: |
-            remote-rules-version-
+            remote-hashes-
 
-      - name: 🌐 Download and Check Remote RuleSet Version
-        id: remote-check
+      - name: 📂 Create Directories
+        run: mkdir -p rules/mrs rules/list rules/yaml
+
+      # --- 3. 下载并进行哈希对比 ---
+      - name: 🌐 Download and Check Remote Rules
+        id: download-step
         run: |
-          echo "Downloading remote RuleSet from: ${{ env.REMOTE_RULES_URL }}"
-          curl -L -o remote-rule.yaml "${{ env.REMOTE_RULES_URL }}"
+          touch remote-hashes.txt
+          touch updated_files.txt # 用于记录哪些远程文件发生了变化
           
-          # 提取当前下载规则的版本号 (#Version: X.X.X)
-          CURRENT_VERSION=$(grep '^[[:space:]]*#Version:' remote-rule.yaml | head -n 1 | sed 's/^[[:space:]]*#Version:[[:space:]]*//')
-          
-          if [ -z "$CURRENT_VERSION" ]; then
-            echo "::warning::Could not find Version tag in remote YAML file. Forcing conversion."
-            CURRENT_VERSION="FORCE_CONVERT_$(date +%s)"
-          fi
+          download_and_check() {
+            local conf=$1
+            local target_dir=$2
+            if [ -f "$conf" ]; then
+              while read -r name url || [ -n "$name" ]; do
+                [[ -z "$name" || "$name" =~ ^# ]] && continue
+                echo "Downloading $name..."
+                curl -fsSL -o "$target_dir/$name" "$url"
+                
+                # 计算新哈希
+                NEW_HASH=$(md5sum "$target_dir/$name" | awk '{print $1}')
+                # 从缓存文件中读取旧哈希
+                OLD_HASH=$(grep "^$name " remote-hashes.txt | awk '{print $2}')
+                
+                if [ "$NEW_HASH" != "$OLD_HASH" ]; then
+                  echo "$name updated (Hash: $NEW_HASH)"
+                  echo "$name" >> updated_files.txt
+                  # 更新哈希列表记录（先删再加）
+                  sed -i "/^$name /d" remote-hashes.txt
+                  echo "$name $NEW_HASH" >> remote-hashes.txt
+                else
+                  echo "$name is same as cache. Skipping hash update."
+                fi
+              done < "$conf"
+            fi
+          }
 
-          echo "Current Remote Version: $CURRENT_VERSION"
-          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
-          
-          if [ -f "remote-version.txt" ]; then
-            OLD_VERSION=$(cat remote-version.txt)
-          else
-            OLD_VERSION=""
-          fi
+          download_and_check "rules/list/remote" "rules/list"
+          download_and_check "rules/yaml/remote" "rules/yaml"
 
-          echo "Previous Remote Version: ${OLD_VERSION:-N/A (First Run)}"
-          
-          if [ "$CURRENT_VERSION" == "$OLD_VERSION" ]; then
-            echo "Remote rule version is unchanged. Skipping conversion."
-            echo "SHOULD_CONVERT_REMOTE=false" >> $GITHUB_ENV
-          else
-            echo "Remote rule version updated (${OLD_VERSION} -> ${CURRENT_VERSION}). Converting."
-            echo "SHOULD_CONVERT_REMOTE=true" >> $GITHUB_ENV
-            # 准备写入新的版本号，供缓存使用
-            echo "$CURRENT_VERSION" > remote-version.txt
-          fi
-
-      - name: 🔄 Convert Remote RuleSet to MRS
-        if: env.SHOULD_CONVERT_REMOTE == 'true'
+      # --- 4. 统一处理与转换 ---
+      - name: 🛠️ Convert Rules to MRS
         run: |
-          echo "Converting remote RuleSet using 'mihomo convert-ruleset'..."
-          # 远程文件是 domain yaml 格式
-          /usr/local/bin/mihomo convert-ruleset domain yaml remote-rule.yaml ${{ env.REMOTE_RULES_MRS_FILE }}
-          echo "Remote RuleSet conversion complete."
-      
-      # 💾 Save Remote Rules New Version to Cache 
-      - name: 💾 Save Remote Rules New Version Cache
+          TEMP_DIR=$(mktemp -d)
+          TYPES=("rules/list|text" "rules/yaml|yaml")
+
+          for entry in "${TYPES[@]}"; do
+            DIR="${entry%%|*}"
+            FORMAT="${entry#*|}"
+            [ ! -d "$DIR" ] && continue
+
+            find "$DIR" -type f ! -name "remote" | while read -r file; do
+              filename=$(basename "$file")
+              out_name="${filename%.*}"
+              mrs_file="rules/mrs/${out_name}.mrs"
+              
+              # 策略判断：
+              # 1. 如果在 updated_files.txt 中（远程更新）
+              # 2. 如果文件比已有的 mrs 新（本地更新）
+              # 3. 如果 mrs 文件不存在
+              IS_REMOTE_UPDATED=$(grep -q "^$filename$" updated_files.txt && echo "true" || echo "false")
+              INPUT_TIME=$(git log -1 --format=%at -- "$file" 2>/dev/null || stat -c %Y "$file")
+              MRS_TIME=$(git log -1 --format=%at -- "$mrs_file" 2>/dev/null || echo 0)
+
+              if [ "$IS_REMOTE_UPDATED" == "true" ] || [ "$INPUT_TIME" -gt "$MRS_TIME" ] || [ ! -f "$mrs_file" ]; then
+                # 判定规则行为
+                [[ "$filename" == *"_domain"* ]] && BEHAVIOR="domain" || BEHAVIOR="ipcidr"
+                [ "$filename" == "$out_name" ] && BEHAVIOR="domain" # 兜底
+
+                echo "🛠️ Converting: $filename (Reason: $( [ "$IS_REMOTE_UPDATED" == "true" ] && echo "Remote Updated" || echo "Local/Missing" ))"
+                
+                # 去注释处理
+                temp_clean="${TEMP_DIR}/clean_input"
+                grep -v '^[[:space:]]*#' "$file" | sed 's/[[:space:]]*#.*$//' | grep -v '^[[:space:]]*$' > "$temp_clean"
+
+                if [ -s "$temp_clean" ]; then
+                  /usr/local/bin/mihomo convert-ruleset "$BEHAVIOR" "$FORMAT" "$temp_clean" "$mrs_file"
+                fi
+              fi
+            done
+          done
+          rm -rf "$TEMP_DIR"
+
+      # --- 5. 保存哈希缓存与提交更改 ---
+      - name: 💾 Save Remote Hashes Cache
         uses: actions/cache/save@v4
-        # 只有在转换成功且执行了新版本转换时才保存
-        if: success() && env.SHOULD_CONVERT_REMOTE == 'true'
+        if: always()
         with:
-          path: remote-version.txt
-          key: remote-rules-version-${{ hashFiles('remote-version.txt') }}
+          path: remote-hashes.txt
+          key: remote-hashes-${{ github.run_id }}
 
-      # --- 4. 提交更改回仓库 ---
-      - name: ⬆️ Commit and Push Changes
+      - name: ⬆️ Commit and Push
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Feat: Update Mihomo MRS (v${{ env.CURRENT_VERSION }})"
-          branch: ${{ github.ref_name }}
-          # 仅提交 rules/mrs 目录下的内容，不再包含 process
-          file_pattern: 'rules/mrs/*' 
-          commit_options: '--allow-empty --no-edit'
+          commit_message: "🤖 Feat: Update Mihomo MRS (Cache Optimized)"
+          file_pattern: 'rules/mrs/*'
