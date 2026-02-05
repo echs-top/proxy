@@ -2,21 +2,11 @@
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
-### 测速
-
-mihomo缺少下载测速，找gemini写了一个本地sh脚本，通过mihomo api测速，默认使用 https://speed.cloudflare.com
-
-脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
-
-环境需要: curl、jq
-
-软件推荐：[MSYS2(windows)](https://github.com/msys2/msys2-installer)、[termux(android)](https://github.com/termux/termux-app)
-
 ### 备注
 
 多订阅、追求精准、地区分组、Android/Windows
 
-规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、人机验证、fake-ip_add、ai_add)
+规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、自用补充(人机验证、ai_add)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
@@ -33,3 +23,13 @@ FCM hosts规则推荐: [Mice-Tailor-Infra/fcm-hosts-next](https://github.com/Mic
 **Windows**:
 [minihomo(裸核)](https://github.com/bestruirui/minihomo)
 [ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+
+### 测速
+
+mihomo缺少下载测速，找gemini写了一个本地sh脚本，通过mihomo api测速，默认使用 https://speed.cloudflare.com
+
+脚本：[speedtest.sh](https://raw.githubusercontent.com/echs-top/proxy/heads/main/speedtest.sh)
+
+环境需要: curl、jq
+
+软件推荐：[MSYS2(windows)](https://github.com/msys2/msys2-installer)、[termux(android)](https://github.com/termux/termux-app)
