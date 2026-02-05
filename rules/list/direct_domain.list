@@ -4,6 +4,7 @@ dl.l.google.com
 # github加速
 +.jsdelivr.net
 +.gh-proxy.com
++.gh-proxy.org
 # 规则订阅
 +.anti-ad.net
 +.adrules.top
