@@ -6,7 +6,7 @@
 
 多订阅、追求精准、地区分组、Android/Windows
 
-规则：部分[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)、[秋风去广告](https://awavenue.top)、自用补充(人机验证)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[cn_domain](https://www.nodeseek.com/post-464238-1)、[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)
+规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(category-speedtest,googlefcm,telegram,meta,twitter,netflix,google,gfw,facebook_ip,twitter_ip,netflix_ip,google_ip)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(private_ip,private,tiktok,spotify,bilibili,youtube,ai,apple-cn,microsoft-cn,games-cn,cn_ip)、[秋风去广告](https://awavenue.top)、自用补充(人机验证,direct_domain,direct_ip)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[cn_domain](https://www.nodeseek.com/post-464238-1)、[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
