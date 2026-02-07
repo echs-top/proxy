@@ -2,8 +2,9 @@ name: Update CN Rules
 
 on:
   schedule:
-    - cron: '20 19 * * *' # 北京时间 03:20
-  workflow_dispatch:
+    # 每天北京时间 3:20 (UTC 时间为 19:20)
+    - cron: '20 19 * * *'
+  workflow_dispatch: # 支持手动触发测试
 
 jobs:
   build:
@@ -17,12 +18,12 @@ jobs:
         with:
           python-version: '3.x'
 
-      # 手动处理缓存，不再依赖 requirements.txt
+      # 全局缓存 Python 依赖，加快后续运行速度
       - name: Cache Python dependencies
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-requests # 只有当系统环境或手动更改 Key 时才失效
+          key: ${{ runner.os }}-pip-requests
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -37,52 +38,80 @@ jobs:
           import requests
           import re
           import os
+          import time
 
-          def fetch_rules(url, is_yaml=False):
-              try:
-                  resp = requests.get(url, timeout=60)
-                  resp.raise_for_status()
-                  content = resp.text
-                  if is_yaml:
-                      return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', content, re.MULTILINE)
-                  else:
-                      return [line.strip() for line in content.splitlines() if line.strip() and not line.startswith(('#', '//'))]
-              except Exception as e:
-                  print(f"Error fetching {url}: {e}")
-                  return []
+          def fetch_rules(url, is_yaml=False, retries=3):
+              print(f"正在获取资源: {url}")
+              headers = {
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+              }
+              for i in range(retries):
+                  try:
+                      # 设置 30 秒超时防止卡死
+                      resp = requests.get(url, headers=headers, timeout=30)
+                      resp.raise_for_status()
+                      print(f"下载成功! 大小: {len(resp.content)} 字节")
+                      
+                      if is_yaml:
+                          # 匹配 YAML 格式中的列表项，例如 - "+.baidu.com"
+                          return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', resp.text, re.MULTILINE)
+                      else:
+                          # 匹配 Mihomo Text 格式：按行读取，排除空行和注释
+                          return [line.strip() for line in resp.text.splitlines() if line.strip() and not line.startswith(('#', '//'))]
+                  except Exception as e:
+                      print(f"第 {i+1} 次尝试失败: {e}")
+                      if i < retries - 1:
+                          time.sleep(5) # 失败后等待 5 秒重试
+              return []
 
-          # 1. 下载
-          yaml_res = fetch_rules("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
-          text_res = fetch_rules("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list", False)
+          # 1. 下载原始资源
+          yaml_url = "https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml"
+          text_url = "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list"
           
-          # 2. 合并去重
-          raw_list = list(set(yaml_res + text_res))
+          yaml_res = fetch_rules(yaml_url, True)
+          text_res = fetch_rules(text_url, False)
+          
+          print(f"--- 原始统计 ---")
+          print(f"YAML 规则数: {len(yaml_res)}")
+          print(f"Text 规则数: {len(text_res)}")
 
-          # 3. 核心：去重复子项
+          # 2. 合并并初步去重
+          raw_set = set(yaml_res + text_res)
+          print(f"合并去重后(未处理层级): {len(raw_set)}")
+
+          # 3. 核心算法：剔除重复子项 (例如有了 +.cn 就不再保留 baidu.cn)
           def get_base(d):
+              # 标准化域名用于比较：移除 Mihomo 特有的 + 和 . 前缀
               return d.lstrip('+').lstrip('.')
 
-          # 排序确保父级在前
-          raw_list.sort(key=lambda x: (get_base(x).count('.'), len(get_base(x))))
+          # 排序：按域名层级（点的数量）和长度升序排列，确保父域名排在子域名之前
+          sorted_list = sorted(list(raw_set), key=lambda x: (get_base(x).count('.'), len(get_base(x))))
 
           final_list = []
-          for item in raw_list:
+          for item in sorted_list:
               base_item = get_base(item)
               is_redundant = False
+              # 将当前域名与已选入 final_list 的父级域名对比
               for parent in final_list:
                   base_parent = get_base(parent)
+                  # 判定规则：完全相同，或者是其子域名 (如 item 为 "a.b.com", parent 为 "b.com")
                   if base_item == base_parent or base_item.endswith('.' + base_parent):
                       is_redundant = True
                       break
               if not is_redundant:
                   final_list.append(item)
 
-          # 4. 保存
+          print(f"--- 最终统计 ---")
+          print(f"精简后的规则总数: {len(final_list)}")
+
+          # 4. 写入文件
           save_path = 'rules/list/cn.list'
           os.makedirs(os.path.dirname(save_path), exist_ok=True)
           with open(save_path, 'w', encoding='utf-8') as f:
+              # 最终结果按字典序排列输出
               for d in sorted(final_list):
                   f.write(f"{d}\n")
+          print(f"文件已保存至: {save_path}")
           EOF
 
       - name: Commit and Push
@@ -90,4 +119,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add rules/list/cn.list
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto Update CN Rules $(date +'%Y-%m-%d')" && git push)
+          # 检查是否有文件变化，防止空 commit 导致报错
+          if git diff --staged --quiet; then
+            echo "没有发现规则更新，跳过提交。"
+          else
+            git commit -m "Auto Update CN Rules $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
