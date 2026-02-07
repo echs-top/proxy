@@ -2,7 +2,7 @@ name: Update CN Rules
 
 on:
   schedule:
-    - cron: '20 19 * * *' # 北京时间 03:20
+    - cron: '20 19 * * *'
   workflow_dispatch:
 
 jobs:
@@ -39,55 +39,36 @@ jobs:
           import time
 
           def fetch_rules(url, is_yaml=False, retries=2):
-              print(f"\n[DEBUG] 正在尝试访问: {url}")
-              headers = {
-                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                  'Accept': '*/*'
-              }
+              print(f"DEBUG: Start fetching {url}")
+              headers = {'User-Agent': 'Mozilla/5.0'}
               for i in range(retries):
                   try:
-                      # 强制 15 秒超时，防止 CF 盾导致挂死
-                      start_time = time.time()
                       resp = requests.get(url, headers=headers, timeout=15)
-                      duration = time.time() - start_time
                       resp.raise_for_status()
-                      print(f"[SUCCESS] 下载完成，耗时: {duration:.2f}s，获取到 {len(resp.content)} 字节")
-                      
+                      print(f"SUCCESS: Fetched {url}")
                       if is_yaml:
                           return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', resp.text, re.MULTILINE)
                       else:
                           return [line.strip() for line in resp.text.splitlines() if line.strip() and not line.startswith(('#', '//'))]
-                  except requests.exceptions.Timeout:
-                      print(f"[ERROR] 第 {i+1} 次尝试: 连接超时 (15s)")
-                  except requests.exceptions.HTTPError as e:
-                      print(f"[ERROR] 第 {i+1} 次尝试: HTTP 错误 -> {e}")
                   except Exception as e:
-                      print(f"[ERROR] 第 {i+1} 次尝试: 未知错误 -> {e}")
-                  
-                  if i < retries - 1:
-                      time.sleep(5)
-              
-              print(f"[WARNING] 最终放弃该源: {url}")
+                      print(f"RETRY {i+1}: {e}")
+                      if i < retries - 1:
+                          time.sleep(5)
+              print(f"SKIP: Could not download {url}")
               return []
 
-          # 1. 抓取资源
           yaml_res = fetch_rules("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
           text_res = fetch_rules("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list", False)
           
-          if not yaml_res and not text_res:
-              print("\n[CRITICAL] 两个源均下载失败，停止后续处理。")
-              exit(1)
-
-          # 2. 合并去重
           raw_list = list(set(yaml_res + text_res))
-          print(f"\n[INFO] 原始合并项数: {len(raw_list)}")
+          if not raw_list:
+              print("CRITICAL: No data found.")
+              exit(0)
 
-          # 3. 核心算法：剔除重复子项
           def get_base(d):
               return d.lstrip('+').lstrip('.')
 
           raw_list.sort(key=lambda x: (get_base(x).count('.'), len(get_base(x))))
-
           final_list = []
           for item in raw_list:
               base_item = get_base(item)
@@ -100,15 +81,12 @@ jobs:
               if not is_redundant:
                   final_list.append(item)
 
-          # 4. 保存文件
           save_path = 'rules/list/cn.list'
           os.makedirs(os.path.dirname(save_path), exist_ok=True)
           with open(save_path, 'w', encoding='utf-8') as f:
               for d in sorted(final_list):
                   f.write(f"{d}\n")
-          
-          print(f"\n[RESULT] 逻辑去重完成。")
-          print(f"保留项: {len(final_list)} 行 (精简了 {len(raw_list) - len(final_list)} 行)")
+          print(f"DONE: Processed {len(final_list)} rules.")
           EOF
 
       - name: Commit and Push
@@ -117,7 +95,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add rules/list/cn.list
           if git diff --staged --quiet; then
-            echo "无变化，跳过提交。"
+            echo "No changes to commit."
           else
             git commit -m "Auto Update CN Rules $(date +'%Y-%m-%d %H:%M')"
             git push
