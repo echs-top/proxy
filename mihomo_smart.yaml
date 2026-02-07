@@ -167,6 +167,8 @@ rules:
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
 hosts:
+  localhost: 127.0.0.1
+  ip6-localhost: ::1
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
   dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
@@ -178,7 +180,7 @@ dns:
   ipv6: true
   prefer-h3: true
   use-hosts: true
-  use-system-hosts: true
+  use-system-hosts: false
   respect-rules: false
   # listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
@@ -209,7 +211,7 @@ dns:
     - RULE-SET,games-cn,real-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
-  default-nameserver: ['tls://223.5.5.5',8.8.8.8]
+  default-nameserver: [223.5.5.5,119.29.29.29]
   <<: *scheme
 sniffer: 
   enable: true
