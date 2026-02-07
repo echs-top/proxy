@@ -2,7 +2,8 @@ name: Update CN Rules
 
 on:
   schedule:
-    - cron: '20 19 * * *' # 北京时间 03:20
+    # 每天北京时间 3:20 (UTC 19:20)
+    - cron: '20 19 * * *'
   workflow_dispatch:
 
 jobs:
@@ -35,73 +36,69 @@ jobs:
           import os
 
           def get_data(url, is_yaml):
-              print(f">>> Fetching: {url}")
+              print(f"LOG: Fetching {url}")
               try:
-                  # 增加超时控制
                   r = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
                   r.raise_for_status()
                   if is_yaml:
+                      # YAML 匹配: - "+.baidu.com"
                       return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', r.text, re.MULTILINE)
+                  # TEXT 匹配: 纯域名行
                   return [l.strip() for l in r.text.splitlines() if l.strip() and not l.startswith(('#', '//'))]
               except Exception as e:
-                  print(f">>> [Warning] Failed to fetch {url}: {e}")
+                  print(f"LOG: Skip {url} due to error: {e}")
                   return []
 
-          # 1. 全局加载资源 (符合你要求的 Globally load)
+          # 1. 下载资源
           s1 = get_data("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
           s2 = get_data("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list", False)
           
           raw_items = list(set(s1 + s2))
           if not raw_items:
-              print(">>> [Critical] No data fetched. Exiting.")
+              print("LOG: No data found. Exiting.")
               exit(0)
 
-          print(f">>> Total raw items: {len(raw_items)}")
+          print(f"LOG: Total raw items: {len(raw_items)}")
 
-          # 2. 高效去重算法 (针对大体量数据优化)
+          # 2. 高效去重算法
           def clean_domain(d):
               return d.lstrip('+').lstrip('.')
 
-          # 算法逻辑：按域名分段并倒序排序
-          # 例如：'a.baidu.com' 变成 ['com', 'baidu', 'a']
-          # 这样 'baidu.com' 必定排在 'a.baidu.com' 的紧前面
+          # 核心技巧：将域名倒序排序 (com.baidu.www) 
+          # 这样父域名 (baidu.com) 必然出现在所有子域名 (www.baidu.com) 的紧邻上方
           sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
 
           final_list = []
-          if sorted_items:
-              last_kept_clean = None
-              
-              for item in sorted_items:
-                  current_clean = clean_domain(item)
-                  
-                  # 如果当前域名是上一个保留域名的子域名，则跳过
-                  # 例如：last='baidu.com', curr='www.baidu.com' -> curr.endswith('.baidu.com')
-                  if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
-                      continue
-                  else:
-                      final_list.append(item)
-                      last_kept_clean = current_clean
+          last_kept_clean = None
+          
+          for item in sorted_items:
+              current_clean = clean_domain(item)
+              # 如果当前域名是上一个保留域名的子项，则跳过
+              if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
+                  continue
+              else:
+                  final_list.append(item)
+                  last_kept_clean = current_clean
 
-          print(f">>> Final items after deduplication: {len(final_list)}")
+          print(f"LOG: Final items: {len(final_list)}")
 
-          # 3. 写入文件
-          out_file = 'rules/list/cn.list'
+          # 3. 写入文件 (修正文件名为 cn_domain.list)
+          out_file = 'rules/list/cn_domain.list'
           os.makedirs(os.path.dirname(out_file), exist_ok=True)
           with open(out_file, 'w', encoding='utf-8') as f:
-              # 最终按字母顺序排序，方便阅读
               for line in sorted(final_list):
                   f.write(f"{line}\n")
-          print(f">>> Successfully saved to {out_file}")
+          print(f"LOG: Saved to {out_file}")
           EOF
 
       - name: Commit and Push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add rules/list/cn.list
+          git add rules/list/cn_domain.list
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Update CN rules $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Update CN domain rules $(date +'%Y-%m-%d %H:%M')"
             git push
           fi
