@@ -2,8 +2,11 @@
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
-### 快捷设置
+### 备注
 
+多订阅、追求精准、地区分组、Android/Windows
+
+自定义: 
 ```
 # 设置区
 proxy-providers:
@@ -21,10 +24,6 @@ proxy: &proxy { <<: *all }
 # dns方案: dns-lite/dns-all 如果你不在乎DNS分流用dns-lite
 scheme: &scheme { <<: *dns-all }
 ```
-
-### 备注
-
-多订阅、追求精准、地区分组、Android/Windows
 
 规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、[秋风去广告](https://awavenue.top)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、cn_domain(合并去重:[cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list)与[备案域名](https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml))、[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)、一些自用补充
 
