@@ -49,9 +49,9 @@ use: &use { use: [link1,link2] }
 # 手动选择
 select: &select { use: [link3] }
 # 直连规则：cn-lite/cn-all 分应用代理优先轻量，tun优先全量
-cn: &cn { <<: *cn-all }
+cn: &cn { <<: *cn-lite }
 # 代理规则：gfw/all 匹配到规则的代理域名能避免本地dns查询
-proxy: &proxy { <<: *all }
+proxy: &proxy { <<: *gfw }
 # dns方案: dns-lite/dns-all 如果你不在乎DNS分流用dns-lite
 scheme: &scheme { <<: *dns-all }
 
