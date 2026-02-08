@@ -32,10 +32,10 @@ dns-all: &dns-all
     'rule-set:youtube': *proxy-dns
     'rule-set:ai': *proxy-dns
     'rule-set:google': *proxy-dns
-    'rule-set:proxy': *proxy-dns
     'rule-set:apple-cn': *direct-dns
     'rule-set:microsoft-cn': *direct-dns
     'rule-set:games-cn': *direct-dns
+    'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
 
 
@@ -48,11 +48,11 @@ proxy-providers:
 use: &use { use: [link1,link2] }
 # 手动选择
 select: &select { use: [link3] }
-# 直连规则：cn-lite/cn-all 分应用代理优先轻量，tun优先全量
+# 直连规则：cn-lite/cn-all 分应用代理选lite，全局tun选all
 cn: &cn { <<: *cn-lite }
-# 代理规则：gfw/all 匹配到规则的代理域名能避免本地dns查询
+# 代理规则：gfw/all 推荐同上，轻量选gfw，全局tun选all
 proxy: &proxy { <<: *gfw }
-# dns方案: dns-lite/dns-all 如果你不在乎DNS分流用dns-lite
+# dns方案: dns-lite/dns-all 不在乎DNS分流用dns-lite
 scheme: &scheme { <<: *dns-all }
 
 
@@ -105,6 +105,7 @@ rule-providers:
   private_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs',  path: ./rules/private_ip.mrs }
   AWAvenue-Ads: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/AWAvenue-Ads_domain.mrs', path: ./rules/AWAvenue-Ads.mrs }
   private: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
+  connectivity-check: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/connectivity-check.mrs', path: ./rules/connectivity-check.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
   category-speedtest: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-speedtest.mrs', path: ./rules/category-speedtest.mrs }
   googlefcm: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs', path: ./rules/googlefcm.mrs }
@@ -119,10 +120,10 @@ rule-providers:
   youtube: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/youtube.mrs', path: ./rules/youtube.mrs }
   ai: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs', path: ./rules/ai.mrs }
   google: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs', path: ./rules/google.mrs }
-  proxy: { <<: [*domain,*proxy], path: ./rules/proxy.mrs }
   apple-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
   microsoft-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
   games-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
+  proxy: { <<: [*domain,*proxy], path: ./rules/proxy.mrs }
   cn: { <<: [*domain,*cn], path: ./rules/cn.mrs }
   direct_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
   telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
@@ -152,10 +153,10 @@ rules:
   - RULE-SET,youtube,YOUTUBE
   - RULE-SET,ai,AI
   - RULE-SET,google,GOOGLE
-  - RULE-SET,proxy,PROXY
   - RULE-SET,apple-cn,DIRECT
   - RULE-SET,microsoft-cn,DIRECT
   - RULE-SET,games-cn,DIRECT
+  - RULE-SET,proxy,PROXY
   - RULE-SET,cn,DIRECT
   - RULE-SET,direct_ip,DIRECT
   - RULE-SET,telegram_ip,TELEGRAM
@@ -189,6 +190,7 @@ dns:
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads,fake-ip
     - RULE-SET,private,real-ip
+    - RULE-SET,connectivity-check,real-ip
     - RULE-SET,direct_domain,real-ip
     - RULE-SET,category-speedtest,fake-ip
     - RULE-SET,googlefcm,fake-ip
@@ -203,10 +205,10 @@ dns:
     - RULE-SET,youtube,fake-ip
     - RULE-SET,ai,fake-ip
     - RULE-SET,google,fake-ip
-    - RULE-SET,proxy,fake-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,games-cn,real-ip
+    - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
   default-nameserver: [223.5.5.5,119.29.29.29]
@@ -231,7 +233,7 @@ smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, colle
 proxy-groups:
   - { name: PROXY, type: select, proxies: [URLTEST,港澳台|SMART,香港|SMART,台湾|SMART,日本|SMART,新加坡|SMART,美国|SMART,德国|SMART,英国|SMART,荷兰|SMART], <<: *select, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
   - { name: PROXYDNS, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
-  - { name: AD, type: select, proxies: [PASS,REJECT,REJECT-DROP], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Forbidden.webp' }
+  - { name: AD, type: select, proxies: [REJECT,REJECT-DROP], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Forbidden.webp' }
   - { name: SPEEDTEST, type: select, include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/SpeedTest.webp' }
   - { name: FCM, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
   - { name: BOTTEST, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/CloudFlare.webp' }
