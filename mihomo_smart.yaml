@@ -1,6 +1,5 @@
-# update: 2026-02-08 mihomo/v1.19.19
+# update: 2026-02-09
 # 简介: https://github.com/echs-top/proxy
-
 providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.4"] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外' }
 cn-lite: &cn-lite { url: 'https://static-file-global.353355.xyz/rules/cn-additional-list.mrs' }
 cn-all: &cn-all { url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs' }
@@ -12,14 +11,10 @@ dns-lite: &dns-lite
   nameserver: *direct-dns
 dns-all: &dns-all
   proxy-server-nameserver: *direct-dns
-  nameserver: *proxy-dns
-  direct-nameserver: *direct-dns
-  direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:AWAvenue-Ads': [rcode://name_error]
     'rule-set:private': *direct-dns
     'rule-set:direct_domain': *direct-dns
-    'rule-set:category-speedtest': *proxy-dns
     'rule-set:googlefcm': *direct-dns
     'rule-set:bilibili': *direct-dns
     'rule-set:telegram': *proxy-dns
@@ -35,6 +30,9 @@ dns-all: &dns-all
     'rule-set:games-cn': *direct-dns
     'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
+  nameserver: *proxy-dns
+  direct-nameserver: *direct-dns
+  direct-nameserver-follow-policy: true
 
 
 # 设置区
@@ -127,7 +125,6 @@ rule-providers:
   enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs', path: ./rules/cn_ip.mrs }
 rules:
-  - DST-PORT,53,dns-hijack
   - DST-PORT,5228-5230,FCM
   - RULE-SET,private_ip,DIRECT,no-resolve
   - RULE-SET,AWAvenue-Ads,REJECT
@@ -157,6 +154,18 @@ rules:
   - RULE-SET,enhanced-FaaS-in-China_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
+sniffer: 
+  enable: true
+  force-dns-mapping: false
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP: { ports: [80,8080-8880] }
+    TLS: { ports: [443,8443] }
+    QUIC: { ports: [443,8443] }
+  skip-domain: ['rule-set:private']
+  skip-src-address: ['rule-set:private_ip']
+  skip-dst-address: ['rule-set:private_ip']
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
@@ -200,19 +209,6 @@ dns:
     - MATCH,fake-ip
   default-nameserver: [223.5.5.5,119.29.29.29]
   <<: *scheme
-sniffer: 
-  enable: true
-  force-dns-mapping: false
-  parse-pure-ip: true
-  override-destination: false
-  sniff:
-    HTTP: { ports: [80,8080-8880] }
-    TLS: { ports: [443,8443] }
-    QUIC: { ports: [443,8443] }
-  skip-domain: ['rule-set:private']
-  skip-src-address: ['rule-set:private_ip']
-  skip-dst-address: ['rule-set:private_ip']
-proxies: [{ name: dns-hijack, type: dns }]
 zl: &zl { type: select, proxies: [DIRECT,PROXY,国外|SMART,香港|SMART,台湾|SMART,新加坡|SMART,日本|SMART,美国|SMART], include-all-providers: true }
 dl: &dl { type: select, proxies: [PROXY,DIRECT,国外|SMART,香港|SMART,台湾|SMART,新加坡|SMART,日本|SMART,美国|SMART], include-all-providers: true }
 smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
