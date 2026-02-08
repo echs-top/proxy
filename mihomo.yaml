@@ -75,7 +75,7 @@ etag-support: true
 # external-ui-url: 'https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 geodata-loader: standard
 profile: { store-selected: true, store-fake-ip: true }
-experimental: { quic-go-disable-gso: true }
+# experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 port: 0
 socks-port: 0
 mixed-port: 0
@@ -161,8 +161,6 @@ rules:
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
 hosts:
-  localhost: 127.0.0.1
-  ip6-localhost: ::1
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
   dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
@@ -174,13 +172,13 @@ dns:
   ipv6: true
   prefer-h3: true
   use-hosts: true
-  use-system-hosts: false
+  use-system-hosts: true
   respect-rules: false
   # listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  fake-ip-ttl: 2
+  # fake-ip-ttl: 5
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads,fake-ip
