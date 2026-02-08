@@ -14,7 +14,6 @@ dns-all: &dns-all
   nameserver-policy:
     'rule-set:AWAvenue-Ads': [rcode://name_error]
     'rule-set:private': *direct-dns
-    'rule-set:direct_domain': *direct-dns
     'rule-set:googlefcm': *direct-dns
     'rule-set:bilibili': *direct-dns
     'rule-set:telegram': *proxy-dns
@@ -28,6 +27,7 @@ dns-all: &dns-all
     'rule-set:apple-cn': *direct-dns
     'rule-set:microsoft-cn': *direct-dns
     'rule-set:games-cn': *direct-dns
+    'rule-set:direct_domain': *direct-dns
     'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
   nameserver: *proxy-dns
@@ -94,7 +94,6 @@ rule-providers:
   AWAvenue-Ads: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/AWAvenue-Ads_domain.mrs', path: ./rules/AWAvenue-Ads.mrs }
   private: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
   connectivity-check: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/connectivity-check.mrs', path: ./rules/connectivity-check.mrs }
-  direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
   googlefcm: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs', path: ./rules/googlefcm.mrs }
   bilibili: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/bilibili.mrs', path: ./rules/bilibili.mrs }
   telegram: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
@@ -108,22 +107,22 @@ rule-providers:
   apple-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
   microsoft-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
   games-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
+  direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
   proxy: { <<: [*domain,*proxy], path: ./rules/proxy.mrs }
   cn: { <<: [*domain,*cn], path: ./rules/cn.mrs }
-  direct_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
   telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
   facebook_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs', path: ./rules/facebook_ip.mrs }
   twitter_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs', path: ./rules/twitter_ip.mrs }
   netflix_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs', path: ./rules/netflix_ip.mrs }
   google_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs', path: ./rules/google_ip.mrs }
   enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
+  direct_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs', path: ./rules/cn_ip.mrs }
 rules:
   - DST-PORT,5228-5230,FCM
   - RULE-SET,private_ip,DIRECT,no-resolve
   - RULE-SET,AWAvenue-Ads,REJECT
   - RULE-SET,private,DIRECT
-  - RULE-SET,direct_domain,DIRECT
   - RULE-SET,googlefcm,FCM
   - RULE-SET,bilibili,BILIBILI
   - RULE-SET,telegram,TELEGRAM
@@ -137,15 +136,16 @@ rules:
   - RULE-SET,apple-cn,DIRECT
   - RULE-SET,microsoft-cn,DIRECT
   - RULE-SET,games-cn,DIRECT
+  - RULE-SET,direct_domain,DIRECT
   - RULE-SET,proxy,PROXY
   - RULE-SET,cn,DIRECT
-  - RULE-SET,direct_ip,DIRECT
   - RULE-SET,telegram_ip,TELEGRAM
   - RULE-SET,facebook_ip,META
   - RULE-SET,twitter_ip,TWITTER
   - RULE-SET,netflix_ip,NETFLIX
   - RULE-SET,google_ip,GOOGLE
   - RULE-SET,enhanced-FaaS-in-China_ip,DIRECT
+  - RULE-SET,direct_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,PROXY
 sniffer: 
@@ -184,7 +184,6 @@ dns:
     - RULE-SET,AWAvenue-Ads,fake-ip
     - RULE-SET,private,real-ip
     - RULE-SET,connectivity-check,real-ip
-    - RULE-SET,direct_domain,real-ip
     - RULE-SET,googlefcm,fake-ip
     - RULE-SET,bilibili,fake-ip
     - RULE-SET,telegram,fake-ip
@@ -198,6 +197,7 @@ dns:
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,games-cn,real-ip
+    - RULE-SET,direct_domain,real-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
