@@ -69,8 +69,8 @@ keep-alive-interval: 15
 keep-alive-idle: 300
 etag-support: true
 # global-ua: 'Mozilla/5.0 (Linux; Android 16; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.7559.109 Mobile Safari/537.36'
-external-controller: 127.0.0.1:9090
-secret: 'echs'
+# external-controller: 127.0.0.1:9090
+# secret: '密码'
 # external-ui: ./zashboard
 # external-ui-url: 'https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 geodata-loader: standard
