@@ -1,53 +1,14 @@
 # update: 2026-02-09
 # 简介: https://github.com/echs-top/proxy
 providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.4"] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外' }
-cn-lite: &cn-lite { url: 'https://static-file-global.353355.xyz/rules/cn-additional-list.mrs' }
-cn-all: &cn-all { url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs' }
-gfw: &gfw { url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/gfw.mrs' }
-all: &all { url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs' }
-direct-dns: &direct-dns ['https://dns.alidns.com/dns-query#DIRECT','https://doh.pub/dns-query#DIRECT&h3=false']
-proxy-dns: &proxy-dns ['https://dns.google/dns-query#PROXYDNS','https://dns.quad9.net/dns-query#PROXYDNS']
-dns-lite: &dns-lite
-  nameserver: *direct-dns
-dns-all: &dns-all
-  proxy-server-nameserver: *direct-dns
-  nameserver-policy:
-    'rule-set:AWAvenue-Ads': [rcode://name_error]
-    'rule-set:private': *direct-dns
-    'rule-set:googlefcm': *direct-dns
-    'rule-set:bilibili': *direct-dns
-    'rule-set:telegram': *proxy-dns
-    'rule-set:meta': *proxy-dns
-    'rule-set:twitter': *proxy-dns
-    'rule-set:tiktok': *proxy-dns
-    'rule-set:netflix': *proxy-dns
-    'rule-set:spotify': *proxy-dns
-    'rule-set:ai': *proxy-dns
-    'rule-set:google': *proxy-dns
-    'rule-set:apple-cn': *direct-dns
-    'rule-set:microsoft-cn': *direct-dns
-    'rule-set:games-cn': *direct-dns
-    'rule-set:direct_domain': *direct-dns
-    'rule-set:proxy': *proxy-dns
-    'rule-set:cn': *direct-dns
-  nameserver: *proxy-dns
-  direct-nameserver: *direct-dns
-  direct-nameserver-follow-policy: true
-
-
-# 设置区
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
   link3: { <<: *providers, url: '订阅链接3', path: ./providers/link3.yaml }
 # 地区分组
 use: &use { use: [link1,link2] }
-# 直连规则：cn-lite/cn-all 分应用代理选lite，全局tun选all
-cn: &cn { <<: *cn-lite }
-# 代理规则：gfw/all 推荐同上，轻量选gfw，全局tun选all
-proxy: &proxy { <<: *gfw }
-# dns方案: dns-lite/dns-all 不在乎DNS分流用dns-lite
-scheme: &scheme { <<: *dns-all }
+
+
 
 
 ipv6: true
@@ -114,8 +75,8 @@ rule-providers:
   microsoft-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
   games-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
-  proxy: { <<: [*domain,*proxy], path: ./rules/proxy.mrs }
-  cn: { <<: [*domain,*cn], path: ./rules/cn.mrs }
+  proxy: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs', path: ./rules/proxy.mrs }
+  cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
   telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
   facebook_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs', path: ./rules/facebook_ip.mrs }
   twitter_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs', path: ./rules/twitter_ip.mrs }
@@ -172,6 +133,8 @@ hosts:
   dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
   dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
   services.googleapis.cn: services.googleapis.com
+direct-dns: &direct-dns ['https://dns.alidns.com/dns-query#DIRECT','https://doh.pub/dns-query#DIRECT&h3=false']
+proxy-dns: &proxy-dns ['https://dns.google/dns-query#PROXYDNS','https://dns.quad9.net/dns-query#PROXYDNS']
 dns: 
   enable: true
   cache-algorithm: arc
@@ -208,7 +171,29 @@ dns:
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
   default-nameserver: [223.5.5.5,119.29.29.29]
-  <<: *scheme
+  proxy-server-nameserver: *direct-dns
+  nameserver-policy:
+    'rule-set:AWAvenue-Ads': [rcode://name_error]
+    'rule-set:private': *direct-dns
+    'rule-set:googlefcm': *direct-dns
+    'rule-set:bilibili': *direct-dns
+    'rule-set:telegram': *proxy-dns
+    'rule-set:meta': *proxy-dns
+    'rule-set:twitter': *proxy-dns
+    'rule-set:tiktok': *proxy-dns
+    'rule-set:netflix': *proxy-dns
+    'rule-set:spotify': *proxy-dns
+    'rule-set:ai': *proxy-dns
+    'rule-set:google': *proxy-dns
+    'rule-set:apple-cn': *direct-dns
+    'rule-set:microsoft-cn': *direct-dns
+    'rule-set:games-cn': *direct-dns
+    'rule-set:direct_domain': *direct-dns
+    'rule-set:proxy': *proxy-dns
+    'rule-set:cn': *direct-dns
+  nameserver: *proxy-dns
+  direct-nameserver: *direct-dns
+  direct-nameserver-follow-policy: true
 zl: &zl { type: select, proxies: [DIRECT,PROXY,国外|SMART,香港|SMART,台湾|SMART,新加坡|SMART,日本|SMART,美国|SMART], include-all-providers: true }
 dl: &dl { type: select, proxies: [PROXY,DIRECT,国外|SMART,香港|SMART,台湾|SMART,新加坡|SMART,日本|SMART,美国|SMART], include-all-providers: true }
 smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
