@@ -41,7 +41,7 @@ jobs:
                   r = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
                   r.raise_for_status()
                   if is_yaml:
-                      # YAML 匹配: - "+.baidu.com"
+                      # YAML 匹配: - "+.baidu.com" 或 - "baidu.com"
                       return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', r.text, re.MULTILINE)
                   # TEXT 匹配: 纯域名行
                   return [l.strip() for l in r.text.splitlines() if l.strip() and not l.startswith(('#', '//'))]
@@ -52,8 +52,9 @@ jobs:
           # 1. 下载资源
           s1 = get_data("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
           s2 = get_data("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list", False)
+          s3 = get_data("https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Domain.yaml", True)
           
-          raw_items = list(set(s1 + s2))
+          raw_items = list(set(s1 + s2 + s3))
           if not raw_items:
               print("LOG: No data found. Exiting.")
               exit(0)
@@ -65,7 +66,6 @@ jobs:
               return d.lstrip('+').lstrip('.')
 
           # 核心技巧：将域名倒序排序 (com.baidu.www) 
-          # 这样父域名 (baidu.com) 必然出现在所有子域名 (www.baidu.com) 的紧邻上方
           sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
 
           final_list = []
@@ -82,7 +82,7 @@ jobs:
 
           print(f"LOG: Final items: {len(final_list)}")
 
-          # 3. 写入文件 (修正文件名为 cn_domain.list)
+          # 3. 写入文件
           out_file = 'rules/list/cn_domain.list'
           os.makedirs(os.path.dirname(out_file), exist_ok=True)
           with open(out_file, 'w', encoding='utf-8') as f:
