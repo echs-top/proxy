@@ -51,7 +51,7 @@ jobs:
 
           # 1. 下载资源
           s1 = get_data("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
-          s2 = get_data("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.list", False)
+          s2 = get_data("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list", False)
           
           raw_items = list(set(s1 + s2))
           if not raw_items:
