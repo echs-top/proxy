@@ -1,0 +1,87 @@
+name: Update dnsmasq-china-list Rules
+
+on:
+  schedule:
+    # 每天北京时间 3:20 (UTC 19:20)
+    - cron: '20 19 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Cache Pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-requests
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Download and Process Rules
+        run: |
+          python << 'EOF'
+          import requests
+          import re
+          import os
+
+          def clean_domain(d):
+              return d.lstrip('+').lstrip('.')
+
+          source_url = "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf"
+          
+          try:
+              r = requests.get(source_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+              r.raise_for_status()
+              domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
+              raw_items = [f"+.{d}" for d in domains]
+          except Exception as e:
+              print(f"LOG: Error: {e}")
+              exit(1)
+
+          # 内部逻辑去重与合并
+          sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
+          final_list = []
+          last_kept_clean = None
+          
+          for item in sorted_items:
+              current_clean = clean_domain(item)
+              if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
+                  continue
+              else:
+                  final_list.append(item)
+                  last_kept_clean = current_clean
+
+          # 写入新文件 dnsmasq-china.list
+          out_file = 'rules/list/dnsmasq-china.list'
+          os.makedirs(os.path.dirname(out_file), exist_ok=True)
+          with open(out_file, 'w', encoding='utf-8') as f:
+              for line in sorted(final_list):
+                  f.write(f"{line}\n")
+          
+          print(f"LOG: Saved to {out_file}")
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          # 仅针对新文件进行添加
+          git add rules/list/dnsmasq-china.list
+          
+          if git diff --staged --quiet; then
+            echo "No changes detected."
+          else
+            git commit -m "Update dnsmasq-china.list $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
