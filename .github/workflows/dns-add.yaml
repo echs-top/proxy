@@ -98,7 +98,7 @@ jobs:
           print(f"LOG: Final items after hierarchical deduplication: {len(final_list)}")
 
           # 4. 写入文件
-          out_file = 'rules/list/dns-add_admin.list'
+          out_file = 'rules/list/dns-add_domain.list'
           os.makedirs(os.path.dirname(out_file), exist_ok=True)
           with open(out_file, 'w', encoding='utf-8') as f:
               for line in sorted(final_list):
@@ -110,7 +110,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add rules/list/dns-add_admin.list
+          git add rules/list/dns-add_domain.list
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
