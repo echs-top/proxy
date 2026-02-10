@@ -1,4 +1,4 @@
-name: Update DNS Add Admin Rules
+name: Update DNS Add Domain Rules
 
 on:
   schedule:
