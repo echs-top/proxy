@@ -62,8 +62,8 @@ jobs:
                   final_list.append(item)
                   last_kept_clean = current_clean
 
-          # 写入新文件 dnsmasq-china.list
-          out_file = 'rules/list/dnsmasq-china.list'
+          # 写入新文件 dnsmasq-china_domain.list
+          out_file = 'rules/list/dnsmasq-china_domain.list'
           os.makedirs(os.path.dirname(out_file), exist_ok=True)
           with open(out_file, 'w', encoding='utf-8') as f:
               for line in sorted(final_list):
@@ -77,11 +77,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           # 仅针对新文件进行添加
-          git add rules/list/dnsmasq-china.list
+          git add rules/list/dnsmasq-china_domain.list
           
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Update dnsmasq-china.list $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Update dnsmasq-china_domain.list $(date +'%Y-%m-%d %H:%M')"
             git push
           fi
