@@ -1,0 +1,14 @@
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+    - link1
+    - link2
+    - link3
+    - SOS.CMLiussss
+    - s.soo.cloudns.org
+    - gist-chinabox
+    - solace.3eye3.eu.org
+    - FreeNodes
+    - 2b3.soo.cloudns.nz
+    - local-subs
