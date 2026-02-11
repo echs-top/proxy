@@ -49,12 +49,11 @@ jobs:
                   print(f"LOG: Skip {url} due to error: {e}")
                   return []
 
-          # 1. 下载资源
+          # 1. 下载资源 (已移除 blackmatrix7 源)
           s1 = get_data("https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml", True)
           s2 = get_data("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list", False)
-          s3 = get_data("https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Domain.yaml", True)
           
-          raw_items = list(set(s1 + s2 + s3))
+          raw_items = list(set(s1 + s2))
           if not raw_items:
               print("LOG: No data found. Exiting.")
               exit(0)
