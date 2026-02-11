@@ -11,4 +11,3 @@ proxy-groups:
     - solace.3eye3.eu.org
     - FreeNodes
     - 2b3.soo.cloudns.nz
-    - local-subs
