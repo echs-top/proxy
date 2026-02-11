@@ -22,8 +22,3 @@ proxy-providers:
   2b3.soo.cloudns.nz:
     <<: *providers
     url: "https://2b3.soo.cloudns.nz/sub/66a0719f-c252-42e6-b89f-77c707b7449a"
-
-  # 本地自有订阅（通常放付费节点）
-  local-subs:
-    <<: *providers
-    url: "http://192.168.1.94:8299/ey1qMd2DRL9n2V5Zn24l/download/sub?target=ClashMeta"
