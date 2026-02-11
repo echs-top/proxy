@@ -1,6 +1,6 @@
 # update: 2026-02-11
 # 简介: https://github.com/echs-top/proxy
-providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.4"] }, health-check: { enable: true, url: 'https://8.8.8.8/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外' }
+providers: &providers { type: http, interval: 86400, proxy: DIRECT, header: { User-Agent: ["clash-verge/v2.4.4"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -20,8 +20,8 @@ unified-delay: true
 tcp-concurrent: true
 find-process-mode: off
 disable-keep-alive: false
-keep-alive-interval: 15
-keep-alive-idle: 300
+keep-alive-interval: 30
+keep-alive-idle: 600
 etag-support: true
 # global-ua: 'Mozilla/5.0 (Linux; Android 16; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.7559.109 Mobile Safari/537.36'
 # external-controller: 127.0.0.1:9090
@@ -119,7 +119,7 @@ rules:
   - MATCH,PROXY
 sniffer: 
   enable: true
-  force-dns-mapping: false
+  force-dns-mapping: true
   parse-pure-ip: true
   override-destination: false
   sniff:
@@ -149,7 +149,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  # fake-ip-ttl: 5
+  # fake-ip-ttl: 3
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads,fake-ip
