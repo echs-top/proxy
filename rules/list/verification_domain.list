@@ -1,0 +1,14 @@
+# Cloudflare
+challenges.cloudflare.com
+turnstile.cloudflare.com
+ctp.cloudflare.com
+
+# reCAPTCHA
++.recaptcha.net
+recaptcha.google.com
+
+# hCaptcha
++.hcaptcha.com
+
+# Amazon Captcha
++.awswaf.com
