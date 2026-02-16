@@ -1,2 +1,4 @@
-dns.google
-dns.quad9.net
+# google
++.google.*
++.googleapis.cn
++.gstatic.cn
