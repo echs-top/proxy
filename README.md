@@ -1,3 +1,5 @@
+*注：已经用mihomo_smart快半年了感觉还可以，我是裸核不在乎多出的占用(反正再多也不会超过150MB)，我更在乎体验(主要是穷，舍不得用专线，只能在模板上下功夫了)。另外我的想法让两个模板差异逐渐扩大不好维护，遂停止mihomo.yaml更新*
+
 ### 模板
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)(停止更新)
