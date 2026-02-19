@@ -1,6 +1,8 @@
 ### 模板
 
-[mihomo.yaml(停更)](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
+[mihomo.yaml(停更)](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)
+
+[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
 ### 备注
 
