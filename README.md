@@ -24,4 +24,3 @@ FCM hosts规则推荐: [Mice-Tailor-Infra/fcm-hosts-next](https://github.com/Mic
 
 **Windows**:
 [minihomo(裸核)](https://github.com/bestruirui/minihomo)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)
-[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
