@@ -20,7 +20,7 @@ FCM hosts规则推荐: [Mice-Tailor-Infra/fcm-hosts-next](https://github.com/Mic
 
 **Android**:
 [Box(magisk)](https://github.com/boxproxy/box)
-[LiClash](https://t.me/appshub_channel)
+[Flyclash](https://github.com/GtxFury/FlyClash-Android)
 
 **Windows**:
 [minihomo(裸核)](https://github.com/bestruirui/minihomo)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)
