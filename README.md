@@ -1,10 +1,6 @@
-### 注意
-
-已停止mihomo.yaml更新(我自己不用啊，维护起来挺麻烦的)，专注于mihomo_smart.yaml
-
 ### 模板
 
-[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
+[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)(已停更)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
 ### 备注
 
