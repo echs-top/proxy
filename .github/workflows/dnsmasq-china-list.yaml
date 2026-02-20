@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 确保能获取到本地文件
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -38,86 +40,76 @@ jobs:
           def clean_domain(d):
               return d.lstrip('+').lstrip('.')
 
-          # 1. 下载并处理 dnsmasq-china-list 原始数据
+          # 1. 下载 dnsmasq-china 数据
           source_url = "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf"
           try:
+              print(f"LOG: Fetching {source_url}")
               r = requests.get(source_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
               r.raise_for_status()
               domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
-              # 格式化为 +. 格式
-              raw_items = [f"+.{d}" for d in domains]
+              dnsmasq_raw = [f"+.{d}" for d in domains]
           except Exception as e:
-              print(f"LOG: Error: {e}")
+              print(f"LOG: Error fetching source: {e}")
               exit(1)
 
-          # --- 2. 内部去重合并逻辑 (完全参考你给的 Update CN Rules 算法) ---
-          # 核心技巧：倒序排序
+          # 2. 读取已有的 cn_domain.list 用于排除
+          cn_domain_path = 'rules/list/cn_domain.list'
+          excluded_domains = set()
+          if os.path.exists(cn_domain_path):
+              with open(cn_domain_path, 'r', encoding='utf-8') as f:
+                  # 清洗并存储已有的域名，方便对比
+                  excluded_domains = {clean_domain(line.strip()) for line in f if line.strip()}
+              print(f"LOG: Loaded {len(excluded_domains)} domains for exclusion from {cn_domain_path}")
+          else:
+              print(f"LOG: {cn_domain_path} not found, skipping exclusion.")
+
+          # 3. 排除逻辑：如果 dnsmasq 中的域名已存在于 cn_domain.list 中，则剔除
+          # 注意：这里只做精确匹配排除，不做子域名包含排除（为了安全和完整性）
+          raw_items = [d for d in dnsmasq_raw if clean_domain(d) not in excluded_domains]
+          print(f"LOG: Items after exclusion: {len(raw_items)}")
+
+          # 4. 内部逻辑去重与合并 (子域名压缩算法)
           sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
-          final_full_list = []
+          final_list = []
           last_kept_clean = None
           
           for item in sorted_items:
               current_clean = clean_domain(item)
+              # 如果当前域名是上一个保留域名的子项，则跳过
               if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
                   continue
               else:
-                  final_full_list.append(item)
+                  final_list.append(item)
                   last_kept_clean = current_clean
 
-          # 保存全量文件 dnsmasq-china_domain.list
-          out_dir = 'rules/list'
-          os.makedirs(out_dir, exist_ok=True)
-          full_file = os.path.join(out_dir, 'dnsmasq-china_domain.list')
-          with open(full_file, 'w', encoding='utf-8') as f:
-              for line in sorted(final_full_list):
-                  f.write(f"{line}\n")
-
-          # --- 3. 新增：对比排除 cn_domain.list 中已有的条目 ---
-          cn_file = os.path.join(out_dir, 'cn_domain.list')
-          add_file = os.path.join(out_dir, 'dnsmasq-china-add_domain.list')
+          # 5. 写入两个文件
+          os.makedirs('rules/list', exist_ok=True)
           
-          if os.path.exists(cn_file):
-              # 读取 cn_domain.list 里的现有域名
-              with open(cn_file, 'r', encoding='utf-8') as f:
-                  cn_cleans = [clean_domain(l.strip()) for l in f if l.strip() and not l.startswith(('#', '//'))]
-              
-              final_add_list = []
-              for item in final_full_list:
-                  current_clean = clean_domain(item)
-                  # 如果当前域名在 cn_domain.list 中已存在，或者是其子域名，则排除
-                  # 这里的逻辑与参考代码的“去重”逻辑异曲同工
-                  is_redundant = False
-                  for cn in cn_cleans:
-                      if current_clean == cn or current_clean.endswith('.' + cn):
-                          is_redundant = True
-                          break
-                  if not is_redundant:
-                      final_add_list.append(item)
-              
-              with open(add_file, 'w', encoding='utf-8') as f:
-                  for line in sorted(final_add_list):
-                      f.write(f"{line}\n")
-              print(f"LOG: Saved additional list to {add_file}")
-          else:
-              # 如果 cn_domain.list 不存在，则 add 文件和 full 文件一致
-              with open(add_file, 'w', encoding='utf-8') as f:
-                  for line in sorted(final_full_list):
-                      f.write(f"{line}\n")
-              print(f"LOG: cn_domain.list not found, add_file is copy of full.")
+          # 文件 A: 原始全量处理后的 dnsmasq-china_domain.list
+          # (如果你不需要这个文件了，可以删掉这部分)
+          # with open('rules/list/dnsmasq-china_domain.list', 'w', encoding='utf-8') as f:
+          #     for line in sorted(final_list):
+          #         f.write(f"{line}\n")
+
+          # 文件 B: 排除后的增量表 dnsmasq-china-add_domain.list
+          add_file = 'rules/list/dnsmasq-china-add_domain.list'
+          with open(add_file, 'w', encoding='utf-8') as f:
+              for line in sorted(final_list):
+                  f.write(f"{line}\n")
+          
+          print(f"LOG: Saved to {add_file}. Final count: {len(final_list)}")
           EOF
 
       - name: Commit and Push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          # 明确上传两个生成的列表到 rules/list 目录
-          git add rules/list/dnsmasq-china_domain.list
+          # 添加新生成的文件
           git add rules/list/dnsmasq-china-add_domain.list
           
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Update dnsmasq-china lists $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Update dnsmasq-china-add_domain.list $(date +'%Y-%m-%d %H:%M')"
             git push
           fi
