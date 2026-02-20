@@ -1,4 +1,4 @@
-# update: 2026-02-20
+# update: 2026-02-21
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -34,10 +34,10 @@ etag-support: true
 # secret: '密码'
 # external-ui: ./zashboard
 # external-ui-url: 'https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-geodata-loader: standard
-geo-auto-update: true
-geo-update-interval: 24
-geox-url: { asn: "https://cdn.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb" }
+# geodata-loader: standard
+# geo-auto-update: true
+# geo-update-interval: 24
+# geox-url: { asn: "https://cdn.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb" }
 lgbm-auto-update: true
 lgbm-update-interval: 24
 lgbm-url: 'https://cdn.gh-proxy.org/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin'
@@ -69,11 +69,12 @@ rule-providers:
   private: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
   fcm: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/fcm_domain.mrs', path: ./rules/fcm.mrs }
   ai: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs', path: ./rules/ai.mrs }
-  # apple-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
+  google-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.mrs', path: ./rules/google-cn.mrs }
+  apple-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
   microsoft-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
   games-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
-  proxy_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/proxy_domain.mrs', path: ./rules/proxy_domain.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
+  proxy: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs', path: ./rules/proxy.mrs }
   cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
   dnsmasq-china-add: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/dnsmasq-china-add_domain.mrs', path: ./rules/dnsmasq-china-add.mrs }
   telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
@@ -87,11 +88,12 @@ rules:
   - RULE-SET,private,直接连接
   - RULE-SET,fcm,FCM推送
   - RULE-SET,ai,国外AI
-  # - RULE-SET,apple-cn,直接连接
+  - RULE-SET,google-cn,直接连接
+  - RULE-SET,apple-cn,直接连接
   - RULE-SET,microsoft-cn,直接连接
   - RULE-SET,games-cn,直接连接
-  - RULE-SET,proxy_domain,代理连接
   - RULE-SET,direct_domain,直接连接
+  - RULE-SET,proxy,代理连接
   - RULE-SET,cn,直接连接
   - RULE-SET,telegram_ip,TELEGRAM
   - RULE-SET,enhanced-FaaS-in-China_ip,直接连接
@@ -137,11 +139,12 @@ dns:
     - RULE-SET,private,real-ip
     - RULE-SET,fcm,fake-ip
     - RULE-SET,ai,fake-ip
-    # - RULE-SET,apple-cn,real-ip
+    - RULE-SET,google-cn,real-ip
+    - RULE-SET,apple-cn,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,games-cn,real-ip
-    - RULE-SET,proxy_domain,fake-ip
     - RULE-SET,direct_domain,real-ip
+    - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
   default-nameserver: [223.5.5.5,119.29.29.29]
@@ -149,35 +152,39 @@ dns:
   nameserver-policy:
     'rule-set:AWAvenue-Ads': [rcode://name_error]
     'rule-set:private': *direct-dns
-    'rule-set:fcm': *direct-dns
+    'rule-set:googlefcm': *direct-dns
     'rule-set:ai': *proxy-dns
-    # 'rule-set:apple-cn': *direct-dns
+    'rule-set:google-cn': *direct-dns
+    'rule-set:apple-cn': *direct-dns
     'rule-set:microsoft-cn': *direct-dns
     'rule-set:games-cn': *direct-dns
-    'rule-set:proxy_domain': *proxy-dns
     'rule-set:direct_domain': *direct-dns
+    'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
     'rule-set:dnsmasq-china-add': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
 proxies: [{ name: ipv4-prefer, type: direct, udp: true, ip-version: ipv4-prefer },{ name: ipv6-prefer, type: direct, udp: true, ip-version: ipv6-prefer }]
-zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,智能选择,国外|智能选择,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,美国|智能选择], include-all-providers: true }
-dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,智能选择,国外|智能选择,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,美国|智能选择], include-all-providers: true }
-smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, <<: *use, hidden: true }
+zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择], include-all-providers: true }
+dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择], include-all-providers: true }
+smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, <<: *use, hidden: true }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [最低延迟,智能选择,国外|智能选择,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,美国|智能选择], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
+  - { name: 代理连接, type: select, proxies: [最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
   - { name: 直接连接, type: select, proxies: [DIRECT,ipv4-prefer,ipv6-prefer], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp' }
   - { name: 代理DNS, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
   - { name: FCM推送, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
-  - { name: TELEGRAM, type: select, proxies: [代理连接,TG|智能选择,最低延迟,智能选择,国外|智能选择,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,美国|智能选择], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
+  - { name: TELEGRAM, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
   - { name: 国外AI, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp' }
   - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Fast.webp' }
-  - { name: 智能选择, <<: *smart, policy-priority: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇯🇵|日本|\bJP\b|\bjapan\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b:2;(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b|🇲🇴|澳门|\bMO\b|\bmacau\b|\bmacao\b|🇹🇼|台湾|\bTW\b|\btaiwan\b:1.2', icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Chained.webp' }
-  - { name: 国外|智能选择, <<: *smart, exclude-filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b|🇲🇴|澳门|\bMO\b|\bmacau\b|\bmacao\b|🇹🇼|台湾|\bTW\b|\btaiwan\b', policy-priority: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇯🇵|日本|\bJP\b|\bjapan\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b:2', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/un.svg' }
   - { name: 香港|智能选择, <<: *smart, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/hk.svg' }
   - { name: 台湾|智能选择, <<: *smart, filter: '(?i)🇹🇼|台湾|\bTW\b|\btaiwan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/tw.svg' }
   - { name: 新加坡|智能选择, <<: *smart, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/sg.svg' }
   - { name: 日本|智能选择, <<: *smart, filter: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/jp.svg' }
+  - { name: 韩国|智能选择, <<: *smart, filter: '(?i)🇰🇷|韩国|\bKR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/kr.svg' }
   - { name: 美国|智能选择, <<: *smart, filter: '(?i)🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg' }
-  - { name: TG|智能选择, <<: *smart, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b|🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
+  - { name: 加拿大|智能选择, <<: *smart, filter: '(?i)🇨🇦|加拿大|\bCA\b|\bcanada\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/ca.svg' }
+  - { name: 德国|智能选择, <<: *smart, filter: '(?i)🇩🇪|德国|\bDE\b|\bgermany\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/de.svg' }
+  - { name: 英国|智能选择, <<: *smart, filter: '(?i)🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/gb.svg' }
+  - { name: 法国|智能选择, <<: *smart, filter: '(?i)🇫🇷|法国|\bFR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/fr.svg' }
+  - { name: 荷兰|智能选择, <<: *smart, filter: '(?i)🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/nl.svg' }
