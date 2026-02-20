@@ -1,4 +1,4 @@
-# update: 2026-02-20
+# update: 2026-02-21
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -61,17 +61,17 @@ rule-providers:
   private_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs',  path: ./rules/private_ip.mrs }
   AWAvenue-Ads: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/AWAvenue-Ads_domain.mrs', path: ./rules/AWAvenue-Ads.mrs }
   private: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
-  googlefcm: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs', path: ./rules/googlefcm.mrs }
-  telegram: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
+  fcm: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/fcm_domain.mrs', path: ./rules/fcm.mrs }
   ai: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs', path: ./rules/ai.mrs }
+  google-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.mrs', path: ./rules/google-cn.mrs }
   apple-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
   microsoft-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
   games-cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
   direct_domain: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
   proxy: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs', path: ./rules/proxy.mrs }
   cn: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
-  dnsmasq-china: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/dnsmasq-china_domain.mrs', path: ./rules/dnsmasq-china.mrs }
-  telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs', path: ./rules/telegram_ip.mrs }
+  dnsmasq-china-add: { <<: *domain, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/dnsmasq-china-add_domain.mrs', path: ./rules/dnsmasq-china-add.mrs }
+  telegram_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
   enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
   direct_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://cdn.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs', path: ./rules/cn_ip.mrs }
@@ -80,9 +80,9 @@ rules:
   - RULE-SET,private_ip,直接连接,no-resolve
   - RULE-SET,AWAvenue-Ads,REJECT
   - RULE-SET,private,直接连接
-  - RULE-SET,googlefcm,FCM推送
-  - RULE-SET,telegram,TELEGRAM
+  - RULE-SET,fcm,FCM推送
   - RULE-SET,ai,国外AI
+  - RULE-SET,google-cn,直接连接
   - RULE-SET,apple-cn,直接连接
   - RULE-SET,microsoft-cn,直接连接
   - RULE-SET,games-cn,直接连接
@@ -131,9 +131,9 @@ dns:
   fake-ip-filter:
     - RULE-SET,AWAvenue-Ads,fake-ip
     - RULE-SET,private,real-ip
-    - RULE-SET,googlefcm,fake-ip
-    - RULE-SET,telegram,fake-ip
+    - RULE-SET,fcm,fake-ip
     - RULE-SET,ai,fake-ip
+    - RULE-SET,google-cn,real-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,games-cn,real-ip
@@ -147,35 +147,38 @@ dns:
     'rule-set:AWAvenue-Ads': [rcode://name_error]
     'rule-set:private': *direct-dns
     'rule-set:googlefcm': *direct-dns
-    'rule-set:telegram': *proxy-dns
     'rule-set:ai': *proxy-dns
+    'rule-set:google-cn': *direct-dns
     'rule-set:apple-cn': *direct-dns
     'rule-set:microsoft-cn': *direct-dns
     'rule-set:games-cn': *direct-dns
     'rule-set:direct_domain': *direct-dns
     'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
-    'rule-set:dnsmasq-china': *direct-dns
+    'rule-set:dnsmasq-china-add': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
 proxies: [{ name: ipv4-prefer, type: direct, udp: true, ip-version: ipv4-prefer },{ name: ipv6-prefer, type: direct, udp: true, ip-version: ipv6-prefer }]
-zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,故障转移,常用|故障转移,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,美国|故障转移], include-all-providers: true }
-dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,故障转移,常用|故障转移,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,美国|故障转移], include-all-providers: true }
+zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
+dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [最低延迟,故障转移,常用|故障转移,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,美国|故障转移], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
+  - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
   - { name: 直接连接, type: select, proxies: [DIRECT,ipv4-prefer,ipv6-prefer], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp' }
   - { name: 代理DNS, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
   - { name: FCM推送, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
-  - { name: TELEGRAM, type: select, proxies: [代理连接,TG|故障转移,最低延迟,故障转移,常用|故障转移,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,美国|故障转移], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
+  - { name: TELEGRAM, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
   - { name: 国外AI, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp' }
   - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Fast.webp' }
-  - { name: 故障转移, <<: *fall, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Signal_Light.webp' }
-  - { name: 常用|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b|🇲🇴|澳门|\bMO\b|\bmacau\b|\bmacao\b|🇹🇼|台湾|\bTW\b|\btaiwan\b|🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇯🇵|日本|\bJP\b|\bjapan\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/pc.svg' }
   - { name: 香港|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/hk.svg' }
   - { name: 台湾|故障转移, <<: *fall, filter: '(?i)🇹🇼|台湾|\bTW\b|\btaiwan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/tw.svg' }
   - { name: 新加坡|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/sg.svg' }
   - { name: 日本|故障转移, <<: *fall, filter: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/jp.svg' }
+  - { name: 韩国|故障转移, <<: *fall, filter: '(?i)🇰🇷|韩国|\bKR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/kr.svg' }
   - { name: 美国|故障转移, <<: *fall, filter: '(?i)🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg' }
-  - { name: TG|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b|🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b|🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
+  - { name: 加拿大|故障转移, <<: *fall, filter: '(?i)🇨🇦|加拿大|\bCA\b|\bcanada\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/ca.svg' }
+  - { name: 德国|故障转移, <<: *fall, filter: '(?i)🇩🇪|德国|\bDE\b|\bgermany\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/de.svg' }
+  - { name: 英国|故障转移, <<: *fall, filter: '(?i)🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/gb.svg' }
+  - { name: 法国|故障转移, <<: *fall, filter: '(?i)🇫🇷|法国|\bFR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/fr.svg' }
+  - { name: 荷兰|故障转移, <<: *fall, filter: '(?i)🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/nl.svg' }
