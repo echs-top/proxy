@@ -36,80 +36,83 @@ jobs:
           import os
 
           def clean_domain(d):
-              # 兼容处理：去除 Mihomo 可能存在的 +. 前缀或首尾空格
-              return d.strip().lstrip('+').lstrip('.')
+              return d.lstrip('+').lstrip('.')
 
-          list_dir = 'rules/list'
-          full_file = os.path.join(list_dir, 'dnsmasq-china_domain.list')
-          cn_file = os.path.join(list_dir, 'cn_domain.list')
-          add_file = os.path.join(list_dir, 'dnsmasq-china-add_domain.list')
-          
-          os.makedirs(list_dir, exist_ok=True)
+          def get_local_list(path):
+              if not os.path.exists(path):
+                  return []
+              with open(path, 'r', encoding='utf-8') as f:
+                  return [l.strip() for l in f if l.strip() and not l.startswith(('#', '//'))]
 
-          # 1. 下载 dnsmasq-china-list (FelixOnMars 源)
+          # 1. 提取 dnsmasq-china-list 原始数据
           source_url = "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf"
+          print(f"LOG: Fetching {source_url}")
           try:
               r = requests.get(source_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
               r.raise_for_status()
-              # 正则提取 server=/domain.com/114.114.114.114 中的 domain.com
+              # 使用正则匹配 server=/domain/ 中的 domain
               domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
-              # 转换为标准 Mihomo list 格式: +.domain.com
               raw_items = [f"+.{d}" for d in domains]
           except Exception as e:
-              print(f"LOG: Error fetching source: {e}")
+              print(f"LOG: Error: {e}")
               exit(1)
 
-          # --- 步骤 1: 内部去重与合并 (生成全量列表) ---
-          # 按域名后缀倒序排序，确保父域名排在子域名前面
+          # 2. 使用你参考代码中的高效去重算法 (针对 dnsmasq 列表本身去重)
+          # 核心技巧：将域名倒序排序 (com.baidu.www)
           sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
+          
           final_full_list = []
           last_kept_clean = None
-          
           for item in sorted_items:
               current_clean = clean_domain(item)
-              # 如果当前域名是上一个已保留域名的子项，则跳过
               if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
                   continue
               else:
                   final_full_list.append(item)
                   last_kept_clean = current_clean
 
-          # 保存全量文件
+          # 3. 写入全量文件 dnsmasq-china_domain.list
+          out_dir = 'rules/list'
+          os.makedirs(out_dir, exist_ok=True)
+          full_file = os.path.join(out_dir, 'dnsmasq-china_domain.list')
           with open(full_file, 'w', encoding='utf-8') as f:
               for line in sorted(final_full_list):
                   f.write(f"{line}\n")
           print(f"LOG: Saved full list to {full_file}")
 
-          # --- 步骤 2: 排除 cn_domain.list 已有的规则 ---
-          if os.path.exists(cn_file):
-              with open(cn_file, 'r', encoding='utf-8') as f:
-                  # 读取并清理对比文件的每一行
-                  cn_rules = [clean_domain(l) for l in f if l.strip() and not l.strip().startswith(('#', '//'))]
+          # 4. 排除 cn_domain.list 已有的域名逻辑
+          cn_file = os.path.join(out_dir, 'cn_domain.list')
+          add_file = os.path.join(out_dir, 'dnsmasq-china-add_domain.list')
+          
+          cn_data = get_local_list(cn_file)
+          if cn_data:
+              # 将 cn_domain.list 里的域名清理后存入 set 提高查找效率
+              # 但因为要判断子域名，依然需要遍历或使用特定的后缀匹配
+              cn_cleans = [clean_domain(x) for x in cn_data]
               
               final_add_list = []
               for item in final_full_list:
                   current_clean = clean_domain(item)
-                  
-                  # 核心逻辑：如果在 cn_domain.list 中找到了当前域名或其父域名，则排除
-                  # 例如：cn_rules 里有 'baidu.com'，那么 '+.baidu.com' 或 '+.www.baidu.com' 都会被排除
+                  # 参考去重逻辑：如果当前域名已存在于 cn_domain.list 
+                  # 或者它是 cn_domain.list 中某个域名的子域名，则排除
                   is_redundant = False
-                  for cn in cn_rules:
+                  for cn in cn_cleans:
                       if current_clean == cn or current_clean.endswith('.' + cn):
                           is_redundant = True
                           break
-                  
                   if not is_redundant:
                       final_add_list.append(item)
               
               with open(add_file, 'w', encoding='utf-8') as f:
                   for line in sorted(final_add_list):
                       f.write(f"{line}\n")
-              print(f"LOG: Saved additional list to {add_file}, filtered {len(final_full_list) - len(final_add_list)} redundant items.")
+              print(f"LOG: Saved additional list to {add_file}")
           else:
-              print(f"LOG: {cn_file} not found, add_domain.list will be identical to full list.")
+              # 如果没有 cn_domain.list，add 文件和 full 文件一致
               with open(add_file, 'w', encoding='utf-8') as f:
                   for line in sorted(final_full_list):
                       f.write(f"{line}\n")
+              print(f"LOG: {cn_file} not found, add_file is copy of full_file")
           EOF
 
       - name: Commit and Push
@@ -117,13 +120,13 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 确保将整个 rules/list 目录下的改动加入暂存区
+          # 明确添加 rules/list 目录下的两个生成的 list 文件
           git add rules/list/dnsmasq-china_domain.list
           git add rules/list/dnsmasq-china-add_domain.list
           
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Update dnsmasq-china rules (full & additional) $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Update dnsmasq-china lists $(date +'%Y-%m-%d %H:%M')"
             git push
           fi
