@@ -1,4 +1,4 @@
-# update: 2026-04-02
+# update: 2026-04-03
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -54,40 +54,43 @@ tun:
   dns-hijack: [any:53,tcp://any:53]
   # mtu: 9000
   # udp-timeout: 300
-ip: &ip { type: http, interval: 86400, proxy: GITHUB, behavior: ipcidr, format: mrs }
-domain: &domain { type: http, interval: 86400, proxy: GITHUB, behavior: domain, format: mrs }
+ip: &ip { type: http, interval: 86400, proxy: 直接连接, behavior: ipcidr, format: mrs }
+domain: &domain { type: http, interval: 86400, proxy: 直接连接, behavior: domain, format: mrs }
 rule-providers:
-  private_ip: { <<: *ip, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs',  path: ./rules/private_ip.mrs }
-  AWAvenue-Ads: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/AWAvenue-Ads_domain.mrs', path: ./rules/AWAvenue-Ads.mrs }
-  private: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
-  fcm: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/fcm_domain.mrs', path: ./rules/fcm.mrs }
-  telegram: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
-  github: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs', path: ./rules/github.mrs }
-  ai: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs', path: ./rules/ai.mrs }
-  google: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs', path: ./rules/google.mrs }
-  apple-cn: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs', path: ./rules/apple-cn.mrs }
-  microsoft-cn: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
-  games-cn: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs', path: ./rules/games-cn.mrs }
-  proxy_domain: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/proxy_domain.mrs', path: ./rules/proxy_domain.mrs }
-  direct_domain: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
-  proxy: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs', path: ./rules/proxy.mrs }
-  cn: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
-  dnsmasq-china-add: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/dnsmasq-china-add_domain.mrs', path: ./rules/dnsmasq-china-add.mrs }
-  telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
-  google_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs', path: ./rules/google_ip.mrs }
-  enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
-  proxy_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/proxy_ip.mrs', path: ./rules/proxy_ip.mrs }
-  direct_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
-  cn_ip: { <<: *ip, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs', path: ./rules/cn_ip.mrs }
+  private_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/private_ip.mrs',  path: ./rules/private_ip.mrs }
+  AWAvenue-Ads: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/AWAvenue-Ads_domain.mrs', path: ./rules/AWAvenue-Ads.mrs }
+  private: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/private.mrs', path: ./rules/private.mrs }
+  fcm: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/fcm_domain.mrs', path: ./rules/fcm.mrs }
+  ai: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/ai.mrs', path: ./rules/ai.mrs }
+  telegram: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/telegram.mrs', path: ./rules/telegram.mrs }
+  github: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/github.mrs', path: ./rules/github.mrs }
+  media: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/media.mrs', path: ./rules/media.mrs }
+  google: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/google.mrs', path: ./rules/google.mrs }
+  apple-cn: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/apple-cn.mrs', path: ./rules/apple-cn.mrs }
+  microsoft-cn: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/microsoft-cn.mrs', path: ./rules/microsoft-cn.mrs }
+  games-cn: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/games-cn.mrs', path: ./rules/games-cn.mrs }
+  proxy_domain: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/proxy_domain.mrs', path: ./rules/proxy_domain.mrs }
+  direct_domain: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/direct_domain.mrs', path: ./rules/direct_domain.mrs }
+  proxy: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/proxy.mrs', path: ./rules/proxy.mrs }
+  cn: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
+  dnsmasq-china-add: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/dnsmasq-china-add_domain.mrs', path: ./rules/dnsmasq-china-add.mrs }
+  telegram_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
+  media_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/media_ip.mrs', path: ./rules/mediaip.mrs }
+  google_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/google_ip.mrs', path: ./rules/google_ip.mrs }
+  enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
+  proxy_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/proxy_ip.mrs', path: ./rules/proxy_ip.mrs }
+  direct_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
+  cn_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/cn_ip.mrs', path: ./rules/cn_ip.mrs }
 rules:
-  - DST-PORT,5228-5230,FCM推送
+  - DST-PORT,5228-5230,直接连接
   - RULE-SET,private_ip,直接连接,no-resolve
   - RULE-SET,AWAvenue-Ads,REJECT
   - RULE-SET,private,直接连接
-  - RULE-SET,fcm,FCM推送
+  - RULE-SET,fcm,直接连接
+  - RULE-SET,ai,国外AI
   - RULE-SET,telegram,TELEGRAM
   - RULE-SET,github,GITHUB
-  - RULE-SET,ai,国外AI
+  - RULE-SET,media,国外媒体
   - RULE-SET,google,GOOGLE
   - RULE-SET,apple-cn,直接连接
   - RULE-SET,microsoft-cn,直接连接
@@ -97,6 +100,7 @@ rules:
   - RULE-SET,proxy,代理连接
   - RULE-SET,cn,直接连接
   - RULE-SET,telegram_ip,TELEGRAM
+  - RULE-SET,media_ip,国外媒体
   - RULE-SET,google_ip,GOOGLE
   - RULE-SET,enhanced-FaaS-in-China_ip,直接连接
   - RULE-SET,proxy_ip,代理连接
@@ -142,9 +146,10 @@ dns:
     - RULE-SET,AWAvenue-Ads,fake-ip
     - RULE-SET,private,real-ip
     - RULE-SET,fcm,real-ip
+    - RULE-SET,ai,fake-ip
     - RULE-SET,telegram,fake-ip
     - RULE-SET,github,fake-ip
-    - RULE-SET,ai,fake-ip
+    - RULE-SET,media,fake-ip
     - RULE-SET,google,fake-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,microsoft-cn,real-ip
@@ -160,9 +165,10 @@ dns:
     'rule-set:AWAvenue-Ads': [rcode://name_error]
     'rule-set:private': *direct-dns
     'rule-set:fcm': ['https://dns.echs.top/dns-query#直接连接']
+    'rule-set:ai': *proxy-dns
     'rule-set:telegram': *proxy-dns
     'rule-set:github': *proxy-dns
-    'rule-set:ai': *proxy-dns
+    'rule-set:media': *proxy-dns
     'rule-set:google': *proxy-dns
     'rule-set:apple-cn': *direct-dns
     'rule-set:microsoft-cn': *direct-dns
@@ -175,29 +181,29 @@ dns:
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
-proxies: [{ name: ipv4-prefer, type: direct, udp: true, ip-version: ipv4-prefer },{ name: ipv6-prefer, type: direct, udp: true, ip-version: ipv6-prefer }]
+proxies: [{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
 zl: &zl { type: select, proxies: [直接连接,代理连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
 fall: &fall { type: fallback, <<: *use, hidden: true }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Global.webp' }
-  - { name: 直接连接, type: select, proxies: [DIRECT,ipv4-prefer,ipv6-prefer], icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/DIRECT.webp' }
-  - { name: 代理DNS, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Server.webp' }
-  - { name: FCM推送, <<: *zl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/FCM_Firebase_Cloud_Messaging.webp' }
-  - { name: TELEGRAM, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Telegram.webp' }
-  - { name: GITHUB, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/GitHub.webp' }
-  - { name: 国外AI, <<: *dl, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/AI.webp' }
+  - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, icon: 'https://mihomo.echs.top/icon/Global.webp' }
+  - { name: 直接连接, type: select, proxies: [DIRECT,IPV4优先,IPV6优先,仅IPV4,仅IPV6], icon: 'https://mihomo.echs.top/icon/DIRECT.webp' }
+  - { name: 代理DNS, <<: *dl, icon: 'https://mihomo.echs.top/icon/Server.webp' }
+  - { name: 国外AI, <<: *dl, icon: 'https://mihomo.echs.top/icon/AI.webp' }
+  - { name: TELEGRAM, <<: *dl, icon: 'https://mihomo.echs.top/icon/Telegram.webp' }
+  - { name: GITHUB, <<: *dl, icon: 'https://mihomo.echs.top/icon/GitHub.webp' }
+  - { name: 国外媒体, <<: *dl, icon: 'https://mihomo.echs.top/icon/Emby.webp' }
   - { name: GOOGLE, <<: *dl, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Google.webp' }
   - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, hidden: true, icon: 'https://cdn.gh-proxy.com/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Fast.webp' }
-  - { name: 香港|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/hk.svg' }
-  - { name: 台湾|故障转移, <<: *fall, filter: '(?i)🇹🇼|台湾|\bTW\b|\btaiwan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/tw.svg' }
-  - { name: 新加坡|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/sg.svg' }
-  - { name: 日本|故障转移, <<: *fall, filter: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/jp.svg' }
-  - { name: 韩国|故障转移, <<: *fall, filter: '(?i)🇰🇷|韩国|\bKR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/kr.svg' }
-  - { name: 美国|故障转移, <<: *fall, filter: '(?i)🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg' }
-  - { name: 加拿大|故障转移, <<: *fall, filter: '(?i)🇨🇦|加拿大|\bCA\b|\bcanada\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/ca.svg' }
-  - { name: 德国|故障转移, <<: *fall, filter: '(?i)🇩🇪|德国|\bDE\b|\bgermany\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/de.svg' }
-  - { name: 英国|故障转移, <<: *fall, filter: '(?i)🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/gb.svg' }
-  - { name: 法国|故障转移, <<: *fall, filter: '(?i)🇫🇷|法国|\bFR\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/fr.svg' }
-  - { name: 荷兰|故障转移, <<: *fall, filter: '(?i)🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/nl.svg' }
-  # - { name: GLOBAL, type: select, proxies: [代理连接,直接连接,代理DNS,FCM推送,TELEGRAM,GITHUB,国外AI,GOOGLE,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, hidden: true, icon: 'https://cdn.gh-proxy.org/https://raw.githubusercontent.com/echs-top/proxy/main/icon/Globefish.webp' }
+  - { name: 香港|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\bHK\b|\bhongkong\b|\bhong\s?kong\b', icon: 'https://mihomo.echs.top/flags/hk.svg' }
+  - { name: 台湾|故障转移, <<: *fall, filter: '(?i)🇹🇼|台湾|\bTW\b|\btaiwan\b', icon: 'https://mihomo.echs.top/flags/tw.svg' }
+  - { name: 新加坡|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\bSG\b|\bsingapore\b', icon: 'https://mihomo.echs.top/flags/sg.svg' }
+  - { name: 日本|故障转移, <<: *fall, filter: '(?i)🇯🇵|日本|\bJP\b|\bjapan\b', icon: 'https://mihomo.echs.top/flags/jp.svg' }
+  - { name: 韩国|故障转移, <<: *fall, filter: '(?i)🇰🇷|韩国|\bKR\b', icon: 'https://mihomo.echs.top/flags/kr.svg' }
+  - { name: 美国|故障转移, <<: *fall, filter: '(?i)🇺🇸|美国|\bUS\b|\bunitedstates\b|\bunited\s?states\b', icon: 'https://mihomo.echs.top/flags/us.svg' }
+  - { name: 加拿大|故障转移, <<: *fall, filter: '(?i)🇨🇦|加拿大|\bCA\b|\bcanada\b', icon: 'https://mihomo.echs.top/flags/ca.svg' }
+  - { name: 德国|故障转移, <<: *fall, filter: '(?i)🇩🇪|德国|\bDE\b|\bgermany\b', icon: 'https://mihomo.echs.top/flags/de.svg' }
+  - { name: 英国|故障转移, <<: *fall, filter: '(?i)🇬🇧|英国|\bUK\b|\bGB\b|\bunitedkingdom\b|\bunited\s?kingdom\b', icon: 'https://mihomo.echs.top/flags/gb.svg' }
+  - { name: 法国|故障转移, <<: *fall, filter: '(?i)🇫🇷|法国|\bFR\b', icon: 'https://mihomo.echs.top/flags/fr.svg' }
+  - { name: 荷兰|故障转移, <<: *fall, filter: '(?i)🇳🇱|荷兰|\bNL\b|\bnetherlands?\b', icon: 'https://mihomo.echs.top/flags/nl.svg' }
+  - { name: GLOBAL, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移,代理连接,直接连接,代理DNS,国外AI,TELEGRAM,GITHUB,国外媒体,GOOGLE], include-all-providers: true, hidden: true, icon: 'https://mihomo.echs.top/icon/Globefish.webp' }
