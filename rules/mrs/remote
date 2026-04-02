@@ -10,3 +10,5 @@ games-cn.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/miho
 proxy.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs
 google_ip.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
 cn_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs
+media.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs
+mediaip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/mediaip.mrs
