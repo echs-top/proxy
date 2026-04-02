@@ -1,1 +1,12 @@
-
+private_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs
+private.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs
+telegram.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+github.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs
+ai.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs
+google.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
+apple-cn.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.mrs
+microsoft-cn.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.mrs
+games-cn.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.mrs
+proxy.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs
+google_ip.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
+cn_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs
