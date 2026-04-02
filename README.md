@@ -14,9 +14,7 @@
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
-FCM hosts 推荐: [FCM Hosts Next](https://github.com/Mice-Tailor-Infra/fcm-hosts-next)
-
-GITHUB hosts 推荐: [GitHub520](https://github.com/521xueweihan/GitHub520)
+DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[腾讯公共DNS](https://www.dnspod.cn/products/publicdns)+[doh-hosts](https://github.com/echs-top/doh))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
 ### 软件
 
