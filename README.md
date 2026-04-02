@@ -14,9 +14,9 @@
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
-GITHUB加速：[gh-proxy](https://gh-proxy.com)
+FCM hosts 推荐: [FCM Hosts Next](https://github.com/Mice-Tailor-Infra/fcm-hosts-next)
 
-FCM hosts规则推荐: [Mice-Tailor-Infra/fcm-hosts-next](https://github.com/Mice-Tailor-Infra/fcm-hosts-next)
+GITHUB hosts 推荐: [GitHub520](https://github.com/521xueweihan/GitHub520)
 
 ### 软件
 
