@@ -1,4 +1,4 @@
-Name: Mihomo Rules Update
+name: Mihomo Rules Update
 
 on:
   workflow_dispatch:
