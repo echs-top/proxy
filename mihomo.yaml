@@ -75,7 +75,7 @@ rule-providers:
   cn: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/cn_domain.mrs', path: ./rules/cn.mrs }
   dnsmasq-china-add: { <<: *domain, url: 'https://mihomo.echs.top/rules/mrs/dnsmasq-china-add_domain.mrs', path: ./rules/dnsmasq-china-add.mrs }
   telegram_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/telegram_ip.mrs', path: ./rules/telegram_ip.mrs }
-  media_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/media_ip.mrs', path: ./rules/mediaip.mrs }
+  media_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/media_ip.mrs', path: ./rules/media_ip.mrs }
   google_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/google_ip.mrs', path: ./rules/google_ip.mrs }
   enhanced-FaaS-in-China_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/enhanced-FaaS-in-China_ip.mrs', path: ./rules/enhanced-FaaS-in-China_ip.mrs }
   proxy_ip: { <<: *ip, url: 'https://mihomo.echs.top/rules/mrs/proxy_ip.mrs', path: ./rules/proxy_ip.mrs }
