@@ -1,4 +1,4 @@
-name: Mihomo Rules Update
+Name: Mihomo Rules Update
 
 on:
   workflow_dispatch:
@@ -92,11 +92,14 @@ jobs:
 
           download_and_check "rules/list/remote" "rules/list"
           download_and_check "rules/yaml/remote" "rules/yaml"
+          # ✨ 新增：处理 mrs 目录的远程下载文件
+          download_and_check "rules/mrs/remote" "rules/mrs"
 
       # --- 4. 统一处理与转换 ---
       - name: 🛠️ Convert Rules to MRS
         run: |
           TEMP_DIR=$(mktemp -d)
+          # 注意：这里我们不需要添加 rules/mrs，这样就不会对直接下载的 mrs 文件进行转换操作
           TYPES=("rules/list|text" "rules/yaml|yaml")
 
           for entry in "${TYPES[@]}"; do
