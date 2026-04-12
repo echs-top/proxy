@@ -1,0 +1,6 @@
+version: "1"
+rules:
+  - base: main
+    upstream: echs-top:main    # 将“你的用户名”替换为实际的 GitHub ID
+    mergeMethod: hardreset      # 强制覆盖 fork 的修改，保持和上游完全一致
+    mergeUnstable: true
