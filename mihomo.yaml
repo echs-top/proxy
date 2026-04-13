@@ -24,7 +24,7 @@ mode: rule
 log-level: error
 unified-delay: true
 tcp-concurrent: true
-# openclash老旧yaml标准特殊修正
+# openclash旧yaml标准特殊修正
 find-process-mode: 'off'
 disable-keep-alive: false
 keep-alive-interval: 15
