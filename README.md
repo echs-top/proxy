@@ -6,6 +6,14 @@
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
+### 占用
+
+裸核运存占用：50～150MB(smart分支占用较多)
+
+MRS规则文件：约950KB(包含dns解析分流规则dnsmasq-china-add.mrs约500KB)
+
+其他：zashboard文件约10MB(默认不下载)、ASN.mmdb约11MB(默认不下载)、Model-large.bin约30MB(smart分支)
+
 ### 备注
 
 优先自用、TUN/VPN、地区策略、完善设置、严谨分流
