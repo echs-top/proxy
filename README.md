@@ -28,8 +28,8 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)
 
 ### 客户端
 
-**Android**:
-[Box(magisk)](https://github.com/boxproxy/box)(通用)、[LiClash](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart分支)
+**Android**：[Box(magisk)](https://github.com/boxproxy/box)(通用)、[LiClash](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart分支)
 
-**Windows**:
-[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+**Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+
+**OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
