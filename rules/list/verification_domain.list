@@ -1,0 +1,25 @@
+#人机验证相关
+
+# Cloudflare
+challenges.cloudflare.com
+turnstile.cloudflare.com
+ctp.cloudflare.com
+
+# reCAPTCHA
++.recaptcha.net
+recaptcha.google.com
+
+# hCaptcha
++.hcaptcha.com
+
+# Amazon Captcha
++.awswaf.com
+
+# FunCaptcha
++.arkoselabs.com
++.funcaptcha.com
++.funcaptcha.co
+
+# DataDome
++.datadome.co
++.captcha-delivery.com
