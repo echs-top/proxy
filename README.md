@@ -16,6 +16,8 @@
 
 DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[腾讯公共DNS](https://www.dnspod.cn/products/publicdns)+[doh-hosts](https://github.com/echs-top/doh))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
+UA版本参考：[chromiumdash.appspot.com/releases](https://chromiumdash.appspot.com/releases)
+
 ### 软件
 
 **Android**:
