@@ -8,7 +8,7 @@
 
 ### 占用
 
-裸核运存占用：50～150MB(smart分支占用较多)
+裸核运存占用：约50～150MB(smart分支占用较多)
 
 MRS规则文件：约950KB(包含dns解析分流规则dnsmasq-china-add.mrs约500KB)
 
