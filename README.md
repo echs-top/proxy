@@ -10,7 +10,7 @@
 
 裸核运存占用：约50～150MB(smart分支占用较多)
 
-MRS规则文件：约950KB(包含dns解析分流规则dnsmasq-china-add.mrs约500KB)
+MRS规则文件：约950KB(包含DNS解析分流规则dnsmasq-china约500KB)
 
 其他：zashboard文件约10MB(默认不下载)、ASN.mmdb约11MB(默认不下载)、Model-large.bin约30MB(smart分支)
 
