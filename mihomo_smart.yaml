@@ -120,7 +120,7 @@ rules:
   - RULE-SET,proxy_ip,代理连接
   - RULE-SET,direct_ip,直接连接
   - RULE-SET,cn_ip,直接连接
-  # 较激进的p2p/bt/tracker兜底
+  # 激进的bt/tracker兜底
   - DST-PORT,10000-65535,TRACKER
   - MATCH,代理连接
 sniffer: 
