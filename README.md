@@ -21,10 +21,7 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)
 ### 客户端
 
 **Android**:
-[Box(magisk)](https://github.com/boxproxy/box)
-[LiClash](https://t.me/appshub_channel)
-[Flyclash](https://github.com/GtxFury/FlyClash-Android)
+[Box(magisk)](https://github.com/boxproxy/box)(通用)、[LiClash](https://t.me/appshub_channel)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart分支)
 
 **Windows**:
-[minihomo(裸核)](https://github.com/bestruirui/minihomo)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)
-[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
