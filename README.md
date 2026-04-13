@@ -18,7 +18,7 @@ DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[腾讯公共DNS](https
 
 UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)
 
-### 软件
+### 客户端
 
 **Android**:
 [Box(magisk)](https://github.com/boxproxy/box)
