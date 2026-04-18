@@ -26,7 +26,7 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 
 ### 推文:
 
-[科学上网-雨夜回廊(很nice)](https://myql.eu.org/article/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91)
+[科学上网-雨夜回廊](https://myql.eu.org/article/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91)(我关注这篇文章有一年半了将近)
 
 ### 客户端
 
