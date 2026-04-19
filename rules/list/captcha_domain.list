@@ -1,9 +1,9 @@
 #人机验证相关
 
 # Cloudflare
+a.nel.cloudflare.com
 challenges.cloudflare.com
-turnstile.cloudflare.com
-ctp.cloudflare.com
+static.cloudflareinsights.com
 
 # reCAPTCHA
 +.recaptcha.net
