@@ -22,7 +22,7 @@ MRS规则：约950KB(含DNS分流规则dnsmasq-china约500KB)
 
 DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[tencentdns](https://www.dnspod.cn/products/publicdns)+[doh-hosts](https://github.com/echs-top/doh))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
-UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA汇总](https://config.net.cn/tools/UserAgent.html)
+UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)(取WebView/Stable、Windows/Extended)、[常见UA汇总](https://config.net.cn/tools/UserAgent.html)
 
 ### 推文:
 
