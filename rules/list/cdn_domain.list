@@ -18,3 +18,9 @@ update.googleapis.com
 +.fastly.io
 +.fastly.net
 +.fastlylabs.com
+
+# unpkg.com
++.unpkg.com
+
+# cdnjs
++.cdnjs.cloudflare.com
