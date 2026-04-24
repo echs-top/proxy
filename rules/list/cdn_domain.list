@@ -14,6 +14,8 @@ update.googleapis.com
 +.googleapis-cn.com
 
 # Fastly
++.fastly-edge.com
++.fastly-terrarium.com
 +.fastly.com
 +.fastly.io
 +.fastly.net
