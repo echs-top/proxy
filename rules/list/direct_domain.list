@@ -12,7 +12,29 @@
 *.sharepoint.com
 # zashboard
 +.ipip.net
+# jsdeliver
++.jsdelivr.com
++.jsdelivr.net
++.esm.run
+# Fastly
++.fastly-edge.com
++.fastly-terrarium.com
++.fastly.com
++.fastly.io
++.fastly.net
++.fastlylabs.com
+# unpkg
++.unpkg.com
+# cdnjs
++.cdnjs.cloudflare.com
++.cdnjs.com
+# jquery
++.jquery.com
+# adobe
++.adobe.com
 # 私货
 +.echs.top
 +.808yun.cn
 +.xiaobaotxt.org
+# 其他
++.css.network
