@@ -27,3 +27,9 @@ update.googleapis.com
 # cdnjs
 +.cdnjs.cloudflare.com
 +.cdnjs.com
+
+# jquery
++.jquery.com
+
+# 其他
++.css.network
