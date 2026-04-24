@@ -12,3 +12,9 @@ update.googleapis.com
 +.gstatic-cn.com
 +.googleapis.cn
 +.googleapis-cn.com
+
+# Fastly
++.fastly.com
++.fastly.io
++.fastly.net
++.fastlylabs.com
