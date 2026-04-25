@@ -12,5 +12,4 @@ google_ip.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/ge
 cn_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cnip.mrs
 media.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs
 media_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/mediaip.mrs
-fastly_ip.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/fastly.mrs
 trackerslist.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs
