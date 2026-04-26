@@ -13,3 +13,5 @@ cn_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-
 media.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs
 media_ip.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/mediaip.mrs
 trackerslist.mrs https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs
+googlefcm.mrs https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs
+
