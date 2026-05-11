@@ -23,7 +23,21 @@ jobs:
       - name: 🔍 Get Latest Mihomo Release Tag
         id: get-version
         run: |
-          LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
+          # 增加 Authorization 请求头，使用内置的 GITHUB_TOKEN 避免 API 限流
+          LATEST_TAG=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases/latest" | jq -r .tag_name)
+          
+          # 增加非空校验和预发布版兼容（如果 latest 接口返回 null，则尝试获取 releases 列表的第一个）
+          if [ "$LATEST_TAG" == "null" ] || [ -z "$LATEST_TAG" ]; then
+            echo "⚠️ 无法从 latest 接口获取版本号，尝试获取所有 Release 列表中的最新版本..."
+            LATEST_TAG=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ env.MIHOMO_OWNER }}/${{ env.MIHOMO_REPO }}/releases" | jq -r '.[0].tag_name')
+            
+            if [ "$LATEST_TAG" == "null" ] || [ -z "$LATEST_TAG" ]; then
+              echo "❌ Error: 依然无法获取最新版本号，可能 API 响应异常或网络问题。"
+              exit 1
+            fi
+          fi
+          
+          echo "✅ 成功获取最新版本号: $LATEST_TAG"
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
         
       - name: ⚙️ Setup Mihomo Cache
