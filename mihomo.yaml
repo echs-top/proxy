@@ -1,4 +1,4 @@
-# update: 2026-04-29
+# update: 2026-05-16
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -52,7 +52,7 @@ tun:
   auto-detect-interface: true
   strict-route: true
   disable-icmp-forwarding: true
-  dns-hijack: [any:53,tcp://any:53]
+  dns-hijack: [any:53,tcp://any:53,any:853,tcp://any:853]
   # mtu: 9000
   # udp-timeout: 300
   # endpoint-independent-nat: true
@@ -87,6 +87,7 @@ rule-providers:
   direct_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/direct_ip.mrs', path: ./rules/direct_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/rules/mrs/cn_ip.mrs', path: ./rules/cn_ip.mrs }
 rules:
+  - DST-PORT,53/853,DNS劫持
   - SUB-RULE,(DST-PORT,5228-5230),fcm_rules
   - DST-PORT,1337/2710/6881-6999/7777,TRACKER
   - RULE-SET,private_ip,直接连接,no-resolve
@@ -151,7 +152,7 @@ hosts:
   dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
   services.googleapis.cn: services.googleapis.com
   google.cn: google.com
-direct-dns: &direct-dns [119.29.29.29,223.5.5.5,'2402:4e00::','2400:3200::1']
+direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
 direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
 proxy-doh: &proxy-doh ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
 dns: 
@@ -188,7 +189,7 @@ dns:
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
-  # default-nameserver: [223.5.5.5,119.29.29.29]
+  # default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
   nameserver-policy:
     'rule-set:private': *direct-dns
@@ -219,10 +220,10 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:private','rule-set:AWAvenue-Ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google-cn','rule-set:google','rule-set:trackerslist','rule-set:apple-cn','rule-set:microsoft-cn','rule-set:games-cn','rule-set:proxy_domain','rule-set:direct_domain','rule-set:github','rule-set:proxy','rule-set:cn']
+  skip-domain: ['rule-set:private','rule-set:AWAvenue-Ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google-cn','rule-set:google','rule-set:trackerslist','rule-set:apple-cn','rule-set:microsoft-cn','rule-set:games-cn','rule-set:proxy_domain','rule-set:direct_domain','rule-set:github','rule-set:proxy','rule-set:cn','rule-set:dnsmasq-china-add']
   skip-src-address: ['rule-set:private_ip','rule-set:telegram_ip','rule-set:media_ip','rule-set:google_ip','rule-set:proxy_ip','rule-set:enhanced-FaaS-in-China_ip','rule-set:direct_ip','rule-set:cn_ip']
   skip-dst-address: ['rule-set:private_ip']
-proxies: [{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
+proxies: [{ name: DNS劫持, type: dns },{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
 fall: &fall { type: fallback, <<: *use, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移,PASS,REJECT], include-all-providers: true }
 proxy-groups:
