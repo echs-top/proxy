@@ -148,6 +148,7 @@ hosts:
   google.cn: google.com
 direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
 direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
+proxy-dns: &proxy-dns ['tcp://8.8.8.8#代理DNS','tcp://9.9.9.9#代理DNS','tcp://[2001:4860:4860::8888]#代理DNS','tcp://[2620:fe::fe]#代理DNS']
 proxy-doh: &proxy-doh ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
 dns: 
   enable: true
@@ -190,23 +191,23 @@ dns:
     # 'rule-set:ads': [rcode://name_error]
     'rule-set:fcm': *direct-doh
     'rule-set:captcha': *direct-doh
-    'rule-set:ai': *proxy-doh
-    'rule-set:telegram': *proxy-doh
-    'rule-set:media': *proxy-doh
+    'rule-set:ai': *proxy-dns
+    'rule-set:telegram': *proxy-dns
+    'rule-set:media': *proxy-dns
     'rule-set:google-cn': *direct-doh
-    'rule-set:google': *proxy-doh
-    'rule-set:trackerslist': *proxy-doh
+    'rule-set:google': *proxy-dns
+    'rule-set:trackerslist': *proxy-dns
     'rule-set:apple-cn': *direct-doh
     'rule-set:microsoft-cn': *direct-doh
     'rule-set:games-cn': *direct-doh
-    'rule-set:proxy_domain': *proxy-doh
+    'rule-set:proxy_domain': *proxy-dns
     'rule-set:direct_domain': *direct-doh
-    'rule-set:github': *proxy-doh
-    'rule-set:proxy': *proxy-doh
+    'rule-set:github': *proxy-dns
+    'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
     'rule-set:dnsmasq-china-add': *direct-dns
-  nameserver: *proxy-doh
-  direct-nameserver: *direct-doh
+  nameserver: *proxy-dns
+  direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
 sniffer: 
   enable: true
