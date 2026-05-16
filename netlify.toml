@@ -1,0 +1,14 @@
+# 允许全局跨域和自定义请求头
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "*"
+    Access-Control-Allow-Headers = "*"
+
+# 仅在访问主域名（根目录）时跳转到 GitHub
+[[redirects]]
+  from = "/"
+  to = "https://github.com/echs-top/proxy"
+  status = 302
+  force = true
