@@ -18,7 +18,7 @@ MRS规则：约1MB(含DNS分流规则dnsmasq-china约500KB)
 
 规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风去广告](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON/blocklist](https://pgl.yoyo.org/adservers/)合并去重)、cn_domain([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、dnsmasq-china-add_domain([dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)排除了cn_domain)、[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)、[人机验证(测试)](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、自用补充(直连[域名](https://github.com/echs-top/proxy/blob/main/rules/list/direct_domain.list) [ip](https://github.com/echs-top/proxy/blob/main/rules/list/direct_ip.list),代理[域名](https://github.com/echs-top/proxy/blob/main/rules/list/proxy_domain.list) [ip](https://github.com/echs-top/proxy/blob/main/rules/list/proxy_ip.list),[google-cn](https://github.com/echs-top/proxy/blob/main/rules/list/google-cn_domain.list))
 
-图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
+图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX) ==> [cloudflare](https://cloudflare.com)加速
 
 DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[tencentdns](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
