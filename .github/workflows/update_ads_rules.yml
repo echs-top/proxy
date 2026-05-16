@@ -2,8 +2,8 @@ name: Update Ads Rules
 
 on:
   schedule:
-    # 每天北京时间 3:30 (UTC 19:30)
-    - cron: '30 19 * * *'
+    # 每天北京时间 3:40 (UTC 19:40)
+    - cron: '40 19 * * *'
   workflow_dispatch:
 
 jobs:
@@ -41,9 +41,9 @@ jobs:
                   r = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
                   r.raise_for_status()
                   if is_yaml:
-                      # YAML 匹配: - "+.baidu.com" 或 - "baidu.com"
+                      # 提取 YAML 列表中的原始字符串，无论是否有前缀
                       return re.findall(r'^\s*-\s*[\'\"]?([^\'\"]+)[\'\"]?', r.text, re.MULTILINE)
-                  # TEXT 匹配: 纯域名行
+                  # 提取文本行
                   return [l.strip() for l in r.text.splitlines() if l.strip() and not l.startswith(('#', '//'))]
               except Exception as e:
                   print(f"LOG: Skip {url} due to error: {e}")
@@ -63,9 +63,10 @@ jobs:
 
           # 2. 高效去重算法
           def clean_domain(d):
+              # 仅在排序和父子域名比对时，临时剥离前缀
               return d.lstrip('+').lstrip('.')
 
-          # 核心技巧：将域名倒序排序 (com.baidu.www) 
+          # 按纯域名倒序排序 (如 com.baidu.www)
           sorted_items = sorted(raw_items, key=lambda x: clean_domain(x).split('.')[::-1])
 
           final_list = []
@@ -73,10 +74,11 @@ jobs:
           
           for item in sorted_items:
               current_clean = clean_domain(item)
-              # 如果当前域名是上一个保留域名的子项，则跳过
+              # 比对时使用 current_clean，判断是否属于子域名或重复项
               if last_kept_clean and (current_clean == last_kept_clean or current_clean.endswith('.' + last_kept_clean)):
                   continue
               else:
+                  # 写入时使用 item，保留源列表的原始格式（有前缀就有，没有就没有）
                   final_list.append(item)
                   last_kept_clean = current_clean
 
