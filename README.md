@@ -1,5 +1,3 @@
-![](https://mihomo.echs.top/img/icon/Settings.webp)
-
 ### 更新
 
 跟随mihomo更新调整(如无必要则不更)
