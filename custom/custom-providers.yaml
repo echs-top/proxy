@@ -1,0 +1,24 @@
+proxy-providers:
+  SOS.CMLiussss:
+    <<: *providers
+    url: "https://SOS.CMLiussss.net/auto"
+
+  s.soo.cloudns.org:
+    <<: *providers
+    url: "https://s.soo.cloudns.org/sub/a55cf6c1-df22-4530-b9be-aeb837ac33ea"
+
+  gist-chinabox:
+    <<: *providers
+    url: "https://gist.githubusercontent.com/jinlon-08/06b5015c01c4190def8a171ed61abfd4/raw/mihomo.yaml"
+
+  solace.3eye3.eu.org:
+    <<: *providers
+    url: "https://solace.3eye3.eu.org/sub?token=850bc1b97675b9b0bfd4d4489aaf25ef"
+
+  FreeNodes:
+    <<: *providers
+    url: "https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/base64.txt"
+
+  2b3.soo.cloudns.nz:
+    <<: *providers
+    url: "https://2b3.soo.cloudns.nz/sub/66a0719f-c252-42e6-b89f-77c707b7449a"
