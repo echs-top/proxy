@@ -1,5 +1,5 @@
 # Worker名称
-name = "cdn"
+name = "mihomo"
 # 入口文件路径
 main = "worker.js"
 # 日期
