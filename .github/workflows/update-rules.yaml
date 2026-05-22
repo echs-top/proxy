@@ -113,7 +113,6 @@ jobs:
       - name: 🛠️ Convert Rules to MRS
         run: |
           TEMP_DIR=$(mktemp -d)
-          # 注意：这里我们不需要添加 rules/mrs，这样就不会对直接下载的 mrs 文件进行转换操作
           TYPES=("rules/list|text" "rules/yaml|yaml")
 
           for entry in "${TYPES[@]}"; do
@@ -126,32 +125,37 @@ jobs:
               out_name="${filename%.*}"
               mrs_file="rules/mrs/${out_name}.mrs"
               
-              # 策略判断：
-              # 1. 如果在 updated_files.txt 中（远程更新）
-              # 2. 如果文件比已有的 mrs 新（本地更新）
-              # 3. 如果 mrs 文件不存在
               IS_REMOTE_UPDATED=$(grep -q "^$filename$" updated_files.txt && echo "true" || echo "false")
-              INPUT_TIME=$(git log -1 --format=%at -- "$file" 2>/dev/null || stat -c %Y "$file")
-              MRS_TIME=$(git log -1 --format=%at -- "$mrs_file" 2>/dev/null || echo 0)
+              
+              # 保留时间修复：显式判断空变量，防止老脚本的 -gt 语法报错
+              INPUT_TIME=$(git log -1 --format=%at -- "$file" 2>/dev/null)
+              if [ -z "$INPUT_TIME" ]; then
+                INPUT_TIME=$(stat -c %Y "$file" 2>/dev/null || echo 0)
+              fi
+
+              MRS_TIME=$(git log -1 --format=%at -- "$mrs_file" 2>/dev/null)
+              if [ -z "$MRS_TIME" ]; then
+                MRS_TIME=$(stat -c %Y "$mrs_file" 2>/dev/null || echo 0)
+              fi
 
               if [ "$IS_REMOTE_UPDATED" == "true" ] || [ "$INPUT_TIME" -gt "$MRS_TIME" ] || [ ! -f "$mrs_file" ]; then
-                # 判定规则行为
                 [[ "$filename" == *"_domain"* ]] && BEHAVIOR="domain" || BEHAVIOR="ipcidr"
                 [ "$filename" == "$out_name" ] && BEHAVIOR="domain" # 兜底
 
                 echo "🛠️ Converting: $filename (Reason: $( [ "$IS_REMOTE_UPDATED" == "true" ] && echo "Remote Updated" || echo "Local/Missing" ))"
                 
-                # 去注释处理
                 temp_clean="${TEMP_DIR}/clean_input"
                 grep -v '^[[:space:]]*#' "$file" | sed 's/[[:space:]]*#.*$//' | grep -v '^[[:space:]]*$' > "$temp_clean"
 
                 if [ -s "$temp_clean" ]; then
-                  /usr/local/bin/mihomo convert-ruleset "$BEHAVIOR" "$FORMAT" "$temp_clean" "$mrs_file"
+                  # 💥 移除保护：一旦 mihomo 转换失败，立即 exit 1 终止脚本，Action 变红并向你发送通知
+                  /usr/local/bin/mihomo convert-ruleset "$BEHAVIOR" "$FORMAT" "$temp_clean" "$mrs_file" || exit 1
                 fi
               fi
             done
           done
           rm -rf "$TEMP_DIR"
+
 
       # --- 5. 保存哈希缓存与提交更改 ---
       - name: 💾 Save Remote Hashes Cache
