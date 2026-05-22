@@ -1,8 +1,8 @@
 name: Update Enhanced FaaS IPs
 
 on:
-  schedule:
-    - cron: '0 19 * * *' # 国际标准时间 19:00 = 北京时间 03:00
+  # schedule:
+    # - cron: '0 19 * * *' # 国际标准时间 19:00 = 北京时间 03:00
   workflow_dispatch:      # 允许手动触发
 
 jobs:
