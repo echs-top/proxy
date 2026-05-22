@@ -1,4 +1,4 @@
-> 临时通知：enhanced-FaaS-in-China项目已出问题…………
+> 临时通知：enhanced-FaaS-in-China项目已出问题…………影响图片加速和enhanced-FaaS-in-China规则
 
 ### 更新
 
