@@ -51,7 +51,7 @@ jobs:
 
           # 1. 下载广告过滤资源
           s1 = get_data("https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml", True)
-          s2 = get_data("https://pgl.yoyo.org/adservers/serverlist.php?hostformat=plain&showintro=0", False)
+          s2 = get_data("https://pgl.yoyo.org/adservers/serverlist.php?hostformat=plain&showintro=0&mimetype=plaintext", False)
           s3 = get_data("https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml", True)
           
           raw_items = list(set(s1 + s2 + s3))
