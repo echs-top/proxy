@@ -1,0 +1,104 @@
+name: update-add-rules
+
+on:
+  schedule:
+    # 每天北京时间 1:30 (UTC 17:30)
+    - cron: '30 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 确保能获取到本地文件
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Cache Pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-requests
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Download and Process Rules
+        run: |
+          python << 'EOF'
+          import requests
+          import re
+          import os
+
+          # ==========================================
+          # 1. 任务一：下载并处理 dnsmasq-china 数据
+          # ==========================================
+          dnsmasq_url = "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf"
+          try:
+              print(f"LOG: Fetching {dnsmasq_url}")
+              r = requests.get(dnsmasq_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+              r.raise_for_status()
+              
+              # 正则提取域名并加上 +. 前缀
+              domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
+              dnsmasq_list = [f"+.{d}" for d in domains if d]
+              
+              # 创建目录并写入文件
+              os.makedirs('list/domain', exist_ok=True)
+              with open('list/domain/dnsmasq-china.list', 'w', encoding='utf-8') as f:
+                  f.write('\n'.join(dnsmasq_list) + '\n')
+                  
+              print(f"LOG: Saved {len(dnsmasq_list)} items to list/domain/dnsmasq-china.list")
+          except Exception as e:
+              print(f"LOG: Error processing dnsmasq-china: {e}")
+              exit(1)
+
+          # ==========================================
+          # 2. 任务二：下载并处理 yoyo adservers 数据
+          # ==========================================
+          yoyo_url = "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=plain&showintro=0&mimetype=plaintext"
+          try:
+              print(f"LOG: Fetching {yoyo_url}")
+              r_yoyo = requests.get(yoyo_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+              r_yoyo.raise_for_status()
+              
+              ad_list = []
+              # 逐行读取，去掉首尾空格后加上 +. 前缀
+              for line in r_yoyo.text.splitlines():
+                  line = line.strip()
+                  if line:
+                      ad_list.append(f"+.{line}")
+                      
+              # 创建目录并写入文件
+              os.makedirs('work/list', exist_ok=True)
+              with open('work/list/ad_peter_domain.list', 'w', encoding='utf-8') as f:
+                  f.write('\n'.join(ad_list) + '\n')
+                  
+              print(f"LOG: Saved {len(ad_list)} items to work/list/ad_peter_domain.list")
+          except Exception as e:
+              print(f"LOG: Error processing yoyo adservers: {e}")
+              exit(1)
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加新生成的两个文件
+          git add list/domain/dnsmasq-china.list
+          git add work/list/ad_peter_domain.list
+          
+          if git diff --staged --quiet; then
+            echo "No changes detected."
+          else
+            git commit -m "Update domains rules $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
