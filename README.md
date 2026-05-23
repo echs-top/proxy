@@ -1,5 +1,3 @@
-> 临时通知：enhanced-FaaS-in-China项目暂时出问题…………影响图片加速和enhanced-FaaS-in-China规则
-
 ### 更新
 
 跟随mihomo更新调整(如无必要则不更)
@@ -18,7 +16,7 @@ MRS规则：约1MB(含DNS分流规则dnsmasq-china约500KB)
 
 自用优先、TUN/VPN、地区策略、完善设置、严谨分流
 
-规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风去广告](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON/blocklist](https://pgl.yoyo.org/adservers/)合并去重)、cn_domain([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、dnsmasq-china-add_domain([dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)排除了cn_domain)、[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)、[人机验证(测试)](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、自用补充(直连[域名](https://github.com/echs-top/proxy/blob/main/rules/list/direct_domain.list) [ip](https://github.com/echs-top/proxy/blob/main/rules/list/direct_ip.list),代理[域名](https://github.com/echs-top/proxy/blob/main/rules/list/proxy_domain.list) [ip](https://github.com/echs-top/proxy/blob/main/rules/list/proxy_ip.list),[google-cn](https://github.com/echs-top/proxy/blob/main/rules/list/google-cn_domain.list))
+规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风去广告](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON/blocklist](https://pgl.yoyo.org/adservers/)合并去重)、cn-lite([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)、[人机验证(测试)](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、[自用补充](https://github.com/echs-top/proxy/tree/main/work/list)
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX) => [cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
 
