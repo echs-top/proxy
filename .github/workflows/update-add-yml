@@ -1,4 +1,4 @@
-name: update-add-rules
+name: Update-Add-Rules
 
 on:
   schedule:
