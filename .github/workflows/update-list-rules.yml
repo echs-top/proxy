@@ -1,0 +1,126 @@
+name: Update List Rules
+
+on:
+  schedule:
+    # 每日半夜 2点运行 (GitHub Actions 使用 UTC 时间，UTC 18:00 即北京时间 02:00)
+    - cron: '0 18 * * *'
+  workflow_dispatch: # 允许手动点击运行
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install PyYAML requests
+
+    - name: Process Rules (内嵌处理脚本)
+      # 使用 EOF 将 Python 代码直接写在 run 步骤中
+      run: |
+        python - << 'EOF'
+        import os
+        import yaml
+        import requests
+
+        def fetch_and_parse(url, fmt):
+            try:
+                response = requests.get(url, timeout=15)
+                response.raise_for_status()
+                content = response.text
+            except Exception as e:
+                print(f"  [错误] 无法下载 {url}: {e}")
+                return set()
+
+            result = set()
+            if fmt == 'yaml':
+                try:
+                    data = yaml.safe_load(content)
+                    if data and isinstance(data, dict) and 'payload' in data:
+                        for item in data['payload']:
+                            item_str = str(item).strip("'\" ")
+                            if item_str and not item_str.startswith('#'):
+                                result.add(item_str)
+                except Exception as e:
+                    print(f"  [错误] YAML 解析失败 {url}: {e}")
+            elif fmt == 'list':
+                for line in content.splitlines():
+                    clean_line = line.split('#')[0].strip("'\" ")
+                    if clean_line:
+                        result.add(clean_line)
+            return result
+
+        def process_directory(work_dir, list_dir):
+            if not os.path.exists(work_dir):
+                print(f"工作目录 {work_dir} 不存在，跳过。")
+                return
+
+            os.makedirs(list_dir, exist_ok=True)
+
+            for filename in os.listdir(work_dir):
+                if not filename.endswith('.list'):
+                    continue
+                
+                filepath = os.path.join(work_dir, filename)
+                out_filepath = os.path.join(list_dir, filename)
+                print(f"正在处理: {filepath}")
+                
+                includes = set()
+                excludes = set()
+
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        clean_line = line.strip()
+                        if not clean_line or clean_line.startswith('#'):
+                            continue
+                        
+                        parts = clean_line.split()
+                        if len(parts) >= 3:
+                            op, fmt, url = parts[0], parts[1], parts[2]
+                            print(f"  [{op}] 获取 {fmt}: {url}")
+                            items = fetch_and_parse(url, fmt)
+                            if op == '+':
+                                includes.update(items)
+                            elif op == '-':
+                                excludes.update(items)
+
+                # 核心合并逻辑：需要添加的 减去 需要排除的
+                final_set = includes - excludes
+                final_list = sorted(list(final_set))
+                
+                with open(out_filepath, 'w', encoding='utf-8') as f:
+                    for item in final_list:
+                        f.write(item + '\n')
+                print(f"  ✅ 完成！共 {len(final_list)} 条规则，保存至 {out_filepath}\n")
+
+        if __name__ == '__main__':
+            process_directory('work/domain', 'list/domain')
+            process_directory('work/ip', 'list/ip')
+        EOF
+
+    - name: Check and Commit
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        # 强制添加生成的 list 目录
+        git add list/
+        
+        # 检查暂存区是否有文件变动
+        if git diff --staged --quiet; then
+          echo "规则无更新，跳过提交。"
+        else
+          echo "检测到规则更新，正在推送..."
+          git commit -m "Auto-update rules: $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
+        fi
