@@ -10,7 +10,7 @@
 
 裸核运存：约50～150MB(smart分支占用多)
 
-MRS规则：约1MB(含DNS分流规则dnsmasq-china约500KB)
+MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
 
 ### 备注
 
