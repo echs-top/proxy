@@ -71,7 +71,7 @@ rule-providers:
   trackerslist: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs', path: ./rules/trackerslist.mrs }
   proxy: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs', path: ./rules/proxy.mrs }
   cn: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs', path: ./rules/cn.mrs }
-  dnsmasq-china: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china.mrs', path: ./rules/dnsmasq-china.mrs }
+  dnsmasq-china-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs', path: ./rules/dnsmasq-china-lite.mrs }
   telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs', path: ./rules/telegram_ip.mrs }
   media_ip: { <<: *ip, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/mediaip.mrs', path: ./rules/media_ip.mrs }
   google_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs', path: ./rules/google_ip.mrs }
@@ -153,7 +153,7 @@ dns:
     'rule-set:trackerslist': *proxy-dns
     'rule-set:proxy': *proxy-dns
     'rule-set:cn': *direct-dns
-    'rule-set:dnsmasq-china': *direct-dns
+    'rule-set:dnsmasq-china-lite': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
@@ -163,7 +163,7 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:private','rule-set:ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google','rule-set:trackerslist','rule-set:proxy','rule-set:cn','rule-set:dnsmasq-china']
+  skip-domain: ['rule-set:private','rule-set:ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google','rule-set:trackerslist','rule-set:proxy','rule-set:cn','rule-set:dnsmasq-china-lite']
   skip-src-address: ['rule-set:private_ip','rule-set:telegram_ip','rule-set:media_ip','rule-set:google_ip','rule-set:proxy_ip','rule-set:cn_ip']
   skip-dst-address: ['rule-set:private_ip']
 proxies: [{ name: DNS劫持, type: dns },{ name: 直接连接, type: direct, udp: true, ip-version: dual }]
