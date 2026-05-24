@@ -14,10 +14,6 @@
 
 MRS：约980KB(含DNS分流dnsmasq-china-lite约480KB)
 
-### 图片
-
-![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)
-
 ### 备注
 
 自用优先、TUN/VPN、地区策略、完善设置、严谨分流
@@ -41,3 +37,7 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 **Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
 
 **OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
+
+### 预览
+
+![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)
