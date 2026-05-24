@@ -16,13 +16,13 @@ MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
 
 自用优先、TUN/VPN、地区策略、完善设置、严谨分流
 
-规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风去广告](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON/blocklist](https://pgl.yoyo.org/adservers/)合并去重)、cn-lite([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)、[人机验证(测试)](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、[自用补充](https://github.com/echs-top/proxy/tree/main/work/list)
+规则：[MetaCubeX](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/)合并去重)、cn-lite([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)、[人机验证](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、[自用补充](https://github.com/echs-top/proxy/tree/main/work/list)
 
-图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX) ===> 使用[cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
+图标：[flag-icons](https://github.com/lipis/flag-icons)、[HOMOMIX](https://github.com/Vbaethon/HOMOMIX) ===> 使用[cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
 
-DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[tencentdns](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
+DOH: 直连([阿里DNS](https://www.aliyun.com/product/dns)+[腾讯DNS](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[谷歌DNS](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
-UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA汇总](https://config.net.cn/tools/UserAgent.html)、[ClashVergeRev](https://www.clashverge.dev/guide/term.html#ua)
+UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA](https://config.net.cn/tools/UserAgent.html)、[ClashVergeRev](https://www.clashverge.dev/guide/term.html#ua)
 
 ### 推文:
 
@@ -30,7 +30,7 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 
 ### 客户端
 
-**Android**：[Box(magisk)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
+**Android**：[Box(root)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
 
 **Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
 
