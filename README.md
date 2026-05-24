@@ -14,6 +14,10 @@
 
 MRS：约980KB(含DNS分流dnsmasq-china-lite约480KB)
 
+### 图片
+
+![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)
+
 ### 备注
 
 自用优先、TUN/VPN、地区策略、完善设置、严谨分流
