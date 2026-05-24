@@ -1,7 +1,5 @@
 + list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list
 + list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/proxy_domain.list
-- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/google-direct_domain.list
 - yaml https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
 - yaml https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml
 - list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_peter_domain.list
