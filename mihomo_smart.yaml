@@ -76,7 +76,7 @@ rule-providers:
   media: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs', path: ./rules/media.mrs }
   google: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/google.mrs', path: ./rules/google.mrs }
   trackerslist: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs', path: ./rules/trackerslist.mrs }
-  proxy: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs', path: ./rules/proxy.mrs }
+  proxy-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs', path: ./rules/proxy-lite.mrs }
   cn: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs', path: ./rules/cn.mrs }
   dnsmasq-china-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs', path: ./rules/dnsmasq-china-lite.mrs }
   telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs', path: ./rules/telegram_ip.mrs }
@@ -85,7 +85,7 @@ rule-providers:
   proxy_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/proxy.mrs', path: ./rules/proxy_ip.mrs }
   cn_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs', path: ./rules/cn_ip.mrs }
 rules:
-  - DST-PORT,53/853,iDNS劫持
+  - DST-PORT,53/853,DNS劫持
   - DST-PORT,5228-5230,直接连接
   - DST-PORT,1337/2710/6881-6999/7777,TRACKER
   - RULE-SET,private_ip,直接连接,no-resolve
@@ -98,7 +98,7 @@ rules:
   - RULE-SET,media,国外媒体
   - RULE-SET,google,GOOGLE
   - RULE-SET,trackerslist,TRACKER
-  - RULE-SET,proxy,代理连接
+  - RULE-SET,proxy-lite,代理连接
   - RULE-SET,cn,直接连接
   - RULE-SET,telegram_ip,TELEGRAM
   - RULE-SET,media_ip,国外媒体
@@ -143,7 +143,7 @@ dns:
     - RULE-SET,media,fake-ip
     - RULE-SET,google,fake-ip
     - RULE-SET,trackerslist,fake-ip
-    - RULE-SET,proxy,fake-ip
+    - RULE-SET,proxy-lite,fake-ip
     - RULE-SET,cn,real-ip
     - MATCH,fake-ip
   # default-nameserver: *direct-dns
@@ -158,7 +158,7 @@ dns:
     'rule-set:media': *proxy-dns
     'rule-set:google': *proxy-dns
     'rule-set:trackerslist': *proxy-dns
-    'rule-set:proxy': *proxy-dns
+    'rule-set:proxy-lite': *proxy-dns
     'rule-set:cn': *direct-dns
     'rule-set:dnsmasq-china-lite': *direct-dns
   nameserver: *proxy-dns
@@ -170,7 +170,7 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:private','rule-set:ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google','rule-set:trackerslist','rule-set:proxy','rule-set:cn','rule-set:dnsmasq-china-lite']
+  skip-domain: ['rule-set:private','rule-set:ads','rule-set:fcm','rule-set:captcha','rule-set:ai','rule-set:telegram','rule-set:media','rule-set:google','rule-set:trackerslist','rule-set:proxy-lite','rule-set:cn','rule-set:dnsmasq-china-lite']
   skip-src-address: ['rule-set:private_ip','rule-set:telegram_ip','rule-set:media_ip','rule-set:google_ip','rule-set:proxy_ip','rule-set:cn_ip']
   skip-dst-address: ['rule-set:private_ip']
 proxies: [{ name: DNS劫持, type: dns },{ name: 直接连接, type: direct, udp: true, ip-version: dual }]
