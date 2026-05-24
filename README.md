@@ -22,15 +22,15 @@ MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
 
 DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[tencentdns](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
-UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)(取WebView|Stable+Windows|Extended)、[常见UA汇总](https://config.net.cn/tools/UserAgent.html)、[ClashVergeRev](https://www.clashverge.dev/guide/term.html#ua)
+UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA汇总](https://config.net.cn/tools/UserAgent.html)、[ClashVergeRev](https://www.clashverge.dev/guide/term.html#ua)
 
 ### 推文:
 
-[科学上网-雨夜回廊](https://myql.eu.org/article/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91)(关注近一年半了，很nice)
+[科学上网-雨夜回廊](https://myql.eu.org/article/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91)
 
 ### 客户端
 
-**Android**：[Box(magisk)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart分支)
+**Android**：[Box(magisk)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
 
 **Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
 
