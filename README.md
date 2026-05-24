@@ -10,7 +10,8 @@
 
 ### 预览
 
-![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard2.webp)
+| :---: | :---: |
+| ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp) | ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard2.webp) |
 
 ### 占用
 
