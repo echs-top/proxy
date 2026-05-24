@@ -8,6 +8,10 @@
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
+### 预览
+
+![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard2.webp)
+
 ### 占用
 
 裸核：约40～150MB(smart分支占用偏高)
@@ -37,7 +41,3 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 **Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
 
 **OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
-
-### 预览
-
-![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard.webp)
