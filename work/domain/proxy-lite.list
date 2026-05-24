@@ -12,3 +12,7 @@
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.list
 - list https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/google.list
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.list
+- list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list
+- list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list
+- list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list
+- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/direct_domain.list
