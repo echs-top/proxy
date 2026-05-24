@@ -1,3 +1,5 @@
+> 近期更新：图标加速、重做github action yml
+
 ### 更新
 
 跟随mihomo版本更新……
