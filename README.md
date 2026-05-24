@@ -10,7 +10,7 @@
 
 裸核：约50～150MB(smart分支占用偏高)
 
-MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
+MRS：约1.1MB(含DNS分流dnsmasq-china约550KB)
 
 ### 备注
 
@@ -32,6 +32,6 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 
 **Android**：[Box(root)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
 
-**Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)|[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
+**Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[ClashVergeRev](https://github.com/clash-verge-rev/clash-verge-rev)
 
 **OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
