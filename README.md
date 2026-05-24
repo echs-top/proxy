@@ -1,6 +1,6 @@
 ### 更新
 
-跟随mihomo更新调整(如无必要则不更)
+跟随mihomo版本更新……
 
 ### 模板
 
@@ -8,7 +8,7 @@
 
 ### 占用
 
-裸核运存：约50～150MB(smart分支占用多)
+裸核：约50～150MB(smart分支占用偏高)
 
 MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
 
@@ -18,7 +18,7 @@ MRS规则：约1.1MB(含DNS分流规则dnsmasq-china约550KB)
 
 规则：[MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)(部分)、ads_domain([秋风去广告](https://awavenue.top)+[adblockfilterslite](https://github.com/217heidai/adblockfilters)+[PATREON/blocklist](https://pgl.yoyo.org/adservers/)合并去重)、cn-lite([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)合并去重)、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)、[人机验证(测试)](https://github.com/echs-top/proxy/blob/main/rules/list/captcha_domain.list)、[自用补充](https://github.com/echs-top/proxy/tree/main/work/list)
 
-图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX) => [cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
+图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX) ===> 使用[cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
 
 DOH: 直连([alidns](https://www.aliyun.com/product/dns)+[tencentdns](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[google dns](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
