@@ -12,8 +12,15 @@ export default {
       return new Response(null, { headers: corsHeaders });
     }
 
+    const url = new URL(request.url);
+
+    // 1. 优先处理根路径重定向
+    if (url.pathname === "/") {
+      return Response.redirect("https://github.com/echs-top/proxy", 302);
+    }
+
     try {
-      // 2. 从全局绑定的静态资源中获取文件
+      // 2. 从全局绑定的静态资源（即 dist 目录）中获取文件
       const response = await env.ASSETS.fetch(request);
 
       // 文件不存在返回404
