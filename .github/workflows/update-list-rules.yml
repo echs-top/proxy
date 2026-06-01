@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: pip install PyYAML requests
 
-    - name: Process Rules (Domain Trie & IP CIDR)
+    - name: Process Rules (Sequential Batching Mode)
       run: |
         python - << 'EOF'
         import os
@@ -32,7 +32,7 @@ jobs:
         import requests
         import ipaddress
 
-        # ================= Domain 处理逻辑 =================
+        # ================= Domain 结构定义 =================
         class DomainRule:
             def __init__(self, raw):
                 self.raw = raw
@@ -71,13 +71,10 @@ jobs:
                 if part not in node.children:
                     return False
                 node = node.children[part]
-                
                 if i < len(rule_obj.parts) - 1:
                     if node.sub: return True
                 else:
-                    exact_covered = (not rule_obj.exact) or node.exact
-                    sub_covered = (not rule_obj.sub) or node.sub
-                    if exact_covered and sub_covered:
+                    if (not rule_obj.exact or node.exact) and (not rule_obj.sub or node.sub):
                         return True
             return False
 
@@ -88,7 +85,7 @@ jobs:
                 response.raise_for_status()
                 content = response.text
             except Exception as e:
-                print(f"  [错误] 无法下载 {url}: {e}")
+                print(f"    [错误] 无法下载 {url}: {e}")
                 return set()
 
             result = set()
@@ -101,7 +98,7 @@ jobs:
                             if item_str and not item_str.startswith('#'):
                                 result.add(item_str)
                 except Exception as e:
-                    print(f"  [错误] YAML 解析失败: {e}")
+                    print(f"    [错误] YAML 解析失败: {e}")
             elif fmt == 'list':
                 for line in content.splitlines():
                     clean_line = line.split('#')[0].strip("'\" ")
@@ -109,7 +106,7 @@ jobs:
                         result.add(clean_line)
             return result
 
-        # ================= 核心处理流 =================
+        # ================= 核心处理流 (顺序批处理) =================
         def process_directory(work_dir, list_dir, rule_type):
             if not os.path.exists(work_dir):
                 return
@@ -123,8 +120,10 @@ jobs:
                 out_filepath = os.path.join(list_dir, filename)
                 print(f"处理 [{rule_type}] 规则: {filepath}")
                 
-                includes = set()
-                excludes = set()
+                # 1. 解析文件，将连续的相同操作合并为批次
+                batches = []
+                current_op = None
+                current_items = []
 
                 with open(filepath, 'r', encoding='utf-8') as f:
                     for line in f:
@@ -133,66 +132,90 @@ jobs:
                         parts = clean_line.split()
                         if len(parts) >= 3:
                             op, fmt, url = parts[0], parts[1], parts[2]
-                            print(f"  [{op}] 获取 {fmt}: {url}")
-                            items = fetch_and_parse(url, fmt)
-                            if op == '+': includes.update(items)
-                            elif op == '-': excludes.update(items)
+                            if op == current_op:
+                                current_items.append((fmt, url))
+                            else:
+                                if current_op is not None:
+                                    batches.append((current_op, current_items))
+                                current_op = op
+                                current_items = [(fmt, url)]
+                if current_op is not None:
+                    batches.append((current_op, current_items))
 
-                final_list = []
-                
+                # 2. 状态机：维护一个当前生效的规则池
                 if rule_type == 'domain':
-                    # --- 域名处理 ---
-                    inc_rules = [DomainRule(x) for x in includes]
-                    exc_rules = [DomainRule(x) for x in excludes]
-                    
-                    exc_trie = TrieNode()
-                    for r in exc_rules: insert_trie(exc_trie, r)
-                    filtered_includes = [r for r in inc_rules if not is_covered_by_trie(exc_trie, r)]
-                    
-                    filtered_includes.sort(key=lambda r: (len(r.parts), not r.sub, not r.exact))
-                    
-                    inc_trie = TrieNode()
-                    for r in filtered_includes:
-                        if not is_covered_by_trie(inc_trie, r):
-                            final_list.append(r.raw)
-                            insert_trie(inc_trie, r)
-                    final_list.sort()
-                
+                    master_rules = [] # 存储 DomainRule 对象
+                    batch_num = 1
+                    for op, items in batches:
+                        print(f"  -> 执行批次 {batch_num} [{op}] (包含 {len(items)} 个链接)")
+                        batch_num += 1
+                        
+                        # 抓取当前批次的所有内容
+                        batch_raw_set = set()
+                        for fmt, url in items:
+                            batch_raw_set.update(fetch_and_parse(url, fmt))
+                        
+                        if op == '+':
+                            new_rules = [DomainRule(x) for x in batch_raw_set]
+                            combined = master_rules + new_rules
+                            # 重新构建 Trie 并去重
+                            combined.sort(key=lambda r: (len(r.parts), not r.sub, not r.exact))
+                            trie = TrieNode()
+                            next_master = []
+                            for r in combined:
+                                if not is_covered_by_trie(trie, r):
+                                    next_master.append(r)
+                                    insert_trie(trie, r)
+                            master_rules = next_master
+                        
+                        elif op == '-':
+                            exc_rules = [DomainRule(x) for x in batch_raw_set]
+                            exc_trie = TrieNode()
+                            for r in exc_rules: insert_trie(exc_trie, r)
+                            # 从当前规则池中剔除命中的项
+                            master_rules = [r for r in master_rules if not is_covered_by_trie(exc_trie, r)]
+
+                    final_list = sorted([r.raw for r in master_rules])
+
                 elif rule_type == 'ip':
-                    # --- IP (CIDR) 处理 ---
-                    inc_nets = []
-                    exc_nets = []
-                    
-                    # strict=False 允许处理非标准的网络号 (如 8.8.8.8/8 自动转为 8.0.0.0/8)
-                    for ip_str in includes:
-                        try: inc_nets.append(ipaddress.ip_network(ip_str, strict=False))
-                        except ValueError: print(f"  [警告] 无效 IP 格式 (include): {ip_str}")
-                    
-                    for ip_str in excludes:
-                        try: exc_nets.append(ipaddress.ip_network(ip_str, strict=False))
-                        except ValueError: print(f"  [警告] 无效 IP 格式 (exclude): {ip_str}")
-                    
-                    # 1. 排除阶段：如果 inc 是 exc 的子网 (且协议版本相同)，则剔除
-                    filtered_inc = []
-                    for inc in inc_nets:
-                        is_excluded = False
-                        for exc in exc_nets:
-                            if inc.version == exc.version and inc.subnet_of(exc):
-                                is_excluded = True
-                                break
-                        if not is_excluded:
-                            filtered_inc.append(inc)
-                    
-                    # 2. 合并去重阶段：自动合并连续网段并剔除被包含的子网
-                    collapsed_nets = list(ipaddress.collapse_addresses(filtered_inc))
-                    
-                    # 转回字符串并存入最终列表
-                    final_list = [str(net) for net in collapsed_nets]
+                    master_ips = [] # 存储 IPv4Network/IPv6Network 对象
+                    batch_num = 1
+                    for op, items in batches:
+                        print(f"  -> 执行批次 {batch_num} [{op}] (包含 {len(items)} 个链接)")
+                        batch_num += 1
+                        
+                        batch_raw_set = set()
+                        for fmt, url in items:
+                            batch_raw_set.update(fetch_and_parse(url, fmt))
+                        
+                        batch_nets = []
+                        for x in batch_raw_set:
+                            try: batch_nets.append(ipaddress.ip_network(x, strict=False))
+                            except ValueError: pass
+                        
+                        if op == '+':
+                            combined = master_ips + batch_nets
+                            master_ips = list(ipaddress.collapse_addresses(combined))
+                        
+                        elif op == '-':
+                            next_master = []
+                            for inc in master_ips:
+                                is_excluded = False
+                                for exc in batch_nets:
+                                    # 仅当协议相同，且当前IP被排除项完全包含时剔除
+                                    if inc.version == exc.version and inc.subnet_of(exc):
+                                        is_excluded = True
+                                        break
+                                if not is_excluded:
+                                    next_master.append(inc)
+                            master_ips = next_master
+
+                    final_list = [str(net) for net in master_ips]
                 
                 with open(out_filepath, 'w', encoding='utf-8') as f:
                     for item in final_list:
                         f.write(item + '\n')
-                print(f"  ✅ 完成！共 {len(final_list)} 条，已保存\n")
+                print(f"  ✅ 成功！最终保留 {len(final_list)} 条规则\n")
 
         if __name__ == '__main__':
             process_directory('work/domain', 'list/domain', 'domain')
