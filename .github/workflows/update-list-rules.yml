@@ -24,33 +24,32 @@ jobs:
     - name: Install dependencies
       run: pip install PyYAML requests
 
-    - name: Process Rules with Domain Subsumption
+    - name: Process Rules (Domain Trie & IP CIDR)
       run: |
         python - << 'EOF'
         import os
         import yaml
         import requests
+        import ipaddress
 
-        # === 域名规则抽象类 ===
+        # ================= Domain 处理逻辑 =================
         class DomainRule:
             def __init__(self, raw):
                 self.raw = raw
                 if raw.startswith('+.'):
                     self.base = raw[2:]
-                    self.exact = True  # 允许匹配自身 (baidu.com)
-                    self.sub = True    # 允许匹配子域 (www.baidu.com)
+                    self.exact = True
+                    self.sub = True
                 elif raw.startswith('*.'):
                     self.base = raw[2:]
-                    self.exact = False # 不匹配自身
-                    self.sub = True    # 允许匹配子域
+                    self.exact = False
+                    self.sub = True
                 else:
                     self.base = raw
                     self.exact = True
                     self.sub = False
-                # 反转域名分段，比如 www.baidu.com 变为 ['com', 'baidu', 'www']
                 self.parts = self.base.split('.')[::-1]
 
-        # === 字典树节点 ===
         class TrieNode:
             def __init__(self):
                 self.children = {}
@@ -73,18 +72,16 @@ jobs:
                     return False
                 node = node.children[part]
                 
-                # 情况1: 当前目标是 Trie中某个节点的子域名
                 if i < len(rule_obj.parts) - 1:
                     if node.sub: return True
-                # 情况2: 当前目标与 Trie中节点的基础域名完全一致
                 else:
-                    # Trie 中的节点必须满足目标所要求的所有匹配能力
                     exact_covered = (not rule_obj.exact) or node.exact
                     sub_covered = (not rule_obj.sub) or node.sub
                     if exact_covered and sub_covered:
                         return True
             return False
 
+        # ================= 通用下载解析 =================
         def fetch_and_parse(url, fmt):
             try:
                 response = requests.get(url, timeout=15)
@@ -112,6 +109,7 @@ jobs:
                         result.add(clean_line)
             return result
 
+        # ================= 核心处理流 =================
         def process_directory(work_dir, list_dir, rule_type):
             if not os.path.exists(work_dir):
                 return
@@ -143,17 +141,14 @@ jobs:
                 final_list = []
                 
                 if rule_type == 'domain':
-                    # 1. 排除阶段：将被 excludes 覆盖的 include 剔除
+                    # --- 域名处理 ---
                     inc_rules = [DomainRule(x) for x in includes]
                     exc_rules = [DomainRule(x) for x in excludes]
                     
                     exc_trie = TrieNode()
                     for r in exc_rules: insert_trie(exc_trie, r)
-                    
                     filtered_includes = [r for r in inc_rules if not is_covered_by_trie(exc_trie, r)]
                     
-                    # 2. 合并去重阶段：将范围大的规则排在前面优先插入 Trie
-                    # 排序：长度越短越靠前，子域通配优先，精确匹配优先
                     filtered_includes.sort(key=lambda r: (len(r.parts), not r.sub, not r.exact))
                     
                     inc_trie = TrieNode()
@@ -161,13 +156,38 @@ jobs:
                         if not is_covered_by_trie(inc_trie, r):
                             final_list.append(r.raw)
                             insert_trie(inc_trie, r)
-                    
                     final_list.sort()
                 
-                else:
-                    # IP 规则处理：IP不涉及层级父子覆盖，直接使用字符串 Set 减法
-                    final_set = includes - excludes
-                    final_list = sorted(list(final_set))
+                elif rule_type == 'ip':
+                    # --- IP (CIDR) 处理 ---
+                    inc_nets = []
+                    exc_nets = []
+                    
+                    # strict=False 允许处理非标准的网络号 (如 8.8.8.8/8 自动转为 8.0.0.0/8)
+                    for ip_str in includes:
+                        try: inc_nets.append(ipaddress.ip_network(ip_str, strict=False))
+                        except ValueError: print(f"  [警告] 无效 IP 格式 (include): {ip_str}")
+                    
+                    for ip_str in excludes:
+                        try: exc_nets.append(ipaddress.ip_network(ip_str, strict=False))
+                        except ValueError: print(f"  [警告] 无效 IP 格式 (exclude): {ip_str}")
+                    
+                    # 1. 排除阶段：如果 inc 是 exc 的子网 (且协议版本相同)，则剔除
+                    filtered_inc = []
+                    for inc in inc_nets:
+                        is_excluded = False
+                        for exc in exc_nets:
+                            if inc.version == exc.version and inc.subnet_of(exc):
+                                is_excluded = True
+                                break
+                        if not is_excluded:
+                            filtered_inc.append(inc)
+                    
+                    # 2. 合并去重阶段：自动合并连续网段并剔除被包含的子网
+                    collapsed_nets = list(ipaddress.collapse_addresses(filtered_inc))
+                    
+                    # 转回字符串并存入最终列表
+                    final_list = [str(net) for net in collapsed_nets]
                 
                 with open(out_filepath, 'w', encoding='utf-8') as f:
                     for item in final_list:
