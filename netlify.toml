@@ -1,3 +1,8 @@
+# 构建
+[build]
+  command = "mkdir -p dist && cp -r img mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/"
+  publish = "dist"
+
 # 跨域
 [[headers]]
   for = "/*"
