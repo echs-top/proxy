@@ -3,7 +3,7 @@ name: Update Mrs Rules
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 18 * * *'   # 每天 2:30 UTC
+    - cron: '00 20 * * *'   # 每天 2:30 UTC
 
 env:
   MIHOMO_OWNER: MetaCubeX
