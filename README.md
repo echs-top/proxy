@@ -53,6 +53,4 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 
 4.关于smart分支：若使用高质量节点，那么smart分支带来的收益可能非常小。当代理体验不好时应优先选择提高节点质量，其次才是通过软件/配置/选择/分流进行设置。
 
-5.smart策略组的“asn”开启时会让所有连接都产生本地dns查询，获取ip辅助分析asn选择节点(我模板默认关闭)，是否要开启取决于两种情况：若是中转节点请务必关闭，若是直连节点且质量很差时开启asn或许有正向提升。
-
-6.关于hosts：如非必要不推荐添加hosts规则，比如添加了'baidu.com: 1.1.1.1'时，它会使用1.1.1.1去匹配规则而不是baidu.com(开启sniffer可能会对此现象有缓解)。一般只推荐添加doh域名相关host。
+5.关于hosts：如非必要不推荐添加hosts规则，比如添加了'baidu.com: 1.1.1.1'时，它会使用1.1.1.1去匹配规则而不是baidu.com(开启sniffer可能会对此现象有缓解)。一般只推荐添加doh域名相关host。
