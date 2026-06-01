@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: pip install PyYAML requests
 
-    - name: Process Rules (Sequential Batching Mode)
+    - name: Process Rules (Batching & Advanced Sorting)
       run: |
         python - << 'EOF'
         import os
@@ -40,14 +40,19 @@ jobs:
                     self.base = raw[2:]
                     self.exact = True
                     self.sub = True
+                    self.weight = 0  # 排序权重: +. 优先
                 elif raw.startswith('*.'):
                     self.base = raw[2:]
                     self.exact = False
                     self.sub = True
+                    self.weight = 1  # 排序权重: *. 其次
                 else:
                     self.base = raw
                     self.exact = True
                     self.sub = False
+                    self.weight = 2  # 排序权重: 精确匹配最后
+                
+                # 倒置分段，用于实现 后缀>主域名>子域名 的完美排序
                 self.parts = self.base.split('.')[::-1]
 
         class TrieNode:
@@ -106,7 +111,7 @@ jobs:
                         result.add(clean_line)
             return result
 
-        # ================= 核心处理流 (顺序批处理) =================
+        # ================= 核心处理流 =================
         def process_directory(work_dir, list_dir, rule_type):
             if not os.path.exists(work_dir):
                 return
@@ -120,7 +125,6 @@ jobs:
                 out_filepath = os.path.join(list_dir, filename)
                 print(f"处理 [{rule_type}] 规则: {filepath}")
                 
-                # 1. 解析文件，将连续的相同操作合并为批次
                 batches = []
                 current_op = None
                 current_items = []
@@ -142,15 +146,13 @@ jobs:
                 if current_op is not None:
                     batches.append((current_op, current_items))
 
-                # 2. 状态机：维护一个当前生效的规则池
                 if rule_type == 'domain':
-                    master_rules = [] # 存储 DomainRule 对象
+                    master_rules = []
                     batch_num = 1
                     for op, items in batches:
                         print(f"  -> 执行批次 {batch_num} [{op}] (包含 {len(items)} 个链接)")
                         batch_num += 1
                         
-                        # 抓取当前批次的所有内容
                         batch_raw_set = set()
                         for fmt, url in items:
                             batch_raw_set.update(fetch_and_parse(url, fmt))
@@ -158,7 +160,7 @@ jobs:
                         if op == '+':
                             new_rules = [DomainRule(x) for x in batch_raw_set]
                             combined = master_rules + new_rules
-                            # 重新构建 Trie 并去重
+                            # 插入字典树前按层级长度排序（短的优先，确保父级先插入）
                             combined.sort(key=lambda r: (len(r.parts), not r.sub, not r.exact))
                             trie = TrieNode()
                             next_master = []
@@ -172,13 +174,15 @@ jobs:
                             exc_rules = [DomainRule(x) for x in batch_raw_set]
                             exc_trie = TrieNode()
                             for r in exc_rules: insert_trie(exc_trie, r)
-                            # 从当前规则池中剔除命中的项
                             master_rules = [r for r in master_rules if not is_covered_by_trie(exc_trie, r)]
 
-                    final_list = sorted([r.raw for r in master_rules])
+                    # [关键优化] 最终写入前的高级排序: 按 倒置层级 + 权重(数字字母) 进行自然排序
+                    master_rules.sort(key=lambda r: (r.parts, r.weight))
+                    final_list = [r.raw for r in master_rules]
 
                 elif rule_type == 'ip':
-                    master_ips = [] # 存储 IPv4Network/IPv6Network 对象
+                    master_ips_v4 = []
+                    master_ips_v6 = []
                     batch_num = 1
                     for op, items in batches:
                         print(f"  -> 执行批次 {batch_num} [{op}] (包含 {len(items)} 个链接)")
@@ -188,34 +192,49 @@ jobs:
                         for fmt, url in items:
                             batch_raw_set.update(fetch_and_parse(url, fmt))
                         
-                        batch_nets = []
+                        batch_nets_v4 = []
+                        batch_nets_v6 = []
                         for x in batch_raw_set:
-                            try: batch_nets.append(ipaddress.ip_network(x, strict=False))
-                            except ValueError: pass
+                            try:
+                                net = ipaddress.ip_network(x, strict=False)
+                                if net.version == 4: batch_nets_v4.append(net)
+                                else: batch_nets_v6.append(net)
+                            except ValueError:
+                                pass
                         
                         if op == '+':
-                            combined = master_ips + batch_nets
-                            master_ips = list(ipaddress.collapse_addresses(combined))
+                            # [关键优化] 必须拆分 V4 和 V6 进行网段折叠，合并时自然实现 IPv4 在前，IPv6 在后
+                            master_ips_v4 = list(ipaddress.collapse_addresses(master_ips_v4 + batch_nets_v4))
+                            master_ips_v6 = list(ipaddress.collapse_addresses(master_ips_v6 + batch_nets_v6))
                         
                         elif op == '-':
-                            next_master = []
-                            for inc in master_ips:
+                            next_master_v4 = []
+                            for inc in master_ips_v4:
                                 is_excluded = False
-                                for exc in batch_nets:
-                                    # 仅当协议相同，且当前IP被排除项完全包含时剔除
-                                    if inc.version == exc.version and inc.subnet_of(exc):
+                                for exc in batch_nets_v4:
+                                    if inc.subnet_of(exc):
                                         is_excluded = True
                                         break
-                                if not is_excluded:
-                                    next_master.append(inc)
-                            master_ips = next_master
+                                if not is_excluded: next_master_v4.append(inc)
+                            master_ips_v4 = next_master_v4
+                            
+                            next_master_v6 = []
+                            for inc in master_ips_v6:
+                                is_excluded = False
+                                for exc in batch_nets_v6:
+                                    if inc.subnet_of(exc):
+                                        is_excluded = True
+                                        break
+                                if not is_excluded: next_master_v6.append(inc)
+                            master_ips_v6 = next_master_v6
 
-                    final_list = [str(net) for net in master_ips]
+                    # v4 与 v6 拼接，顺序严格保证 v4 在前 v6 在后，且内部已自动按数值大小排列
+                    final_list = [str(net) for net in (master_ips_v4 + master_ips_v6)]
                 
                 with open(out_filepath, 'w', encoding='utf-8') as f:
                     for item in final_list:
                         f.write(item + '\n')
-                print(f"  ✅ 成功！最终保留 {len(final_list)} 条规则\n")
+                print(f"  ✅ 成功！最终保留 {len(final_list)} 条规则，已完成结构化排序\n")
 
         if __name__ == '__main__':
             process_directory('work/domain', 'list/domain', 'domain')
