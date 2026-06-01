@@ -1,4 +1,6 @@
 {
+  "buildCommand": "mkdir -p dist && cp -r img mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/",
+  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/",
