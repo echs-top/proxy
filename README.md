@@ -4,13 +4,11 @@
 
 ### 模板
 
-[mihomo.yaml](https://mihomo.echs.top/mihomo.yaml)、[mihomo_smart.yaml](https://mihomo.echs.top/mihomo_smart.yaml)
+[mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.yaml)
 
 ### 脚本
 
-[https://mihomo.echs.top/mihomo.js](https://mihomo.echs.top/mihomo.js)
-
-[https://mihomo.echs.top/mihomo_smart.js](https://mihomo.echs.top/mihomo_smart.js)
+[mihomo.js](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo.js)、[mihomo_smart.js](https://raw.githubusercontent.com/echs-top/proxy/heads/main/mihomo_smart.js)
 
 ### 预览
 
