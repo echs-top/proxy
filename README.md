@@ -31,7 +31,7 @@ MRS：约970KB(含DNS分流dnsmasq-china-lite约480KB)
 
 注意：cn、proxy-lite、dnsmasq-china-lite为此模板定制(减少规则量)，若要改动规则请替换为cn-lite、proxy、dnsmasq-china。此外不建议将cn与proxy-lite调换顺序！
 
-图标：[flag-icons](https://github.com/lipis/flag-icons)、[HOMOMIX](https://github.com/Vbaethon/HOMOMIX) ===> 使用[cloudflare](https://cloudflare.com)/[vercel](https://vercel.com)/[netlify](https://netlify.com)混合加速
+图标：[flag-icons](https://github.com/lipis/flag-icons)、[HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
 DOH: 直连([阿里DNS](https://www.aliyun.com/product/dns)+[腾讯DNS](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[谷歌DNS](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
