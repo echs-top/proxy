@@ -38,7 +38,7 @@ lgbm-auto-update: true
 lgbm-update-interval: 72
 lgbm-url: 'https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin'
 profile: { store-selected: true, store-fake-ip: true, smart-collector-size: 100 }
-# experimental: { quic-go-disable-gso: true, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
+experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 port: 0
 socks-port: 0
 mixed-port: 0
@@ -57,7 +57,7 @@ tun:
   disable-icmp-forwarding: true
   dns-hijack: [any:53,tcp://any:53,any:853,tcp://any:853]
   # mtu: 9000
-  # udp-timeout: 300
+  udp-timeout: 300
   # endpoint-independent-nat: true
 ip: &ip { type: http, interval: 86400, proxy: 代理连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 代理连接, behavior: domain, format: mrs }
@@ -129,7 +129,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fd00:bada:55ed::1/64
-  # fake-ip-ttl: 1
+  fake-ip-ttl: 1
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,private,real-ip
