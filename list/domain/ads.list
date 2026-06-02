@@ -304,7 +304,6 @@ adxserver.ad.cmvideo.cn
 +.ftwo-receiver.autohome.com.cn
 +.leads.autohome.com.cn
 +.pcd.autohome.com.cn
-+.pcmx.autohome.com.cn
 +.pvx.autohome.com.cn
 +.rd.autohome.com.cn
 +.rdx.autohome.com.cn
@@ -336,7 +335,6 @@ adxserver.ad.cmvideo.cn
 +.daliantong.com.cn
 +.datamaster.com.cn
 +.jc1.dayfund.com.cn
-+.dlt-sogou.com.cn
 +.dlt-wps.com.cn
 +.ads.doit.com.cn
 +.ename.com.cn
@@ -358,8 +356,6 @@ adxserver.ad.cmvideo.cn
 +.go.hangzhou.com.cn
 +.hellogpt-bn.com.cn
 +.hellogpt-gx.com.cn
-+.hellogpt-kt.com.cn
-+.hellogpt-qp.com.cn
 +.hellogpt-vj.com.cn
 +.home-bwinsport.com.cn
 +.hpplay.com.cn
@@ -655,7 +651,7 @@ weather-community-drcn.weather.dbankcloud.cn
 +.eoyqzzk.cn
 +.eqqi.cn
 +.m.ercos.cn
-c.etoolads.cn
++.c.etoolads.cn
 +.euuh.cn
 +.duologinsupersdk.ewan.cn
 +.drovs.excelliance.cn
@@ -2170,7 +2166,6 @@ sv-video.play.aiseet.atianqi.com
 +.m1.baidu.com
 +.itsdata.map.baidu.com
 +.res.mi.baidu.com
-+.miao.baidu.com
 +.miaowu.baidu.com
 +.mipengine.baidu.com
 +.r6.mo.baidu.com
@@ -3857,6 +3852,7 @@ sf16-static.i18n-pglstatp.com
 +.ads.ipowerweb.com
 +.ipredictive.com
 +.ipstack.com
++.puma.api.iqiyi.com
 +.apisgame.iqiyi.com
 +.cards-css.iqiyi.com
 +.cs-feige.iqiyi.com
@@ -5294,6 +5290,7 @@ irc.qubiankeji.com
 +.log.flight.qunar.com
 +.qreport.qunar.com
 +.userimg.qunar.com
++.api.qvpublish.com
 iadctest.qwapi.com
 +.ad.qyer.com
 +.hades.qyer.com
@@ -5525,6 +5522,7 @@ smetrics.samsung.com
 +.textad.sexsearch.com
 +.sextracker.com
 +.logstat.t.sfht.com
++.track.sgdmobile.com
 +.shadowmade.com
 +.shakegoldfish.com
 +.js.shangxueba.com
@@ -5551,6 +5549,7 @@ smetrics.samsung.com
 +.umini.shujupie.com
 +.ad.shunchangzhixing.com
 +.js.shunqi.com
++.ut2.shuqistat.com
 +.trk.bc.shutterfly.com
 +.shxtrk.com
 +.ads-monitoring.shziyi.com
@@ -6049,7 +6048,7 @@ mores.toponad.com
 +.static.topxgun.com
 +.oas.toronto.com
 +.totemcash.com
-api.touch-moblie.com
++.api.touch-moblie.com
 +.touchclarity.com
 +.touclick.com
 +.ad.img.tourenwang.com
@@ -6657,7 +6656,6 @@ tracker.ai.xiaomi.com
 +.awssgp0-files.fds.api.xiaomi.com
 +.cdn.fds.api.xiaomi.com
 +.o2o.api.xiaomi.com
-a0.app.xiaomi.com
 +.package.box.xiaomi.com
 +.api.d.xiaomi.com
 +.sdkconfig.ad.eu.xiaomi.com
@@ -7491,6 +7489,7 @@ cdn.liftoff-creatives.io
 +.inner-active.mobi
 +.mydas.mobi
 +.oneway.mobi
++.tracker.tianmu.mobi
 +.log.apk.v-mate.mobi
 +.adservice.google.com.mt
 +.ads.independent.com.mt

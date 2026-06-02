@@ -70,6 +70,7 @@ ip.istatmenus.app
 +.95534.biz
 +.abc360.biz
 +.amzndns-cn.biz
++.beizi.biz
 +.cbhb.biz
 +.clockin.biz
 +.cmbchina.biz
@@ -593,7 +594,6 @@ ip.istatmenus.app
 +.tencentcos.cloud
 +.tez-tencentclb.cloud
 +.th-tencentclb.cloud
-+.thetype.cloud
 +.tiangong.cloud
 +.tita.cloud
 +.tms-ideamanager.cloud
@@ -1183,7 +1183,6 @@ ip.istatmenus.app
 +.263its.com
 +.263nic.com
 +.263xmail.com
-+.265.com
 +.26fqz.com
 +.277wan.com
 +.279wo.com
@@ -1321,6 +1320,7 @@ ip.istatmenus.app
 +.365chuxing.com
 +.365cyd.com
 +.365dida.com
++.365dmp.com
 +.365editor.com
 +.365icl.com
 +.365key.com
@@ -1358,6 +1358,7 @@ ip.istatmenus.app
 +.37swan.com
 +.37tgy.com
 +.37vcc.com
++.37wan.com
 +.37wangg.com
 +.37wangm.com
 +.37wanimg.com
@@ -1651,6 +1652,7 @@ ip.istatmenus.app
 +.51xueshuo.com
 +.51xuexiaoyi.com
 +.51y5.com
++.51yes.com
 +.51yiminlvshi.com
 +.51yingqiu.com
 +.51youshui.com
@@ -1974,6 +1976,7 @@ ip.istatmenus.app
 +.8i77.com
 +.8il8eo8i.com
 +.8kly.com
++.uat1.bfsspadserver.8le8le.com
 +.8ly3r.com
 +.8myva8.com
 +.8nn4g.com
@@ -2144,6 +2147,7 @@ ip.istatmenus.app
 +.99666yx.com
 +.996a.com
 +.998.com
++.9991.com
 +.999d.com
 +.99box.com
 +.99danji.com
@@ -2214,6 +2218,13 @@ ip.istatmenus.app
 +.aamsmart.com
 +.aamuqgrcg.com
 +.aaoqguviv.com
++.appldnld.g.aaplimg.com
++.iosapps.itunes.g.aaplimg.com
++.osxapps.itunes.g.aaplimg.com
++.swcdn.g.aaplimg.com
++.cds-cdn.v.aaplimg.com
++.guzzoni-apple-com.v.aaplimg.com
++.swallow-apple-com.v.aaplimg.com
 +.aardio.com
 +.aatourtk.com
 +.ab-insurance.com
@@ -2320,7 +2331,6 @@ ip.istatmenus.app
 +.admama.com
 +.admamax.com
 +.admin5.com
-+.admob-cn.com
 +.adnyg.com
 +.ado07.com
 +.adpfm513.com
@@ -2331,11 +2341,14 @@ ip.istatmenus.app
 +.aduspot.com
 +.advanced-media-cloud.com
 +.advancedcdn.com
++.adview.com
 +.advuser.com
 +.adwangmai.com
 +.adwebank.com
 +.adxdata.com
++.adxmi.com
 +.adxmly.com
++.adxvip.com
 +.aeaormdmx.com
 +.aeeeg.com
 +.aegis-info.com
@@ -2739,6 +2752,7 @@ ip.istatmenus.app
 +.alipaydesign.com
 +.alipaydev.com
 +.alipaydns.com
++.alipaylog.com
 +.alipaymo.com
 +.alipayobjects.com
 +.alipayplus.com
@@ -2959,6 +2973,7 @@ ip.istatmenus.app
 +.allsaintsmusic.com
 +.allthingsrenew.com
 +.allvalue.com
++.allyes.com
 +.aloanzb.com
 +.alog.com
 +.alookweb.com
@@ -2975,6 +2990,7 @@ ip.istatmenus.app
 +.amijiaoyu.com
 +.amizsuixq.com
 +.amphiprionsebae.com
+client.amplifi.com
 +.ampmake.com
 +.ampmind.com
 +.amropzgzy.com
@@ -3102,10 +3118,7 @@ cdn.angruo.com
 +.apmstkerw.com
 +.apolloxcloud.com
 +.apoprsgks.com
-+.app-analytics-services.com
 +.app-dangdang.com
-+.app-measurement.com
-+.app-measurement-cn.com
 +.app-ztna.com
 +.app6687.com
 +.appairvid.com
@@ -3127,6 +3140,108 @@ cdn.angruo.com
 +.appjiagu.com
 +.appjun.com
 +.appklg.com
++.adcdownload.apple.com
++.appldnld.apple.com
++.apps.apple.com
++.cds.apple.com
++.cdsassets.apple.com
++.certs.apple.com
++.cl1.apple.com
++.cl2.apple.com
++.cl2-cn.apple.com
++.cl3.apple.com
++.cl4.apple.com
++.cl4-cn.apple.com
++.cl5.apple.com
++.clientflow.apple.com
++.cn-smp-paymentservices.apple.com
+communities.apple.com
++.configuration.apple.com
++.crl.apple.com
++.cstat.apple.com
++.dejavu.apple.com
++.download.developer.apple.com
++.devimages-cdn.apple.com
++.devstreaming-cdn.apple.com
+discussionschinese.apple.com
++.init.ess.apple.com
++.experiments.apple.com
+fides-pol.apple.com
+init.gc.apple.com
++.static.gc.apple.com
++.gs-loc.apple.com
++.gs-loc-cn.apple.com
++.guzzoni.apple.com
++.iadsdk.apple.com
++.init-kt.apple.com
++.init-p01md.apple.com
++.ipcdn.apple.com
++.iphone-ld.apple.com
++.itunes.apple.com
++.itunesconnect.apple.com
++.gsp10-ssl-cn.ls.apple.com
++.gsp11-cn.ls.apple.com
++.gsp12-cn.ls.apple.com
++.gsp13-cn.ls.apple.com
++.gsp4-cn.ls.apple.com
++.gsp5-cn.ls.apple.com
++.gsp85-cn-ssl.ls.apple.com
+gspe11-2-cn-ssl.ls.apple.com
+gspe12-cn-ssl.ls.apple.com
++.gspe19-2-cn-ssl.ls.apple.com
++.gspe19-cn.ls.apple.com
++.gspe19-cn-ssl.ls.apple.com
++.gspe21-ssl.ls.apple.com
++.gspe35-ssl.ls.apple.com
++.gspe79-cn-ssl.ls.apple.com
+gspe85-cn-ssl.ls.apple.com
+maps.apple.com
++.amp-api.media.apple.com
++.mesu.apple.com
++.music.apple.com
++.ocsp.apple.com
++.ocsp2.apple.com
++.oscdn.apple.com
++.pancake.apple.com
++.pba0.apple.com
++.init-p01st.push.apple.com
++.init-s01st.push.apple.com
+reserve-prime.apple.com
++.sequoia.apple.com
++.sh-pod2-smp-device.apple.com
++.probe.siri.apple.com
++.seed.siri.apple.com
++.seed-sequoia.siri.apple.com
++.seed-swallow.siri.apple.com
++.guzzoni.smoot.apple.com
++.smp-device-content.apple.com
++.stocks-sparkline.apple.com
++.store.apple.com
++.support.apple.com
++.swallow.apple.com
++.swcatalog.apple.com
++.swcdn.apple.com
++.swdist.apple.com
++.swscan.apple.com
++.sylvan.apple.com
++.tj-pod1-smp-device.apple.com
++.valid.apple.com
++.weather-data.apple.com
++.weather-map.apple.com
++.weather-map2.apple.com
++.weatherkit.apple.com
++.www.apple.com
++.xp.apple.com
++.cdn.apple-mapkit.com
+cdn-cn.apple-mapkit.com
++.cdn-cn1.apple-mapkit.com
++.cdn-cn2.apple-mapkit.com
++.cdn-cn3.apple-mapkit.com
++.cdn-cn4.apple-mapkit.com
++.cdn1.apple-mapkit.com
++.cdn2.apple-mapkit.com
++.cdn3.apple-mapkit.com
++.cdn4.apple-mapkit.com
 +.apple3799.com
 +.appleload.com
 +.applepopo.com
@@ -3175,6 +3290,7 @@ cdn.angruo.com
 +.armbooster.com
 +.armvm.com
 +.aropteakv.com
++.arpun.com
 +.artamap.com
 +.arthome163.com
 +.arthubdam.com
@@ -3221,6 +3337,7 @@ cdn.angruo.com
 +.athmapp.com
 +.atianqi.com
 +.atomgit.com
++.atpanel.com
 +.atraougta.com
 +.atrenew.com
 +.atrkos.com
@@ -3410,6 +3527,7 @@ cdn.angruo.com
 +.baidupcs.com
 +.baidusample.com
 +.baidusmartapps.com
++.baidustatic.com
 +.baiduux.com
 +.baiduwaf.com
 +.baiduwebgame.com
@@ -3418,6 +3536,7 @@ cdn.angruo.com
 +.baiduyundns.com
 +.baiduyunwaf.com
 +.baifae.com
++.baifendian.com
 +.baifubao.com
 +.baihangbao.com
 +.baihangcredit.com
@@ -3457,6 +3576,7 @@ cdn.angruo.com
 +.baiu.com
 +.baiwanyingxiong.com
 +.baixin.com
++.baixing.com
 +.baixing-ai.com
 +.baizhanlive.com
 +.baizheng100.com
@@ -3774,6 +3894,7 @@ cdn.angruo.com
 +.bibiwo.com
 +.bidata.com
 +.bidchance.com
++.biddingx.com
 +.bidemi.com
 +.bidns.com
 +.bidocker.com
@@ -3808,6 +3929,7 @@ cdn.angruo.com
 +.biligame.com
 +.biligo.com
 +.biliimg.com
++.biliintl.com
 +.bilioss.com
 +.biliq.com
 +.bilistatic.com
@@ -3815,6 +3937,11 @@ cdn.angruo.com
 +.binfencloud.com
 +.binfenhezi.com
 +.binfunbox.com
+bj1.api.bing.com
++.cn.bing.com
+emoi-cncdn.bing.com
++.r.bing.com
++.th.bing.com
 +.bingbingnet.com
 +.bingex.com
 +.binglianhuajianzhan.com
@@ -4035,6 +4162,7 @@ cdn.angruo.com
 +.boomcutai.com
 +.boosj.com
 +.boostsads.com
++.bootcss.com
 +.boqapz.com
 +.borduntech.com
 +.borui1001.com
@@ -4400,7 +4528,6 @@ cdn.angruo.com
 +.cbobserver.com
 +.cbpmgt.com
 +.cbskr.com
-+.clickserve.cc-dt.com
 +.cc-y.com
 +.cc0808.com
 +.cc62.com
@@ -4467,6 +4594,16 @@ cdn.angruo.com
 +.cdkeynogap.com
 +.cdlqyzp.com
 +.cdmcaac.com
++.app-site-association.cdn-apple.com
++.appleid.cdn-apple.com
++.cstat.cdn-apple.com
+icloud.cdn-apple.com
++.ml.cdn-apple.com
++.publicassets.cdn-apple.com
++.shazam-insights.cdn-apple.com
++.store.storeimages.cdn-apple.com
++.updates.cdn-apple.com
++.updates-http.cdn-apple.com
 +.cdn-build.com
 +.cdn-cba.com
 +.cdn-dodo.com
@@ -4934,6 +5071,7 @@ cdn.angruo.com
 +.chineseall.com
 +.chingchi-lab.com
 +.chiphell.com
++.chiq-cloud.com
 +.chivox.com
 +.chivoxapp.com
 +.chj-zhyq.com
@@ -5425,6 +5563,7 @@ cdn.angruo.com
 +.cnza71v5.com
 +.cnzsqh.com
 +.cnzxsoft.com
++.cnzz.com
 +.co-linker.com
 +.co-luckey.com
 +.co9377.com
@@ -5487,6 +5626,7 @@ cdn.angruo.com
 +.coocaa.com
 +.coocaaos.com
 +.coocaatech.com
++.coocaatv.com
 +.cookicut.com
 +.coolapk.com
 +.coolapkmarket.com
@@ -5644,6 +5784,7 @@ cdn.angruo.com
 +.csair.com
 +.csajk.com
 +.csapgrtw.com
++.csbew.com
 +.csbike01.com
 +.csc108.com
 +.csc95587.com
@@ -5657,6 +5798,7 @@ cdn.angruo.com
 +.cshimedia.com
 +.csj-marketing.com
 +.csjdeveloper.com
++.csjplatform.com
 +.csjplatform-img.com
 +.csjplatform-static.com
 +.csjpwq.com
@@ -5991,6 +6133,7 @@ cdn.angruo.com
 +.daojiahuoyun.com
 +.daomengs.com
 +.daotudashi.com
++.daoyoudao.com
 +.dapaizhizao.com
 +.dapingzhishu.com
 +.dapinku.com
@@ -6000,6 +6143,7 @@ cdn.angruo.com
 +.darecord.com
 +.darenlaiye.com
 +.dashenw.com
++.dashet.com
 +.dashufx.com
 +.dashulu.com
 +.daspatial.com
@@ -6146,7 +6290,7 @@ cdn.angruo.com
 +.designkit.com
 +.designofchina.com
 +.dessmannlock.com
-+.www.destinationurl.com
++.detailroi.com
 +.detaingame.com
 +.detcms.com
 +.develenv.com
@@ -6428,6 +6572,7 @@ cdn.angruo.com
 +.dnsxv7.com
 +.dnsxv8.com
 +.dnsxv9.com
++.do-global.com
 +.dobest.com
 +.doc366.com
 +.doc88.com
@@ -6615,7 +6760,10 @@ cdn.angruo.com
 +.duanhun.com
 +.duanju.com
 +.duanqu.com
++.duapp.com
 +.duapp-preview.com
++.duapps.com
++.duba.com
 +.dubaji.com
 +.dubbingshow.com
 +.duckingo.com
@@ -6665,6 +6813,7 @@ cdn.angruo.com
 +.duolabaocdn.com
 +.duolabaoxian.com
 +.duolayouhuo.com
++.duomai.com
 +.duoqin.com
 +.duoshan.com
 +.duoshanapp.com
@@ -6730,6 +6879,7 @@ cdn.angruo.com
 +.dxmxmf.com
 +.dxmyqh.com
 +.dxmyun.com
++.dxpmedia.com
 +.dxy.com
 +.dxycdn.com
 +.dxyer.com
@@ -6812,6 +6962,7 @@ cdn.angruo.com
 +.easesdk.com
 +.easiu.com
 +.easmawcpc.com
++.easou.com
 +.easoubj.com
 +.easouplay.com
 +.east-buy.com
@@ -6837,6 +6988,7 @@ cdn.angruo.com
 +.easyrecoverychina.com
 +.easysu-cloud.com
 +.easytimestudio.com
++.easytomessage.com
 +.easytransferglobal.com
 +.easytrip.com
 +.easywechat.com
@@ -7575,6 +7727,7 @@ cdn.angruo.com
 +.fenqibox.com
 +.fenqile.com
 +.fenwandao.com
++.fenxi.com
 +.fenxiang-ai.com
 +.fenxianggpt.com
 +.fenxianglife.com
@@ -7889,6 +8042,7 @@ cdn.angruo.com
 +.fudanpresserp.com
 +.fudanxinxueshu.com
 +.fudanxueqian.com
++.fugetech.com
 +.fuiou.com
 +.fuioupay.com
 +.fujiancitt.com
@@ -8095,6 +8249,7 @@ cdn.angruo.com
 +.gaokaopai.com
 +.gaokaowang.com
 +.gaokaozm.com
++.gaoshouyou.com
 +.gaotu100.com
 +.gaotu43.com
 +.gaotu44.com
@@ -8207,6 +8362,7 @@ cdn.angruo.com
 +.gdtengnan.com
 +.gdtextbook.com
 +.gdtianshanoa.com
++.gdtimg.com
 +.gdtvnm.com
 +.gdxkc.com
 +.gdydszxc.com
@@ -8243,11 +8399,13 @@ cdn.angruo.com
 +.geniuworks.com
 +.gensee.com
 +.gensheixue.com
++.genshinimpact.com
 +.genshuixu.com
 +.genshuixue.com
 +.genstore-qa.com
 +.genwoxue365.com
 +.geometryauto.com
++.gepush.com
 +.geqtpeivc.com
 +.gerouji.com
 +.ges-china.com
@@ -8257,6 +8415,7 @@ cdn.angruo.com
 +.getckqdvx.com
 +.getfeishu.com
 +.getihuzhijia.com
++.getui.com
 +.gewara.com
 +.gexesyghe.com
 +.geyecloud.com
@@ -8306,6 +8465,7 @@ cdn.angruo.com
 +.gigaget.com
 +.gigpayroll.com
 +.gijsq.com
++.giocdn.com
 +.gip100.com
 +.gipeowhes.com
 +.gitcode.com
@@ -8454,25 +8614,6 @@ cdn.angruo.com
 +.goodssp.com
 +.goodzhongyi.com
 +.goofish.com
-+.google-analytics.com
-+.google-analytics-cn.com
-+.clickserver.googleads.com
-+.googleadservices.com
-+.googleadservices-cn.com
-+.googleanalytics.com
-+.googleapis-cn.com
-+.googleapps-cn.com
-+.googleoptimize.com
-+.googleoptimize-cn.com
-+.googlesyndication.com
-+.googlesyndication-cn.com
-+.googletagmanager.com
-+.googletagmanager-cn.com
-+.googletagservices.com
-+.googletagservices-cn.com
-+.googletraveladservices.com
-+.googletraveladservices-cn.com
-+.googlevads-cn.com
 +.goosail.com
 +.goottt.com
 +.gopixonline.com
@@ -8552,8 +8693,11 @@ cdn.angruo.com
 +.greenxiazai.com
 +.greeyun.com
 +.grgbanking.com
++.gridsum.com
++.gridsumdissector.com
 +.group253.com
 +.groupyun.com
++.growingio.com
 +.growlaxy.com
 +.growpalapp.com
 +.growphys.com
@@ -8585,7 +8729,6 @@ cdn.angruo.com
 +.gsrecv.com
 +.gstarcad.com
 +.gstarsoft.com
-+.gstatic-cn.com
 +.gstcistzw.com
 +.gstsrcw.com
 +.gsuxcvev.com
@@ -8771,8 +8914,6 @@ cdn.angruo.com
 +.gv94.com
 +.gvgoo.com
 +.gvkguirpk.com
-+.gvt1-cn.com
-+.gvt2-cn.com
 +.gvwxtmacc.com
 +.gvzwmetis.com
 +.gw1lnkzm.com
@@ -8833,6 +8974,7 @@ cdn.angruo.com
 +.gyxruiev.com
 +.gyxx365.com
 +.gyyonyou.com
++.gz-data.com
 +.gz-giant.com
 +.gz-tencentclb.com
 +.gz11g.com
@@ -9389,6 +9531,7 @@ cdn.angruo.com
 +.hihonor.com
 +.hihonorcdn.com
 +.hihonorcloud.com
++.hiido.com
 +.hiinns.com
 +.hik-cloud.com
 +.hik-express.com
@@ -10293,6 +10436,7 @@ cdn.angruo.com
 +.idzkj.com
 +.ieasou.com
 +.ieeewifi.com
++.iemiq.com
 +.iend83.com
 +.ieqkypcq.com
 +.iesdouyin.com
@@ -10421,6 +10565,7 @@ cdn.angruo.com
 +.ijiandao.com
 +.ijifen.com
 +.ijingyi.com
++.ijinshan.com
 +.ijkxt.com
 +.ijuanshen.com
 +.ijumitech.com
@@ -10690,7 +10835,9 @@ sms.imagetasks.com
 +.ipaylinks.com
 +.ipayun.com
 +.ipchaxun.com
++.iper2.com
 +.ipetapi.com
++.ipinyou.com
 +.ipksmtcpk.com
 +.ipktv.com
 +.ipku.com
@@ -10711,6 +10858,7 @@ sms.imagetasks.com
 +.ipweizhi.com
 +.ipwvteteo.com
 +.ipxwroari.com
++.iq.com
 +.iqaposzke.com
 +.iqd40bsn.com
 +.iqdnet.com
@@ -11073,6 +11221,7 @@ sms.imagetasks.com
 +.jerpx.com
 +.jet-ego.com
 +.jet-logistics.com
+download.jetbrains.com
 +.jetlogistic.com
 +.jf-build.com
 +.jfdaily.com
@@ -11448,6 +11597,7 @@ sms.imagetasks.com
 +.jooancloud.com
 +.jooaniot.com
 +.joobuy.com
++.joox.com
 +.journalep.com
 +.joy25.com
 +.joybuy.com
@@ -11462,6 +11612,7 @@ sms.imagetasks.com
 +.joyyued.com
 +.jp-tencentclb.com
 +.jpmorganchina.com
++.jpushoa.com
 +.jqian8.com
 +.jqr360.com
 +.jqsrcw.com
@@ -11696,6 +11847,7 @@ sms.imagetasks.com
 +.kaiyanchuangyi.com
 +.kaiyinhn.com
 +.kaizouba.com
++.kajicam.com
 +.kakalili.com
 +.kakamobi.com
 +.kakaoya.com
@@ -11899,7 +12051,6 @@ sms.imagetasks.com
 +.kjsjair.com
 +.kjtianshanxu.com
 +.kjwugx.com
-+.kk-rays.com
 +.kk30.com
 +.kkapp.com
 +.kkcalk.com
@@ -11975,6 +12126,7 @@ sms.imagetasks.com
 +.knowniot.com
 +.knownsec.com
 +.knownsz.com
++.knowsafe.com
 +.knread.com
 +.koalareading.com
 +.koboo.com
@@ -11998,6 +12150,7 @@ sms.imagetasks.com
 +.koopass.com
 +.kooqb.com
 +.kooup.com
++.koowo.com
 +.koowork.com
 +.koridict.com
 +.korjuntech.com
@@ -12673,6 +12826,7 @@ sms.imagetasks.com
 +.lianmishu.com
 +.lianquapp.com
 +.liantu.com
++.lianwangtech.com
 +.lianwifi.com
 +.lianwuyu.com
 +.lianxinapp.com
@@ -12782,8 +12936,6 @@ sms.imagetasks.com
 +.linksda.com
 +.linksmartiot.com
 +.linkstars.com
-+.linksys.com
-+.linksyssmartwifi.com
 +.linkvans.com
 +.linkxet.com
 +.linliyz.com
@@ -12814,6 +12966,7 @@ sms.imagetasks.com
 +.liuxiayu.com
 +.liuxing.com
 +.liuyunflow.com
++.ditu.live.com
 +.live-voip.com
 +.live800.com
 +.livecdnstatic.com
@@ -12891,6 +13044,7 @@ sms.imagetasks.com
 +.lncyzhny.com
 +.lneab.com
 +.lngwy.com
++.lnk0.com
 +.lnoffcn.com
 +.loan-finshell.com
 +.localxcafe.com
@@ -12962,6 +13116,7 @@ sms.imagetasks.com
 +.lucksources.com
 +.luckyeee.com
 +.luckysouler.com
++.ludashi.com
 +.ludashisafe.com
 +.ludosuperstar.com
 +.lufax.com
@@ -13129,6 +13284,7 @@ sms.imagetasks.com
 +.maixhub.com
 +.maiyariji.com
 +.maiyptbtk.com
++.makeding.com
 +.makedingtech.com
 +.makercn.com
 +.maketion.com
@@ -13299,6 +13455,7 @@ sms.imagetasks.com
 +.mediacloud.com
 +.mediafkw.com
 +.mediatechsh.com
++.mediav.com
 +.mediaxinan.com
 +.meditationbear.com
 +.meditrustgroup.com
@@ -13402,6 +13559,7 @@ sms.imagetasks.com
 +.meitushouji.com
 +.meitusiyu.com
 +.meitusnap.com
++.meitustat.com
 +.meitustatic.com
 +.meitustore.com
 +.meitutaotao.com
@@ -13526,6 +13684,7 @@ sms.imagetasks.com
 +.miaotixing.com
 +.miaoxiaocheng.com
 +.miaoyanai.com
++.miaozhen.com
 +.miaozilla.com
 +.miaoziyu.com
 +.miboi.com
@@ -13533,6 +13692,33 @@ sms.imagetasks.com
 +.micbosscloud.com
 +.micro-game-client.com
 +.microaiav.com
+wscont1.apps.microsoft.com
+wscont2.apps.microsoft.com
+build.microsoft.com
++.dcg.microsoft.com
+devblogs.microsoft.com
+developer.microsoft.com
+docs.microsoft.com
+download.microsoft.com
+fs.microsoft.com
+learn.microsoft.com
++.dl.delivery.mp.microsoft.com
+storeedgefd.dsx.mp.microsoft.com
+ntservicepack.microsoft.com
+officecdn.microsoft.com
+myvs.download.prss.microsoft.com
+oemsoc.download.prss.microsoft.com
+software.download.prss.microsoft.com
+vscode.download.prss.microsoft.com
+vz.download.prss.microsoft.com
+surface.downloads.prss.microsoft.com
+sdx.microsoft.com
++.update.microsoft.com
+download.visualstudio.microsoft.com
++.windowsupdate.microsoft.com
+bg.v4.a.dl.ws.microsoft.com
+bg4.v4.a.dl.ws.microsoft.com
+www.microsoft.com
 +.microvcard.com
 +.micwsgdmu.com
 +.midaqi.com
@@ -13661,6 +13847,7 @@ sms.imagetasks.com
 +.minimaxchat.com
 +.minimaxi.com
 +.minimaxint.com
++.miniso.com
 +.minisotech.com
 +.minitiao.com
 +.miniworldbox.com
@@ -13715,6 +13902,7 @@ sms.imagetasks.com
 +.miyoushe.com
 +.miyuangz.com
 +.miyun.com
++.mjmobi.com
 +.mjxpay.com
 +.mk-b2.com
 +.mk1282.com
@@ -13760,12 +13948,14 @@ sms.imagetasks.com
 +.mmrgvydek.com
 +.mms253.com
 +.mmsrcw.com
++.mmstat.com
 +.mmxgoyhtk.com
 +.mmzeurdar.com
 +.mmzygmkxc.com
 +.mnbvbqw.com
 +.mnbvdfg.com
 +.mnbvtgv.com
++.mob.com
 +.mobdeveloper.com
 +.mobdna.com
 +.mobeehome.com
@@ -14196,12 +14386,35 @@ sms.imagetasks.com
 +.mzimvrziz.com
 +.mzixi.com
 +.mzres.com
++.a1.mzstatic.com
++.a2.mzstatic.com
++.a3.mzstatic.com
++.a4.mzstatic.com
++.a5.mzstatic.com
++.apps.mzstatic.com
++.is1.mzstatic.com
++.is1-ssl.mzstatic.com
++.is2.mzstatic.com
++.is2-ssl.mzstatic.com
++.is3.mzstatic.com
++.is3-ssl.mzstatic.com
++.is4.mzstatic.com
++.is4-ssl.mzstatic.com
++.is5.mzstatic.com
++.is5-ssl.mzstatic.com
++.s.mzstatic.com
+s1.mzstatic.com
+s2.mzstatic.com
+s3.mzstatic.com
+s4.mzstatic.com
+s5.mzstatic.com
 +.mztbg.com
 +.mztgame.com
 +.mztowvczr.com
 +.mzzhrobot.com
 +.n-speedtest.com
 +.n0808.com
++.n0vadesktop.com
 +.n3805.com
 +.n3r3k.com
 +.n5782.com
@@ -14528,6 +14741,7 @@ sms.imagetasks.com
 +.o365cn.com
 +.o5zyk9vu2d.com
 +.o61122.com
++.oadz.com
 +.oaegqyzce.com
 +.oajj08.com
 +.oalite.com
@@ -14538,7 +14752,6 @@ sms.imagetasks.com
 +.oaread.com
 +.oaruanjian.com
 +.oasesalliance.com
-+.gtm.oasisfeng.com
 +.oasqa.com
 +.oatenglish.com
 +.obizkey.com
@@ -14595,12 +14808,12 @@ sms.imagetasks.com
 +.oiemqtziq.com
 +.oihiutbp.com
 +.oikxwcfzu.com
-+.apps5.oingo.com
 +.oioly.com
 +.oiscast.com
 +.oisizaitm.com
 +.oiwq3.com
 +.oizragafe.com
++.okaapps.com
 +.okap.com
 +.okexitfgc.com
 +.okfengyun.com
@@ -14639,6 +14852,7 @@ sms.imagetasks.com
 +.oncdp.com
 +.one258.com
 +.one2711.com
++.oneapm.com
 +.onehaier.com
 +.onemo10086.com
 +.onenet10086.com
@@ -14663,6 +14877,7 @@ sms.imagetasks.com
 +.onewsvod.com
 +.onexmail.com
 +.oneyac.com
++.onezapp.com
 +.onkadid3g7xtc.com
 +.onlinedown.com
 +.onlinesjtu.com
@@ -14897,6 +15112,7 @@ sms.imagetasks.com
 +.p-xiaopeng.com
 +.p1staff.com
 +.p24p75149p.com
++.p2cdn.com
 +.p2peye.com
 +.p4pfile.com
 +.p87o5abpg0.com
@@ -15032,6 +15248,7 @@ sms.imagetasks.com
 +.pehortech.com
 +.peibanw.com
 +.peijian.com
++.peiluyou.com
 +.peiniapp.com
 +.peinijizhang.com
 +.peiwanlu.com
@@ -15293,6 +15510,7 @@ st.dl.pinyuncloud.com
 +.potops.com
 +.pouikn.com
 +.pouquiagievu.com
++.powercx.com
 +.powerenergychain.com
 +.powerfulchain.com
 +.powmitech.com
@@ -15450,7 +15668,6 @@ st.dl.pinyuncloud.com
 +.pwtarikii.com
 +.px788.com
 +.pxb7.com
-+.www.pxcc.com
 +.pxgtrsrpo.com
 +.pxianlai.com
 +.pxiek.com
@@ -15541,6 +15758,8 @@ st.dl.pinyuncloud.com
 +.qcloudwaf.com
 +.qcloudwzgj.com
 +.qcloudzygj.com
+izattime.qcomgeo2.com
+xtratime.qcomgeo2.com
 +.qconbeijing.com
 +.qconshanghai.com
 +.qcplay.com
@@ -15653,6 +15872,7 @@ st.dl.pinyuncloud.com
 +.qianlima.com
 +.qianlong.com
 +.qianniujisu.com
++.click.qianqian.com
 +.qianqiqianqi.com
 +.qianqixin.com
 +.qianshouapp.com
@@ -15668,7 +15888,6 @@ st.dl.pinyuncloud.com
 +.qianyierp.com
 +.qianyun-idc.com
 +.qianzhan.com
-+.qiao-cn.com
 +.qiaobutang.com
 +.qiaoyuai.com
 +.qiaoyuapp.com
@@ -16030,6 +16249,7 @@ st.dl.pinyuncloud.com
 +.quality-ad.com
 +.quangao.com
 +.quanma51.com
++.quanmama.com
 +.quanmama11.com
 +.quanmama12.com
 +.quanmama13.com
@@ -16048,6 +16268,7 @@ st.dl.pinyuncloud.com
 +.quanshimeeting.com
 +.quanshu123.com
 +.quantekeji.com
++.quantil.com
 +.quantilcn.com
 +.quantilng.com
 +.quantsdev.com
@@ -16668,6 +16889,7 @@ st.dl.pinyuncloud.com
 +.rta-os.com
 +.rtacdn-os.com
 +.rtawcskdk.com
++.rtbasia.com
 +.rtbinchina.com
 +.rtccon.com
 +.rtcdeveloper.com
@@ -16699,6 +16921,7 @@ st.dl.pinyuncloud.com
 +.ruizhureserver.com
 +.ruizhuzn.com
 +.rumgrvic.com
++.rumt-zh.com
 +.runaboard.com
 +.runnergo.com
 +.runoob.com
@@ -17475,6 +17698,7 @@ st.dl.pinyuncloud.com
 +.seiue.com
 +.selectshandong.com
 +.selfiecity.com
++.sellfox.com
 +.semdissector.com
 +.sencdn.com
 +.sencent.com
@@ -17922,6 +18146,7 @@ st.dl.pinyuncloud.com
 +.sifou.com
 +.sigmaapp.com
 +.sigmcdn.com
++.sigmob.com
 +.signssl.com
 +.sijijun.com
 +.sijimishu.com
@@ -18107,6 +18332,7 @@ st.dl.pinyuncloud.com
 +.snpgh.com
 +.snqpm.com
 +.snqu.com
++.snssdk.com
 +.snswebcast.com
 +.snv1.com
 +.snwx.com
@@ -18114,6 +18340,7 @@ st.dl.pinyuncloud.com
 +.snztw.com
 +.so.com
 +.so123.com
++.sobot.com
 +.soboten.com
 +.social-media-data.com
 +.socialbasecustomercontent.com
@@ -18309,6 +18536,7 @@ st.dl.pinyuncloud.com
 +.sseinfonet.com
 +.ssgxmj.com
 +.ssjlicai.com
+images-cn.ssl-images-amazon.com
 +.sslawy.com
 +.sslcer.com
 +.sslibrary.com
@@ -18331,6 +18559,7 @@ st.dl.pinyuncloud.com
 +.stardustlm.com
 +.starfans.com
 +.starfunpro.com
++.stargame.com
 +.starlakelab.com
 +.starnetuc.com
 +.starplaylet.com
@@ -18355,8 +18584,11 @@ st.dl.pinyuncloud.com
 +.steamch.com
 +.steamchina.com
 +.steamcngames.com
++.steamcontent.com
 +.steamdd.com
 +.steamory.com
++.cm.steampowered.com
++.steamusercontent.com
 +.stellarstock.com
 +.stepfun.com
 +.stepfun-inc.com
@@ -18558,6 +18790,7 @@ analytics.strava.com
 +.symama.com
 +.sympwebank.com
 +.symria.com
++.synacast.com
 +.synjones.com
 +.syoogame.com
 +.sys321.com
@@ -18577,6 +18810,7 @@ analytics.strava.com
 +.sz160.com
 +.sz765.com
 +.sz800.com
++.szbdyd.com
 +.szbpkj.com
 +.szceri.com
 +.szcftxd.com
@@ -18689,6 +18923,7 @@ analytics.strava.com
 +.talinschool.com
 +.talk-guru.com
 +.talkershow.com
++.talkingdata.com
 +.talkinggame.com
 +.talkinggenie.com
 +.talovative.com
@@ -18762,6 +18997,7 @@ analytics.strava.com
 +.tap-biz.com
 +.tapapis.com
 +.tapd-app.com
++.tapdb.com
 +.tapimg.com
 +.tapsvc.com
 +.taptap.com
@@ -18984,6 +19220,7 @@ analytics.strava.com
 +.tencentadx.com
 +.tencentags.com
 +.tencentanxin.com
++.tencentapigw.com
 +.tencentapis.com
 +.tencentapp.com
 +.tencentapps.com
@@ -19662,6 +19899,7 @@ steampipe.steamcontent.tnkjmec.com
 +.toutiaolite2.com
 +.toutiaoliving.com
 +.toutiaonanren.com
++.toutiaopage.com
 +.toutiaopan.com
 +.toutiaopanapi.com
 +.toutiaopic.com
@@ -19702,9 +19940,12 @@ steampipe.steamcontent.tnkjmec.com
 +.tqq71.com
 +.tqwvpmtkk.com
 +.tqzxsixcm.com
++.trackingio.com
 +.tracup.com
 +.tradaquan.com
 +.trade-finshell.com
++.tradplus.com
++.tradplusad.com
 +.trainingipv6.com
 +.traitorgame.com
 +.tramgame.com
@@ -20100,6 +20341,7 @@ steampipe.steamcontent.tnkjmec.com
 +.udeskglobal.com
 +.udjg15.com
 +.udoubao.com
++.udrig.com
 +.uegcxprke.com
 +.ueimozft.com
 +.uesuvggcu.com
@@ -20115,6 +20357,7 @@ steampipe.steamcontent.tnkjmec.com
 +.ugapk.com
 +.ugc-up-dom.com
 +.ugditui.com
++.ugdtimg.com
 +.ugewkgxk.com
 +.uggame.com
 +.ugnas.com
@@ -20130,6 +20373,7 @@ steampipe.steamcontent.tnkjmec.com
 +.ugturchzz.com
 +.ugwoytbik.com
 +.ugzoercdz.com
++.uhabo.com
 +.uhasadmin.com
 +.uhbthn.com
 +.uhgzgnb.com
@@ -20176,6 +20420,7 @@ steampipe.steamcontent.tnkjmec.com
 +.umaotck.com
 +.umccloud.com
 +.umcsaas.com
++.umeng.com
 +.umeng100.com
 +.umengcloud.com
 +.umetrip.com
@@ -20269,6 +20514,7 @@ steampipe.steamcontent.tnkjmec.com
 +.urgentgame.com
 +.urgepai.com
 +.urhimalayanak.com
++.uri6.com
 +.urlsecajog.com
 +.urmgba.com
 +.urq7wvyumzfdi5.com
@@ -20352,6 +20598,7 @@ steampipe.steamcontent.tnkjmec.com
 +.uyiyesrho.com
 +.uyntv.com
 +.uyouxian.com
++.uyunad.com
 +.uyyikgvpe.com
 +.uzemuthrt.com
 +.uzeroai.com
@@ -20377,6 +20624,7 @@ steampipe.steamcontent.tnkjmec.com
 +.value500.com
 +.valueq-sea.com
 +.valvepai.com
++.vamaker.com
 +.vancl.com
 +.vanclimg.com
 +.vanishys.com
@@ -21042,6 +21290,7 @@ steampipe.steamcontent.tnkjmec.com
 +.webankwld.com
 +.webankwyd.com
 +.webankxcx.com
++.webdissector.com
 +.webgame163.com
 +.webgamehome.com
 +.webgetstore.com
@@ -21049,6 +21298,7 @@ steampipe.steamcontent.tnkjmec.com
 +.webportalapi.com
 +.webqxs.com
 +.websec1.com
++.webterren.com
 +.wechat.com
 +.wechatapp.com
 +.wechatauthdemo.com
@@ -21243,6 +21493,7 @@ steampipe.steamcontent.tnkjmec.com
 +.wetimetech.com
 +.wetogetherbuy.com
 +.wetuantuan.com
++.wetvinfo.com
 +.wewecall.com
 +.wework-pro.com
 +.wework-studio.com
@@ -21326,6 +21577,10 @@ steampipe.steamcontent.tnkjmec.com
 +.winb2c.com
 +.windows10zj.com
 +.windows7en.com
+cdn.marketplaceimages.windowsphone.com
+cn.windowssearch.com
+ctldl.windowsupdate.com
++.download.windowsupdate.com
 +.windowszj.com
 +.windvaday.com
 +.wingflightcontrol.com
@@ -21542,6 +21797,7 @@ steampipe.steamcontent.tnkjmec.com
 +.wqtcepzkm.com
 +.wqxsw.com
 +.wqzsc36ou356m.com
++.wrating.com
 +.wrcqregbc.com
 +.wrdj4.com
 +.wrfib.com
@@ -21858,6 +22114,7 @@ steampipe.steamcontent.tnkjmec.com
 +.xdplt.com
 +.xdqtech.com
 +.xdrcftv.com
++.xdrig.com
 +.xdrnd.com
 +.xdrtc.com
 +.xdsre.com
@@ -22842,6 +23099,7 @@ steampipe.steamcontent.tnkjmec.com
 +.xuliangsuo.com
 +.xunce360.com
 +.xuncetech.com
++.xundupdf.com
 +.xunfeia.com
 +.xunfeib.com
 +.xunfeifanyi.com
@@ -22909,6 +23167,7 @@ steampipe.steamcontent.tnkjmec.com
 +.xxwolo.com
 +.xy-films.com
 +.xyagency.com
++.xycdn.com
 +.xycloud.com
 +.xyclouds.com
 +.xyf83.com
@@ -23278,6 +23537,7 @@ steampipe.steamcontent.tnkjmec.com
 +.yiigao.com
 +.yiigle.com
 +.yijiafund.com
++.yijifen.com
 +.yijingcloud.com
 +.yikaixin.com
 +.yikangsan.com
@@ -23342,6 +23602,7 @@ steampipe.steamcontent.tnkjmec.com
 +.yipaijichuan.com
 +.yipmguzvz.com
 +.yiqibuduoduo.com
++.yiqifa.com
 +.yiqifu.com
 +.yiqihuihui.com
 +.yiqimeishu.com
@@ -23850,6 +24111,7 @@ steampipe.steamcontent.tnkjmec.com
 +.yunshanapp.com
 +.yunshanghotels.com
 +.yunshangvfx.com
++.yunshipei.com
 +.yunteams.com
 +.yuntiangang.com
 +.yuntigroup.com
@@ -24364,6 +24626,7 @@ www.yxssp.com
 +.zhiyu01.com
 +.zhizhen.com
 +.zhizhuma.com
++.zhiziyun.com
 +.zhizukj.com
 +.zhizukj-bi.com
 +.zhizutech.com
@@ -25038,6 +25301,8 @@ www.yxssp.com
 +.h3c.com.hk
 +.icbci.com.hk
 +.pingan.com.hk
++.adimages.sina.com.hk
++.oascentral.sina.com.hk
 +.tencent.com.hk
 +.wechatpay.com.hk
 +.csci.hk
@@ -25126,6 +25391,7 @@ www.yxssp.com
 +.17yund.info
 +.300033.info
 +.3odboymvqugnc.info
++.5166.info
 +.51yund.info
 +.7678.info
 +.ag-kit.info
@@ -25316,6 +25582,7 @@ end-api.shallow.ink
 +.ivweb.io
 +.jchat.io
 +.jianshu.io
++.jpush.io
 +.lizhi.io
 +.menhu.io
 +.mindstore.io
@@ -25356,6 +25623,7 @@ end-api.shallow.ink
 +.icbc.com.kw
 +.icbcalmaty.kz
 +.3322.la
++.51.la
 +.6655.la
 +.900.la
 +.icbc.com.la
@@ -25527,6 +25795,7 @@ end-api.shallow.ink
 +.haimao.me
 +.ichoice.me
 +.icoc.me
++.id6.me
 +.ipayfor.me
 +.ismartlife.me
 +.lightalk.me
@@ -25758,8 +26027,6 @@ origin-a.akamaihd.ne
 +.263eschool.net
 +.263nic.net
 +.29592.net
-+.2mdn.net
-+.2mdn-cn.net
 +.2op9.net
 +.2rich.net
 +.321.net
@@ -25952,6 +26219,48 @@ origin-a.akamaihd.ne
 +.ajstat.net
 +.aka700.net
 +.aka815.net
++.prod-support.apple-support.akadns.net
++.support-china.apple-support.akadns.net
++.adcdownload.apple.com.akadns.net
++.cds.apple.com.akadns.net
+certs-lb.apple.com.akadns.net
++.clientflow.apple.com.akadns.net
++.configuration.apple.com.akadns.net
+crl-lb.apple.com.akadns.net
+init.gc-lb.apple.com.akadns.net
++.mesu-cdn.apple.com.akadns.net
++.mesu-china.apple.com.akadns.net
+ocsp-lb.apple.com.akadns.net
+ocsp2-lb.apple.com.akadns.net
++.stocks-sparkline-lb.apple.com.akadns.net
++.store.storeimages.apple.com.akadns.net
++.swcatalog-cdn.apple.com.akadns.net
++.swdist.apple.com.akadns.net
++.swscan-cdn.apple.com.akadns.net
++.weather-data.apple.com.akadns.net
+pancake.cdn-apple.com.akadns.net
++.updates-http.cdn-apple.com.akadns.net
+icloud-cdn.icloud.com.akadns.net
++.itunes-apple.com.akadns.net
++.gspe19-2-cn-ssl.ls-apple.com.akadns.net
++.gspe19-cn.ls-apple.com.akadns.net
++.cl1-cdn.origin-apple.com.akadns.net
+cl2-cdn.origin-apple.com.akadns.net
++.cl3-cdn.origin-apple.com.akadns.net
++.cl4-cdn.origin-apple.com.akadns.net
++.cl5-cdn.origin-apple.com.akadns.net
++.dd-cdn.origin-apple.com.akadns.net
++.iphone-ld.origin-apple.com.akadns.net
++.oscdn.origin-apple.com.akadns.net
++.valid.origin-apple.com.akadns.net
++.init-p01md-lb.push-apple.com.akadns.net
++.init-p01st-lb.push-apple.com.akadns.net
++.init-s01st-lb.push-apple.com.akadns.net
++.cl2.apple.com.edgekey.net.globalredir.akadns.net
++.images.apple.com.edgekey.net.globalredir.akadns.net
++.gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net
++.store.apple.com.edgekey.net.globalredir.akadns.net
++.www.apple.com.edgekey.net.globalredir.akadns.net
 +.akadns88.net
 +.akadns99.net
 +.akamaiedge88.net
@@ -26116,6 +26425,8 @@ origin-a.akamaihd.ne
 +.bilivideo.net
 +.binaryai.net
 +.binfotech.net
++.cn.bing.net
++.cn.mm.bing.net
 +.bio360.net
 +.bixinapp.net
 +.biyehome.net
@@ -26154,6 +26465,7 @@ origin-a.akamaihd.ne
 +.bricsiscip.net
 +.broadcasthe.net
 +.brsn.net
++.bsccdn.net
 +.bscstorage.net
 +.bseinfo.net
 +.bskt100.net
@@ -26327,6 +26639,7 @@ origin-a.akamaihd.ne
 +.cloudacc1.net
 +.cloudbase.net
 +.cloudcdns.net
++.lenovo.com.cdn.cloudflare.net
 +.cloudflareanycast.net
 +.cloudflarecn.net
 +.cloudflareglobal.net
@@ -26449,7 +26762,6 @@ origin-a.akamaihd.ne
 +.dangqun.net
 +.daniaoyun.net
 +.danuoyidns.net
-+.dartsearch-cn.net
 +.dasizheng.net
 +.datarangers.net
 +.datasuper.net
@@ -26533,6 +26845,7 @@ origin-a.akamaihd.ne
 +.dnsxv8.net
 +.dnsxv9.net
 +.do-global.net
++.doglobal.net
 +.dolfincdnx.net
 +.dolfindns.net
 +.dolfindnsx.net
@@ -26541,8 +26854,6 @@ origin-a.akamaihd.ne
 +.donghaiair.net
 +.dongqiudi.net
 +.dossen.net
-+.doubleclick.net
-+.doubleclick-cn.net
 +.douyinact.net
 +.douyincloud.net
 +.douyinpay-zg.net
@@ -26555,6 +26866,7 @@ origin-a.akamaihd.ne
 +.duanmatong.net
 +.duanxinbao.net
 +.duapp.net
++.duba.net
 +.duckling.net
 +.duibagroup.net
 +.duitang.net
@@ -26592,6 +26904,7 @@ origin-a.akamaihd.ne
 +.edgeaccelerate.net
 +.edgefn.net
 +.edgegslb.net
++.store.apple.com.edgekey.net
 +.edgekey-staging88.net
 +.edgekey88.net
 +.edgeonedl1.net
@@ -26666,6 +26979,7 @@ origin-a.akamaihd.ne
 +.fangdd.net
 +.fanxiaojian.net
 +.fasoso.net
++.fastapi.net
 +.fawuren.net
 +.faxuan.net
 +.fclassroom.net
@@ -26751,6 +27065,7 @@ origin-a.akamaihd.ne
 +.geilijiasu.net
 +.gengle.net
 +.gensee.net
++.getui.net
 +.gfbzb.net
 +.ggcph.net
 +.gghypt.net
@@ -26772,12 +27087,8 @@ origin-a.akamaihd.ne
 +.goldwavechina.net
 +.gongkaoleida.net
 +.gongyi.net
-+.gongyichuangyi.net
 +.goodapplink.net
 +.goodzhongyi.net
-+.avail.googleflights.net
-+.qpx.googleflights.net
-+.googleflights-cn.net
 +.goscloud.net
 +.goto-game.net
 +.gotolink.net
@@ -27528,6 +27839,12 @@ time.izatcloud.net
 +.ocs9.net
 +.ocxiw.net
 +.oeob.net
+res.cdn.office.net
+res-1.cdn.office.net
+shell.cdn.office.net
+statics.teams.cdn.office.net
+b.c2r.ts.cdn.office.net
+f.c2r.ts.cdn.office.net
 +.oicp.net
 +.okair.net
 +.ola100.net
@@ -27748,8 +28065,6 @@ time.izatcloud.net
 +.reagain.net
 +.realme.net
 +.realpresdesktop.net
-+.recaptcha.net
-+.recaptcha-cn.net
 +.redclass.net
 +.redelight.net
 +.redseatech.net
@@ -27938,7 +28253,9 @@ time.izatcloud.net
 +.statau.net
 +.static163.net
 +.staticdn.net
++.staticfile.net
 +.steampp.net
++.steamserver.net
 +.stepfun-inc.net
 +.stmaide.net
 +.streamlake.net
@@ -27993,6 +28310,7 @@ time.izatcloud.net
 +.taoxyun.net
 +.taoyuewenhua.net
 +.tapbooster.net
++.tapdb.net
 +.tav-global.net
 +.tcaisite.net
 +.tcdneo.net
@@ -28135,6 +28453,7 @@ time.izatcloud.net
 +.todayisp.net
 +.toidea.net
 +.tokenpony.net
++.tongdun.net
 +.tonghuayun.net
 +.tongsuo.net
 +.tongtongquan.net
@@ -28167,6 +28486,7 @@ time.izatcloud.net
 +.trtccloud.net
 +.trustasia.net
 +.trustie.net
++.ts166.net
 +.tsn-tencentclb.net
 +.tssns.net
 +.tstocks.net
@@ -28483,6 +28803,7 @@ time.izatcloud.net
 +.xsrb.net
 +.xtechnology.net
 +.xtltzhxc.net
+time.xtracloud.net
 +.xuanjiucheng.net
 +.xueersi.net
 +.xuefeibao.net
@@ -28564,6 +28885,7 @@ time.izatcloud.net
 +.youdaobowen.net
 +.youjiankang.net
 +.youku.net
++.youmi.net
 +.youon.net
 +.youxi168.net
 +.youxihezi.net
@@ -28642,6 +28964,7 @@ time.izatcloud.net
 +.zhanbar.net
 +.zhangxiaobao.net
 +.zhangyue.net
++.zhanzhang.net
 +.zhaokao.net
 +.zhengjingbuuc.net
 +.zhi3.net
@@ -28706,7 +29029,6 @@ time.izatcloud.net
 +.zzxingce.net
 +.zzygcg.net
 +.zzytimes.net
-+.css.network
 +.zhiliao.news
 +.icbc.co.nl
 +.ag-kit.online
@@ -28755,7 +29077,7 @@ time.izatcloud.net
 +.3322.org
 +.360adlab.org
 +.360xlab.org
-+.3gppnetwork.org
++.50bang.org
 +.51yund.org
 +.58dns.org
 +.6plat.org
@@ -28879,7 +29201,6 @@ time.izatcloud.net
 +.geekbang.org
 +.gensheixue.org
 +.genshuixue.org
-+.gh-proxy.org
 +.goto-game.org
 +.grameenvision.org
 +.greencompute.org
@@ -28969,6 +29290,7 @@ time.izatcloud.net
 +.nihaoafrica.org
 +.nim-lang-cn.org
 +.nowcoder.org
++.cn.pool.ntp.org
 +.openjia.org
 +.openrasp.org
 +.oracle-tencent.org
@@ -29002,6 +29324,7 @@ time.izatcloud.net
 +.speedcdns.org
 +.speedws.org
 +.sqqnh.org
++.staticfile.org
 +.swchina.org
 +.syscan360.org
 +.sz315.org
@@ -29026,6 +29349,7 @@ time.izatcloud.net
 +.tongbanjie.org
 +.topthink.org
 +.toutiao.org
++.trustutn.org
 +.tswjs.org
 +.tuhu.org
 +.tuniu.org
@@ -29051,7 +29375,6 @@ time.izatcloud.net
 +.xdapp.org
 +.xdcdn.org
 +.xhtxs.org
-+.xiaobaotxt.org
 +.xiaomi.org
 +.xiaomisa.org
 +.xindong.org
@@ -29109,6 +29432,7 @@ time.izatcloud.net
 +.hongzuan.pro
 +.hqqt.pro
 +.hqwx.pro
++.httpdns.pro
 +.huke.pro
 +.isheji.pro
 +.jform.pro
@@ -29772,7 +30096,6 @@ st-bak.viv.wanwang.space
 +.eb7p2.top
 +.ebgcn.top
 +.ebhcn.top
-+.echs.top
 +.edgemonix.top
 +.edgpb.top
 +.ednmg.top
@@ -30700,6 +31023,7 @@ st-bak.viv.wanwang.space
 +.animebytes.tv
 +.b23.tv
 +.beijingcloud.tv
++.bilibili.tv
 +.bjiptv.tv
 +.bjitv.tv
 +.btime.tv
@@ -30944,6 +31268,7 @@ st-bak.viv.wanwang.space
 +.waijiao.vip
 +.wangyangyang.vip
 +.wekoi.vip
++.wetv.vip
 +.wicp.vip
 +.wondercast.vip
 +.wonderhub.vip
