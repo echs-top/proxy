@@ -1,4 +1,4 @@
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china.list
++ list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/dnsmasq-china_domain.list
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list
 - yaml https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
 - yaml https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml
