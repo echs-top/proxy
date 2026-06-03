@@ -176,7 +176,7 @@ function main(config) {
       { "name": "代理连接", "type": "select", "proxies": ["最低延迟", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "韩国|故障转移", "美国|故障转移", "加拿大|故障转移", "德国|故障转移", "英国|故障转移", "法国|故障转移", "荷兰|故障转移"], "include-all-providers": true, "icon": "https://mihomo.echs.top/img/icon/Global.webp" },
       { "name": "直接连接", "type": "select", "proxies": ["DIRECT", "IPV6优先", "IPV4优先", "仅IPV4", "仅IPV6"], "icon": "https://mihomo.echs.top/img/icon/DIRECT.webp" },
       { "name": "代理DNS", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Server.webp" },
-      { "name": "代理QUIC", "type": "select", "proxies": ["PASS", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp.webp" },
+      { "name": "代理QUIC", "type": "select", "proxies": ["PASS", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
       { "name": "国外AI", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/AI.webp" },
       { "name": "TELEGRAM", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Telegram.webp" },
       { "name": "最低延迟", "type": "url-test", "tolerance": 30, "include-all-providers": true, "hidden": true, "icon": "https://mihomo.echs.top/img/icon/Fast.webp" },
