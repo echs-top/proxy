@@ -1,26 +1,13 @@
-#人机验证相关
-
-# Cloudflare
-a.nel.cloudflare.com
++.datadome.co
++.funcaptcha.co
++.arkoselabs.com
++.awswaf.com
++.captcha-delivery.com
 challenges.cloudflare.com
+a.nel.cloudflare.com
 stun.cloudflare.com
 static.cloudflareinsights.com
-
-# reCAPTCHA
-+.recaptcha.net
-recaptcha.google.com
-
-# hCaptcha
-+.hcaptcha.com
-
-# Amazon Captcha
-+.awswaf.com
-
-# FunCaptcha
-+.arkoselabs.com
 +.funcaptcha.com
-+.funcaptcha.co
-
-# DataDome
-+.datadome.co
-+.captcha-delivery.com
+recaptcha.google.com
++.hcaptcha.com
++.recaptcha.net
