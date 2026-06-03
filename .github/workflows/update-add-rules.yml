@@ -10,13 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 确保有权限推送代码
+      contents: write 
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 确保能获取到本地文件
+          fetch-depth: 0 
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -52,11 +52,9 @@ jobs:
               r = requests.get(dnsmasq_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
               r.raise_for_status()
               
-              # 正则提取域名并加上 +. 前缀
               domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
               dnsmasq_list = [f"+.{d}" for d in domains if d]
               
-              # 写入文件 (修改了文件名并统一放到 work/list/ 目录下)
               with open('work/list/dnsmasq-china_domain.list', 'w', encoding='utf-8') as f:
                   f.write('\n'.join(dnsmasq_list) + '\n')
                   
@@ -75,13 +73,11 @@ jobs:
               r_yoyo.raise_for_status()
               
               ad_list = []
-              # 逐行读取，去掉首尾空格后加上 +. 前缀
               for line in r_yoyo.text.splitlines():
                   line = line.strip()
                   if line:
                       ad_list.append(f"+.{line}")
                       
-              # 写入文件
               with open('work/list/ad_peter_domain.list', 'w', encoding='utf-8') as f:
                   f.write('\n'.join(ad_list) + '\n')
                   
@@ -91,37 +87,39 @@ jobs:
               exit(1)
 
           # ==========================================
-          # 3. 任务三：下载并处理 GitHub Meta 数据
+          # 3. 任务三：精确提取 GitHub Meta 指定数据
           # ==========================================
           github_url = "https://api.github.com/meta"
           try:
               print(f"LOG: Fetching {github_url}")
               r_github = requests.get(github_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
               r_github.raise_for_status()
-              data = r_github.json() # 直接解析为字典
+              data = r_github.json()
               
               ips = set()
               domains = set()
               
-              # 正则匹配规则
-              ip_pattern = re.compile(r'^([0-9]{1,3}\.){3}[0-9]{1,3}(/[0-9]{1,2})?$|^([0-9a-fA-F:]+)(/[0-9]{1,3})?$')
-              domain_pattern = re.compile(r'^(\*\.)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$')
-
-              # 递归提取字符串
-              def extract_data(obj):
-                  if isinstance(obj, dict):
-                      for v in obj.values():
-                          extract_data(v)
-                  elif isinstance(obj, list):
-                      for item in obj:
-                          extract_data(item)
-                  elif isinstance(obj, str):
-                      if ip_pattern.match(obj):
-                          ips.add(obj)
-                      elif domain_pattern.match(obj):
-                          domains.add(obj)
-
-              extract_data(data)
+              # 提取指定的 IP 列表节点
+              ip_keys = ['git', 'web', 'api', 'pages', 'copilot']
+              for k in ip_keys:
+                  if k in data and isinstance(data[k], list):
+                      for ip in data[k]:
+                          ips.add(ip)
+              
+              # 提取指定的域名列表节点
+              domain_keys = ['website', 'copilot', 'packages', 'actions', 'codespaces']
+              if 'domains' in data:
+                  for k in domain_keys:
+                      if k in data['domains'] and isinstance(data['domains'][k], list):
+                          for d in data['domains'][k]:
+                              domains.add(d)
+                  
+                  # 单独处理 domains 中的 actions_inbound (由于这是一个包含多个子列表的字典)
+                  if 'actions_inbound' in data['domains'] and isinstance(data['domains']['actions_inbound'], dict):
+                      for sub_v in data['domains']['actions_inbound'].values():
+                          if isinstance(sub_v, list):
+                              for d in sub_v:
+                                  domains.add(d)
 
               # 域名处理：替换 *. 为 +. 并合并去重
               final_domains = set()
@@ -131,12 +129,10 @@ jobs:
                   else:
                       final_domains.add(d)
 
-              # 写入域名文件 (命名修正为 github_domain.list)
               with open('work/list/github_domain.list', 'w', encoding='utf-8') as f:
                   for d in sorted(final_domains):
                       f.write(d + '\n')
 
-              # 写入 IP 文件
               with open('work/list/github_ip.list', 'w', encoding='utf-8') as f:
                   for ip in sorted(ips):
                       f.write(ip + '\n')
