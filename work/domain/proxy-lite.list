@@ -11,8 +11,6 @@
 - yaml https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml
 - list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_peter_domain.list
 - list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_del_direct_domain.list
-- list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.list
-- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/captcha_domain.list
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list
 - list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.list
 - list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list
