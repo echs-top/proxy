@@ -23,7 +23,6 @@ containers.pkg.github.com
 default.exp-tas.com
 docker-proxy.pkg.github.com
 docker.pkg.github.com
-fulcio.githubapp.com
 ghcr.io
 github-registry-files.githubusercontent.com
 github-releases.githubusercontent.com
@@ -114,7 +113,5 @@ runnerproxsdc1.actions.githubusercontent.com
 runnerproxweu1.actions.githubusercontent.com
 setup-tools.actions.githubusercontent.com
 swift.pkg.github.com
-timestamp.githubapp.com
 tokenghub.actions.githubusercontent.com
-tuf-repo.github.com
 vstoken.actions.githubusercontent.com
