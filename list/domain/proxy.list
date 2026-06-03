@@ -1803,12 +1803,10 @@ rsshub.woodland.cafe
 +.verisign.com.cn
 +.zoom.com.cn
 +.daxa.cn
-+.doubleclick.cn
 +.drweb.cn
 +.dungeonkeeper.cn
 +.entrust.cn
 +.google.cn
-+.googleadsserving.cn
 +.googleapis.cn
 +.intelrealsense.cn
 +.lightnovel.cn
@@ -2424,8 +2422,6 @@ adobeereg.com
 +.adorevids.com
 +.ads-twitter.com
 +.adsense.com
-+.adsensecustomsearchads.com
-+.adsenseformobileapps.com
 +.adskcloud.com
 +.adtcc.com
 +.adult-h.com
@@ -2474,10 +2470,6 @@ adobeereg.com
 +.adventuresbydisney.com
 +.advertfan.com
 +.advertisercommunity.com
-+.advertiserscommunity.com
-+.adwords.com
-+.adwords-community.com
-+.adwordsexpress.com
 +.aeasyshop.com
 +.aebn.com
 +.aecexcellence.com
@@ -2849,7 +2841,6 @@ gitlab-assets.oss-cn-hongkong.aliyuncs.com
 +.apole.com
 +.aporntv.com
 +.apornvideo.com
-+.app-analytics-services-att.com
 +.app-dynamics.com
 +.app0le.com
 +.app756.com
@@ -5519,7 +5510,6 @@ hpstore.corpmerchandise.com
 +.dotvpn.com
 +.doubibackup.com
 +.doubiyunbackup.com
-+.doubleclick.com
 +.dougscripts.com
 +.doujin-eromanga.com
 +.doujin-freee.com
@@ -7211,9 +7201,6 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.google.com
 +.google-syndication.com
 +.googleacquisitionmigration.com
-+.googleadapis.com
-+.googleads.com
-+.googleads-cn.com
 +.googleapis.com
 +.googleapps.com
 +.googlearth.com
@@ -17107,9 +17094,7 @@ practivate.adobe.ipp
 +.hypothes.is
 +.icloud.is
 +.ikea.is
-+.ipapi.is
 +.ipod.is
-+.ipwho.is
 +.libgen.is
 +.microsoft.is
 +.mini.is
@@ -19458,6 +19443,7 @@ bbs.boingboing.net
 +.gogocdn.net
 +.gohentai.net
 +.golang.net
++.gonglchuangl.net
 +.goodsdunk.net
 +.google.net
 +.google-access.net
@@ -20068,6 +20054,10 @@ ood.opsource.net
 +.rbxinfra.net
 +.realamericanstories.net
 +.reastatic.net
++.admin.recaptcha.net
++.api.recaptcha.net
++.api-secure.recaptcha.net
++.api-verify.recaptcha.net
 +.reckitt.net
 +.reckittbenckiser.net
 +.recode.net
@@ -20363,6 +20353,7 @@ crl.versign.net
 +.vsallin.net
 +.vscode-cdn.net
 +.vscode-unpkg.net
++.vscode-webview.net
 +.vsphere.net
 +.wanderinghorse.net
 +.wangafu.net

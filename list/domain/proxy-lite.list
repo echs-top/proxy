@@ -63,6 +63,7 @@ practivate.adobe
 +.etna.ai
 +.forefront.ai
 +.g.ai
++.github.ai
 +.gmgn.ai
 +.gmo-research.ai
 +.google.ai
@@ -713,6 +714,7 @@ yangzhi.app
 +.filmeporno.blog
 +.filmesdesexo.blog
 +.fury.blog
++.github.blog
 +.hive.blog
 +.diarrheafan.livedoor.blog
 +.momami18.livedoor.blog
@@ -2917,6 +2919,8 @@ roovza.skadsdk.appsflyersdk.com
 +.areyoucreditwise.com
 +.argo-bdp.com
 +.argotunnel.com
+github-api.arkoselabs.com
++.roblox-api.arkoselabs.com
 +.arma3.com
 +.armaplatform.com
 +.armovs.com
@@ -3242,6 +3246,7 @@ ws.audioscrobbler.com
 +.awsstatic.com
 +.awsthinkbox.com
 +.awstrust.com
++.awswaf.com
 +.awxcdn.com
 +.axios.com
 +.axureformac.com
@@ -5169,6 +5174,7 @@ hpstore.corpmerchandise.com
 +.dengiamerika.com
 +.deno.com
 +.dentalhypotheses.com
++.dependabot.com
 +.depositphotos.com
 +.deribit.com
 +.blog.descargasgay.com
@@ -5985,6 +5991,7 @@ rsshub.email-once.com
 +.exoav.com
 +.exotic-ghana.com
 +.exoticuganda.com
+default.exp-tas.com
 +.expatshield.com
 +.expecthim.com
 +.expekt.com
@@ -7025,7 +7032,15 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.git-scm.com
 +.gitbook.com
 +.raw.githack.com
++.github.com
 +.github1s.com
++.githubapp.com
++.githubassets.com
++.githubhackathon.com
++.githubnext.com
++.githubstatus.com
++.githubuniverse.com
++.githubusercontent.com
 +.gitlab.com
 +.gitstar.com
 +.gittigidiyorsikayet.com
@@ -9283,6 +9298,7 @@ faronics.kayako.com
 +.miaomwu.com
 +.mickybells.com
 +.micoach.com
++.microsoft.com
 +.microsoft-give.com
 +.microsoft-int.com
 +.microsoft-ppe.com
@@ -9836,6 +9852,7 @@ faronics.kayako.com
 +.mymmode.com
 +.mymusclevideo.com
 +.mynike.com
++.myoctocat.com
 +.myparagliding.com
 +.mypearson.com
 +.mypikpak.com
@@ -10297,6 +10314,7 @@ datarouter.apps.netherrealm.com
 +.nownews.com
 +.noxinfluencer.com
 +.noxygames.com
++.npmjs.com
 +.npsboost.com
 +.nptsibinbank.com
 +.nsfwmemes.com
@@ -10383,6 +10401,7 @@ datarouter.apps.netherrealm.com
 +.ocbmwdealers.com
 +.ocsp-certum.com
 +.ocsp-responder.com
++.octocaptcha.com
 +.oculus.com
 +.oculus-china.com
 +.oculus2014.com
@@ -12820,6 +12839,7 @@ cbsservice.aws.syncbak.com
 +.thegay.com
 +.thegayoffice.com
 +.thegeorgiascene.com
++.thegithubshop.com
 +.thegooglestore.com
 +.theguardian.com
 +.theguardiandns.com
@@ -13600,6 +13620,7 @@ rsshub.umzzz.com
 +.visceralgames.com
 +.visiontimes.com
 +.visiontimesjp.com
++.visualstudio.com
 +.visualstudio-staging.com
 +.vitukali.com
 +.viu.com
@@ -14639,7 +14660,9 @@ rss.wudifeixue.com
 +.1password.community
 +.appleone.community
 +.coursera.community
++.github.community
 +.mozilla.community
++.npm.community
 +.18comic.company
 +.envybox.company
 +.hetzner.company
@@ -14985,6 +15008,8 @@ rss.datuan.dev
 +.g.dev
 +.gateway.dev
 +.get.dev
++.github.dev
++.githubpreview.dev
 +.go.dev
 +.go5.dev
 +.google.dev
@@ -15834,6 +15859,7 @@ wrds-www.wharton.upenn.edu
 +.appleone.guide
 +.bestpornsites.guide
 +.escort.guide
++.opensource.guide
 +.bestiality.guru
 +.horsecock.guru
 +.jav.guru
@@ -16672,6 +16698,7 @@ wrds-www.wharton.upenn.edu
 +.apiary.io
 +.appbridge.io
 +.applicationinsights.io
++.atom.io
 +.attic.io
 +.azurecontainer.io
 +.azurecr.io
@@ -16743,8 +16770,12 @@ wrds-www.wharton.upenn.edu
 +.geph.io
 +.getmdl.io
 +.getsynapse.io
++.gh.io
++.ghcr.io
++.git.io
 +.gitbook.io
 +.softwaredownload.gitbooks.io
++.github.io
 +.gitlab.io
 +.granulate.io
 +.graphengine.io
@@ -18815,6 +18846,7 @@ hub.slarker.me
 +.azurecosmosdb.net
 +.azuredatabricks.net
 +.azuredigitaltwins.net
++.azureedge.net
 +.azureedge-test.net
 +.azurefd.net
 +.azureplanetscale.net
@@ -19654,6 +19686,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.mozilla.net
 +.mradx.net
 +.msauth.net
++.msecnd.net
 +.msedge.net
 +.msft.net
 +.msftauth.net
@@ -20190,6 +20223,7 @@ crl.versign.net
 +.vsallin.net
 +.vscode-cdn.net
 +.vscode-unpkg.net
++.vscode-webview.net
 +.vsphere.net
 +.wanderinghorse.net
 +.wangafu.net
@@ -20218,6 +20252,7 @@ crl.versign.net
 +.wifevideos.net
 +.wiivc.net
 +.willw.net
++.windows.net
 +.windows-int.net
 +.windowscommunity.net
 +.winhec.net
@@ -20337,6 +20372,7 @@ crl.versign.net
 +.notion.new
 +.pdf.new
 +.presentation.new
++.repo.new
 +.sheet.new
 +.sheets.new
 +.sign.new
@@ -21513,6 +21549,7 @@ mdn.mozillademos.org
 +.nodejs.org
 +.nokogiri.org
 +.notepad-plus-plus.org
++.npmjs.org
 +.npr.org
 +.ntdtv.org
 +.pool.ntp.org
