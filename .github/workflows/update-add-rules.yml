@@ -2,13 +2,16 @@ name: Update-Add-Rules
 
 on:
   schedule:
-    # 每天北京时间 1:30 (UTC 17:30)
+    # 每天北京时间 3:00 (UTC 19:00)
     - cron: '00 19 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 确保有权限推送代码
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,6 +40,9 @@ jobs:
           import re
           import os
 
+          # 确保统一的输出目录存在
+          os.makedirs('work/list', exist_ok=True)
+
           # ==========================================
           # 1. 任务一：下载并处理 dnsmasq-china 数据
           # ==========================================
@@ -50,12 +56,11 @@ jobs:
               domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
               dnsmasq_list = [f"+.{d}" for d in domains if d]
               
-              # 创建目录并写入文件
-              os.makedirs('list/domain', exist_ok=True)
-              with open('list/domain/dnsmasq-china.list', 'w', encoding='utf-8') as f:
+              # 写入文件 (修改了文件名并统一放到 work/list/ 目录下)
+              with open('work/list/dnsmasq-china_domain.list', 'w', encoding='utf-8') as f:
                   f.write('\n'.join(dnsmasq_list) + '\n')
                   
-              print(f"LOG: Saved {len(dnsmasq_list)} items to list/domain/dnsmasq-china.list")
+              print(f"LOG: Saved {len(dnsmasq_list)} items to work/list/dnsmasq-china_domain.list")
           except Exception as e:
               print(f"LOG: Error processing dnsmasq-china: {e}")
               exit(1)
@@ -76,14 +81,70 @@ jobs:
                   if line:
                       ad_list.append(f"+.{line}")
                       
-              # 创建目录并写入文件
-              os.makedirs('work/list', exist_ok=True)
+              # 写入文件
               with open('work/list/ad_peter_domain.list', 'w', encoding='utf-8') as f:
                   f.write('\n'.join(ad_list) + '\n')
                   
               print(f"LOG: Saved {len(ad_list)} items to work/list/ad_peter_domain.list")
           except Exception as e:
               print(f"LOG: Error processing yoyo adservers: {e}")
+              exit(1)
+
+          # ==========================================
+          # 3. 任务三：下载并处理 GitHub Meta 数据
+          # ==========================================
+          github_url = "https://api.github.com/meta"
+          try:
+              print(f"LOG: Fetching {github_url}")
+              r_github = requests.get(github_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+              r_github.raise_for_status()
+              data = r_github.json() # 直接解析为字典
+              
+              ips = set()
+              domains = set()
+              
+              # 正则匹配规则
+              ip_pattern = re.compile(r'^([0-9]{1,3}\.){3}[0-9]{1,3}(/[0-9]{1,2})?$|^([0-9a-fA-F:]+)(/[0-9]{1,3})?$')
+              domain_pattern = re.compile(r'^(\*\.)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$')
+
+              # 递归提取字符串
+              def extract_data(obj):
+                  if isinstance(obj, dict):
+                      for v in obj.values():
+                          extract_data(v)
+                  elif isinstance(obj, list):
+                      for item in obj:
+                          extract_data(item)
+                  elif isinstance(obj, str):
+                      if ip_pattern.match(obj):
+                          ips.add(obj)
+                      elif domain_pattern.match(obj):
+                          domains.add(obj)
+
+              extract_data(data)
+
+              # 域名处理：替换 *. 为 +. 并合并去重
+              final_domains = set()
+              for d in domains:
+                  if d.startswith('*.'):
+                      final_domains.add('+' + d[1:])
+                  else:
+                      final_domains.add(d)
+
+              # 写入域名文件 (命名修正为 github_domain.list)
+              with open('work/list/github_domain.list', 'w', encoding='utf-8') as f:
+                  for d in sorted(final_domains):
+                      f.write(d + '\n')
+
+              # 写入 IP 文件
+              with open('work/list/github_ip.list', 'w', encoding='utf-8') as f:
+                  for ip in sorted(ips):
+                      f.write(ip + '\n')
+                      
+              print(f"LOG: Saved {len(final_domains)} items to work/list/github_domain.list")
+              print(f"LOG: Saved {len(ips)} items to work/list/github_ip.list")
+          except Exception as e:
+              print(f"LOG: Error processing GitHub Meta: {e}")
               exit(1)
           EOF
 
@@ -92,9 +153,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 添加新生成的两个文件
-          git add list/domain/dnsmasq-china.list
+          # 添加新生成的四个文件
+          git add work/list/dnsmasq-china_domain.list
           git add work/list/ad_peter_domain.list
+          git add work/list/github_domain.list
+          git add work/list/github_ip.list
           
           if git diff --staged --quiet; then
             echo "No changes detected."
