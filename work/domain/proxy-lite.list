@@ -1,4 +1,6 @@
 + list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list
+- list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list
++ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list
 + list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/proxy_domain.list
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list
 - yaml https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
