@@ -62,7 +62,7 @@ function main(config) {
       "auto-detect-interface": true,
       "strict-route": true,
       "disable-icmp-forwarding": true,
-      "dns-hijack": ["any:53", "tcp://any:53", "any:853", "tcp://any:853"],
+      "dns-hijack": ["any:53", "tcp://any:53"],
       // "mtu": 9000,
       "udp-timeout": 300,
       // "endpoint-independent-nat": true
@@ -81,7 +81,7 @@ function main(config) {
       "cn_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs", "path": "./rules/cn_ip.mrs" }
     },
     "rules": [
-      "DST-PORT,53/853,DNS劫持",
+      "DST-PORT,53,DNS劫持",
       "DST-PORT,5228-5230,直接连接",
       "RULE-SET,private_ip,直接连接,no-resolve",
       "RULE-SET,private,直接连接",
