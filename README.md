@@ -32,47 +32,47 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
 可引用规则：
 
 - ads：[秋风](https://awavenue.top)+[217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/)-[白名单排除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_direct_domain.list)  
-  较克制的国内国外广告规则，约9k条
+  较克制的国内国外广告规则，约9k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
   
 - ai：[ai](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list)+[category-ai-!cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list)-[category-ai-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.list)  
-  自用合并的AI域名规则，约200条
+  自用合并的AI域名规则，约200条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ai.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs)
 
 - proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)  
-  推荐直连的国外域名前置规则，如FCM、CF验证，约20条
+  推荐直连的国外域名前置规则，如FCM、CF验证，约20条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta)  
-  代理域名规则，约2.5w条
+  代理域名规则，约2.5w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)  
-  CN域名规则，约3.1w条
+  CN域名规则，约3.1w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
 - direct：cn+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)+[microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list)+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list)  
-  直连域名规则，约3.2w条
+  直连域名规则，约3.2w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
 - dnsmasq-china：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
-  dnsmasq-china官方规则，约11.3w条
+  dnsmasq-china官方规则，约11.3w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china.mrs)
 
 - dnsmasq-china-lite：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
-  在dnsmasq-china基础上去重了direct，适合作为DNS分流补充规则，约10w条
+  在dnsmasq-china基础上去重了direct，适合作为DNS分流补充规则，约10w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
 - telegram_ip：[telegram](https://core.telegram.org/resources/cidr.txt)  
-  TELEGRAM官方IP规则，约10条
+  TELEGRAM官方IP规则，约10条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt)+[IPNetDB](https://ispip.clang.cn/all_cn_ipv46.txt)+[APNIC](https://ispip.clang.cn/all_cn_apnic.txt)+[OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt)+[zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
-  合并去重CN IP规则，约8k条
+  合并去重CN IP规则，约8k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
 - direct_ip：cn_ip+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
-  直连IP规则，约8k条
+  直连IP规则，约8k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 **不可引用**！此模板定制规则：
