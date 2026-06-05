@@ -2,6 +2,8 @@
 
 本项目仅供技术交流与学术研究使用，模板跟随内核维护更新，欢迎issues共同维护(如增加分流域名、广告拦截误杀、更好的方案建议等等)
 
+自用优先、TUN/VPN、激进设置、极简策略、严谨分流、地区分组
+
 ### 模板
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo_smart.yaml)
@@ -24,8 +26,6 @@
 MRS：约950KB(含DNS分流dnsmasq-china-lite约480KB)
 
 ### 备注
-
-自用优先、TUN/VPN、激进设置、极简策略、严谨分流、地区分组
 
 规则：[MetaCubeX](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin](https://github.com/DustinWin/ruleset_geodata)(部分)、ads([秋风](https://awavenue.top)+[217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/))、ai([ai](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list)+[category-ai-!cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list)-[category-ai-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.list))、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)、proxy([proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta))、[proxy-lite(定制)](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-lite.list)、cn([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list))、[cn-lite(定制)](https://github.com/echs-top/proxy/blob/main/work/domain/cn-lite.list)、[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)、[dnsmasq-china-lite(work)](https://github.com/echs-top/proxy/blob/main/work/domain/dnsmasq-china-lite.list)
 
