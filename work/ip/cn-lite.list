@@ -4,3 +4,5 @@
 + list https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt
 + list https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt
 + list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/direct_ip.list
+- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/proxy_add_ip.list
+- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/github_ip.list
