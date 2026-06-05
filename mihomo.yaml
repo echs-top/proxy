@@ -1,10 +1,10 @@
-# update: 2026-06-04
+# update: 2026-06-06
 # 简介: https://github.com/echs-top/proxy
 
 
 # 节点IP优先级：ip-version: ipv6-prefer
 # 测速细分/筛选：https://8.8.8.8/generate_204、https://[2001:4860:4860::8888]/generate_204
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.5.1"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: true }, override: { ip-version: dual }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外|恢复|处理|谢谢' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.5.1"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: true }, override: { ip-version: dual }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -44,8 +44,9 @@ redir-port: 0
 # authentication: ["用户:密码"]
 tun:
   enable: true
-  # device: meta
-  # Windows mixed, Android15+ gvisor(抗休眠)
+  # Android dummy9 / Windows "以太网 9"
+  # device: dummy9
+  # Android15+ gvisor / Windows mixed
   stack: mixed
   auto-route: true
   auto-redirect: true
@@ -59,22 +60,20 @@ tun:
 ip: &ip { type: http, interval: 86400, proxy: 代理连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 代理连接, behavior: domain, format: mrs }
 rule-providers:
-  private_ip: { <<: *ip, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs',  path: ./rules/private_ip.mrs }
-  private: { <<: *domain, url: 'https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs', path: ./rules/private.mrs }
   ads: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs', path: ./rules/ads.mrs }
   ai: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs', path: ./rules/ai.mrs }
   telegram: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
   proxy@direct: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs', path: ./rules/proxy@direct.mrs }
-  proxy-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs', path: ./rules/proxy-lite.mrs }
-  cn-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn-lite.mrs', path: ./rules/cn-lite.mrs }
-  dnsmasq-china-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs', path: ./rules/dnsmasq-china-lite.mrs }
+  proxy-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-ltsc.mrs', path: ./rules/proxy-ltsc.mrs }
+  direct-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-ltsc.mrs', path: ./rules/direct-ltsc.mrs }
+  dnsmasq-china-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-ltsc.mrs', path: ./rules/dnsmasq-china-ltsc.mrs }
   telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs', path: ./rules/telegram_ip.mrs }
-  cn_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs', path: ./rules/cn_ip.mrs }
+  direct-ltsc_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-ltsc.mrs', path: ./rules/direct-ltsc_ip.mrs }
+quic: &quic 'AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC'
 rules:
   - DST-PORT,53,DNS劫持
+  - DST-PORT,853,REJECT
   - DST-PORT,5228-5230,直接连接
-  - RULE-SET,private_ip,直接连接,no-resolve
-  - RULE-SET,private,直接连接
   - RULE-SET,ads,REJECT
   - SUB-RULE,(NOT,((AND,((NETWORK,UDP),(DST-PORT,443))))),noquic
   - RULE-SET,ai,代理QUIC
@@ -82,12 +81,12 @@ rules:
   - RULE-SET,telegram,代理QUIC
   - RULE-SET,telegram,TELEGRAM
   - RULE-SET,proxy@direct,直接连接
-  - RULE-SET,proxy-lite,代理QUIC
-  - RULE-SET,proxy-lite,代理连接
-  - RULE-SET,cn-lite,直接连接
+  - RULE-SET,proxy-ltsc,代理QUIC
+  - RULE-SET,proxy-ltsc,代理连接
+  - RULE-SET,direct-ltsc,直接连接
   - RULE-SET,telegram_ip,代理QUIC
   - RULE-SET,telegram_ip,TELEGRAM
-  - RULE-SET,cn_ip,直接连接
+  - RULE-SET,direct-ltsc_ip,直接连接
   - MATCH,代理QUIC
   - MATCH,代理连接
 sub-rules:
@@ -95,10 +94,10 @@ sub-rules:
     - RULE-SET,ai,国外AI
     - RULE-SET,telegram,TELEGRAM
     - RULE-SET,proxy@direct,直接连接
-    - RULE-SET,proxy-lite,代理连接
-    - RULE-SET,cn-lite,直接连接
+    - RULE-SET,proxy-ltsc,代理连接
+    - RULE-SET,direct-ltsc,直接连接
     - RULE-SET,telegram_ip,TELEGRAM
-    - RULE-SET,cn_ip,直接连接
+    - RULE-SET,direct-ltsc_ip,直接连接
     - MATCH,代理连接
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
@@ -107,6 +106,7 @@ hosts:
   dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
   services.googleapis.cn: services.googleapis.com
   google.cn: google.com
+  cn.bing.com: global.bing.com
 direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
 # direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
 direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
@@ -124,29 +124,27 @@ dns:
   # listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-range6: fd00:bada:55ed::1/64
+  fake-ip-range6: fd00:dcba:9876::1/64
   fake-ip-ttl: 1
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,private,real-ip
     - RULE-SET,ads,fake-ip
     - RULE-SET,ai,fake-ip
     - RULE-SET,telegram,fake-ip
     - RULE-SET,proxy@direct,real-ip
-    - RULE-SET,proxy-lite,fake-ip
-    - RULE-SET,cn-lite,real-ip
+    - RULE-SET,proxy-ltsc,fake-ip
+    - RULE-SET,direct-ltsc,real-ip
     - MATCH,fake-ip
   # default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
   nameserver-policy:
-    'rule-set:private': *direct-dns
     'rule-set:ads': [rcode://name_error]
     'rule-set:ai': *proxy-dns
     'rule-set:telegram': *proxy-dns
     'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy-lite': *proxy-dns
-    'rule-set:cn-lite': *direct-dns
-    'rule-set:dnsmasq-china-lite': *direct-dns
+    'rule-set:proxy-ltsc': *proxy-dns
+    'rule-set:direct-ltsc': *direct-dns
+    'rule-set:dnsmasq-china-ltsc': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
@@ -156,9 +154,8 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:private','rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy-lite','rule-set:cn-lite','rule-set:dnsmasq-china-lite']
-  skip-src-address: ['rule-set:private_ip','rule-set:telegram_ip','rule-set:cn_ip']
-  skip-dst-address: ['rule-set:private_ip']
+  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy-ltsc','rule-set:direct-ltsc','rule-set:dnsmasq-china-ltsc']
+  skip-src-address: ['rule-set:telegram_ip','rule-set:direct-ltsc_ip']
 proxies: [{ name: DNS劫持, type: dns },{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
 fall: &fall { type: fallback, <<: *use, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
