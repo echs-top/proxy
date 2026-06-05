@@ -27,6 +27,10 @@ MRS：约950KB(含DNS分流dnsmasq-china-lite约480KB)
 
 ### 备注
 
+模板规则：
+
+- 的
+
 规则：[MetaCubeX](https://github.com/MetaCubeX/meta-rules-dat)(部分)、[DustinWin](https://github.com/DustinWin/ruleset_geodata)(部分)、ads([秋风](https://awavenue.top)+[217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/))、ai([ai](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list)+[category-ai-!cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list)-[category-ai-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.list))、[telegram_ip](https://core.telegram.org/resources/cidr.txt)、[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)、proxy([proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta))、[proxy-lite(定制)](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-lite.list)、cn([cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list)+[备案域名](https://www.nodeseek.com/post-464238-1)+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list))、[cn-lite(定制)](https://github.com/echs-top/proxy/blob/main/work/domain/cn-lite.list)、[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)、[dnsmasq-china-lite(work)](https://github.com/echs-top/proxy/blob/main/work/domain/dnsmasq-china-lite.list)
 
 注意：*-lite规则为此模板精简定制版本(尽可能减少规则量)，如需改动请全部替换为不带'-lite'版本(在MT管理器等文本编辑器快速将"-lite"全部替换为""即可)。此外不建议将proxy-lite/proxy与cn-lite/cn调换顺序！
