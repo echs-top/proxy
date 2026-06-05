@@ -1,4 +1,4 @@
-// update: 2026-06-04
+// update: 2026-06-06
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -18,11 +18,11 @@ function main(config) {
     // 节点IP优先级：ip-version: ipv6-prefer
     // 测速细分/筛选：https://8.8.8.8/generate_204、https://[2001:4860:4860::8888]/generate_204
     "proxy-providers": {
-      "link": {
+      "节点": {
         "type": "inline",
         "health-check": { "enable": true, "url": "https://dns.google/generate_204", "expected-status": 204, "interval": 600, "timeout": 3000, "max-failed-times": 2, "lazy": true },
         "override": { "ip-version": "dual" },
-        "exclude-filter": "(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|海外|恢复|处理|谢谢",
+        "exclude-filter": "(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢",
         "payload": subscriptionProxies
       }
     },
@@ -57,8 +57,9 @@ function main(config) {
     // "authentication": ["用户:密码"],
     "tun": {
       "enable": true,
-      // "device": "meta",
-      // Windows mixed, Android15+ gvisor(抗休眠)
+      // Android dummy9 / Windows "以太网 9"
+      // "device": "dummy9",
+      // Android15+ gvisor / Windows mixed
       "stack": "mixed",
       "auto-route": true,
       "auto-redirect": true,
@@ -71,50 +72,35 @@ function main(config) {
       // "endpoint-independent-nat": true
     },
     "rule-providers": {
-      "private_ip": { ...ipAnchor, "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.mrs", "path": "./rules/private_ip.mrs" },
-      "private": { ...domainAnchor, "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.mrs", "path": "./rules/private.mrs" },
       "ads": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs", "path": "./rules/ads.mrs" },
       "ai": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs", "path": "./rules/ai.mrs" },
       "telegram": { ...domainAnchor, "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs", "path": "./rules/telegram.mrs" },
       "proxy@direct": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs", "path": "./rules/proxy@direct.mrs" },
-      "proxy-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs", "path": "./rules/proxy-lite.mrs" },
-      "cn-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn-lite.mrs", "path": "./rules/cn-lite.mrs" },
-      "dnsmasq-china-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs", "path": "./rules/dnsmasq-china-lite.mrs" },
+      "proxy-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-ltsc.mrs", "path": "./rules/proxy-ltsc.mrs" },
+      "direct-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-ltsc.mrs", "path": "./rules/direct-ltsc.mrs" },
+      "dnsmasq-china-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-ltsc.mrs", "path": "./rules/dnsmasq-china-ltsc.mrs" },
       "telegram_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs", "path": "./rules/telegram_ip.mrs" },
-      "cn_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs", "path": "./rules/cn_ip.mrs" }
+      "direct-ltsc_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-ltsc.mrs", "path": "./rules/direct-ltsc_ip.mrs" }
     },
     "rules": [
       "DST-PORT,53,DNS劫持",
+      "DST-PORT,853,REJECT",
       "DST-PORT,5228-5230,直接连接",
-      "RULE-SET,private_ip,直接连接,no-resolve",
-      "RULE-SET,private,直接连接",
       "RULE-SET,ads,REJECT",
-      "SUB-RULE,(NOT,((AND,((NETWORK,UDP),(DST-PORT,443))))),noquic",
-      "RULE-SET,ai,代理QUIC",
-      "RULE-SET,ai,国外AI",
-      "RULE-SET,telegram,代理QUIC",
-      "RULE-SET,telegram,TELEGRAM",
+      "SUB-RULE,(RULE-SET,ai),sub-ai",
+      "SUB-RULE,(RULE-SET,telegram),sub-telegram",
       "RULE-SET,proxy@direct,直接连接",
-      "RULE-SET,proxy-lite,代理QUIC",
-      "RULE-SET,proxy-lite,代理连接",
-      "RULE-SET,cn-lite,直接连接",
-      "RULE-SET,telegram_ip,代理QUIC",
-      "RULE-SET,telegram_ip,TELEGRAM",
-      "RULE-SET,cn_ip,直接连接",
-      "MATCH,代理QUIC",
+      "SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy",
+      "RULE-SET,direct-ltsc,直接连接",
+      "SUB-RULE,(RULE-SET,telegram_ip),sub-telegram",
+      "RULE-SET,direct-ltsc_ip,直接连接",
+      "AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC",
       "MATCH,代理连接"
     ],
     "sub-rules": {
-      "noquic": [
-        "RULE-SET,ai,国外AI",
-        "RULE-SET,telegram,TELEGRAM",
-        "RULE-SET,proxy@direct,直接连接",
-        "RULE-SET,proxy-lite,代理连接",
-        "RULE-SET,cn-lite,直接连接",
-        "RULE-SET,telegram_ip,TELEGRAM",
-        "RULE-SET,cn_ip,直接连接",
-        "MATCH,代理连接"
-      ]
+      "sub-ai": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,国外AI" ],
+      "sub-telegram": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,TELEGRAM" ],
+      "sub-proxy": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,代理连接"]
     },
     "hosts": {
       "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
@@ -122,7 +108,8 @@ function main(config) {
       "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
       "dns.quad9.net": ["9.9.9.9", "149.112.112.112", "2620:fe::fe", "2620:fe::9"],
       "services.googleapis.cn": "services.googleapis.com",
-      "google.cn": "google.com"
+      "google.cn": "google.com",
+      "cn.bing.com": "global.bing.com"
     },
     "dns": {
       "enable": true,
@@ -135,30 +122,28 @@ function main(config) {
       // "listen": "0.0.0.0:1053",
       "enhanced-mode": "fake-ip",
       "fake-ip-range": "198.18.0.1/16",
-      "fake-ip-range6": "fd00:bada:55ed::1/64",
+      "fake-ip-range6": "fd00:dcba:9876::1/64",
       "fake-ip-ttl": 1,
       "fake-ip-filter-mode": "rule",
       "fake-ip-filter": [
-        "RULE-SET,private,real-ip",
         "RULE-SET,ads,fake-ip",
         "RULE-SET,ai,fake-ip",
         "RULE-SET,telegram,fake-ip",
         "RULE-SET,proxy@direct,real-ip",
-        "RULE-SET,proxy-lite,fake-ip",
-        "RULE-SET,cn-lite,real-ip",
+        "RULE-SET,proxy-ltsc,fake-ip",
+        "RULE-SET,direct-ltsc,real-ip",
         "MATCH,fake-ip"
       ],
       // "default-nameserver": directDns,
       "proxy-server-nameserver": directDoh,
       "nameserver-policy": {
-        "rule-set:private": directDns,
         "rule-set:ads": ["rcode://name_error"],
         "rule-set:ai": proxyDns,
         "rule-set:telegram": proxyDns,
         "rule-set:proxy@direct": directDoh,
-        "rule-set:proxy-lite": proxyDns,
-        "rule-set:cn-lite": directDns,
-        "rule-set:dnsmasq-china-lite": directDns
+        "rule-set:proxy-ltsc": proxyDns,
+        "rule-set:direct-ltsc": directDns,
+        "rule-set:dnsmasq-china-ltsc": directDns
       },
       "nameserver": proxyDns,
       "direct-nameserver": directDns,
@@ -170,16 +155,15 @@ function main(config) {
       "parse-pure-ip": true,
       "override-destination": false,
       "sniff": { "HTTP": { "ports": ["80", "8080-8880"], "override-destination": true }, "TLS": { "ports": ["443", "8443"] }, "QUIC": { "ports": ["443", "8443"] } },
-      "skip-domain": ["rule-set:private", "rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy-lite", "rule-set:cn-lite", "rule-set:dnsmasq-china-lite"],
-      "skip-src-address": ["rule-set:private_ip", "rule-set:telegram_ip", "rule-set:cn_ip"],
-      "skip-dst-address": ["rule-set:private_ip"]
+      "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy-ltsc", "rule-set:direct-ltsc", "rule-set:dnsmasq-china-ltsc"],
+      "skip-src-address": ["rule-set:telegram_ip", "rule-set:proxy_ip", "rule-set:direct-ltsc_ip"]
     },
     "proxies": [{ "name": "DNS劫持", "type": "dns" },{ "name": "IPV4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer" },{ "name": "IPV6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer" },{ "name": "仅IPV4", "type": "direct", "udp": true, "ip-version": "ipv4" },{ "name": "仅IPV6", "type": "direct", "udp": true, "ip-version": "ipv6" }],
     "proxy-groups": [
       { "name": "代理连接", "type": "select", "proxies": ["最低延迟", "香港|智能选择", "台湾|智能选择", "新加坡|智能选择", "日本|智能选择", "韩国|智能选择", "美国|智能选择", "加拿大|智能选择", "德国|智能选择", "英国|智能选择", "法国|智能选择", "荷兰|智能选择"], "include-all-providers": true, "icon": "https://mihomo.echs.top/img/icon/Global.webp" },
       { "name": "直接连接", "type": "select", "proxies": ["DIRECT", "IPV6优先", "IPV4优先", "仅IPV4", "仅IPV6"], "icon": "https://mihomo.echs.top/img/icon/DIRECT.webp" },
       { "name": "代理DNS", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Server.webp" },
-      { "name": "代理QUIC", "type": "select", "proxies": ["PASS", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
+      { "name": "代理QUIC", "type": "select", "proxies": ["PASS-RULE", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
       { "name": "国外AI", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/AI.webp" },
       { "name": "TELEGRAM", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Telegram.webp" },
       { "name": "最低延迟", "type": "url-test", "tolerance": 30, "include-all-providers": true, "hidden": true, "icon": "https://mihomo.echs.top/img/icon/Fast.webp" },
