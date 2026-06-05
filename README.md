@@ -65,7 +65,7 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
   TELEGRAM官方IP规则，约10条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
-- cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt)+[IPNetDB](https://ispip.clang.cn/all_cn_ipv46.txt)+[APNIC](https://ispip.clang.cn/all_cn_apnic.txt)+[OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt)+[zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
+- cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt)+[苍狼山庄](https://ispip.clang.cn)+[OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt)+[zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   合并去重CN IP规则，约8k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
