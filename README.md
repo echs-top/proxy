@@ -75,10 +75,10 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
 
 **不可引用**！此模板定制规则：
 
-- proxy-ltsc：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-ltsc.list)
-- direct-ltsc：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/domain/direct-ltsc.list)
-- dnsmasq-china-ltsc：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/domain/dnsmasq-china-ltsc.list)
-- direct-ltsc_ip：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/ip/direct-ltsc.list)
+- proxy-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-ltsc.list)
+- direct-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/direct-ltsc.list)
+- dnsmasq-china-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/dnsmasq-china-ltsc.list)
+- direct-ltsc_ip：[work列表](https://github.com/echs-top/proxy/blob/main/work/ip/direct-ltsc.list)
 
 更多规则推荐：
 
