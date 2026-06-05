@@ -75,7 +75,7 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
   直连IP规则，约8k条
   https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs
 
-**不可引用！**此模板定制规则：
+**不可引用**！此模板定制规则：
 
 - proxy-ltsc：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-ltsc.list)
 - direct-ltsc：[work工作列表](https://github.com/echs-top/proxy/blob/main/work/domain/direct-ltsc.list)
