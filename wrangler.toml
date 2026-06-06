@@ -1,5 +1,5 @@
 # 名称
-name = "cdn"
+name = "mihomo"
 # 入口
 main = "worker.js"
 # 日期
