@@ -6,6 +6,7 @@ function main(config) {
   const subscriptionProxies = config.proxies || [];
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
+  const fakeipDns = ["rcode://success"];
   const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接"];
   // const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接", "[2402:4e00::]#直接连接", "[2400:3200::1]#直接连接"];
   const directDoh = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
@@ -138,12 +139,12 @@ function main(config) {
       "proxy-server-nameserver": directDoh,
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
-        "rule-set:ai": proxyDns,
-        "rule-set:telegram": proxyDns,
+        "rule-set:ai": fakeipDns,
+        "rule-set:telegram": fakeipDns,
         "rule-set:proxy@direct": directDoh,
-        "rule-set:proxy-ltsc": proxyDns,
+        "rule-set:proxy-ltsc": fakeipDns,
         "rule-set:direct-ltsc": directDns,
-        "rule-set:dnsmasq-china-ltsc": directDns
+        "rule-set:dnsmasq-china-ltsc": directDoh
       },
       "nameserver": proxyDns,
       "direct-nameserver": directDns,
