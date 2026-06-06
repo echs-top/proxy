@@ -6,6 +6,7 @@ function main(config) {
   const subscriptionProxies = config.proxies || [];
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
+  const fakeipDns = ["rcode://success"];
   const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接"];
   // const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接", "[2402:4e00::]#直接连接", "[2400:3200::1]#直接连接"];
   const directDoh = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
@@ -84,32 +85,20 @@ function main(config) {
       "DST-PORT,853,REJECT",
       "DST-PORT,5228-5230,直接连接",
       "RULE-SET,ads,REJECT",
-      "SUB-RULE,(NOT,((AND,((NETWORK,UDP),(DST-PORT,443))))),noquic",
-      "RULE-SET,ai,代理QUIC",
-      "RULE-SET,ai,国外AI",
-      "RULE-SET,telegram,代理QUIC",
-      "RULE-SET,telegram,TELEGRAM",
+      "SUB-RULE,(RULE-SET,ai),sub-ai",
+      "SUB-RULE,(RULE-SET,telegram),sub-telegram",
       "RULE-SET,proxy@direct,直接连接",
-      "RULE-SET,proxy-ltsc,代理QUIC",
-      "RULE-SET,proxy-ltsc,代理连接",
+      "SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy",
       "RULE-SET,direct-ltsc,直接连接",
-      "RULE-SET,telegram_ip,代理QUIC",
-      "RULE-SET,telegram_ip,TELEGRAM",
+      "SUB-RULE,(RULE-SET,telegram_ip),sub-telegram",
       "RULE-SET,direct-ltsc_ip,直接连接",
-      "MATCH,代理QUIC",
+      "AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC",
       "MATCH,代理连接"
     ],
     "sub-rules": {
-      "noquic": [
-        "RULE-SET,ai,国外AI",
-        "RULE-SET,telegram,TELEGRAM",
-        "RULE-SET,proxy@direct,直接连接",
-        "RULE-SET,proxy-ltsc,代理连接",
-        "RULE-SET,direct-ltsc,直接连接",
-        "RULE-SET,telegram_ip,TELEGRAM",
-        "RULE-SET,direct-ltsc_ip,直接连接",
-        "MATCH,代理连接"
-      ]
+      "sub-ai": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,国外AI" ],
+      "sub-telegram": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,TELEGRAM" ],
+      "sub-proxy": ["AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC", "MATCH,代理连接"]
     },
     "hosts": {
       "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
@@ -147,12 +136,12 @@ function main(config) {
       "proxy-server-nameserver": directDoh,
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
-        "rule-set:ai": proxyDns,
-        "rule-set:telegram": proxyDns,
+        "rule-set:ai": fakeipDns,
+        "rule-set:telegram": fakeipDns,
         "rule-set:proxy@direct": directDoh,
-        "rule-set:proxy-ltsc": proxyDns,
+        "rule-set:proxy-ltsc": fakeipDns,
         "rule-set:direct-ltsc": directDns,
-        "rule-set:dnsmasq-china-ltsc": directDns
+        "rule-set:dnsmasq-china-ltsc": directDoh
       },
       "nameserver": proxyDns,
       "direct-nameserver": directDns,
@@ -172,7 +161,7 @@ function main(config) {
       { "name": "代理连接", "type": "select", "proxies": ["最低延迟", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "韩国|故障转移", "美国|故障转移", "加拿大|故障转移", "德国|故障转移", "英国|故障转移", "法国|故障转移", "荷兰|故障转移"], "include-all-providers": true, "icon": "https://mihomo.echs.top/img/icon/Global.webp" },
       { "name": "直接连接", "type": "select", "proxies": ["DIRECT", "IPV6优先", "IPV4优先", "仅IPV4", "仅IPV6"], "icon": "https://mihomo.echs.top/img/icon/DIRECT.webp" },
       { "name": "代理DNS", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Server.webp" },
-      { "name": "代理QUIC", "type": "select", "proxies": ["PASS", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
+      { "name": "代理QUIC", "type": "select", "proxies": ["PASS-RULE", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
       { "name": "国外AI", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/AI.webp" },
       { "name": "TELEGRAM", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Telegram.webp" },
       { "name": "最低延迟", "type": "url-test", "tolerance": 30, "include-all-providers": true, "hidden": true, "icon": "https://mihomo.echs.top/img/icon/Fast.webp" },
