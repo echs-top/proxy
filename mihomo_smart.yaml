@@ -99,6 +99,7 @@ hosts:
   services.googleapis.cn: services.googleapis.com
   google.cn: google.com
   cn.bing.com: global.bing.com
+fakeip-dns: &fakeip-dns ['rcode://success']
 direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
 # direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
 direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
@@ -130,13 +131,13 @@ dns:
   # default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
   nameserver-policy:
-    'rule-set:ads': [rcode://name_error]
-    'rule-set:ai': *proxy-dns
-    'rule-set:telegram': *proxy-dns
+    'rule-set:ads': ['rcode://name_error']
+    'rule-set:ai': *fakeip-dns
+    'rule-set:telegram': *fakeip-dns
     'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy-ltsc': *proxy-dns
+    'rule-set:proxy-ltsc': *fakeip-dns
     'rule-set:direct-ltsc': *direct-dns
-    'rule-set:dnsmasq-china-ltsc': *direct-dns
+    'rule-set:dnsmasq-china-ltsc': *direct-doh
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
