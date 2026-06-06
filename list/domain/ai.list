@@ -23,6 +23,7 @@
 +.perplexity.ai
 +.plannotator.ai
 +.pplx.ai
++.sider.ai
 +.tapnow.ai
 +.trae.ai
 +.x.ai
@@ -111,11 +112,13 @@ notebooklm-pa.googleapis.com
 +.copilot.microsoft.com
 +.midjourney.com
 +.oaistatic.com
++.oaistatsig.com
 +.oaiusercontent.com
 +.ollama.com
 +.openai.com
 +.perplexity.com
 +.poe.com
++.qoder.com
 +.sora.com
 +.spicywriter.com
 +.windsurf.com
