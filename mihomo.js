@@ -165,7 +165,7 @@ function main(config) {
       "override-destination": false,
       "sniff": { "HTTP": { "ports": ["80", "8080-8880"], "override-destination": true }, "TLS": { "ports": ["443", "8443"] }, "QUIC": { "ports": ["443", "8443"] } },
       "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy-ltsc", "rule-set:direct-ltsc", "rule-set:dnsmasq-china-ltsc"],
-      "skip-src-address": ["rule-set:telegram_ip", "rule-set:proxy_ip", "rule-set:direct-ltsc_ip"]
+      "skip-src-address": ["rule-set:telegram_ip", "rule-set:direct-ltsc_ip"]
     },
     "proxies": [{ "name": "DNS劫持", "type": "dns" },{ "name": "IPV4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer" },{ "name": "IPV6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer" },{ "name": "仅IPV4", "type": "direct", "udp": true, "ip-version": "ipv4" },{ "name": "仅IPV6", "type": "direct", "udp": true, "ip-version": "ipv6" }],
     "proxy-groups": [
