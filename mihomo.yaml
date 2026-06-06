@@ -75,30 +75,19 @@ rules:
   - DST-PORT,853,REJECT
   - DST-PORT,5228-5230,直接连接
   - RULE-SET,ads,REJECT
-  - SUB-RULE,(NOT,((AND,((NETWORK,UDP),(DST-PORT,443))))),noquic
-  - RULE-SET,ai,代理QUIC
-  - RULE-SET,ai,国外AI
-  - RULE-SET,telegram,代理QUIC
-  - RULE-SET,telegram,TELEGRAM
+  - SUB-RULE,(RULE-SET,ai),sub-ai
+  - SUB-RULE,(RULE-SET,telegram),sub-telegram
   - RULE-SET,proxy@direct,直接连接
-  - RULE-SET,proxy-ltsc,代理QUIC
-  - RULE-SET,proxy-ltsc,代理连接
+  - SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy
   - RULE-SET,direct-ltsc,直接连接
-  - RULE-SET,telegram_ip,代理QUIC
-  - RULE-SET,telegram_ip,TELEGRAM
+  - SUB-RULE,(RULE-SET,telegram_ip),sub-telegram
   - RULE-SET,direct-ltsc_ip,直接连接
-  - MATCH,代理QUIC
+  - *quic
   - MATCH,代理连接
 sub-rules:
-  noquic:
-    - RULE-SET,ai,国外AI
-    - RULE-SET,telegram,TELEGRAM
-    - RULE-SET,proxy@direct,直接连接
-    - RULE-SET,proxy-ltsc,代理连接
-    - RULE-SET,direct-ltsc,直接连接
-    - RULE-SET,telegram_ip,TELEGRAM
-    - RULE-SET,direct-ltsc_ip,直接连接
-    - MATCH,代理连接
+  sub-ai: [*quic,'MATCH,国外AI']
+  sub-telegram: [*quic,'MATCH,TELEGRAM']
+  sub-proxy: [*quic,'MATCH,代理连接']
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
@@ -107,6 +96,7 @@ hosts:
   services.googleapis.cn: services.googleapis.com
   google.cn: google.com
   cn.bing.com: global.bing.com
+fakeip-dns: &fakeip-dns ['rcode://success']
 direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
 # direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
 direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
@@ -138,13 +128,13 @@ dns:
   # default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
   nameserver-policy:
-    'rule-set:ads': [rcode://name_error]
-    'rule-set:ai': *proxy-dns
-    'rule-set:telegram': *proxy-dns
+    'rule-set:ads': ['rcode://name_error']
+    'rule-set:ai': *fakeip-dns
+    'rule-set:telegram': *fakeip-dns
     'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy-ltsc': *proxy-dns
+    'rule-set:proxy-ltsc': *fakeip-dns
     'rule-set:direct-ltsc': *direct-dns
-    'rule-set:dnsmasq-china-ltsc': *direct-dns
+    'rule-set:dnsmasq-china-ltsc': *direct-doh
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
@@ -163,7 +153,7 @@ proxy-groups:
   - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, icon: 'https://mihomo.echs.top/img/icon/Global.webp' }
   - { name: 直接连接, type: select, proxies: [DIRECT,IPV4优先,IPV6优先,仅IPV4,仅IPV6], icon: 'https://mihomo.echs.top/img/icon/DIRECT.webp' }
   - { name: 代理DNS, <<: *dl, icon: 'https://mihomo.echs.top/img/icon/Server.webp' }
-  - { name: 代理QUIC, type: select, proxies: [PASS,REJECT], icon: 'https://mihomo.echs.top/img/icon/Settings.webp' }
+  - { name: 代理QUIC, type: select, proxies: [PASS-RULE,REJECT], icon: 'https://mihomo.echs.top/img/icon/Settings.webp' }
   - { name: 国外AI, <<: *dl, icon: 'https://mihomo.echs.top/img/icon/AI.webp' }
   - { name: TELEGRAM, <<: *dl, icon: 'https://mihomo.echs.top/img/icon/Telegram.webp' }
   - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, hidden: true, icon: 'https://mihomo.echs.top/img/icon/Fast.webp' }
