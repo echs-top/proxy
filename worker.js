@@ -5,6 +5,7 @@ export default {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "*",
       "Access-Control-Allow-Headers": "*",
+      "Content-Security-Policy" = "frame-ancestors *",
     };
 
     // 预检
