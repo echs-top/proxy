@@ -147,7 +147,7 @@ sniffer:
   skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy-ltsc','rule-set:direct-ltsc','rule-set:dnsmasq-china-ltsc']
   skip-src-address: ['rule-set:telegram_ip','rule-set:direct-ltsc_ip']
 proxies: [{ name: DNS劫持, type: dns },{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
-fall: &fall { type: fallback, <<: *use, hidden: true }
+fall: &fall { type: fallback, <<: *use, empty-fallback: REJECT, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
 proxy-groups:
   - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true, icon: 'https://mihomo.echs.top/img/icon/Global.webp' }
@@ -156,7 +156,7 @@ proxy-groups:
   - { name: 代理QUIC, type: select, proxies: [PASS-RULE,REJECT], icon: 'https://mihomo.echs.top/img/icon/Settings.webp' }
   - { name: 国外AI, <<: *dl, icon: 'https://mihomo.echs.top/img/icon/AI.webp' }
   - { name: TELEGRAM, <<: *dl, icon: 'https://mihomo.echs.top/img/icon/Telegram.webp' }
-  - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, hidden: true, icon: 'https://mihomo.echs.top/img/icon/Fast.webp' }
+  - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/icon/Fast.webp' }
   - { name: 香港|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/flags/hk.svg' }
   - { name: 台湾|故障转移, <<: *fall, filter: '(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b', icon: 'https://mihomo.echs.top/img/flags/tw.svg' }
   - { name: 新加坡|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/flags/sg.svg' }
