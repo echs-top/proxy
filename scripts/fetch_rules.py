@@ -1,0 +1,106 @@
+import requests
+import re
+import os
+
+# 确保统一的输出目录存在
+os.makedirs('work/list', exist_ok=True)
+
+# ==========================================
+# 1. 任务一：下载并处理 dnsmasq-china 数据
+# ==========================================
+dnsmasq_url = "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf"
+try:
+    print(f"LOG: Fetching {dnsmasq_url}")
+    r = requests.get(dnsmasq_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+    r.raise_for_status()
+    
+    domains = re.findall(r'^server=/([^/]+)/', r.text, re.MULTILINE)
+    dnsmasq_list = [f"+.{d}" for d in domains if d]
+    
+    with open('work/list/dnsmasq-china_domain.list', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(dnsmasq_list) + '\n')
+        
+    print(f"LOG: Saved {len(dnsmasq_list)} items to work/list/dnsmasq-china_domain.list")
+except Exception as e:
+    print(f"LOG: Error processing dnsmasq-china: {e}")
+    exit(1)
+
+# ==========================================
+# 2. 任务二：下载并处理 yoyo adservers 数据
+# ==========================================
+yoyo_url = "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=plain&showintro=0&mimetype=plaintext"
+try:
+    print(f"LOG: Fetching {yoyo_url}")
+    r_yoyo = requests.get(yoyo_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+    r_yoyo.raise_for_status()
+    
+    ad_list = []
+    for line in r_yoyo.text.splitlines():
+        line = line.strip()
+        if line:
+            ad_list.append(f"+.{line}")
+            
+    with open('work/list/ad_peter_domain.list', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(ad_list) + '\n')
+        
+    print(f"LOG: Saved {len(ad_list)} items to work/list/ad_peter_domain.list")
+except Exception as e:
+    print(f"LOG: Error processing yoyo adservers: {e}")
+    exit(1)
+
+# ==========================================
+# 3. 任务三：精确提取 GitHub Meta 指定数据
+# ==========================================
+github_url = "https://api.github.com/meta"
+try:
+    print(f"LOG: Fetching {github_url}")
+    r_github = requests.get(github_url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+    r_github.raise_for_status()
+    data = r_github.json()
+    
+    ips = set()
+    domains = set()
+    
+    # 提取指定的 IP 列表节点
+    ip_keys = ['git', 'web', 'api', 'pages', 'copilot']
+    for k in ip_keys:
+        if k in data and isinstance(data[k], list):
+            for ip in data[k]:
+                ips.add(ip)
+    
+    # 提取指定的域名列表节点
+    domain_keys = ['website', 'copilot', 'packages', 'actions', 'codespaces']
+    if 'domains' in data:
+        for k in domain_keys:
+            if k in data['domains'] and isinstance(data['domains'][k], list):
+                for d in data['domains'][k]:
+                    domains.add(d)
+        
+        # 单独处理 domains 中的 actions_inbound (由于这是一个包含多个子列表的字典)
+        if 'actions_inbound' in data['domains'] and isinstance(data['domains']['actions_inbound'], dict):
+            for sub_v in data['domains']['actions_inbound'].values():
+                if isinstance(sub_v, list):
+                    for d in sub_v:
+                        domains.add(d)
+
+    # 域名处理：替换 *. 为 +. 并合并去重
+    final_domains = set()
+    for d in domains:
+        if d.startswith('*.'):
+            final_domains.add('+' + d[1:])
+        else:
+            final_domains.add(d)
+
+    with open('work/list/github_domain.list', 'w', encoding='utf-8') as f:
+        for d in sorted(final_domains):
+            f.write(d + '\n')
+
+    with open('work/list/github_ip.list', 'w', encoding='utf-8') as f:
+        for ip in sorted(ips):
+            f.write(ip + '\n')
+            
+    print(f"LOG: Saved {len(final_domains)} items to work/list/github_domain.list")
+    print(f"LOG: Saved {len(ips)} items to work/list/github_ip.list")
+except Exception as e:
+    print(f"LOG: Error processing GitHub Meta: {e}")
+    exit(1)
