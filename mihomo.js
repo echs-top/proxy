@@ -14,7 +14,7 @@ function main(config) {
   // const proxyDns = ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS", "[2001:4860:4860::8888]#代理DNS", "[2620:fe::fe]#代理DNS"];
   const proxyDoh = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
   const fallAnchor = { "type": "fallback", "include-all-providers": true, "hidden": true };
-  const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "韩国|故障转移", "美国|故障转移", "加拿大|故障转移", "德国|故障转移", "英国|故障转移", "法国|故障转移", "荷兰|故障转移"], "include-all-providers": true };
+  const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "韩国|故障转移", "美国|故障转移", "加拿大|故障转移", "德国|故障转移", "英国|故障转移", "法国|故障转移", "荷兰|故障转移"], "include-all-providers": true, "empty-fallback": "REJECT" };
   return { 
     // 节点IP优先级：ip-version: ipv6-prefer
     // 测速细分/筛选：https://8.8.8.8/generate_204、https://[2001:4860:4860::8888]/generate_204
@@ -164,7 +164,7 @@ function main(config) {
       { "name": "代理QUIC", "type": "select", "proxies": ["PASS-RULE", "REJECT"], "icon": "https://mihomo.echs.top/img/icon/Settings.webp" },
       { "name": "国外AI", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/AI.webp" },
       { "name": "TELEGRAM", ...dlAnchor, "icon": "https://mihomo.echs.top/img/icon/Telegram.webp" },
-      { "name": "最低延迟", "type": "url-test", "tolerance": 30, "include-all-providers": true, "hidden": true, "icon": "https://mihomo.echs.top/img/icon/Fast.webp" },
+      { "name": "最低延迟", "type": "url-test", "tolerance": 30, "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true, "icon": "https://mihomo.echs.top/img/icon/Fast.webp" },
       { "name": "香港|故障转移", ...fallAnchor, "filter": "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b", "icon": "https://mihomo.echs.top/img/flags/hk.svg" },
       { "name": "台湾|故障转移", ...fallAnchor, "filter": "(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b", "icon": "https://mihomo.echs.top/img/flags/tw.svg" },
       { "name": "新加坡|故障转移", ...fallAnchor, "filter": "(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b", "icon": "https://mihomo.echs.top/img/flags/sg.svg" },
