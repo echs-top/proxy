@@ -37,6 +37,17 @@ export default {
         newResponse.headers.set(key, corsHeaders[key]);
       });
 
+      // ================= 新增：修复乱码问题 =================
+      // 获取原始的 Content-Type
+      let contentType = newResponse.headers.get("Content-Type");
+      if (contentType && !contentType.toLowerCase().includes("charset")) {
+        // 如果是 JS、JSON、HTML 或纯文本，且没有指定 charset，则强制加上 utf-8
+        if (/(javascript|json|text|html)/i.test(contentType)) {
+          newResponse.headers.set("Content-Type", `${contentType}; charset=utf-8`);
+        }
+      }
+      // ====================================================
+
       return newResponse;
 
     } catch (e) {
