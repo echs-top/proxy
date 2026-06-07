@@ -142,6 +142,52 @@ jobs:
           except Exception as e:
               print(f"LOG: Error processing GitHub Meta: {e}")
               exit(1)
+
+          # ==========================================
+          # 4. 任务四：下载并处理 enhanced-FaaS-in-China 数据
+          # ==========================================
+          faas_urls = [
+              "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Cf.json",
+              "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Netlify.json",
+              "https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/main/Vercel.json"
+          ]
+          faas_ips = set()
+
+          for url in faas_urls:
+              try:
+                  print(f"LOG: Fetching {url}")
+                  r_faas = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+                  r_faas.raise_for_status()
+                  faas_data = r_faas.json()
+                  
+                  # 动态解析顶层节点 (如 "Cf", "Netlify", "Vercel")
+                  for top_key, top_value in faas_data.items():
+                      if isinstance(top_value, dict) and "result" in top_value:
+                          result_node = top_value["result"]
+                          if isinstance(result_node, dict):
+                              # 遍历不同的线路（如 dianxin, liantong, yidong, default）
+                              for carrier, ip_list in result_node.items():
+                                  if isinstance(ip_list, list):
+                                      for ip in ip_list:
+                                          ip_str = str(ip).strip()
+                                          if ip_str:
+                                              # 统一格式化为带有掩码的 CIDR 格式
+                                              if '/' not in ip_str:
+                                                  faas_ips.add(f"{ip_str}/32")
+                                              else:
+                                                  faas_ips.add(ip_str)
+              except Exception as e:
+                  print(f"LOG: Error processing {url}: {e}")
+                  exit(1)
+
+          try:
+              with open('work/list/enhanced-FaaS-in-China_ip.list', 'w', encoding='utf-8') as f:
+                  for ip in sorted(faas_ips):
+                      f.write(ip + '\n')
+              print(f"LOG: Saved {len(faas_ips)} items to work/list/enhanced-FaaS-in-China_ip.list")
+          except Exception as e:
+              print(f"LOG: Error writing enhanced-FaaS-in-China_ip.list: {e}")
+              exit(1)
           EOF
 
       - name: Commit and Push
@@ -149,15 +195,16 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 添加新生成的四个文件
+          # 添加新生成的所有五个文件
           git add work/list/dnsmasq-china_domain.list
           git add work/list/ad_peter_domain.list
           git add work/list/github_domain.list
           git add work/list/github_ip.list
+          git add work/list/enhanced-FaaS-in-China_ip.list
           
           if git diff --staged --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Update domains rules $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Update domains and IP rules $(date +'%Y-%m-%d %H:%M')"
             git push
           fi
