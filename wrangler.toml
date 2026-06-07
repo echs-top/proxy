@@ -4,11 +4,11 @@ name = "mihomo"
 main = "worker.js"
 # 日期
 compatibility_date = "2026-06-01"
-
 # 构建
 [build]
 command = "mkdir -p dist && cp -r img mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/"
-
 # 目录
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+run_worker_first = true
