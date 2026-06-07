@@ -139,7 +139,7 @@ function main(config) {
         "rule-set:proxy@direct": directDoh,
         "rule-set:proxy-ltsc": fakeipDns,
         "rule-set:direct-ltsc": directDns,
-        "rule-set:dnsmasq-china-ltsc": directDoh
+        "rule-set:dnsmasq-china-ltsc": directDns
       },
       "nameserver": proxyDns,
       "direct-nameserver": directDns,
