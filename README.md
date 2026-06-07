@@ -93,6 +93,8 @@ DOH: 直连([阿里DNS](https://www.aliyun.com/product/dns)+[腾讯DNS](https://
 
 UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA](https://config.net.cn/tools/UserAgent.html)、[ClashVergeRev](https://www.clashverge.dev/guide/term.html#ua)
 
+CDN加速参考：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)
+
 ### 客户端
 
 **Android**：[Box(root)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
