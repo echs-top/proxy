@@ -3307,7 +3307,6 @@ maps.apple.com
 +.pba0.apple.com
 +.init-p01st.push.apple.com
 +.init-s01st.push.apple.com
-reserve-prime.apple.com
 +.sequoia.apple.com
 +.sh-pod2-smp-device.apple.com
 +.probe.siri.apple.com
@@ -4705,7 +4704,6 @@ emoi-cncdn.bing.com
 +.app-site-association.cdn-apple.com
 +.appleid.cdn-apple.com
 +.cstat.cdn-apple.com
-icloud.cdn-apple.com
 +.ml.cdn-apple.com
 +.publicassets.cdn-apple.com
 +.shazam-insights.cdn-apple.com
@@ -26382,17 +26380,13 @@ crl-lb.apple.com.akadns.net
 init.gc-lb.apple.com.akadns.net
 +.mesu-cdn.apple.com.akadns.net
 +.mesu-china.apple.com.akadns.net
-ocsp-lb.apple.com.akadns.net
-ocsp2-lb.apple.com.akadns.net
 +.stocks-sparkline-lb.apple.com.akadns.net
 +.store.storeimages.apple.com.akadns.net
 +.swcatalog-cdn.apple.com.akadns.net
 +.swdist.apple.com.akadns.net
 +.swscan-cdn.apple.com.akadns.net
 +.weather-data.apple.com.akadns.net
-pancake.cdn-apple.com.akadns.net
 +.updates-http.cdn-apple.com.akadns.net
-icloud-cdn.icloud.com.akadns.net
 +.itunes-apple.com.akadns.net
 +.gspe19-2-cn-ssl.ls-apple.com.akadns.net
 +.gspe19-cn.ls-apple.com.akadns.net
