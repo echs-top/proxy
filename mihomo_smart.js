@@ -1,4 +1,4 @@
-// update: 2026-06-06
+// update: 2026-06-07
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -7,11 +7,11 @@ function main(config) {
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
   const fakeipDns = ["rcode://success"];
+  // ["119.29.29.29#直接连接", "223.5.5.5#直接连接", "[2402:4e00::]#直接连接", "[2400:3200::1]#直接连接"];
   const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接"];
-  // const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接", "[2402:4e00::]#直接连接", "[2400:3200::1]#直接连接"];
+  // ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS", "[2001:4860:4860::8888]#代理DNS", "[2620:fe::fe]#代理DNS"];
   const directDoh = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
   const proxyDns = ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS"];
-  // const proxyDns = ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS", "[2001:4860:4860::8888]#代理DNS", "[2620:fe::fe]#代理DNS"];
   const proxyDoh = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
   const smartAnchor = { "type": "smart", "strategy": "sticky-sessions", "uselightgbm": true, "collectdata": false, "sample-rate": "1", "prefer-asn": false, "include-all-providers": true, "hidden": true };
   const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "香港|智能选择", "台湾|智能选择", "新加坡|智能选择", "日本|智能选择", "韩国|智能选择", "美国|智能选择", "加拿大|智能选择", "德国|智能选择", "英国|智能选择", "法国|智能选择", "荷兰|智能选择"], "include-all-providers": true, "empty-fallback": "REJECT" };
@@ -84,16 +84,14 @@ function main(config) {
       "direct-ltsc_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-ltsc.mrs", "path": "./rules/direct-ltsc_ip.mrs" }
     },
     "rules": [
-      "DST-PORT,53,DNS劫持",
-      "DST-PORT,853,REJECT",
       "DST-PORT,5228-5230,直接连接",
+      "SUB-RULE,(RULE-SET,telegram_ip,no-resolve),sub-telegram",
       "RULE-SET,ads,REJECT",
       "SUB-RULE,(RULE-SET,ai),sub-ai",
       "SUB-RULE,(RULE-SET,telegram),sub-telegram",
       "RULE-SET,proxy@direct,直接连接",
       "SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy",
       "RULE-SET,direct-ltsc,直接连接",
-      "SUB-RULE,(RULE-SET,telegram_ip),sub-telegram",
       "RULE-SET,direct-ltsc_ip,直接连接",
       "AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC",
       "MATCH,代理连接"
@@ -122,8 +120,8 @@ function main(config) {
       "respect-rules": false,
       // "listen": "0.0.0.0:1053",
       "enhanced-mode": "fake-ip",
-      "fake-ip-range": "198.18.0.1/16",
-      "fake-ip-range6": "fd00:dcba:9876::1/64",
+      "fake-ip-range": "198.18.0.0/15",
+      "fake-ip-range6": "fd00:dcba:9876::/64",
       "fake-ip-ttl": 1,
       "fake-ip-filter-mode": "rule",
       "fake-ip-filter": [
@@ -159,7 +157,7 @@ function main(config) {
       "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy-ltsc", "rule-set:direct-ltsc", "rule-set:dnsmasq-china-ltsc"],
       "skip-src-address": ["rule-set:telegram_ip", "rule-set:direct-ltsc_ip"]
     },
-    "proxies": [{ "name": "DNS劫持", "type": "dns" },{ "name": "IPV4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer" },{ "name": "IPV6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer" },{ "name": "仅IPV4", "type": "direct", "udp": true, "ip-version": "ipv4" },{ "name": "仅IPV6", "type": "direct", "udp": true, "ip-version": "ipv6" }],
+    "proxies": [{ "name": "IPV4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer" },{ "name": "IPV6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer" },{ "name": "仅IPV4", "type": "direct", "udp": true, "ip-version": "ipv4" },{ "name": "仅IPV6", "type": "direct", "udp": true, "ip-version": "ipv6" }],
     "proxy-groups": [
       { "name": "代理连接", "type": "select", "proxies": ["最低延迟", "香港|智能选择", "台湾|智能选择", "新加坡|智能选择", "日本|智能选择", "韩国|智能选择", "美国|智能选择", "加拿大|智能选择", "德国|智能选择", "英国|智能选择", "法国|智能选择", "荷兰|智能选择"], "include-all-providers": true, "icon": "https://mihomo.echs.top/img/icon/Global.webp" },
       { "name": "直接连接", "type": "select", "proxies": ["DIRECT", "IPV6优先", "IPV4优先", "仅IPV4", "仅IPV6"], "icon": "https://mihomo.echs.top/img/icon/DIRECT.webp" },
