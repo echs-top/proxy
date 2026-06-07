@@ -135,7 +135,7 @@ dns:
     'rule-set:proxy@direct': *direct-doh
     'rule-set:proxy-ltsc': *fakeip-dns
     'rule-set:direct-ltsc': *direct-dns
-    'rule-set:dnsmasq-china-ltsc': *direct-doh
+    'rule-set:dnsmasq-china-ltsc': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
