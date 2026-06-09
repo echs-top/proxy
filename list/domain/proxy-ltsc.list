@@ -1771,12 +1771,10 @@ rsshub.woodland.cafe
 +.verisign.com.cn
 +.zoom.com.cn
 +.daxa.cn
-+.doubleclick.cn
 +.drweb.cn
 +.dungeonkeeper.cn
 +.entrust.cn
 +.google.cn
-+.googleadsserving.cn
 +.googleapis.cn
 +.intelrealsense.cn
 +.jinrieluosi.cn
@@ -2386,7 +2384,6 @@ adobeereg.com
 +.adobexdplatform.com
 +.adorevids.com
 +.adsense.com
-+.adsenseformobileapps.com
 +.adskcloud.com
 +.adtcc.com
 +.adult-h.com
@@ -2435,10 +2432,6 @@ adobeereg.com
 +.adventuresbydisney.com
 +.advertfan.com
 +.advertisercommunity.com
-+.advertiserscommunity.com
-+.adwords.com
-+.adwords-community.com
-+.adwordsexpress.com
 +.aeasyshop.com
 +.aebn.com
 +.aecexcellence.com
@@ -2808,7 +2801,6 @@ gitlab-assets.oss-cn-hongkong.aliyuncs.com
 +.apole.com
 +.aporntv.com
 +.apornvideo.com
-+.app-analytics-services-att.com
 +.app-dynamics.com
 +.app0le.com
 +.app756.com
@@ -7150,9 +7142,6 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.google.com
 +.google-syndication.com
 +.googleacquisitionmigration.com
-+.googleadapis.com
-+.googleads.com
-+.googleads-cn.com
 +.googleapis.com
 +.googleapps.com
 +.googlearth.com
@@ -12521,6 +12510,7 @@ rsshub.rssforever.com
 +.steam-api.com
 +.steam-chat.com
 +.steamcommunity.com
++.steamcontent.com
 +.steamdeck.com
 +.steamgames.com
 +.steaminventoryhelper.com
@@ -12528,6 +12518,7 @@ rsshub.rssforever.com
 +.steamofporn.com
 +.steampowered.com
 +.steamstatic.com
++.steamusercontent.com
 +.steamygamer.com
 +.steel-storm.com
 +.steelbrick.com
@@ -20035,6 +20026,10 @@ ood.opsource.net
 +.rbxinfra.net
 +.realamericanstories.net
 +.reastatic.net
++.admin.recaptcha.net
++.api.recaptcha.net
++.api-secure.recaptcha.net
++.api-verify.recaptcha.net
 +.reckitt.net
 +.reckittbenckiser.net
 +.recode.net
@@ -20168,6 +20163,7 @@ ood.opsource.net
 +.stacksnippets.net
 +.static-storage.net
 +.stboy.net
++.steamserver.net
 +.steamunlocked.net
 +.stlouisbmw.net
 +.stoptibetcrisis.net
@@ -23910,6 +23906,7 @@ bybit.ada.support
 +.visa.co.th
 +.yahoo.co.th
 +.youtube.co.th
++.bx.in.th
 +.pinterest.th
 rsshub.rss.tips
 +.2gis.tj
