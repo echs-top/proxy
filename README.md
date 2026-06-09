@@ -38,7 +38,7 @@ MRS：约1MB
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ai.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs)
 
 - proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)+[google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)-'+.cn'  
-  推荐直连的国外域名前置规则，如FCM、CF验证等，约20条  
+  推荐直连的国外域名前置规则，如FCM、CF验证等，约300条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta)+[增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
