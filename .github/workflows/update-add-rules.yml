@@ -96,15 +96,7 @@ jobs:
               r_github.raise_for_status()
               data = r_github.json()
               
-              ips = set()
               domains = set()
-              
-              # 提取指定的 IP 列表节点
-              ip_keys = ['git', 'web', 'api', 'pages', 'copilot']
-              for k in ip_keys:
-                  if k in data and isinstance(data[k], list):
-                      for ip in data[k]:
-                          ips.add(ip)
               
               # 提取指定的域名列表节点
               domain_keys = ['website', 'copilot', 'packages', 'actions', 'codespaces']
@@ -133,12 +125,7 @@ jobs:
                   for d in sorted(final_domains):
                       f.write(d + '\n')
 
-              with open('work/list/github_ip.list', 'w', encoding='utf-8') as f:
-                  for ip in sorted(ips):
-                      f.write(ip + '\n')
-                      
               print(f"LOG: Saved {len(final_domains)} items to work/list/github_domain.list")
-              print(f"LOG: Saved {len(ips)} items to work/list/github_ip.list")
           except Exception as e:
               print(f"LOG: Error processing GitHub Meta: {e}")
               exit(1)
@@ -195,11 +182,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 添加新生成的所有五个文件
+          # 添加新生成的所有四个文件
           git add work/list/dnsmasq-china_domain.list
           git add work/list/ad_peter_domain.list
           git add work/list/github_domain.list
-          git add work/list/github_ip.list
           git add work/list/enhanced-FaaS-in-China_ip.list
           
           if git diff --staged --quiet; then
