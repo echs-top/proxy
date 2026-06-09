@@ -1,4 +1,4 @@
-# update: 2026-06-07
+# update: 2026-06-09
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -67,11 +67,11 @@ rule-providers:
   ai: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs', path: ./rules/ai.mrs }
   telegram: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
   proxy@direct: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs', path: ./rules/proxy@direct.mrs }
-  proxy-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-ltsc.mrs', path: ./rules/proxy-ltsc.mrs }
-  direct-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-ltsc.mrs', path: ./rules/direct-ltsc.mrs }
-  dnsmasq-china-ltsc: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-ltsc.mrs', path: ./rules/dnsmasq-china-ltsc.mrs }
+  proxy: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs', path: ./rules/proxy.mrs }
+  direct: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs', path: ./rules/direct.mrs }
+  dnsmasq-china-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs', path: ./rules/dnsmasq-china-lite.mrs }
   telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs', path: ./rules/telegram_ip.mrs }
-  direct-ltsc_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-ltsc.mrs', path: ./rules/direct-ltsc_ip.mrs }
+  direct_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs', path: ./rules/direct_ip.mrs }
 quic: &quic 'AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC'
 rules:
   - DST-PORT,5228-5230,直接连接
@@ -80,9 +80,9 @@ rules:
   - SUB-RULE,(RULE-SET,ai),sub-ai
   - SUB-RULE,(RULE-SET,telegram),sub-telegram
   - RULE-SET,proxy@direct,直接连接
-  - SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy
-  - RULE-SET,direct-ltsc,直接连接
-  - RULE-SET,direct-ltsc_ip,直接连接
+  - SUB-RULE,(RULE-SET,proxy),sub-proxy
+  - RULE-SET,direct,直接连接
+  - RULE-SET,direct_ip,直接连接
   - *quic
   - MATCH,代理连接
 sub-rules:
@@ -123,8 +123,8 @@ dns:
     - RULE-SET,ai,fake-ip
     - RULE-SET,telegram,fake-ip
     - RULE-SET,proxy@direct,real-ip
-    - RULE-SET,proxy-ltsc,fake-ip
-    - RULE-SET,direct-ltsc,real-ip
+    - RULE-SET,proxy,fake-ip
+    - RULE-SET,direct,real-ip
     - MATCH,fake-ip
   # default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
@@ -133,9 +133,9 @@ dns:
     'rule-set:ai': *fakeip-dns
     'rule-set:telegram': *fakeip-dns
     'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy-ltsc': *fakeip-dns
-    'rule-set:direct-ltsc': *direct-dns
-    'rule-set:dnsmasq-china-ltsc': *direct-dns
+    'rule-set:proxy': *fakeip-dns
+    'rule-set:direct': *direct-dns
+    'rule-set:dnsmasq-china-lite': *direct-dns
   nameserver: *proxy-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
@@ -145,8 +145,8 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy-ltsc','rule-set:direct-ltsc','rule-set:dnsmasq-china-ltsc']
-  skip-src-address: ['rule-set:telegram_ip','rule-set:direct-ltsc_ip']
+  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy','rule-set:direct','rule-set:dnsmasq-china-lite']
+  skip-src-address: ['rule-set:telegram_ip','rule-set:direct_ip']
 proxies: [{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
 smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, <<: *use, empty-fallback: REJECT, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择], include-all-providers: true }
