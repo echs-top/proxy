@@ -12,8 +12,7 @@
 *.sharepoint.com
 # zashboard
 +.ipip.net
-# 私货
+# my domain
 +.echs.top
-+.xiaobaotxt.org
 # 其他
 +.css.network
