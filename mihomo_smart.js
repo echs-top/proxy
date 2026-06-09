@@ -1,4 +1,4 @@
-// update: 2026-06-07
+// update: 2026-06-09
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -77,11 +77,11 @@ function main(config) {
       "ai": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs", "path": "./rules/ai.mrs" },
       "telegram": { ...domainAnchor, "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs", "path": "./rules/telegram.mrs" },
       "proxy@direct": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs", "path": "./rules/proxy@direct.mrs" },
-      "proxy-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-ltsc.mrs", "path": "./rules/proxy-ltsc.mrs" },
-      "direct-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-ltsc.mrs", "path": "./rules/direct-ltsc.mrs" },
-      "dnsmasq-china-ltsc": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-ltsc.mrs", "path": "./rules/dnsmasq-china-ltsc.mrs" },
+      "proxy": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs", "path": "./rules/proxy.mrs" },
+      "direct": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs", "path": "./rules/direct.mrs" },
+      "dnsmasq-china-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs", "path": "./rules/dnsmasq-china-lite.mrs" },
       "telegram_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs", "path": "./rules/telegram_ip.mrs" },
-      "direct-ltsc_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-ltsc.mrs", "path": "./rules/direct-ltsc_ip.mrs" }
+      "direct_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs", "path": "./rules/direct_ip.mrs" }
     },
     "rules": [
       "DST-PORT,5228-5230,直接连接",
@@ -90,9 +90,9 @@ function main(config) {
       "SUB-RULE,(RULE-SET,ai),sub-ai",
       "SUB-RULE,(RULE-SET,telegram),sub-telegram",
       "RULE-SET,proxy@direct,直接连接",
-      "SUB-RULE,(RULE-SET,proxy-ltsc),sub-proxy",
-      "RULE-SET,direct-ltsc,直接连接",
-      "RULE-SET,direct-ltsc_ip,直接连接",
+      "SUB-RULE,(RULE-SET,proxy),sub-proxy",
+      "RULE-SET,direct,直接连接",
+      "RULE-SET,direct_ip,直接连接",
       "AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC",
       "MATCH,代理连接"
     ],
@@ -129,8 +129,8 @@ function main(config) {
         "RULE-SET,ai,fake-ip",
         "RULE-SET,telegram,fake-ip",
         "RULE-SET,proxy@direct,real-ip",
-        "RULE-SET,proxy-ltsc,fake-ip",
-        "RULE-SET,direct-ltsc,real-ip",
+        "RULE-SET,proxy,fake-ip",
+        "RULE-SET,direct,real-ip",
         "MATCH,fake-ip"
       ],
       // "default-nameserver": directDns,
@@ -140,9 +140,9 @@ function main(config) {
         "rule-set:ai": fakeipDns,
         "rule-set:telegram": fakeipDns,
         "rule-set:proxy@direct": directDoh,
-        "rule-set:proxy-ltsc": fakeipDns,
-        "rule-set:direct-ltsc": directDns,
-        "rule-set:dnsmasq-china-ltsc": directDns
+        "rule-set:proxy": fakeipDns,
+        "rule-set:direct": directDns,
+        "rule-set:dnsmasq-china-lite": directDns
       },
       "nameserver": proxyDns,
       "direct-nameserver": directDns,
@@ -154,8 +154,8 @@ function main(config) {
       "parse-pure-ip": true,
       "override-destination": false,
       "sniff": { "HTTP": { "ports": ["80", "8080-8880"], "override-destination": true }, "TLS": { "ports": ["443", "8443"] }, "QUIC": { "ports": ["443", "8443"] } },
-      "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy-ltsc", "rule-set:direct-ltsc", "rule-set:dnsmasq-china-ltsc"],
-      "skip-src-address": ["rule-set:telegram_ip", "rule-set:direct-ltsc_ip"]
+      "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy", "rule-set:direct", "rule-set:dnsmasq-china-lite"],
+      "skip-src-address": ["rule-set:telegram_ip", "rule-set:direct_ip"]
     },
     "proxies": [{ "name": "IPV4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer" },{ "name": "IPV6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer" },{ "name": "仅IPV4", "type": "direct", "udp": true, "ip-version": "ipv4" },{ "name": "仅IPV6", "type": "direct", "udp": true, "ip-version": "ipv6" }],
     "proxy-groups": [
