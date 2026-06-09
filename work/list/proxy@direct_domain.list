@@ -17,3 +17,6 @@ a.nel.cloudflare.com
 challenges.cloudflare.com
 stun.cloudflare.com
 static.cloudflareinsights.com
+
+# hCaptcha 人机验证
++.hcaptcha.com
