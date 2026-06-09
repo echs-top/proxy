@@ -29,7 +29,7 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
 
 可引用规则：
 
-- ads：[秋风](https://awavenue.top)+[217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/)-[白名单排除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_direct_domain.list)  
+- ads：[秋风](https://awavenue.top)+[217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/)+[增加](https://github.com/echs-top/proxy/blob/main/work/list/ad_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_domain.list)  
   较克制的国内国外广告规则，约9k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
   
@@ -37,11 +37,11 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
   自用合并的AI域名规则，约200条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ai.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs)
 
-- proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)  
+- proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)+[google-cn](https://github.com/echs-top/proxy/blob/main/work/list/google-cn_domain.list)  
   推荐直连的国外域名前置规则，如FCM、CF验证，约20条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
 
-- proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta)  
+- proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta)+[增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
   代理域名规则，约2.5w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
@@ -49,7 +49,7 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
   CN域名规则，约3.1w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
-- direct：cn+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)+[microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list)+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list)  
+- direct：cn+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)+[microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list)+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list)+[白名单排除](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
   直连域名规则，约3.2w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
@@ -76,13 +76,6 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
 - direct_ip：cn_ip+'enhanced-FaaS-in-China_ip'+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则，约8k条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
-
-**不可引用**！此模板定制规则：
-
-- proxy-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/proxy-ltsc.list)
-- direct-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/direct-ltsc.list)
-- dnsmasq-china-ltsc：[work列表](https://github.com/echs-top/proxy/blob/main/work/domain/dnsmasq-china-ltsc.list)
-- direct-ltsc_ip：[work列表](https://github.com/echs-top/proxy/blob/main/work/ip/direct-ltsc.list)
 
 更多规则推荐：
 
