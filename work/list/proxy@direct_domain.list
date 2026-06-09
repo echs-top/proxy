@@ -23,3 +23,6 @@ static.cloudflareinsights.com
 
 # onedrive下载
 *.sharepoint.com
+
+# apple连通性测试
++.captive.apple.com
