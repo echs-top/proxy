@@ -37,8 +37,8 @@ MRS：约1MB
   自用合并的AI域名规则，约200条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ai.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs)
 
-- proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)+[google-cn](https://github.com/echs-top/proxy/blob/main/work/list/google-cn_domain.list)  
-  推荐直连的国外域名前置规则，如FCM、CF验证，约20条  
+- proxy@direct：[proxy@direct](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list)+[google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)-'+.cn'  
+  推荐直连的国外域名前置规则，如FCM、CF验证等，约20条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list)+[google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta)+[增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
@@ -57,7 +57,7 @@ MRS：约1MB
   dnsmasq-china官方规则，约11.3w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china.mrs)
 
-- dnsmasq-china-lite：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
+- dnsmasq-china-lite：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)-direct  
   在dnsmasq-china基础上去重了direct，适合作为DNS分流补充规则，约10w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
