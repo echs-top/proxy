@@ -20,3 +20,6 @@ static.cloudflareinsights.com
 
 # hCaptcha 人机验证
 +.hcaptcha.com
+
+# onedrive下载
+*.sharepoint.com
