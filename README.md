@@ -49,7 +49,7 @@ MRS：约960KB(含DNS分流dnsmasq-china-ltsc约480KB)
   CN域名规则，约3.1w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
-- direct：cn+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)+[microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list)+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list)+[白名单排除](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
+- direct：cn+[games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list)+[apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list)+[microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list)+[private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list)+[增加](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list)-[删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
   直连域名规则，约3.2w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
