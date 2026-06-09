@@ -4,5 +4,5 @@
 - list ads.list
 - list ai.list
 - list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list
-- list proxy@direct_domain.list
+- list proxy@direct.list
 - list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list
