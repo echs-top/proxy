@@ -1,4 +1,4 @@
-name: Update List Rules
+name: Update Mihomo Rules
 
 on:
   schedule:
@@ -21,6 +21,16 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        # 缓存 pip 的默认下载目录
+        path: ~/.cache/pip
+        # 使用操作系统和当前 workflow 文件的 hash 作为缓存 Key
+        key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/update-rules.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: pip install PyYAML requests
