@@ -1,4 +1,4 @@
-name: Update Mihomo Rules
+name: Update List Rules
 
 on:
   schedule:
