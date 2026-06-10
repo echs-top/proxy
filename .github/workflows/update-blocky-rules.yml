@@ -28,7 +28,7 @@ jobs:
           # 3. grep 过滤掉空行和注释行
           # 4. sed 去除开头的 '+.' 或 '.'
           # 5. awk 将域名格式化为 Blocky 需要的键值对，并追加到文件
-          curl -sSL https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/blocky-cn.list | \
+          curl -sSL https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list | \
           tr -d '\r' | \
           grep -v "^#" | grep -v "^$" | \
           sed 's/^[+\.]*//' | \
