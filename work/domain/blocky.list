@@ -1,0 +1,3 @@
++ list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list
++ yaml https://static-file-global.353355.xyz/rules/cn-additional-list-clash.yaml
++ list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/dnsmasq-china_domain.list
