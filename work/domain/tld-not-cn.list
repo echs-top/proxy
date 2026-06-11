@@ -1,0 +1,2 @@
++ list https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list
+- list '+.ai'
