@@ -83,7 +83,7 @@ MRS：约1MB(含dnsmasq-china DNS分流规则)
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
 
 - direct-lite：direct - ads - 'proxy-lite'  
-  直连域名规则，约3.2w条  
+  精简直连域名规则，约3.2w条  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
 - dnsmasq-china-lite：'dnsmasq-china' - ads - 'proxy-lite' -'direct-lite'  
