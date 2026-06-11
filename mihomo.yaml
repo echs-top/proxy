@@ -1,10 +1,11 @@
-# update: 2026-06-09
+# update: 2026-06-11
 # 简介: https://github.com/echs-top/proxy
 
 
 # 节点IP优先级：ip-version: ipv6-prefer
 # 测速细分/筛选：https://8.8.8.8/generate_204、https://[2001:4860:4860::8888]/generate_204
 providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.5.1"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: true }, override: { ip-version: dual }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢' }
+# age-secret-key: '私钥'
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
@@ -22,16 +23,16 @@ mode: rule
 log-level: error
 unified-delay: true
 tcp-concurrent: true
-# YAML1.1特殊修正
 find-process-mode: 'off'
 disable-keep-alive: false
 keep-alive-interval: 15
 keep-alive-idle: 300
 etag-support: true
-# global-ua: 'Mozilla/5.0 (Linux; Android 16; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.215 Mobile Safari/537.36'
-# global-ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.217 Safari/537.36'
+# global-ua: 'Mozilla/5.0 (Linux; Android 16; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.217 Mobile Safari/537.36'
+# global-ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.257 Safari/537.36'
 # external-controller: 127.0.0.1:9090
 # secret: '密码'
+# external-doh-server: /dns-query
 # external-ui: ./zashboard
 # external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 profile: { store-selected: true, store-fake-ip: true }
@@ -39,8 +40,8 @@ experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip
 port: 0
 socks-port: 0
 mixed-port: 0
-tproxy-port: 0
 redir-port: 0
+tproxy-port: 0
 # authentication: ["用户:密码"]
 tun:
   enable: true
@@ -53,10 +54,69 @@ tun:
   auto-detect-interface: true
   strict-route: true
   disable-icmp-forwarding: true
+  # endpoint-independent-nat: true
   dns-hijack: [any:53,tcp://any:53]
   # mtu: 9000
   udp-timeout: 300
-  # endpoint-independent-nat: true
+hosts:
+  dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
+  doh.pub: [120.53.53.53,1.12.12.21]
+  dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
+  dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
+  services.googleapis.cn: services.googleapis.com
+  google.cn: google.com
+  cn.bing.com: global.bing.com
+fakeip-dns: &fakeip-dns ['rcode://success']
+# ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
+direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
+direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
+# ['8.8.8.8#代理DNS','9.9.9.9#代理DNS','[2001:4860:4860::8888]#代理DNS','[2620:fe::fe]#代理DNS']
+proxy-dns: &proxy-dns ['8.8.8.8#代理DNS','9.9.9.9#代理DNS']
+proxy-doh: &proxy-doh ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
+dns: 
+  enable: true
+  ipv6: true
+  cache-algorithm: arc
+  use-hosts: true
+  use-system-hosts: true
+  prefer-h3: true
+  respect-rules: false
+  # listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.0/15
+  fake-ip-range6: fd00:dcba:9876::/64
+  fake-ip-ttl: 1
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,ads,fake-ip
+    - RULE-SET,ai,fake-ip
+    - RULE-SET,telegram,fake-ip
+    - RULE-SET,proxy@direct,real-ip
+    - RULE-SET,proxy,fake-ip
+    - RULE-SET,direct,real-ip
+    - MATCH,fake-ip
+  default-nameserver: *direct-dns
+  proxy-server-nameserver: *direct-doh
+  # proxy-server-nameserver-policy: { example.cpm: 'https://223.5.5.5/dns-query#直接连接' }
+  nameserver: *proxy-dns
+  nameserver-policy:
+    'rule-set:ads': ['rcode://name_error']
+    'rule-set:ai': *fakeip-dns
+    'rule-set:telegram': *fakeip-dns
+    'rule-set:proxy@direct': *direct-doh
+    'rule-set:proxy': *fakeip-dns
+    'rule-set:direct': *direct-dns
+    'rule-set:dnsmasq-china-lite': *direct-dns
+  direct-nameserver: *direct-dns
+  direct-nameserver-follow-policy: true
+sniffer: 
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
+  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy','rule-set:direct','rule-set:dnsmasq-china-lite']
+  skip-src-address: ['rule-set:telegram_ip','rule-set:direct_ip']
 ip: &ip { type: http, interval: 86400, proxy: 代理连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 代理连接, behavior: domain, format: mrs }
 rule-providers:
@@ -86,64 +146,6 @@ sub-rules:
   sub-ai: [*quic,'MATCH,国外AI']
   sub-telegram: [*quic,'MATCH,TELEGRAM']
   sub-proxy: [*quic,'MATCH,代理连接']
-hosts:
-  dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
-  doh.pub: [120.53.53.53,1.12.12.21]
-  dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
-  dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
-  services.googleapis.cn: services.googleapis.com
-  google.cn: google.com
-  cn.bing.com: global.bing.com
-fakeip-dns: &fakeip-dns ['rcode://success']
-# ['119.29.29.29#直接连接','223.5.5.5#直接连接','[2402:4e00::]#直接连接','[2400:3200::1]#直接连接']
-direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
-direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
-# ['8.8.8.8#代理DNS','9.9.9.9#代理DNS','[2001:4860:4860::8888]#代理DNS','[2620:fe::fe]#代理DNS']
-proxy-dns: &proxy-dns ['8.8.8.8#代理DNS','9.9.9.9#代理DNS']
-proxy-doh: &proxy-doh ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
-dns: 
-  enable: true
-  cache-algorithm: arc
-  ipv6: true
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: false
-  respect-rules: false
-  # listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/15
-  fake-ip-range6: fd00:dcba:9876::/64
-  fake-ip-ttl: 1
-  fake-ip-filter-mode: rule
-  fake-ip-filter:
-    - RULE-SET,ads,fake-ip
-    - RULE-SET,ai,fake-ip
-    - RULE-SET,telegram,fake-ip
-    - RULE-SET,proxy@direct,real-ip
-    - RULE-SET,proxy,fake-ip
-    - RULE-SET,direct,real-ip
-    - MATCH,fake-ip
-  # default-nameserver: *direct-dns
-  proxy-server-nameserver: *direct-doh
-  nameserver-policy:
-    'rule-set:ads': ['rcode://name_error']
-    'rule-set:ai': *fakeip-dns
-    'rule-set:telegram': *fakeip-dns
-    'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy': *fakeip-dns
-    'rule-set:direct': *direct-dns
-    'rule-set:dnsmasq-china-lite': *direct-dns
-  nameserver: *proxy-dns
-  direct-nameserver: *direct-dns
-  direct-nameserver-follow-policy: true
-sniffer: 
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: false
-  sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy','rule-set:direct','rule-set:dnsmasq-china-lite']
-  skip-src-address: ['rule-set:telegram_ip','rule-set:direct_ip']
 proxies: [{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
 fall: &fall { type: fallback, <<: *use, empty-fallback: REJECT, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移], include-all-providers: true }
