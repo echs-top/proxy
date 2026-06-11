@@ -1,0 +1,3 @@
++ list proxy.list
++ list tld-not-cn.list
+- list ads.list
