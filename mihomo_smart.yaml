@@ -93,10 +93,9 @@ dns:
   fake-ip-filter:
     - RULE-SET,ads,fake-ip
     - RULE-SET,ai,fake-ip
-    - RULE-SET,telegram,fake-ip
     - RULE-SET,proxy@direct,real-ip
-    - RULE-SET,proxy,fake-ip
-    - RULE-SET,direct,real-ip
+    - RULE-SET,proxy-lite,fake-ip
+    - RULE-SET,direct-lite,real-ip
     - MATCH,fake-ip
   default-nameserver: *direct-dns
   proxy-server-nameserver: *direct-doh
@@ -105,10 +104,9 @@ dns:
   nameserver-policy:
     'rule-set:ads': ['rcode://name_error']
     'rule-set:ai': *fakeip-dns
-    'rule-set:telegram': *fakeip-dns
     'rule-set:proxy@direct': *direct-doh
-    'rule-set:proxy': *fakeip-dns
-    'rule-set:direct': *direct-dns
+    'rule-set:proxy-lite': *fakeip-dns
+    'rule-set:direct-lite': *direct-dns
     'rule-set:dnsmasq-china-lite': *direct-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
@@ -118,17 +116,16 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:telegram','rule-set:proxy@direct','rule-set:proxy','rule-set:direct','rule-set:dnsmasq-china-lite']
+  skip-domain: ['rule-set:ads','rule-set:ai','rule-set:proxy@direct','rule-set:proxy-lite','rule-set:direct-lite','rule-set:dnsmasq-china-lite']
   skip-src-address: ['rule-set:telegram_ip','rule-set:direct_ip']
 ip: &ip { type: http, interval: 86400, proxy: 代理连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 代理连接, behavior: domain, format: mrs }
 rule-providers:
   ads: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs', path: ./rules/ads.mrs }
   ai: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs', path: ./rules/ai.mrs }
-  telegram: { <<: *domain, url: 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs', path: ./rules/telegram.mrs }
   proxy@direct: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs', path: ./rules/proxy@direct.mrs }
-  proxy: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs', path: ./rules/proxy.mrs }
-  direct: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs', path: ./rules/direct.mrs }
+  proxy-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs', path: ./rules/proxy-lite.mrs }
+  direct-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs', path: ./rules/direct-lite.mrs }
   dnsmasq-china-lite: { <<: *domain, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs', path: ./rules/dnsmasq-china-lite.mrs }
   telegram_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs', path: ./rules/telegram_ip.mrs }
   direct_ip: { <<: *ip, url: 'https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs', path: ./rules/direct_ip.mrs }
@@ -138,10 +135,9 @@ rules:
   - SUB-RULE,(RULE-SET,telegram_ip,no-resolve),sub-telegram
   - RULE-SET,ads,REJECT
   - SUB-RULE,(RULE-SET,ai),sub-ai
-  - SUB-RULE,(RULE-SET,telegram),sub-telegram
   - RULE-SET,proxy@direct,直接连接
-  - SUB-RULE,(RULE-SET,proxy),sub-proxy
-  - RULE-SET,direct,直接连接
+  - SUB-RULE,(RULE-SET,proxy-lite),sub-proxy
+  - RULE-SET,direct-lite,直接连接
   - RULE-SET,direct_ip,直接连接
   - *quic
   - MATCH,代理连接
