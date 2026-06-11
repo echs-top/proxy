@@ -81,6 +81,7 @@ MRS：约1MB(含dnsmasq-china DNS分流规则)
 
 - [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)
 - [DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)
+- [wwqgtxx/clash-rules](https://github.com/wwqgtxx/clash-rules)
 
 ### 引用
 
