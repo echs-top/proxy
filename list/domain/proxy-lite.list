@@ -26,16 +26,26 @@ practivate.adobe
 +.rtde.agency
 +.ruptly.agency
 +.api.ai
++.arena.ai
 +.bitz.ai
 +.censorship.ai
++.cerebras.ai
 +.character.ai
++.chutes.ai
++.claude.ai
++.clawhub.ai
 +.clova.ai
++.coderabbit.ai
++.cohere.ai
 +.dell.com.ai
 +.google.com.ai
 +.visa.com.ai
 +.yahoo.com.ai
 +.dailym.ai
++.devin.ai
 +.devv.ai
++.dify.ai
++.duck.ai
 +.zklighter.elliot.ai
 +.etna.ai
 +.forefront.ai
@@ -45,33 +55,53 @@ practivate.adobe
 +.gmo-research.ai
 +.google.ai
 +.goup.ai
++.grazie.ai
++.h2o.ai
 +.hakaru.ai
 +.intel.ai
 +.jan.ai
++.jasper.ai
 +.javfinder.ai
++.jetbrains.ai
 +.jiuse.ai
 +.karechat.ai
 +.leonardo.ai
 +.lmarena.ai
++.lmstudio.ai
++.lovart.ai
++.meta.ai
 +.meteum.ai
 +.missav.ai
++.mistral.ai
 +.mlc.ai
++.mozilla.ai
++.openart.ai
++.openclaw.ai
++.openrouter.ai
 +.openvino.ai
 +.oshiete.ai
++.perplexity.ai
++.plannotator.ai
 +.podwise.ai
 +.pornpen.ai
++.pplx.ai
 +.seodirector.ai
 +.shedevrum.ai
++.sider.ai
 +.simianx.ai
 +.sokuresu.ai
 +.suno.ai
++.tapnow.ai
 +.tenbin.ai
 +.tinkoff.ai
++.trae.ai
 +.tsi.ai
 +.ukit.ai
 +.videoindexer.ai
 +.wombo.ai
 +.wyndlabs.ai
++.x.ai
++.youmind.ai
 +.zeibit.ai
 +.aig
 +.airbus
@@ -366,6 +396,7 @@ yangzhi.app
 +.bt
 +.bazel.build
 +.buck.build
++.windsurf.build
 +.1111mod-tube.buzz
 +.69hongdq6.buzz
 +.69hongdq7.buzz
@@ -739,6 +770,9 @@ rsshub.woodland.cafe
 +.hutao.cloud
 +.ipfs-gateway.cloud
 +.jetbrains.cloud
++.chatgpt.livekit.cloud
++.host.livekit.cloud
++.turn.livekit.cloud
 +.longbridge.cloud
 +.mastodon.cloud
 +.mindbox.cloud
@@ -883,6 +917,7 @@ rsshub.woodland.cafe
 +.cccat.co
 +.cdnxxx-proxy.co
 +.celebforum.co
++.clipdrop.co
 +.codeish.co
 +.12diasderegalosdeitunes.com.co
 +.adidas.com.co
@@ -949,7 +984,9 @@ rsshub.woodland.cafe
 +.hentaiz.co
 +.heroku.co
 +.hewlett-packard.co
++.hf.co
 +.hotmail.co
++.huggingface.co
 +.huobi.co
 +.ibb.co
 +.ie8.co
@@ -1530,6 +1567,7 @@ adobeereg.com
 +.agdbank.com
 +.agefans.com
 +.agendaweek.com
++.agentclientprotocol.com
 +.agilebits.com
 +.agoogleaday.com
 +.agri-bank.com
@@ -1837,6 +1875,7 @@ gitlab-assets.oss-cn-hongkong.aliyuncs.com
 +.anthemgame.com
 +.anthemthegame.com
 +.anthonycalzadilla.com
++.anthropic.com
 +.antpool.com
 +.anudetube.com
 +.anuneko.com
@@ -1848,6 +1887,7 @@ gitlab-assets.oss-cn-hongkong.aliyuncs.com
 +.anypornsexxx.com
 +.anysex.com
 +.anyshemale.com
++.anythingllm.com
 +.aodahl.com
 +.aofriend.com
 +.search.aol.com
@@ -2127,6 +2167,7 @@ ws.audioscrobbler.com
 +.auricularesbeatsmarkt.com
 +.auroraoss.com
 +.ausbeatsbydrdre.com
++.auth0.com
 +.authorxml.com
 +.authy.com
 +.autocad.com
@@ -3598,7 +3639,9 @@ licdn.cn.cdn20.com
 +.charlestonroadregistry.com
 +.charmescorts.com
 +.charticulator.com
++.chat.com
 +.chatango.com
++.chatgpt.com
 +.chatpdf.com
 +.chatter.com
 +.chaturbate.com
@@ -3724,6 +3767,9 @@ licdn.cn.cdn20.com
 +.chwr7s8u.com
 +.chyoa.com
 +.ciattackers.com
++.cici.com
++.ciciai.com
++.ciciaicdn.com
 +.cilk.com
 +.cindymovies.com
 +.cinemax.com
@@ -3778,6 +3824,10 @@ licdn.cn.cdn20.com
 +.clashroyaleapp.com
 +.classicnike.com
 +.classymomsex.com
++.claude.com
++.claudemcpclient.com
++.claudemcpcontent.com
++.claudeusercontent.com
 +.clearsurance.com
 +.click-sec.com
 +.click-url.com
@@ -3883,10 +3933,13 @@ public-us-pingsx.api.clonoth.com
 +.cockyboys.com
 +.codecademy.com
 +.codeforces.com
++.codeium.com
++.codeiumdata.com
 +.codespot.com
 +.codethemicrobit.com
 +.codivorexxx.com
 +.coedcherry.com
++.cohere.com
 +.coinbase.com
 +.coinbene.com
 +.coindesk.com
@@ -4000,6 +4053,7 @@ hpstore.corpmerchandise.com
 +.coupangcdn.com
 +.coursehero.com
 +.cowboom.com
++.coze.com
 +.cozydrdrebeats.com
 +.cpedge.com
 +.cpu-monkey.com
@@ -4025,9 +4079,11 @@ hpstore.corpmerchandise.com
 +.crececonebay.com
 +.creditcardsbay.com
 +.creditkarma.com
++.crewai.com
 +.cricketcountry.com
 +.cristyli.com
 +.crit-staging.com
++.crixet.com
 +.crmdynint.com
 +.crmdynint-gcc.com
 +.crocotube.com
@@ -4087,6 +4143,9 @@ hpstore.corpmerchandise.com
 +.currently.com
 +.cursecdn.com
 +.curseforge.com
++.cursor.com
++.cursor-cdn.com
++.cursorapi.com
 +.curvefish.com
 +.curvybbwwives.com
 +.curvyerotic.com
@@ -4214,6 +4273,7 @@ hpstore.corpmerchandise.com
 +.deepflood.com
 +.deepfreeze.com
 +.deepl.com
++.deepmind.com
 +.deezer.com
 +.definebabe.com
 +.definefetish.com
@@ -4306,6 +4366,7 @@ hpstore.corpmerchandise.com
 +.dgwav.com
 +.diablo3.com
 +.diabloimmortal.com
++.diabrowser.com
 +.dialga.com
 +.dialogflow.com
 +.diamantewebcam.com
@@ -4505,6 +4566,7 @@ hpstore.corpmerchandise.com
 +.dojin.com
 +.dojin-dl.com
 +.dojinwatch.com
++.dola.com
 +.dollarfotoclub.com
 +.dollarphotoclub.com
 +.dollarphotosclub.com
@@ -4883,6 +4945,7 @@ hpstore.corpmerchandise.com
 +.elephantlist.com
 +.elephanttube.com
 +.elephanttubenew.com
++.elevenlabs.com
 +.elgaronline.com
 +.elite.com
 +.elitebabes.com
@@ -4942,6 +5005,9 @@ rsshub.email-once.com
 +.enterprisessl.com
 +.entrust.com
 +.entrustdatacard.com
++.envato.com
++.envato-static.com
++.envatousercontent.com
 +.envycdp.com
 +.envycrm.com
 +.epicbrowser.com
@@ -6138,6 +6204,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.github1s.com
 +.githubapp.com
 +.githubassets.com
++.githubcopilot.com
 +.githubhackathon.com
 +.githubnext.com
 +.githubstatus.com
@@ -6320,8 +6387,10 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.greenlakehybridcloud.com
 +.greginhollywood.com
 +.grindr.com
++.grok.com
 +.grokipedia.com
 +.grooby.com
++.groq.com
 +.group-ib.com
 +.groupfun.com
 +.groups.com
@@ -6444,6 +6513,7 @@ deutschewelle.h-cdn.com
 +.hbospain.com
 +.hbotvsales.com
 +.hbrowse.com
++.hcaptcha.com
 +.hcaptchastatus.com
 +.hcbdsm.com
 +.hclips.com
@@ -7054,6 +7124,7 @@ deutschewelle.h-cdn.com
 +.idea-server.com
 +.ideal-teens.com
 +.ideapocket.com
++.identrust.com
 +.idiomconnection.com
 +.www.idlcoyote.com
 +.idnike.com
@@ -7308,6 +7379,7 @@ imperial.insendi.com
 +.interactivebrokers.com
 +.intercom.com
 +.intercomassets.com
++.intercomcdn.com
 +.internationalconnectionsacademy.com
 +.internationalsaimoe.com
 +.internetdownloadmanager.com
@@ -7850,6 +7922,7 @@ faronics.kayako.com
 +.lagranepoca.com
 +.lamayeshe.com
 +.lanasbigboobs.com
++.langchain.com
 +.langsuirs.com
 +.lanternal.com
 +.laracasts.com
@@ -8201,6 +8274,7 @@ faronics.kayako.com
 +.manta.com
 +.mantochichi.com
 +.manurefetish.com
++.manuscdn.com
 +.manytoon.com
 +.manyvids.com
 +.maomi-shipin.com
@@ -8223,6 +8297,7 @@ faronics.kayako.com
 +.markingmenus.com
 +.markzuckerberg.com
 +.marranazas.com
++.marscode.com
 +.martau.com
 +.blog.martinoei.com
 +.marvel.com
@@ -8456,6 +8531,7 @@ faronics.kayako.com
 +.micstl.com
 +.midatlanticbmwmotorcycles.com
 +.midentsolutions.com
++.midjourney.com
 +.midoushe.com
 +.miexnoviadesnuda.com
 +.miitomo.com
@@ -9498,6 +9574,9 @@ datarouter.apps.netherrealm.com
 +.o365weve.com
 +.o365weve-dev.com
 +.o365weve-ppe.com
++.oaistatic.com
++.oaistatsig.com
++.oaiusercontent.com
 +.oanda.com
 +.oanencore.com
 +.oann.com
@@ -9571,6 +9650,7 @@ datarouter.apps.netherrealm.com
 +.olevod.com
 +.olevodtv.com
 +.oli-school.com
++.ollama.com
 +.olumpo.com
 +.omafotze.com
 +.omekinteractive.com
@@ -9641,6 +9721,7 @@ datarouter.apps.netherrealm.com
 +.onxxxtube.com
 +.onxxxvideo.com
 +.op7979.com
++.openai.com
 +.openamt.com
 +.openapiplatform.com
 +.openapiservice.com
@@ -9940,6 +10021,7 @@ datarouter.apps.netherrealm.com
 +.perfectsexnow.com
 +.perfectshemales.com
 +.perfecttitspics.com
++.perplexity.com
 +.persagg.com
 +.persianepochtimes.com
 +.persiankitty.com
@@ -10069,6 +10151,7 @@ datarouter.apps.netherrealm.com
 +.pocketcasts.com
 +.podbean.com
 +.podictionary.com
++.poe.com
 +.pogo.com
 +.pogobeta.com
 +.poihub.com
@@ -10507,6 +10590,7 @@ rsshub.pseudoyu.com
 +.qmp4.com
 +.qnap.com
 +.qobuz.com
++.qoder.com
 +.qombol.com
 +.qoo-app.com
 +.qooqlevideo.com
@@ -11437,6 +11521,7 @@ rsshub.rssforever.com
 +.soolakhi.com
 +.nakedsecurity.sophos.com
 +.soporn.com
++.sora.com
 +.sora6.com
 +.sorcerersarena.com
 +.sorting-algorithms.com
@@ -11484,6 +11569,7 @@ rsshub.rssforever.com
 +.spiceworks.com
 +.spiceworksstatic.com
 +.spicybigtits.com
++.spicywriter.com
 +.spideroak.com
 +.spiderpool.com
 +.spiritclubs.com
@@ -13121,6 +13207,7 @@ rsshub.umzzz.com
 +.windowsuem.com
 +.windowsupdate.com
 +.windscribe.com
++.windsurf.com
 +.windy.com
 +.wing.com
 +.wingamestore.com
@@ -13619,6 +13706,7 @@ rss.wudifeixue.com
 +.youjizz.com
 +.youlucky.com
 +.youmaker.com
++.youmind.com
 +.young-amateur-movies.com
 +.youngamateursporn.com
 +.younger19.com
@@ -13897,6 +13985,7 @@ rss.datuan.dev
 +.idx.dev
 +.ingka.dev
 +.intel.dev
++.kiro.dev
 +.mdn.dev
 +.mdnplay.dev
 +.mdnyalp.dev
@@ -13904,6 +13993,7 @@ rss.datuan.dev
 +.ngrok-free.dev
 +.opensourceinsight.dev
 +.opensourceinsights.dev
++.openspec.dev
 +.ozon.dev
 +.pages.dev
 +.pub.dev
@@ -13965,6 +14055,7 @@ rss.datuan.dev
 +.stackoverflow.email
 +.emerck
 +.creativecommons.engineering
++.diabrowser.engineering
 +.pinterest.engineering
 +.hewlettpackard.enterprises
 +.epson
@@ -14474,6 +14565,7 @@ rss.datuan.dev
 +.google.im
 +.icq.im
 +.lala.im
++.manus.im
 +.modular.im
 +.mol.im
 +.monica.im
@@ -14764,6 +14856,7 @@ rss.datuan.dev
 +.egghead.io
 +.element.io
 +.elementary.io
++.elevenlabs.io
 +.eligens.io
 +.elsevier.io
 +.enpass.io
@@ -14812,6 +14905,7 @@ rss.datuan.dev
 +.imgur.io
 +.infura.io
 +.intel.io
++.intercom.io
 +.invity.io
 +.ipfs.io
 +.itch.io
@@ -14836,6 +14930,7 @@ rss.datuan.dev
 +.metamind.io
 +.microsoft.io
 +.microsoft-falcon.io
++.minimax.io
 +.misskey.io
 +.mod.io
 +.mosavi.io
@@ -16185,6 +16280,7 @@ bbs.boingboing.net
 +.gogocdn.net
 +.gohentai.net
 +.golang.net
++.gonglchuangl.net
 +.goodsdunk.net
 +.google.net
 +.google-access.net
@@ -16450,6 +16546,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.live-video.net
 +.livecoin.net
 +.livejasminbabes.net
++.liveperson.net
 +.lldns.net
 +.llnw.net
 +.llnwd.net
@@ -16461,6 +16558,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.longtermly.net
 +.looti.net
 +.lovejav.net
++.lpsnmedia.net
 +.luscious.net
 +.lyfhk.net
 +.lysol.net
@@ -16732,6 +16830,7 @@ ood.opsource.net
 +.pleasuregirl.net
 +.plusporn.net
 +.plutotv.net
++.poecdn.net
 +.poi6.net
 +.pokemonwifi.net
 +.pokerstars.net
@@ -16794,6 +16893,10 @@ ood.opsource.net
 +.rbxinfra.net
 +.realamericanstories.net
 +.reastatic.net
++.admin.recaptcha.net
++.api.recaptcha.net
++.api-secure.recaptcha.net
++.api-verify.recaptcha.net
 +.reckitt.net
 +.reckittbenckiser.net
 +.recode.net
@@ -16974,6 +17077,7 @@ ood.opsource.net
 +.thefacebook.net
 +.thehun.net
 +.theinventionworks.net
++.themeforest.net
 +.thepornlist.net
 +.theshoppingexpresslane.net
 +.theuab.net
@@ -17014,6 +17118,7 @@ ood.opsource.net
 +.trustedanalytics.net
 +.truyengihay.net
 +.trydurex.net
++.ts.net
 +.ttoverseaus.net
 +.ttvnw.net
 +.tubefuckme.net
@@ -17622,6 +17727,9 @@ rsshub2.asailor.org
 +.collabora.org
 +.collateralmurder.org
 +.sekai.colorfulpalette.org
++.comfy.org
++.comfyci.org
++.comfyregistry.org
 +.comicuniverse.org
 +.communistcrimes.org
 +.compaq.org
@@ -19040,6 +19148,7 @@ rsshub.ktachibana.party
 +.binancezh.sh
 +.brew.sh
 +.codei.sh
++.cursor.sh
 +.dmit.sh
 +.err.sh
 +.esm.sh
@@ -19132,6 +19241,7 @@ rsshub.ktachibana.party
 +.wingy.site
 +.xn--b1aechhj6bof8g5a.site
 +.xn--h1ao.site
++.youmind.site
 +.sj
 +.sk
 +.sushi.ski
@@ -19165,6 +19275,7 @@ rsshub.ktachibana.party
 +.bangdream.space
 +.douchi.space
 +.esrt.space
++.hf.space
 +.jetbrains.space
 +.jtube.space
 +.luckydesigner.space
@@ -19192,6 +19303,7 @@ rsshub.ktachibana.party
 +.misskey.stream
 +.xvxx.stream
 +.affinity.studio
++.ai.studio
 +.style
 +.su
 +.sucks
@@ -19339,6 +19451,7 @@ rsshub.rss.tips
 +.mmwxl27.top
 +.naizitv.top
 +.nightswatch.top
++.oystermercury.top
 +.pgyy67.top
 +.pjbyj.top
 +.pojbayj1030.top
