@@ -23,18 +23,30 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Cache Pip
+      # ==========================================
+      # 优化点：缓存完整的 Python 虚拟环境 (venv)
+      # ==========================================
+      - name: Cache Virtual Environment
         uses: actions/cache@v4
+        id: cache-venv
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-requests
-          restore-keys: ${{ runner.os }}-pip-
+          path: venv
+          # 使用固定的 key。如果未来需要增加新的 python 包 (如 pip install bs4)，只需将 v1 改为 v2 即可重新生成缓存
+          key: ${{ runner.os }}-venv-requests-v1
 
       - name: Install Dependencies
-        run: pip install requests
+        # 只有当缓存未命中 (第一次运行或 key 改变) 时，才执行环境创建和依赖安装
+        if: steps.cache-venv.outputs.cache-hit != 'true'
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install requests
 
       - name: Download and Process Rules
         run: |
+          # 激活虚拟环境，以使用已缓存或刚安装好的依赖
+          source venv/bin/activate
           python << 'EOF'
           import requests
           import re
