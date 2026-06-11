@@ -1,2 +1,2 @@
 + list https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list
-- list '+.ai'
+- list https://raw.githubusercontent.com/echs-top/proxy/main/work/ltsc/tld-not-cn@del_domain.list
