@@ -3,7 +3,7 @@ name: Update List Rules
 on:
   schedule:
     # GitHub Actions 使用 UTC 时间，18:00 对应北京时间凌晨 02:00
-    - cron: '30 19 * * *'
+    - cron: '28 19 * * *'
   workflow_dispatch:
 
 permissions:
