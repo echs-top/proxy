@@ -100,10 +100,9 @@ function main(config) {
       "fake-ip-filter": [
         "RULE-SET,ads,fake-ip",
         "RULE-SET,ai,fake-ip",
-        "RULE-SET,telegram,fake-ip",
         "RULE-SET,proxy@direct,real-ip",
-        "RULE-SET,proxy,fake-ip",
-        "RULE-SET,direct,real-ip",
+        "RULE-SET,proxy-lite,fake-ip",
+        "RULE-SET,direct-lite,real-ip",
         "MATCH,fake-ip"
       ],
       "default-nameserver": directDns,
@@ -113,10 +112,9 @@ function main(config) {
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
         "rule-set:ai": fakeipDns,
-        "rule-set:telegram": fakeipDns,
         "rule-set:proxy@direct": directDoh,
-        "rule-set:proxy": fakeipDns,
-        "rule-set:direct": directDns,
+        "rule-set:proxy-lite": fakeipDns,
+        "rule-set:direct-lite": directDns,
         "rule-set:dnsmasq-china-lite": directDns
       },
       "direct-nameserver": directDns,
@@ -128,16 +126,15 @@ function main(config) {
       "parse-pure-ip": true,
       "override-destination": false,
       "sniff": { "HTTP": { "ports": ["80", "8080-8880"], "override-destination": true }, "TLS": { "ports": ["443", "8443"] }, "QUIC": { "ports": ["443", "8443"] } },
-      "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:telegram", "rule-set:proxy@direct", "rule-set:proxy", "rule-set:direct", "rule-set:dnsmasq-china-lite"],
+      "skip-domain": ["rule-set:ads", "rule-set:ai", "rule-set:proxy@direct", "rule-set:proxy-lite", "rule-set:direct-lite", "rule-set:dnsmasq-china-lite"],
       "skip-src-address": ["rule-set:telegram_ip", "rule-set:direct_ip"]
     },
     "rule-providers": {
       "ads": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs", "path": "./rules/ads.mrs" },
       "ai": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs", "path": "./rules/ai.mrs" },
-      "telegram": { ...domainAnchor, "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs", "path": "./rules/telegram.mrs" },
       "proxy@direct": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs", "path": "./rules/proxy@direct.mrs" },
-      "proxy": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs", "path": "./rules/proxy.mrs" },
-      "direct": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs", "path": "./rules/direct.mrs" },
+      "proxy-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs", "path": "./rules/proxy-lite.mrs" },
+      "direct-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs", "path": "./rules/direct-lite.mrs" },
       "dnsmasq-china-lite": { ...domainAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs", "path": "./rules/dnsmasq-china-lite.mrs" },
       "telegram_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/telegram.mrs", "path": "./rules/telegram_ip.mrs" },
       "direct_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs", "path": "./rules/direct_ip.mrs" }
@@ -147,10 +144,9 @@ function main(config) {
       "SUB-RULE,(RULE-SET,telegram_ip,no-resolve),sub-telegram",
       "RULE-SET,ads,REJECT",
       "SUB-RULE,(RULE-SET,ai),sub-ai",
-      "SUB-RULE,(RULE-SET,telegram),sub-telegram",
       "RULE-SET,proxy@direct,直接连接",
-      "SUB-RULE,(RULE-SET,proxy),sub-proxy",
-      "RULE-SET,direct,直接连接",
+      "SUB-RULE,(RULE-SET,proxy-lite),sub-proxy",
+      "RULE-SET,direct-lite,直接连接",
       "RULE-SET,direct_ip,直接连接",
       "AND,((NETWORK,udp),(DST-PORT,443)),代理QUIC",
       "MATCH,代理连接"
