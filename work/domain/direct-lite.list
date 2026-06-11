@@ -1,0 +1,4 @@
++ list direct.list
+- list ads.list
+- list proxy.list
+- list tld-not-cn.list
