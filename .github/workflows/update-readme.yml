@@ -1,0 +1,115 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '27 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # 新增：缓存 pip 依赖环境
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          # 缓存键名。未来如果你在仓库添加了 requirements.txt，当文件内容改变时，会自动刷新缓存。
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          # 如果完全匹配的 key 找不到，则回退使用下面前缀的最新缓存
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # 预留的依赖安装步骤（目前无需开启，未来若用到第三方库，取消下方注释并在仓库根目录添加 requirements.txt 即可）
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Statistics Script
+        run: |
+          cat << 'EOF' > update_stat.py
+          import os
+          import re
+          import subprocess
+          from datetime import datetime
+
+          def get_file_info(filepath):
+              if not os.path.exists(filepath):
+                  return None, None
+              
+              with open(filepath, 'r', encoding='utf-8') as f:
+                  count = sum(1 for line in f if line.strip())
+                  
+              try:
+                  result = subprocess.run(
+                      ['git', 'log', '-1', '--format=%cd', '--date=format:%Y.%m.%d', filepath], 
+                      capture_output=True, text=True, check=True
+                  )
+                  date_str = result.stdout.strip()
+                  if not date_str:
+                      date_str = datetime.now().strftime("%Y.%m.%d")
+              except:
+                  date_str = datetime.now().strftime("%Y.%m.%d")
+                  
+              return count, date_str
+
+          with open('README.md', 'r', encoding='utf-8') as f:
+              lines = f.readlines()
+
+          current_rule = None
+          new_lines = []
+
+          for line in lines:
+              match = re.match(r'^-\s+([a-zA-Z0-9\-@_]+)[：:]', line)
+              if match:
+                  current_rule = match.group(1)
+                  new_lines.append(line)
+                  continue
+                  
+              if 'Update：' in line and current_rule:
+                  if current_rule.endswith('_ip'):
+                      filename = current_rule[:-3] + '.list'
+                      filepath = os.path.join('list/ip', filename)
+                  else:
+                      filename = current_rule + '.list'
+                      filepath = os.path.join('list/domain', filename)
+                      
+                  count, date_str = get_file_info(filepath)
+                  
+                  if count is not None:
+                      indent_match = re.match(r'^(\s*)Update：', line)
+                      indent = indent_match.group(1) if indent_match else "  "
+                      new_line = f"{indent}Update：`{date_str}` `{count}`  \n"
+                      new_lines.append(new_line)
+                  else:
+                      new_lines.append(line)
+                  
+                  current_rule = None
+              else:
+                  new_lines.append(line)
+
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.writelines(new_lines)
+          EOF
+          
+          python update_stat.py
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: 自动更新规则统计数量与时间"
+          file_pattern: "README.md"
