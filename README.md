@@ -4,7 +4,7 @@
 
 自用优先、TUN/VPN、完善设置、极简策略、严谨分流、地区分组
 
-### 默认
+### 模板
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo_smart.yaml)
 
