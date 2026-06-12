@@ -90,7 +90,7 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
   Update：`2026.06.11` `20376`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
 
-- direct-lite：direct + [tld-cn](https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/tld-cn) - ads - 'proxy-lite'  
+- direct-lite：direct - ads - 'proxy-lite'  
   精简直连域名规则  
   Update：`2026.06.12` `31315`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs)
