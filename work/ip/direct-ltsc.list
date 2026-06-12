@@ -1,3 +1,3 @@
 + list direct.list
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/work/ltsc/direct_ip.list
++ list /work/ltsc/direct_ip.list
 - list https://core.telegram.org/resources/cidr.txt
