@@ -48,6 +48,11 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
   Update：`2026.06.11` `25991`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
+- tld-not-cn：[tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)  
+  国外顶域规则  
+  Update：`2026.06.13` `820`  
+  规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/tld-not-cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/tld-not-cn.mrs)
+
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list) + [备案域名](https://www.nodeseek.com/post-464238-1)  
   CN域名规则  
   Update：`2026.06.10` `31448`  
@@ -85,7 +90,7 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
 
 谨慎引用！lite规则：
 
-- proxy-lite：proxy + ([tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)) - ads  
+- proxy-lite：proxy + 'tld-not-cn' - ads  
   精简代理域名规则  
   Update：`2026.06.11` `20376`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
