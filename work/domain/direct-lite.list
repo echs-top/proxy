@@ -1,4 +1,5 @@
 + list direct.list
++ list /work/list/tld-cn_domain.list
 - list ads.list
 - list proxy.list
 - list tld-not-cn.list
