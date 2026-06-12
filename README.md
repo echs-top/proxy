@@ -78,7 +78,7 @@ MRS：`918.07KB` `168398` (含dnsmasq-china DNS分流规则)
   Update：`2026.06.11` `8489`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
-- direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
+- direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
   Update：`2026.06.11` `8545`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
