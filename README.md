@@ -22,7 +22,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
+MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 ### 规则
 
@@ -50,7 +50,7 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
 
 - tld-not-cn：[tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)  
   国外顶域规则  
-  Update：`2026.06.13` `820`  
+  Update：`2026.06.11` `820`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/tld-not-cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/tld-not-cn.mrs)
 
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list) + [备案域名](https://www.nodeseek.com/post-464238-1)  
@@ -75,7 +75,7 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   提取vercel/netlify/cloudflare的优选ip  
-  Update：`2026.06.12` `19`  
+  Update：`2026.06.13` `20`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
@@ -85,7 +85,7 @@ MRS：`918.90KB` `168307` (含dnsmasq-china DNS分流规则)
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.06.13` `8537`  
+  Update：`2026.06.13` `8547`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
