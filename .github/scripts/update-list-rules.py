@@ -214,7 +214,7 @@ def process_file(filepath, out_filepath, rule_type, list_dir):
     with open(out_filepath, 'w', encoding='utf-8') as f:
         for item in final_list:
             f.write(item + '\n')
-    print(f"  ✅ [构建完成] 极限压缩后保留: {len(final_list)} 条精简规则\n")
+    print(f"  ✅ [构建完成] 合并去重排除后: {len(final_list)} 条规则\n")
 
 # ================= 目录扫描与分段控制 =================
 def process_directory(work_dir, list_dir, rule_type):
