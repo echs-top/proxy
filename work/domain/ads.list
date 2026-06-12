@@ -1,5 +1,5 @@
 + yaml https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
 + yaml https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_peter_domain.list
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_add_domain.list
-- list https://raw.githubusercontent.com/echs-top/proxy/main/work/list/ad_del_domain.list
++ list /work/list/ad_peter_domain.list
++ list /work/list/ad_add_domain.list
+- list /work/list/ad_del_domain.list
