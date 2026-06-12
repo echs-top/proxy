@@ -34,7 +34,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/update-rules.yml') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/scripts/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -42,10 +42,11 @@ jobs:
       - name: ⚙️ Setup Env (Pip & Mihomo Tag)
         run: |
           echo "=> Installing Python dependencies..."
-          pip install requests PyYAML
+          # 【修改这里】使用 -r 读取文件安装
+          pip install -r .github/scripts/requirements.txt
           
           echo "=> Fetching Mihomo tag..."
-          bash .github/scripts/cache.sh get_tag
+          bash .github/scripts/mihomo.sh get_tag
 
       # --- 准备阶段：应用缓存与下载内核 ---
       - name: ⚙️ Cache Mihomo Core
@@ -57,7 +58,7 @@ jobs:
 
       - name: 📥 Download Mihomo (If Cache Missed)
         if: steps.cache-mihomo.outputs.cache-hit != 'true'
-        run: bash .github/scripts/cache.sh download
+        run: bash .github/scripts/mihomo.sh download
 
       # --- 串行执行阶段 ---
       
