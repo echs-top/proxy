@@ -1,0 +1,94 @@
+name: Update Rules
+
+on:
+  schedule:
+    # 每天北京时间 02:53 (UTC时间 18:53)
+    - cron: '53 18 * * *'
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Shanghai
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # --- 准备阶段：拉取仓库至工作区 ---
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      # --- 准备阶段：环境与 Pip 缓存 ---
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/update-rules.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # --- 准备阶段：安装依赖并获取内核版本 ---
+      - name: ⚙️ Setup Env (Pip & Mihomo Tag)
+        run: |
+          echo "=> Installing Python dependencies..."
+          pip install requests PyYAML
+          
+          echo "=> Fetching Mihomo tag..."
+          bash .github/scripts/cache.sh get_tag
+
+      # --- 准备阶段：应用缓存与下载内核 ---
+      - name: ⚙️ Cache Mihomo Core
+        id: cache-mihomo
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/mihomo
+          key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }}
+
+      - name: 📥 Download Mihomo (If Cache Missed)
+        if: steps.cache-mihomo.outputs.cache-hit != 'true'
+        run: bash .github/scripts/cache.sh download
+
+      # --- 串行执行阶段 ---
+      
+      - name: 🔄 Phase 1 - Update Add Rules
+        run: |
+          echo "=> Fetching External Rules dynamically..."
+          for script in .github/scripts/update-add-rules/*.py; do
+            echo "Running $script..."
+            python "$script"
+          done
+
+      - name: 🌳 Phase 2 - Update List Rules
+        run: |
+          echo "=> Building Rule Trees..."
+          python .github/scripts/update-list-rules.py
+
+      - name: 📦 Phase 3 - Convert MRS Rules
+        run: |
+          echo "=> Converting to MRS binary format..."
+          chmod +x .github/scripts/update-mrs-rules.sh
+          bash .github/scripts/update-mrs-rules.sh
+
+      - name: 📝 Phase 4 - Update README
+        run: |
+          echo "=> Updating README.md statistics..."
+          python .github/scripts/update-readme.py
+
+      # --- 终极步骤 ---
+      - name: ⬆️ Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 chore: Auto-update rules, MRS, and README"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
