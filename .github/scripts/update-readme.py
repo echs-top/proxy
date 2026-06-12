@@ -52,18 +52,37 @@ total_size_kb = f"{total_size_bytes / 1024:.2f}" if total_size_bytes > 0 else "0
 def get_file_info(filepath):
     if not os.path.exists(filepath):
         return None, None
+    
+    # 统计行数
     with open(filepath, 'r', encoding='utf-8') as f:
         count = sum(1 for line in f if line.strip())
+        
     try:
-        result = subprocess.run(
-            ['git', 'log', '-1', '--format=%cd', '--date=format:%Y.%m.%d', filepath], 
+        # 1. 先检查文件在当前工作区是否被修改了 (未提交的变动)
+        status_result = subprocess.run(
+            ['git', 'status', '--porcelain', filepath], 
             capture_output=True, text=True, check=True
         )
-        date_str = result.stdout.strip()
-        if not date_str:
+        
+        # 如果有输出，说明文件被修改了或是新增的，那更新日期就是当前时间
+        if status_result.stdout.strip():
             date_str = datetime.now().strftime("%Y.%m.%d")
-    except:
+        else:
+            # 2. 如果没被修改，说明这次没更新它，去 Git 历史里查上一次提交的日期
+            log_result = subprocess.run(
+                ['git', 'log', '-1', '--format=%cd', '--date=format:%Y.%m.%d', filepath], 
+                capture_output=True, text=True, check=True
+            )
+            date_str = log_result.stdout.strip()
+            
+            # 如果什么都没查到（异常情况防范）
+            if not date_str:
+                date_str = datetime.now().strftime("%Y.%m.%d")
+                
+    except Exception as e:
+        # 任何报错兜底
         date_str = datetime.now().strftime("%Y.%m.%d")
+        
     return count, date_str
 
 with open('README.md', 'r', encoding='utf-8') as f:
