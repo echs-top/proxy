@@ -1,5 +1,6 @@
 + list dnsmasq-china.list
 - list ads.list
 - list direct.list
+- list /work/list/tld-cn_domain.list
 - list proxy.list
 - list tld-not-cn.list
