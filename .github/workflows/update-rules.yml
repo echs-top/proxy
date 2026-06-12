@@ -42,7 +42,6 @@ jobs:
       - name: ⚙️ Setup Env (Pip & Mihomo Tag)
         run: |
           echo "=> Installing Python dependencies..."
-          # 【修改这里】使用 -r 读取文件安装
           pip install -r .github/scripts/requirements.txt
           
           echo "=> Fetching Mihomo tag..."
