@@ -3,7 +3,7 @@ name: Update Add Rules
 on:
   schedule:
     # 每天北京时间 3:00 (UTC 19:00)
-    - cron: '57 18 * * *'
+    - cron: '57 17 * * *'
   workflow_dispatch:
 
 jobs:
