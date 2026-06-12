@@ -5,6 +5,5 @@
 - list proxy.list
 - list tld-not-cn.list
 - list direct.list
-- list /work/list/tld-cn_domain.list
 - list /work/ltsc/proxy_domain.list
 - list /work/ltsc/direct_domain.list
