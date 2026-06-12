@@ -1,6 +1,6 @@
 + list direct.list
-- list https://raw.githubusercontent.com/echs-top/proxy/main/work/ltsc/proxy_domain.list
-+ list https://raw.githubusercontent.com/echs-top/proxy/main/work/ltsc/direct_domain.list
+- list /work/ltsc/proxy_domain.list
++ list /work/ltsc/direct_domain.list
 - list ads.list
 - list ai.list
 - list proxy@direct.list
