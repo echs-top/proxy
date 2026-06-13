@@ -53,38 +53,48 @@ def get_file_info(filepath):
     if not os.path.exists(filepath):
         return None, None
     
-    # 统计行数
     with open(filepath, 'r', encoding='utf-8') as f:
         count = sum(1 for line in f if line.strip())
         
     try:
-        # 1. 先检查文件在当前工作区是否被修改了 (未提交的变动)
+        # 脏检查 (未提交的变动)
         status_result = subprocess.run(
             ['git', 'status', '--porcelain', filepath], 
             capture_output=True, text=True, check=True
         )
-        
-        # 如果有输出，说明文件被修改了或是新增的，那更新日期就是当前时间
         if status_result.stdout.strip():
             date_str = datetime.now().strftime("%Y.%m.%d")
         else:
-            # 2. 如果没被修改，说明这次没更新它，去 Git 历史里查上一次提交的日期
             log_result = subprocess.run(
                 ['git', 'log', '-1', '--format=%cd', '--date=format:%Y.%m.%d', filepath], 
                 capture_output=True, text=True, check=True
             )
             date_str = log_result.stdout.strip()
-            
-            # 如果什么都没查到（异常情况防范）
             if not date_str:
                 date_str = datetime.now().strftime("%Y.%m.%d")
-                
     except Exception as e:
-        # 任何报错兜底
         date_str = datetime.now().strftime("%Y.%m.%d")
         
     return count, date_str
 
+# ================= 动态生成图标引用 =================
+icon_links = []
+if os.path.exists('work/img.txt'):
+    with open('work/img.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'): continue
+            parts = line.split()
+            if len(parts) >= 2:
+                repo = parts[1]
+                # 去重判定，避免同一个仓库被重复列出
+                link = f"[{repo}](https://github.com/{repo})"
+                if link not in icon_links:
+                    icon_links.append(link)
+
+icon_str = "图标：" + "、".join(icon_links) + "\n" if icon_links else ""
+
+# ================= 更新 README 内容 =================
 with open('README.md', 'r', encoding='utf-8') as f:
     lines = f.readlines()
 
@@ -92,6 +102,12 @@ current_rule = None
 new_lines = []
 
 for line in lines:
+    # --- [新增] 替换以“图标：”开头的行 ---
+    if line.startswith('图标：') and icon_str:
+        new_lines.append(icon_str)
+        continue
+
+    # --- 替换 MRS 统计信息 ---
     if line.startswith('MRS：'):
         match = re.search(r'([(（].*)', line)
         tail = match.group(1) if match else ""
@@ -101,12 +117,14 @@ for line in lines:
         new_lines.append(new_line)
         continue
 
+    # --- 匹配具体的规则列表名称 ---
     match = re.match(r'^-\s+([a-zA-Z0-9\-@_]+)[：:]', line)
     if match:
         current_rule = match.group(1)
         new_lines.append(line)
         continue
         
+    # --- 替换 Update 时间与行数统计 ---
     if 'Update：' in line and current_rule:
         if current_rule.endswith('_ip'):
             filename = current_rule[:-3] + '.list'
