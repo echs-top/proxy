@@ -22,7 +22,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
+MRS：`918.57KB` `168020` (含dnsmasq-china DNS分流规则)
 
 ### 规则
 
@@ -30,7 +30,7 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 - ads：[秋风](https://awavenue.top) + [217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/ad_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_domain.list)  
   较克制的国内国外广告规则  
-  Update：`2026.06.13` `8646`  
+  Update：`2026.06.14` `8666`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
   
 - ai：[ai](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list) + [category-ai-!cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list) - [category-ai-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.list)  
@@ -45,7 +45,7 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list) + [google-play](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list)+[github api](https://api.github.com/meta) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
   代理域名规则  
-  Update：`2026.06.11` `25991`  
+  Update：`2026.06.14` `25992`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
 - tld-not-cn：[tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)  
@@ -65,7 +65,7 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 - dnsmasq-china：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
   dnsmasq-china官方规则，适合作为DNS分流补充规则  
-  Update：`2026.06.13` `112355`  
+  Update：`2026.06.14` `112150`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china.mrs)
 
 - telegram_ip：[telegram](https://core.telegram.org/resources/cidr.txt)  
@@ -75,17 +75,17 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   提取vercel/netlify/cloudflare的优选ip  
-  Update：`2026.06.13` `20`  
+  Update：`2026.06.14` `30`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   合并去重CN IP规则  
-  Update：`2026.06.13` `8499`  
+  Update：`2026.06.14` `8387`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.06.13` `8547`  
+  Update：`2026.06.14` `8428`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
@@ -102,7 +102,7 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 - dnsmasq-china-lite：'dnsmasq-china' - ads - 'proxy-lite' -'direct-lite'  
   精简dnsmasq-china规则  
-  Update：`2026.06.13` `98937`  
+  Update：`2026.06.14` `98739`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
 更多规则推荐：
@@ -113,7 +113,7 @@ MRS：`918.57KB` `168317` (含dnsmasq-china DNS分流规则)
 
 ### 引用
 
-图标：[flag-icons](https://github.com/lipis/flag-icons)、[HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
+图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
 DOH: 直连([阿里DNS](https://www.aliyun.com/product/dns)+[腾讯DNS](https://www.dnspod.cn/products/publicdns))、代理([Quad9](https://quad9.net)+[谷歌DNS](https://developers.google.com/speed/public-dns?hl=zh-cn))
 
