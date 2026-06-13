@@ -11,7 +11,7 @@ HEADERS = {"Authorization": f"Bearer {TOKEN}"} if TOKEN else {}
 
 IMG_CONFIG_PATH = "work/img.txt"
 
-# 【核心修改】将状态文件存放在操作系统的独立缓存目录，彻底远离 Git 仓库！
+# 将状态文件存放在操作系统的独立缓存目录，彻底远离 Git 仓库
 STATE_DIR = os.path.expanduser("~/.cache/img_state")
 STATE_FILE = os.path.join(STATE_DIR, "versions.json")
 os.makedirs(STATE_DIR, exist_ok=True)
@@ -83,9 +83,10 @@ for line in lines:
         shutil.rmtree(temp_dir)
         
     try:
+        # 【此处已修复】修正为双减号 --filter=blob:none
         clone_cmd = [
             "git", "clone", "--no-checkout", "--depth", "1", 
-            "---filter=blob:none", "-b", branch
+            "--filter=blob:none", "-b", branch
         ]
         
         if clean_remote_path:
