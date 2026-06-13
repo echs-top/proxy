@@ -90,7 +90,7 @@ function main(config) {
       "enhanced-mode": "fake-ip",
       "fake-ip-range": "198.18.0.0/15",
       "fake-ip-range6": "fd00:dcba:9876::/64",
-      "fake-ip-ttl": 1,
+      // "fake-ip-ttl": 1,
       "fake-ip-filter-mode": "rule",
       "fake-ip-filter": [
         "RULE-SET,ads,fake-ip",
