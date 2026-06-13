@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0 
 
-      # --- 准备阶段：环境与 Pip 缓存 ---
+      # --- 准备阶段：环境与Pip缓存 ---
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
@@ -37,6 +37,16 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('.github/scripts/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+
+      # --- 准备阶段：图片状态缓存 (你的神仙提议) ---
+      - name: 📦 Cache Image State
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/img_state
+          # 动态 Key：确保每次运行后都能保存最新的 Hash 状态
+          key: ${{ runner.os }}-img-state-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-img-state-
 
       # --- 准备阶段：安装依赖并获取内核版本 ---
       - name: ⚙️ Setup Env (Pip & Mihomo Tag)

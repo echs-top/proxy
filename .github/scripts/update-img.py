@@ -10,13 +10,17 @@ TOKEN = os.environ.get("GITHUB_TOKEN")
 HEADERS = {"Authorization": f"Bearer {TOKEN}"} if TOKEN else {}
 
 IMG_CONFIG_PATH = "work/img.txt"
-STATE_FILE = "img/.img_versions.json"
+
+# 【核心修改】将状态文件存放在操作系统的独立缓存目录，彻底远离 Git 仓库！
+STATE_DIR = os.path.expanduser("~/.cache/img_state")
+STATE_FILE = os.path.join(STATE_DIR, "versions.json")
+os.makedirs(STATE_DIR, exist_ok=True)
 
 if not os.path.exists(IMG_CONFIG_PATH):
     print(f"配置文件 {IMG_CONFIG_PATH} 不存在，跳过图片更新。")
     sys.exit(0)
 
-# 读取本地保存的 Commit Hash 记录
+# 读取缓存的 Commit Hash 记录
 state = {}
 if os.path.exists(STATE_FILE):
     try:
@@ -53,7 +57,6 @@ for line in lines:
         r.raise_for_status()
         data = r.json()
         
-        # 兼容 API 返回列表或单个对象的情况
         if isinstance(data, list) and len(data) > 0:
             latest_sha = data[0]["sha"]
         elif isinstance(data, dict) and "sha" in data:
@@ -75,7 +78,6 @@ for line in lines:
         
     print(f"\n>> 正在拉取 [{local_folder}] 从 {repo} (Commit: {latest_sha[:7]})...")
     
-    # 2. 利用 Git 的 Sparse Checkout 进行极速局部下载
     temp_dir = f"temp_{local_folder}"
     if os.path.exists(temp_dir):
         shutil.rmtree(temp_dir)
@@ -83,11 +85,13 @@ for line in lines:
     try:
         clone_cmd = [
             "git", "clone", "--no-checkout", "--depth", "1", 
-            "--filter=blob:none", "-b", branch, 
-            f"https://github.com/{repo}.git", temp_dir
+            "---filter=blob:none", "-b", branch
         ]
+        
         if clean_remote_path:
-            clone_cmd.insert(4, "--sparse")
+            clone_cmd.append("--sparse")
+            
+        clone_cmd.extend([f"https://github.com/{repo}.git", temp_dir])
             
         subprocess.run(clone_cmd, check=True, capture_output=True)
         
@@ -108,14 +112,15 @@ for line in lines:
         print(f"  ✅ [{local_folder}] 更新成功！")
         
     except subprocess.CalledProcessError as e:
-        print(f"  ❌ [{local_folder}] Git 拉取失败: {e.stderr.decode('utf-8', errors='ignore')}")
+        err_msg = e.stderr.decode('utf-8', errors='ignore') if e.stderr else "未知错误"
+        print(f"  ❌ [{local_folder}] Git 拉取失败: {err_msg}")
     except Exception as e:
         print(f"  ❌ [{local_folder}] 覆盖失败: {e}")
     finally:
         if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
 
-# 若有更新，保存最新的 commit 状态
+# 若有更新，保存最新的 commit 状态至独立缓存目录
 if changed:
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
