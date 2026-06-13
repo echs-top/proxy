@@ -1,4 +1,4 @@
-// update: 2026-06-11
+// update: 2026-06-13
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -7,9 +7,7 @@ function main(config) {
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
   const fakeipDns = ["rcode://success"];
-  // ["119.29.29.29#直接连接", "223.5.5.5#直接连接", "[2402:4e00::]#直接连接", "[2400:3200::1]#直接连接"];
   const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接"];
-  // ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS", "[2001:4860:4860::8888]#代理DNS", "[2620:fe::fe]#代理DNS"];
   const directDoh = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
   const proxyDns = ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS"];
   const proxyDoh = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
@@ -37,8 +35,7 @@ function main(config) {
   const finalHosts = { ...originHosts, ...defaultHosts };
   return { 
     // 节点IP优先级：ip-version: ipv6-prefer
-    // 测速细分/筛选：https://8.8.8.8/generate_204、https://[2001:4860:4860::8888]/generate_204
-    "proxy-providers": { "节点": { "type": "inline", "health-check": { "enable": true, "url": "https://dns.google/generate_204", "expected-status": 204, "interval": 600, "timeout": 3000, "max-failed-times": 2, "lazy": true }, "override": { "ip-version": "dual" }, "exclude-filter": "(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢", "payload": subscriptionProxies } },
+    "proxy-providers": { "节点": { "type": "inline", "health-check": { "enable": true, "url": "https://dns.google/generate_204", "expected-status": 204, "interval": 900, "timeout": 3000, "max-failed-times": 2, "lazy": true }, "override": { "ip-version": "dual" }, "exclude-filter": "(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢", "payload": subscriptionProxies } },
     "ipv6": true,
     "allow-lan": false,
     "bind-address": "*",
@@ -65,12 +62,10 @@ function main(config) {
     "mixed-port": 0,
     "redir-port": 0,
     "tproxy-port": 0,
-    // "authentication": ["用户:密码"],
     "tun": {
       "enable": true,
-      // Android dummy9 / Windows "以太网 9"
+      // Android dummy9 / Windows "以太网 9" / MacOS utun9
       // "device": "dummy9",
-      // Android15+ gvisor / Windows mixed
       "stack": "mixed",
       "auto-route": true,
       "auto-redirect": true,
@@ -79,13 +74,13 @@ function main(config) {
       "disable-icmp-forwarding": true,
       // "endpoint-independent-nat": true,
       "dns-hijack": ["any:53", "tcp://any:53"],
-      // "mtu": 9000,
       "udp-timeout": 300
     },
     "hosts": finalHosts,
     "dns": {
       "enable": true,
       "ipv6": true,
+      "ipv6-timeout": 300,
       "cache-algorithm": "arc",
       "use-hosts": true,
       "use-system-hosts": false,
