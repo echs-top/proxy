@@ -5,5 +5,5 @@
 + list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.list
 + list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.list
 + list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/stripe.list
-+ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/rebbit.list
++ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.list
 - list '+.cn'
