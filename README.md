@@ -22,7 +22,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`899.22KB` `161459` (含dnsmasq-china DNS分流规则)
+MRS：`899.24KB` `161459` (含dnsmasq-china DNS分流规则)
 
 ### 规则
 
