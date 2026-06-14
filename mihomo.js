@@ -148,7 +148,7 @@ function main(config) {
       "google_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/google.mrs", "path": "./rules/google_ip.mrs" },
       "safe_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/safe.mrs", "path": "./rules/safe_ip.mrs" },
       "media_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/media.mrs", "path": "./rules/media_ip.mrs" },
-      "direct-lite_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct-lite.mrs", "path": "./rules/direct-lite_ip.mrs" }
+      "direct_ip": { ...ipAnchor, "url": "https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs", "path": "./rules/direct_ip.mrs" }
     },
     "rules": [
       "DST-PORT,5228-5230,直接连接",
@@ -165,7 +165,7 @@ function main(config) {
       "SUB-RULE,(RULE-SET,google_ip),sub-google",
       "SUB-RULE,(RULE-SET,safe_ip),sub-safe",
       "SUB-RULE,(RULE-SET,media_ip),sub-media",
-      "RULE-SET,direct-lite_ip,直接连接",
+      "RULE-SET,direct_ip,直接连接",
       quic,
       "MATCH,代理连接"
     ],
