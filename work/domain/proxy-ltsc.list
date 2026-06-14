@@ -1,8 +1,10 @@
 + list proxy.list
-+ list tld-not-cn.list
 + list /work/ltsc/proxy_domain.list
 - list /work/ltsc/direct_domain.list
 - list ads.list
-- list ai.list
 - list proxy@direct.list
-- list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list
+- list ai.list
+- list google.list
+- list download.list
+- list safe.list
+- list media.list

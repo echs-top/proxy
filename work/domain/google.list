@@ -1,0 +1,6 @@
++ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.list
++ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list
+- list [
++ list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list
+- list '+.cn'
+]

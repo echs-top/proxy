@@ -2,6 +2,7 @@ import os
 import yaml
 import requests
 import ipaddress
+import re
 
 # ================= 域名结构定义 =================
 class DomainRule:
@@ -54,14 +55,21 @@ def is_covered_by_trie(root, rule_obj):
 
 # ================= 智能获取模块 =================
 def fetch_and_parse(target, fmt, output_dir):
-    # 1. 嗅探内联单条规则
+    # 1. 嗅探内联多项规则: '+.cn','www.baidu.com'
+    if ',' in target and ('"' in target or "'" in target):
+        items = re.findall(r"['\"]([^'\"]+)['\"]", target)
+        if items:
+            print(f"    [内联] 获取多项规则: {items}")
+            return set(items)
+
+    # 2. 嗅探单条内联规则: '+.cn'
     if target.startswith(("'", '"')) and target.endswith(("'", '"')):
         rule = target.strip("'\" ")
         print(f"    [内联] 获取单条规则: {rule}")
         return {rule} if rule else set()
 
     content = ""
-    # 2. 嗅探网络直链
+    # 3. 嗅探网络直链
     if target.startswith('http://') or target.startswith('https://'):
         try:
             response = requests.get(target, timeout=15)
@@ -70,16 +78,11 @@ def fetch_and_parse(target, fmt, output_dir):
         except Exception as e:
             print(f"    [错误] 下载失败 {target}: {e}")
             return set()
-    # 3. 嗅探本地完整路径与元规则兜底
+    # 4. 嗅探本地完整路径与元规则兜底
     else:
-        # 剥离绝对路径开头的斜杠，使其变为基于仓库根目录的相对路径
-        # 例如: /work/list/ad_peter_domain.list 变为 work/list/ad_peter_domain.list
         clean_target = target.lstrip('/')
-        
-        # 优先级 A: 判断是否为存在的本地具体路径 (适配你的新需求)
         if os.path.exists(clean_target):
             local_path = clean_target
-        # 优先级 B: 兜底为输出目录下的元规则挂载 (例如纯写 cn.list)
         else:
             local_path = os.path.join(output_dir, target)
 
@@ -108,48 +111,75 @@ def fetch_and_parse(target, fmt, output_dir):
                 result.add(clean_line)
     return result
 
-# ================= 单文件处理流水线 =================
-def process_file(filepath, out_filepath, rule_type, list_dir):
-    print(f"\n>> 正在执行 [{rule_type}] 规则树: {os.path.basename(filepath)}")
-    
+# ================= 词法分析器 (支持 [ ] 块级) =================
+def parse_lines_to_batches(lines):
     batches = []
     current_op = None
     current_items = []
-
-    with open(filepath, 'r', encoding='utf-8') as f:
-        for line in f:
-            clean_line = line.strip()
-            if not clean_line or clean_line.startswith('#'): continue
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        if not line or line.startswith('#'):
+            i += 1
+            continue
+        
+        parts = line.split(maxsplit=2)
+        # 检测是否是 [ 开始的代码块
+        if len(parts) >= 3 and parts[2].startswith('['):
+            op = parts[0]
+            block_lines = []
+            i += 1
+            # 持续抓取，直到遇到 ]
+            while i < len(lines) and not lines[i].strip().startswith(']'):
+                block_lines.append(lines[i].strip())
+                i += 1
             
-            # maxsplit=2 确保内联规则中的空格不被错误切割
-            parts = clean_line.split(maxsplit=2)
-            if len(parts) >= 3:
-                op, fmt, target = parts[0], parts[1], parts[2]
-                if op == current_op:
-                    current_items.append((fmt, target))
-                else:
-                    if current_op is not None:
-                        batches.append((current_op, current_items))
-                    current_op = op
-                    current_items = [(fmt, target)]
+            if op == current_op:
+                current_items.append(('block', block_lines))
+            else:
+                if current_op is not None:
+                    batches.append((current_op, current_items))
+                current_op = op
+                current_items = [('block', block_lines)]
+        elif len(parts) >= 3:
+            op, fmt, target = parts[0], parts[1], parts[2]
+            if op == current_op:
+                current_items.append((fmt, target))
+            else:
+                if current_op is not None:
+                    batches.append((current_op, current_items))
+                current_op = op
+                current_items = [(fmt, target)]
+        i += 1
+        
     if current_op is not None:
         batches.append((current_op, current_items))
+    return batches
 
+# ================= 递归运算引擎 =================
+def compute_rules(batches, rule_type, list_dir, depth=0):
+    indent = "  " * depth
     if rule_type == 'domain':
         master_rules = []
         batch_num = 1
         for op, items in batches:
-            print(f"  -> 批次 {batch_num} [{op}] ({len(items)} 条源)")
+            print(f"{indent}  -> 批次 {batch_num} [{op}] ({len(items)} 条源)")
             batch_num += 1
-            
             batch_raw_set = set()
+            
             for fmt, target in items:
-                batch_raw_set.update(fetch_and_parse(target, fmt, list_dir))
+                if fmt == 'block':
+                    print(f"{indent}    [子块开启] 发现局部内联块，进入子集计算...")
+                    inner_batches = parse_lines_to_batches(target)
+                    inner_rules = compute_rules(inner_batches, rule_type, list_dir, depth + 1)
+                    batch_raw_set.update(inner_rules)
+                    print(f"{indent}    [子块结束] 局部推演完成，抛出 {len(inner_rules)} 条独立结果。")
+                else:
+                    batch_raw_set.update(fetch_and_parse(target, fmt, list_dir))
             
             if op == '+':
                 new_rules = [DomainRule(x) for x in batch_raw_set]
                 combined = master_rules + new_rules
-                # 短层级优先构建树，确保吞噬机制生效
                 combined.sort(key=lambda r: (len(r.parts), not r.sub, not r.exact))
                 trie = TrieNode()
                 next_master = []
@@ -165,21 +195,26 @@ def process_file(filepath, out_filepath, rule_type, list_dir):
                 for r in exc_rules: insert_trie(exc_trie, r)
                 master_rules = [r for r in master_rules if not is_covered_by_trie(exc_trie, r)]
 
-        # 最终全局排序: 倒置字母字典序 + 通配符高优
-        master_rules.sort(key=lambda r: (r.parts, r.weight))
-        final_list = [r.raw for r in master_rules]
+        return {r.raw for r in master_rules}
 
     elif rule_type == 'ip':
         master_ips_v4 = []
         master_ips_v6 = []
         batch_num = 1
         for op, items in batches:
-            print(f"  -> 批次 {batch_num} [{op}] ({len(items)} 条源)")
+            print(f"{indent}  -> 批次 {batch_num} [{op}] ({len(items)} 条源)")
             batch_num += 1
-            
             batch_raw_set = set()
+            
             for fmt, target in items:
-                batch_raw_set.update(fetch_and_parse(target, fmt, list_dir))
+                if fmt == 'block':
+                    print(f"{indent}    [子块开启] 发现局部内联块，进入子集计算...")
+                    inner_batches = parse_lines_to_batches(target)
+                    inner_rules = compute_rules(inner_batches, rule_type, list_dir, depth + 1)
+                    batch_raw_set.update(inner_rules)
+                    print(f"{indent}    [子块结束] 局部推演完成，抛出 {len(inner_rules)} 条独立结果。")
+                else:
+                    batch_raw_set.update(fetch_and_parse(target, fmt, list_dir))
             
             batch_nets_v4 = []
             batch_nets_v6 = []
@@ -198,23 +233,47 @@ def process_file(filepath, out_filepath, rule_type, list_dir):
             elif op == '-':
                 next_master_v4 = []
                 for inc in master_ips_v4:
-                    is_excluded = any(inc.subnet_of(exc) for exc in batch_nets_v4)
-                    if not is_excluded: next_master_v4.append(inc)
+                    if not any(inc.subnet_of(exc) for exc in batch_nets_v4):
+                        next_master_v4.append(inc)
                 master_ips_v4 = next_master_v4
                 
                 next_master_v6 = []
                 for inc in master_ips_v6:
-                    is_excluded = any(inc.subnet_of(exc) for exc in batch_nets_v6)
-                    if not is_excluded: next_master_v6.append(inc)
+                    if not any(inc.subnet_of(exc) for exc in batch_nets_v6):
+                        next_master_v6.append(inc)
                 master_ips_v6 = next_master_v6
 
-        # 合并输出，天然保证 V4 在前 V6 在后
-        final_list = [str(net) for net in (master_ips_v4 + master_ips_v6)]
+        return {str(net) for net in (master_ips_v4 + master_ips_v6)}
+
+# ================= 顶层汇编流水线 =================
+def process_file(filepath, out_filepath, rule_type, list_dir):
+    print(f"\n>> 正在执行 [{rule_type}] 规则树: {os.path.basename(filepath)}")
+    
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+        
+    batches = parse_lines_to_batches(lines)
+    # 调用全新的递归推演引擎
+    final_set = compute_rules(batches, rule_type, list_dir, depth=0)
+    
+    if rule_type == 'domain':
+        final_rules = [DomainRule(x) for x in final_set]
+        final_rules.sort(key=lambda r: (r.parts, r.weight))
+        final_list = [r.raw for r in final_rules]
+        
+    elif rule_type == 'ip':
+        nets_v4 = []
+        nets_v6 = []
+        for x in final_set:
+            net = ipaddress.ip_network(x, strict=False)
+            if net.version == 4: nets_v4.append(net)
+            else: nets_v6.append(net)
+        final_list = [str(net) for net in sorted(nets_v4)] + [str(net) for net in sorted(nets_v6)]
     
     with open(out_filepath, 'w', encoding='utf-8') as f:
         for item in final_list:
             f.write(item + '\n')
-    print(f"  ✅ [构建完成] 合并去重排除后: {len(final_list)} 条规则\n")
+    print(f"  ✅ [构建完成] 合并去重排除后保留: {len(final_list)} 条规则\n")
 
 # ================= 目录扫描与分段控制 =================
 def process_directory(work_dir, list_dir, rule_type):
@@ -223,11 +282,9 @@ def process_directory(work_dir, list_dir, rule_type):
     os.makedirs(list_dir, exist_ok=True)
 
     all_files = [f for f in os.listdir(work_dir) if f.endswith('.list')]
-    # 筛选特殊元规则文件
     special_files = [f for f in all_files if f.endswith('-ltsc.list') or f.endswith('-lite.list')]
     normal_files = [f for f in all_files if f not in special_files]
 
-    # 第一阶段：流水线构建基础零件
     if normal_files:
         print(f"\n==================== 第一阶段: [{rule_type}] 基础层级编译 ====================")
     for filename in normal_files:
@@ -235,7 +292,6 @@ def process_directory(work_dir, list_dir, rule_type):
         out_filepath = os.path.join(list_dir, filename)
         process_file(filepath, out_filepath, rule_type, list_dir)
 
-    # 第二阶段：流水线进行终极拼装
     if special_files:
         print(f"\n==================== 第二阶段: [{rule_type}] 复合组件总装 ====================")
     for filename in special_files:

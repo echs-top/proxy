@@ -1,9 +1,12 @@
 + list dnsmasq-china.list
 - list ads.list
-- list ai.list
 - list proxy@direct.list
+- list ai.list
+- list google.list
+- list download.list
+- list safe.list
+- list media.list
 - list proxy.list
-- list tld-not-cn.list
 - list direct.list
 - list /work/ltsc/proxy_domain.list
 - list /work/ltsc/direct_domain.list

@@ -1,3 +1,6 @@
 + list direct.list
 + list /work/ltsc/direct_ip.list
-- list https://core.telegram.org/resources/cidr.txt
+- list telegram.list
+- list google.list
+- list safe.list
+- list media.list
