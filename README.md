@@ -15,7 +15,7 @@
 
 ### 预览
 
-| ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/preview3.webp) | ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/preview4.webp) |
+| ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard5.webp) | ![](https://raw.githubusercontent.com/echs-top/proxy/main/img/zashboard6.webp) |
 | :---: | :---: |
 
 ### 占用
