@@ -1,2 +1,3 @@
 + list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pikpak.list
++ list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/docker.list
 + list /work/list/download_domain.list

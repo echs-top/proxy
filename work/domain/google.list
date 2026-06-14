@@ -4,3 +4,4 @@
 + list https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list
 - list '+.cn'
 ]
+- list https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list

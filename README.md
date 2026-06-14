@@ -2,7 +2,7 @@
 
 本项目仅供技术交流与学术研究使用，模板跟随内核维护更新，欢迎issues共同维护(如增加分流域名、广告拦截误杀、更好的方案建议等等)
 
-自用优先、TUN模式、激进设置、完善分流、简单策略、地区分组
+自用优先、TUN模式、激进设置、完善分流、多订阅组、地区策略
 
 ### 模板
 
@@ -43,22 +43,22 @@ MRS：`936.94KB` `169884` (含dnsmasq-china DNS分流规则)
   Update：`2026.06.06` `172`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ai.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ai.mrs)
 
-- google：[google](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list) - ([google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list) - '+.cn')  
-  GOOGLE域名规则  
-  Update：`2026.06.14` `797`  
-  规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/google.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/google.mrs)
-
-- download：[补充](https://github.com/echs-top/proxy/blob/main/work/list/download_domain.list) + [pikpak](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pikpak.list)  
+- download：[补充](https://github.com/echs-top/proxy/blob/main/work/list/download_domain.list) + [pikpak](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pikpak.list) + [docker](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/docker.list)  
   下载相关域名规则  
   Update：`2026.06.14` `11`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/download.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/download.mrs)
 
-- safe：[补充](https://github.com/echs-top/proxy/blob/main/work/list/safe_domain.list) + [category-finance](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance.list) - [category-finance@cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance@cn.list) + [twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list) + [paypal](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.list) - '+.cn'  
+- safe：[补充](https://github.com/echs-top/proxy/blob/main/work/list/safe_domain.list) + [category-finance](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance.list) - [category-finance@cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance@cn.list) + [twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list) + [paypal](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.list) + [stripe](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/stripe.list) + [category-cryptocurrency](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.list) + [rebbit](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/rebbit.list) - '+.cn'  
   风控、支付、节点高要求域名规则  
   Update：`2026.06.14` `846`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/safe.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/safe.mrs)
 
-- media：[category-media](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media.list) - [category-media-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media-cn.list) + [netflix](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list) - '+.cn'  
+- google：[google](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list) - ([google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list) - '+.cn') - [youtube](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list)  
+  GOOGLE域名规则  
+  Update：`2026.06.14` `797`  
+  规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/google.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/google.mrs)
+
+- media：[category-media](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media.list) - [category-media-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media-cn.list) + [netflix](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list) + [youtube](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list) - '+.cn'  
   海外媒体规则  
   Update：`2026.06.14` `1596`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/media.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/media.mrs)
@@ -93,11 +93,6 @@ MRS：`936.94KB` `169884` (含dnsmasq-china DNS分流规则)
   Update：`2026.06.14` `21`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
-- google_ip：[google api](https://www.gstatic.com/ipranges/goog.txt)  
-  GOOGLE IP规则  
-  Update：`2026.06.14` `111`  
-  规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/google.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/google.mrs)
-
 - safe_ip：[twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list)  
   风控、支付、节点高要求IP规则  
   Update：`2026.06.14` `21`  
@@ -107,6 +102,11 @@ MRS：`936.94KB` `169884` (含dnsmasq-china DNS分流规则)
   海外媒体IP规则  
   Update：`2026.06.14` `83`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/media.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/media.mrs)
+
+- google_ip：[google api](https://www.gstatic.com/ipranges/goog.txt)  
+  GOOGLE IP规则  
+  Update：`2026.06.14` `111`  
+  规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/google.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/google.mrs)
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   国内IP规则  
