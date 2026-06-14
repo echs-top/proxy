@@ -158,3 +158,5 @@ CDN加速：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS
 **Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[Bettbox](https://github.com/appshubcc/Bettbox)
 
 **OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
+
+**面板**: [zashboard](https://github.com/Zephyruso/zashboard)
