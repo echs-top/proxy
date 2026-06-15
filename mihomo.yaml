@@ -67,10 +67,8 @@ hosts:
   google.cn: google.com
   cn.bing.com: global.bing.com
 fakeip-dns: &fakeip-dns ['rcode://success']
-direct-dns: &direct-dns ['119.29.29.29#直接连接','223.5.5.5#直接连接']
-direct-doh: &direct-doh ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
-proxy-dns: &proxy-dns ['8.8.8.8#代理DNS','9.9.9.9#代理DNS']
-proxy-doh: &proxy-doh ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
+direct-dns: &direct-dns ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
+proxy-dns: &proxy-dns ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
 dns: 
   enable: true
   ipv6: true
@@ -103,7 +101,7 @@ dns:
   nameserver: *proxy-dns
   nameserver-policy:
     'rule-set:ads': ['rcode://name_error']
-    'rule-set:proxy@direct': *direct-doh
+    'rule-set:proxy@direct': *direct-dns
     'rule-set:ai': *fakeip-dns
     'rule-set:download': *fakeip-dns
     'rule-set:safe': *fakeip-dns

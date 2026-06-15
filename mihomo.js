@@ -7,10 +7,8 @@ function main(config) {
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
   const fakeipDns = ["rcode://success"];
-  const directDns = ["119.29.29.29#直接连接", "223.5.5.5#直接连接"];
-  const directDoh = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
-  const proxyDns = ["8.8.8.8#代理DNS", "9.9.9.9#代理DNS"];
-  const proxyDoh = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
+  const directDns = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
+  const proxyDns = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
   const balAnchor = { "type": "load-balance", "strategy": "round-robin", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const fallAnchor = { "type": "fallback", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "韩国|故障转移", "美国|故障转移", "加拿大|故障转移", "德国|故障转移", "英国|故障转移", "法国|故障转移", "荷兰|故障转移", "香港|下载轮询", "新加坡|下载轮询", "日本|下载轮询", "美国|下载轮询"], "include-all-providers": true, "empty-fallback": "REJECT" };
@@ -112,7 +110,7 @@ function main(config) {
       "nameserver": proxyDns,
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
-        "rule-set:proxy@direct": directDoh,
+        "rule-set:proxy@direct": directDns,
         "rule-set:ai": fakeipDns,
         "rule-set:download": fakeipDns,
         "rule-set:safe": fakeipDns,
