@@ -1,9 +1,9 @@
-# 构建
+# 构建配置
 [build]
-  command = "mkdir -p dist && cp -r img mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/"
+  command = "mkdir -p dist && cp mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/ && (cp -r img dist/ 2>/dev/null || true)"
   publish = "dist"
 
-# 跨域
+# 全局安全响应头与跨域配置
 [[headers]]
   for = "/*"
   [headers.values]
@@ -11,8 +11,9 @@
     Access-Control-Allow-Methods = "*"
     Access-Control-Allow-Headers = "*"
     Content-Security-Policy = "frame-ancestors *"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
-# 根目录跳转
+# 根目录重定向
 [[redirects]]
   from = "/"
   to = "https://github.com/echs-top/proxy"
