@@ -163,7 +163,7 @@ UA参考：[chromiumdash](https://chromiumdash.appspot.com/releases)、[常见UA
 
 CDN加速：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)
 
-面板: [zashboard](https://github.com/Zephyruso/zashboard)
+Zashboard: [echs-top/zashboard](https://github.com/echs-top/zashboard)
 
 霞鹜文楷：[lxgw-wenkai-lite-webfont](https://www.npmjs.com/package/lxgw-wenkai-lite-webfont)
 
