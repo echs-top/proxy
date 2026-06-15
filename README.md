@@ -42,7 +42,7 @@ dist-lxgwwenkai-only.zip：
 
 - ads：[秋风](https://awavenue.top) + [217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/ad_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_domain.list)  
   较精简的国内外去广告域名规则  
-  Update：`2026.06.15` `8671`  
+  Update：`2026.06.15` `8670`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
 
 - proxy@direct：[补充](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list) + [google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) - '+.cn'  
@@ -134,7 +134,7 @@ dist-lxgwwenkai-only.zip：
 
 - proxy-lite：proxy - ads - google - media  
   精简代理域名规则  
-  Update：`2026.06.15` `18822`  
+  Update：`2026.06.15` `18823`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
 
 - direct-lite：direct - ads - proxy@direct - proxy  
