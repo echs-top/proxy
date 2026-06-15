@@ -698,6 +698,7 @@ rsshub.woodland.cafe
 +.oath.cloud
 +.paofu.cloud
 +.gateway.pinata.cloud
++.reg.cloud
 +.renzhe.cloud
 +.soundcloud.cloud
 +.timeweb.cloud
@@ -9618,6 +9619,7 @@ rsshub.pseudoyu.com
 +.redzonechannel.com
 +.reflectivecode.com
 +.reform-apple.com
++.reg.com
 +.regex101.com
 +.regiongold.com
 +.registerhulu.com
@@ -10413,6 +10415,7 @@ rsshub.rssforever.com
 +.steam-api.com
 +.steam-chat.com
 +.steamcommunity.com
++.steamconnecttest.com
 +.steamcontent.com
 +.steamdeck.com
 +.steamgames.com
@@ -13227,7 +13230,6 @@ rss.datuan.dev
 +.mail-carrotquest.io
 +.mega.io
 +.metabora.io
-+.metamask.io
 +.metamind.io
 +.microsoft.io
 +.microsoft-falcon.io

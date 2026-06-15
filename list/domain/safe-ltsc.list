@@ -11,6 +11,7 @@
 +.alfabank.oavdo.amc
 +.koshelek.app
 +.meawallet.app
++.solidifi.app
 +.zb.app
 +.hsbc.com.ar
 +.hsbc.com.au
@@ -25,6 +26,7 @@
 +.binancezh.biz
 +.bybit.biz
 +.twitter.biz
++.bnappweb.black
 +.hsbc.bm
 +.hsbc.com.br
 +.jivochat.com.br
@@ -42,6 +44,7 @@
 +.binance.cc
 +.binancezh.cc
 +.bitbank.cc
++.bsappapi.cc
 +.saasexch.cc
 +.binance.charity
 +.giga.chat
@@ -54,6 +57,8 @@
 +.binancezh.co
 +.bitquick.co
 +.jivochat.com.co
++.mexc.co
++.rsk.co
 +.saasexch.co
 +.theblock.co
 +.vine.co
@@ -70,7 +75,8 @@
 venmo.s3.amazonaws.com
 +.anfutong.com
 +.ansarbank.com
-+.appsflayer.com
+zftksc.cdn-settings.appsflyersdk.com
+zftksc.launches.appsflyersdk.com
 +.xhpjc6-cdn-settings.appsflyersdk.com
 +.asproex.com
 +.asproexapi.com
@@ -98,6 +104,7 @@ venmo.s3.amazonaws.com
 +.braintreepaymentsolutions.com
 +.braintreeps.com
 +.bsappapi.com
++.bscdnweb.com
 +.byabcde.com
 +.byapis.com
 +.bybdc6.com
@@ -129,6 +136,7 @@ venmo.s3.amazonaws.com
 +.devtools-paypal.com
 +.dogecoin.com
 +.experiencebillmelater.com
++.fiat24.com
 straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.fsmone.com
 +.fundpaypal.com
@@ -175,6 +183,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.ifastnetwork.com
 +.ifasttv.com
 +.interactivebrokers.com
++.isafepal.com
 +.itiger.com
 +.itigergrowth.com
 +.itigergrowtha.com
@@ -201,6 +210,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.longportapp.com
 +.mabbank.com
 +.mdbankpublic.com
++.megaeth.com
 +.mexc.com
 +.mexcsensors.com
 +.mmtourismbank.com
@@ -345,6 +355,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.rosbank-credit.com
 +.s-xoom.com
 +.saasexch.com
++.safepal.com
 +.satoshilabs.com
 +.sb24.com
 +.sberauto.com
@@ -364,6 +375,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.tbank-online.com
 +.tellapart.com
 +.thepaypalshop.com
++.thirdweb.com
 +.tigerbbs.com
 +.tinkoff-group.com
 +.tinkoffmobile.com
@@ -437,6 +449,7 @@ onekey.zendesk.com
 +.metalpha.finance
 +.t.finance
 +.ethereum.foundation
++.fantom.foundation
 +.hsbc.fr
 +.xn--d1abkf4ap.fun
 +.2gis.ge
@@ -480,6 +493,7 @@ onekey.zendesk.com
 +.paypalhere.info
 +.paypalnetwork.info
 +.pypl.info
++.saasexch.info
 +.secure-paypal.info
 +.securepaypal.info
 +.swiftbank.info
@@ -491,6 +505,7 @@ onekey.zendesk.com
 +.1inch.io
 +.bisq.io
 +.bitsquare.io
++.blast.io
 +.blockfrost.io
 +.bymj.io
 +.card.io
@@ -501,7 +516,11 @@ onekey.zendesk.com
 bybit-exchange.github.io
 +.infura.io
 +.invity.io
++.metamask.io
 +.nexo.io
++.nodereal.io
++.oasis.io
++.onfinality.io
 +.opensea.io
 deribit.cdn.prismic.io
 +.saasexch.io
@@ -717,6 +736,9 @@ d3r7nsslvs6aaf.cloudfront.net
 +.twttr.net
 +.venmo.net
 +.bisq.network
++.chainid.network
++.fantom.network
++.flare.network
 +.stripe.network
 +.wynd.network
 +.jivochat.ng
@@ -726,12 +748,17 @@ d3r7nsslvs6aaf.cloudfront.net
 +.eaptechka.online
 +.account-paypal.org
 +.accountpaypal.org
++.base.org
 +.binance.org
 +.bitcoin.org
 +.bitcoincore.org
++.bitlayer.org
++.bnbchain.org
 +.braintreepayments.org
 +.coinmap.org
++.coredao.org
 +.devcon.org
++.drpc.org
 +.ethereum.org
 +.gatedata.org
 +.gmoney.org
@@ -985,6 +1012,7 @@ sberpro.vedomosti.ru
 +.xn--h1ao.site
 +.onekey.so
 +.paypal.so
++.bmwweb.solutions
 +.okko.sport
 +.alfabank.st
 +.atb.su
@@ -999,6 +1027,7 @@ bybit.ada.support
 +.safeliner.tech
 +.sage-observability.tech
 +.sbercloud.tech
++.xlayer.tech
 +.hsbc.co.th
 +.2gis.tj
 +.binancezh.top
@@ -1042,4 +1071,6 @@ bybit.ada.support
 +.fundingrates.xyz
 +.hyperliquid.xyz
 +.lighter.xyz
++.merkl.xyz
++.taiko.xyz
 +.jivochat.co.za
