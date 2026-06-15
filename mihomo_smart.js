@@ -107,7 +107,7 @@ function main(config) {
         "RULE-SET,direct-lite,real-ip",
         "MATCH,fake-ip"
       ],
-      "default-nameserver": directDns,
+      "default-nameserver": ["223.6.6.6", "119.29.29.29"],
       "proxy-server-nameserver": finalProxyServerNameserver,
       ...(finalProxyServerNameserverPolicy !== undefined && { "proxy-server-nameserver-policy": finalProxyServerNameserverPolicy }),
       "nameserver": proxyDns,

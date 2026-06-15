@@ -98,7 +98,7 @@ dns:
     - RULE-SET,proxy-lite,fake-ip
     - RULE-SET,direct-lite,real-ip
     - MATCH,fake-ip
-  default-nameserver: *direct-dns
+  default-nameserver: [223.6.6.6,119.29.29.29]
   proxy-server-nameserver: *direct-dns
   # proxy-server-nameserver-policy: { example.cpm: 'https://223.5.5.5/dns-query#直接连接' }
   nameserver: *proxy-dns
