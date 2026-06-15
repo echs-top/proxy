@@ -15,7 +15,7 @@ function main(config) {
   const originDns = config.dns || {};
   const appendDirectTag = (val) => { if (typeof val === 'string') { return val.split('#')[0] + '#直接连接'; } return val; };
   const formatDnsValues = (dnsValue) => { if (Array.isArray(dnsValue)) return dnsValue.map(appendDirectTag); return appendDirectTag(dnsValue); };
-  let finalProxyServerNameserver = directDoh;
+  let finalProxyServerNameserver = directDns;
   const originPsn = originDns['proxy-server-nameserver'];
   if (originPsn != null && originPsn !== '' && (!Array.isArray(originPsn) || originPsn.length > 0)) { finalProxyServerNameserver = formatDnsValues(originPsn); }
   let finalProxyServerNameserverPolicy = undefined;
