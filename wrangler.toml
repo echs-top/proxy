@@ -1,13 +1,15 @@
-# 名称
+# 服务名称
 name = "mihomo"
-# 入口
+# 入口文件
 main = "worker.js"
-# 日期
-compatibility_date = "2026-06-01"
-# 构建
+# 兼容日期
+compatibility_date = "2026-06-15"
+
+# 构建指令优化
 [build]
-command = "mkdir -p dist && cp -r img mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/"
-# 目录
+command = "mkdir -p dist && cp mihomo.yaml mihomo_smart.yaml mihomo.js mihomo_smart.js dist/ && (cp -r img dist/ 2>/dev/null || true)"
+
+# 静态资源目录绑定
 [assets]
 directory = "./dist"
 binding = "ASSETS"
