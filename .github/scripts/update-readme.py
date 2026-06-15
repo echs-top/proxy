@@ -110,9 +110,9 @@ current_rule = None
 new_lines = []
 
 for line in lines:
-    # --- Zashboard 版本注入 ---
-    if "增加了霞鹜文楷 `" in line and zash_version:
-        line = re.sub(r'增加了霞鹜文楷 `.*?`', f'增加了霞鹜文楷 `{zash_version}`', line)
+    # --- Zashboard 版本注入 (已适配最新文案) ---
+    if "增加了霞鹜文楷，更新至 `" in line and zash_version:
+        line = re.sub(r'增加了霞鹜文楷，更新至 `.*?`', f'增加了霞鹜文楷，更新至 `{zash_version}`', line)
 
     if line.startswith('图标：') and icon_str:
         new_lines.append(icon_str)
