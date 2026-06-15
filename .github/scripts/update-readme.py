@@ -1,16 +1,17 @@
 import os
 import re
 import subprocess
+import json
 from datetime import datetime
 
-# ================= 读取 Zashboard 沙盒环境的最新版本 =================
-zash_version = None
-version_file = os.path.expanduser('~/.cache/zashboard_env/version.txt')
-if os.path.exists(version_file):
-    with open(version_file, 'r', encoding='utf-8') as f:
-        zash_version = f.read().strip()
+# ================= 读取 Zashboard 沙盒环境的最新状态 =================
+zash_info = {}
+info_file = os.path.expanduser('~/.cache/zashboard_env/zash_info.json')
+if os.path.exists(info_file):
+    with open(info_file, 'r', encoding='utf-8') as f:
+        zash_info = json.load(f)
     # 读取完毕后立刻销毁通信文件，保证环境绝对无状态纯净
-    os.remove(version_file)
+    os.remove(info_file)
 
 # ================= 规则库统计逻辑 =================
 total_rules_sum = 0
@@ -110,10 +111,18 @@ current_rule = None
 new_lines = []
 
 for line in lines:
-    # --- Zashboard 版本注入 (已适配最新文案) ---
-    if "增加了霞鹜文楷，更新至 `" in line and zash_version:
-        line = re.sub(r'增加了霞鹜文楷，更新至 `.*?`', f'增加了霞鹜文楷，更新至 `{zash_version}`', line)
+    # --- Zashboard 版本及体积注入 ---
+    if "增加了霞鹜文楷，更新至 `" in line and zash_info.get("version"):
+        line = re.sub(r'增加了霞鹜文楷，更新至 `.*?`', f'增加了霞鹜文楷，更新至 `{zash_info["version"]}`', line)
 
+    if line.startswith('dist.zip `') and zash_info.get("dist_size"):
+        line = re.sub(r'^dist\.zip `.*?`', f'dist.zip `{zash_info["dist_size"]}`', line)
+
+    if line.startswith('dist-lxgwwenkai-only.zip `') and zash_info.get("lxgw_size"):
+        line = re.sub(r'^dist-lxgwwenkai-only\.zip `.*?`', f'dist-lxgwwenkai-only.zip `{zash_info["lxgw_size"]}`', line)
+
+    # --------------------------------
+    
     if line.startswith('图标：') and icon_str:
         new_lines.append(icon_str)
         continue

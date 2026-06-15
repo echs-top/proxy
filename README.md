@@ -28,11 +28,11 @@ MRS：`939.46KB` `170187` (含dnsmasq-china DNS分流规则)
 
 增加了霞鹜文楷，更新至 `3.9.0`
 
-dist.zip：
+dist.zip `11.80MB`
 
 [https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip](https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip)
 
-dist-lxgwwenkai-only.zip：
+dist-lxgwwenkai-only.zip `5.41MB`
 
 [https://github.com/echs-top/proxy/releases/download/zashboard/dist-lxgwwenkai-only.zip](https://github.com/echs-top/proxy/releases/download/zashboard/dist-lxgwwenkai-only.zip)
 

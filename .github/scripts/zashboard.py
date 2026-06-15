@@ -11,12 +11,12 @@ TOKEN = os.environ.get("GITHUB_TOKEN")
 HEADERS = {"Authorization": f"Bearer {TOKEN}"} if TOKEN else {}
 
 # ================= 核心沙盒隔离机制 =================
-# 将所有 Zashboard 相关的缓存、源码、产物全部移出主仓库，放入系统独立缓存目录
 ENV_DIR = os.path.expanduser("~/.cache/zashboard_env")
 os.makedirs(ENV_DIR, exist_ok=True)
 
 STATE_FILE = os.path.join(ENV_DIR, "state.json")
-VERSION_OUT = os.path.join(ENV_DIR, "version.txt")
+# 【修改点】将版本记录升级为包含版本和体积的 JSON 数据包
+INFO_OUT = os.path.join(ENV_DIR, "zash_info.json")
 NODE_CACHE = os.path.join(ENV_DIR, "node_modules")
 BUN_CACHE = os.path.join(ENV_DIR, "bun_cache")
 WORK_DIR = os.path.join(ENV_DIR, "temp_repo")
@@ -98,14 +98,12 @@ subprocess.run(["./bun", "install"], cwd=WORK_DIR, check=True)
 print("\n>> 编译标准版本 (bun run build)...")
 subprocess.run(["./bun", "run", "build"], cwd=WORK_DIR, check=True)
 print("  打包最高压缩率 dist.zip...")
-# [修复点1] 从工作区根目录打包，保留 dist 文件夹层级
 subprocess.run(["zip", "-9", "-r", ZIP_STANDARD, "dist"], cwd=WORK_DIR, check=True)
 
 print("\n>> 编译霞鹜文楷专版 (bun run build:lxgwwenkai-only)...")
 shutil.rmtree(os.path.join(WORK_DIR, "dist"))
 subprocess.run(["./bun", "run", "build:lxgwwenkai-only"], cwd=WORK_DIR, check=True)
 print("  打包最高压缩率 dist-lxgwwenkai-only.zip...")
-# [修复点2] 从工作区根目录打包，保留 dist 文件夹层级
 subprocess.run(["zip", "-9", "-r", ZIP_LXGW, "dist"], cwd=WORK_DIR, check=True)
 
 if os.path.exists(NODE_CACHE):
@@ -128,15 +126,24 @@ else:
     subprocess.run(["gh", "release", "create", "zashboard", ZIP_STANDARD, ZIP_LXGW, "--title", "zashboard", "--notes", f"v{version}"], check=True)
 
 # ================= 5. 沙盒清理与状态固化 =================
-with open(VERSION_OUT, "w", encoding="utf-8") as f:
-    f.write(version)
+# 【修改点】在清理沙盒前，精准计算文件体积并写入 json 给下一个环节
+size_standard_mb = f"{os.path.getsize(ZIP_STANDARD) / (1024 * 1024):.2f}MB"
+size_lxgw_mb = f"{os.path.getsize(ZIP_LXGW) / (1024 * 1024):.2f}MB"
+
+info = {
+    "version": version,
+    "dist_size": size_standard_mb,
+    "lxgw_size": size_lxgw_mb
+}
+
+with open(INFO_OUT, "w", encoding="utf-8") as f:
+    json.dump(info, f, ensure_ascii=False)
 
 state["zashboard_sha"] = zash_sha
 state["bun_tag"] = bun_tag
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(state, f, indent=2, ensure_ascii=False)
 
-# 物理销毁临时工作目录和产出压缩包，保证环境绝对干净，仅保留 node_modules 和状态缓存
 for temp_target in [WORK_DIR, ZIP_STANDARD, ZIP_LXGW]:
     if os.path.exists(temp_target):
         if os.path.isdir(temp_target):
