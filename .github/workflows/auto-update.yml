@@ -52,7 +52,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-zash-env-
 
-      # 升级：Mihomo 内核独立沙盒缓存
       - name: 📦 Cache Mihomo Core
         uses: actions/cache@v4
         with:
@@ -61,46 +60,102 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mihomo-core-
 
-      # --- 环境初始化 ---
+      # --- 环境初始化 (增加容错重试) ---
       - name: ⚙️ Setup Python Env
         run: |
-          echo "=> Installing Python dependencies..."
-          pip install -r .github/scripts/requirements.txt
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Installing Python dependencies..."
+              pip install -r .github/scripts/requirements.txt
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Setup failed."; exit 1; fi
+              echo "⚠️ Retrying Setup Env in 5 seconds... ($i/2)"
+              sleep 5
+            fi
+          done
 
-      # --- 串行执行流水线 ---
+      # --- 串行执行流水线 (全覆盖智能重试) ---
       - name: 🔄 Phase 1 - Update Add Rules
         run: |
-          echo "=> Fetching External Rules dynamically..."
-          for script in .github/scripts/update-add-rules/*.py; do
-            echo "Running $script..."
-            python "$script"
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Fetching External Rules dynamically..."
+              for script in .github/scripts/update-add-rules/*.py; do
+                echo "Running $script..."
+                python "$script"
+              done
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 1 failed."; exit 1; fi
+              echo "⚠️ Phase 1 execution failed. Retrying in 10 seconds... ($i/2)"
+              sleep 10
+            fi
           done
 
       - name: 🌳 Phase 2 - Update List Rules
         run: |
-          echo "=> Building Rule Trees..."
-          python .github/scripts/update-list-rules.py
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Building Rule Trees..."
+              python .github/scripts/update-list-rules.py
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 2 failed."; exit 1; fi
+              echo "⚠️ Phase 2 execution failed. Retrying in 10 seconds... ($i/2)"
+              sleep 10
+            fi
+          done
 
       - name: 📦 Phase 3 - Convert MRS Rules
         run: |
-          echo "=> Preparing Mihomo & Converting to MRS binary format..."
-          chmod +x .github/scripts/update-mrs-rules.sh
-          bash .github/scripts/update-mrs-rules.sh
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Preparing Mihomo & Converting to MRS binary format..."
+              chmod +x .github/scripts/update-mrs-rules.sh
+              bash .github/scripts/update-mrs-rules.sh
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 3 failed."; exit 1; fi
+              echo "⚠️ Phase 3 execution failed. Retrying in 10 seconds... ($i/2)"
+              sleep 10
+            fi
+          done
 
       - name: 🖼️ Phase 4 - Update Images
         run: |
-          echo "=> Fetching and updating images..."
-          python .github/scripts/update-img.py
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Fetching and updating images..."
+              python .github/scripts/update-img.py
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 4 failed."; exit 1; fi
+              echo "⚠️ Phase 4 execution failed. Retrying in 10 seconds... ($i/2)"
+              sleep 10
+            fi
+          done
 
       - name: 🚀 Phase 5 - Build Zashboard
         run: |
-          echo "=> Building and releasing Zashboard..."
-          python .github/scripts/zashboard.py
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Building and releasing Zashboard..."
+              python .github/scripts/zashboard.py
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 5 failed."; exit 1; fi
+              echo "⚠️ Phase 5 execution failed. Retrying in 10 seconds... ($i/2)"
+              sleep 10
+            fi
+          done
 
       - name: 📝 Phase 6 - Update README
         run: |
-          echo "=> Updating README.md statistics..."
-          python .github/scripts/update-readme.py
+          for i in 1 2; do
+            if bash -e -c '
+              echo "=> Updating README.md statistics..."
+              python .github/scripts/update-readme.py
+            '; then break; else
+              if [ $i -eq 2 ]; then echo "❌ Phase 6 failed."; exit 1; fi
+              echo "⚠️ Phase 6 execution failed. Retrying in 5 seconds... ($i/2)"
+              sleep 5
+            fi
+          done
 
       # --- 终极推送 ---
       - name: ⬆️ Commit and Push Changes
