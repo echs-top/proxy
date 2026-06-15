@@ -98,13 +98,15 @@ subprocess.run(["./bun", "install"], cwd=WORK_DIR, check=True)
 print("\n>> 编译标准版本 (bun run build)...")
 subprocess.run(["./bun", "run", "build"], cwd=WORK_DIR, check=True)
 print("  打包最高压缩率 dist.zip...")
-subprocess.run(["zip", "-9", "-r", ZIP_STANDARD, "."], cwd=os.path.join(WORK_DIR, "dist"), check=True)
+# [修复点1] 从工作区根目录打包，保留 dist 文件夹层级
+subprocess.run(["zip", "-9", "-r", ZIP_STANDARD, "dist"], cwd=WORK_DIR, check=True)
 
 print("\n>> 编译霞鹜文楷专版 (bun run build:lxgwwenkai-only)...")
 shutil.rmtree(os.path.join(WORK_DIR, "dist"))
 subprocess.run(["./bun", "run", "build:lxgwwenkai-only"], cwd=WORK_DIR, check=True)
 print("  打包最高压缩率 dist-lxgwwenkai-only.zip...")
-subprocess.run(["zip", "-9", "-r", ZIP_LXGW, "."], cwd=os.path.join(WORK_DIR, "dist"), check=True)
+# [修复点2] 从工作区根目录打包，保留 dist 文件夹层级
+subprocess.run(["zip", "-9", "-r", ZIP_LXGW, "dist"], cwd=WORK_DIR, check=True)
 
 if os.path.exists(NODE_CACHE):
     shutil.rmtree(NODE_CACHE)

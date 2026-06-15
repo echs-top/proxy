@@ -1,4 +1,4 @@
-// update: 2026-06-14
+// update: 2026-06-15
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -56,7 +56,7 @@ function main(config) {
     // "secret": "密码",
     // "external-doh-server": "/dns-query",
     // "external-ui": "./zashboard",
-    // "external-ui-url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+    // "external-ui-url": "https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip",
     "lgbm-auto-update": true,
     "lgbm-update-interval": 72,
     "lgbm-url": "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin",

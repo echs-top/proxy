@@ -1,4 +1,4 @@
-# update: 2026-06-14
+# update: 2026-06-15
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -37,7 +37,7 @@ etag-support: true
 # secret: '密码'
 # external-doh-server: /dns-query
 # external-ui: ./zashboard
-# external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+# external-ui-url: 'https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip'
 profile: { store-selected: true, store-fake-ip: true }
 experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 port: 0
