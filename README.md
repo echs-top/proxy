@@ -22,7 +22,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`939.32KB` `170208` (含dnsmasq-china DNS分流规则)
+MRS：`939.32KB` `170209` (含dnsmasq-china DNS分流规则)
 
 ### Zashboard
 
@@ -102,7 +102,7 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   少量vercel/netlify/cloudflare优选IP规则  
-  Update：`2026.06.16` `24`  
+  Update：`2026.06.16` `29`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - safe_ip：[twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list)  
@@ -127,7 +127,7 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.06.16` `8431`  
+  Update：`2026.06.16` `8432`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
