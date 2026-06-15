@@ -2,7 +2,6 @@ name: Auto Update
 
 on:
   schedule:
-    # 每天北京时间 02:53 (UTC时间 18:53)
     - cron: '53 18 * * *'
   workflow_dispatch:
 
@@ -18,18 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # --- 准备阶段：拉取仓库至工作区 ---
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 
 
-      # --- 准备阶段：环境与Pip缓存 ---
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # --- 集中管理：沙盒滚动缓存集群 ---
       - name: 📦 Cache pip dependencies
         uses: actions/cache@v4
         with:
@@ -38,39 +36,38 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      # --- 准备阶段：图片状态缓存 (你的神仙提议) ---
       - name: 📦 Cache Image State
         uses: actions/cache@v4
         with:
           path: ~/.cache/img_state
-          # 动态 Key：确保每次运行后都能保存最新的 Hash 状态
           key: ${{ runner.os }}-img-state-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-img-state-
 
-      # --- 准备阶段：安装依赖并获取内核版本 ---
-      - name: ⚙️ Setup Env (Pip & Mihomo Tag)
+      - name: 📦 Cache Zashboard Env
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/zashboard_env
+          key: ${{ runner.os }}-zash-env-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-zash-env-
+
+      # 升级：Mihomo 内核独立沙盒缓存
+      - name: 📦 Cache Mihomo Core
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/mihomo_core
+          key: ${{ runner.os }}-mihomo-core-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-mihomo-core-
+
+      # --- 环境初始化 ---
+      - name: ⚙️ Setup Python Env
         run: |
           echo "=> Installing Python dependencies..."
           pip install -r .github/scripts/requirements.txt
-          
-          echo "=> Fetching Mihomo tag..."
-          bash .github/scripts/mihomo.sh get_tag
 
-      # --- 准备阶段：应用缓存与下载内核 ---
-      - name: ⚙️ Cache Mihomo Core
-        id: cache-mihomo
-        uses: actions/cache@v4
-        with:
-          path: /usr/local/bin/mihomo
-          key: ${{ runner.os }}-mihomo-${{ env.LATEST_TAG }}
-
-      - name: 📥 Download Mihomo (If Cache Missed)
-        if: steps.cache-mihomo.outputs.cache-hit != 'true'
-        run: bash .github/scripts/mihomo.sh download
-
-      # --- 串行执行阶段 ---
-      
+      # --- 串行执行流水线 ---
       - name: 🔄 Phase 1 - Update Add Rules
         run: |
           echo "=> Fetching External Rules dynamically..."
@@ -86,7 +83,7 @@ jobs:
 
       - name: 📦 Phase 3 - Convert MRS Rules
         run: |
-          echo "=> Converting to MRS binary format..."
+          echo "=> Preparing Mihomo & Converting to MRS binary format..."
           chmod +x .github/scripts/update-mrs-rules.sh
           bash .github/scripts/update-mrs-rules.sh
 
@@ -95,15 +92,20 @@ jobs:
           echo "=> Fetching and updating images..."
           python .github/scripts/update-img.py
 
-      - name: 📝 Phase 5 - Update README
+      - name: 🚀 Phase 5 - Build Zashboard
+        run: |
+          echo "=> Building and releasing Zashboard..."
+          python .github/scripts/zashboard.py
+
+      - name: 📝 Phase 6 - Update README
         run: |
           echo "=> Updating README.md statistics..."
           python .github/scripts/update-readme.py
 
-      # --- 终极步骤 ---
+      # --- 终极推送 ---
       - name: ⬆️ Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 chore: Auto-update rules, MRS, images, and README"
+          commit_message: "🤖 chore: Auto-update rules, MRS, images, zashboard and README"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"

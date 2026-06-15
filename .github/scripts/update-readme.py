@@ -3,6 +3,16 @@ import re
 import subprocess
 from datetime import datetime
 
+# ================= 读取 Zashboard 沙盒环境的最新版本 =================
+zash_version = None
+version_file = os.path.expanduser('~/.cache/zashboard_env/version.txt')
+if os.path.exists(version_file):
+    with open(version_file, 'r', encoding='utf-8') as f:
+        zash_version = f.read().strip()
+    # 读取完毕后立刻销毁通信文件，保证环境绝对无状态纯净
+    os.remove(version_file)
+
+# ================= 规则库统计逻辑 =================
 total_rules_sum = 0
 total_size_bytes = 0
 
@@ -57,7 +67,6 @@ def get_file_info(filepath):
         count = sum(1 for line in f if line.strip())
         
     try:
-        # 脏检查 (未提交的变动)
         status_result = subprocess.run(
             ['git', 'status', '--porcelain', filepath], 
             capture_output=True, text=True, check=True
@@ -87,7 +96,6 @@ if os.path.exists('work/img.txt'):
             parts = line.split()
             if len(parts) >= 2:
                 repo = parts[1]
-                # 去重判定，避免同一个仓库被重复列出
                 link = f"[{repo}](https://github.com/{repo})"
                 if link not in icon_links:
                     icon_links.append(link)
@@ -102,12 +110,14 @@ current_rule = None
 new_lines = []
 
 for line in lines:
-    # --- [新增] 替换以“图标：”开头的行 ---
+    # --- Zashboard 版本注入 ---
+    if "增加了霞鹜文楷 `" in line and zash_version:
+        line = re.sub(r'增加了霞鹜文楷 `.*?`', f'增加了霞鹜文楷 `{zash_version}`', line)
+
     if line.startswith('图标：') and icon_str:
         new_lines.append(icon_str)
         continue
 
-    # --- 替换 MRS 统计信息 ---
     if line.startswith('MRS：'):
         match = re.search(r'([(（].*)', line)
         tail = match.group(1) if match else ""
@@ -117,14 +127,12 @@ for line in lines:
         new_lines.append(new_line)
         continue
 
-    # --- 匹配具体的规则列表名称 ---
     match = re.match(r'^-\s+([a-zA-Z0-9\-@_]+)[：:]', line)
     if match:
         current_rule = match.group(1)
         new_lines.append(line)
         continue
         
-    # --- 替换 Update 时间与行数统计 ---
     if 'Update：' in line and current_rule:
         if current_rule.endswith('_ip'):
             filename = current_rule[:-3] + '.list'
