@@ -1,9 +1,9 @@
-# update: 2026-06-15
+# update: 2026-06-16
 # 简介: https://github.com/echs-top/proxy
 
 
 # 节点IP优先级：ip-version: ipv6-prefer
-providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.5.1"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 900, timeout: 3000, max-failed-times: 2, lazy: true }, override: { ip-version: dual }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢' }
+providers: &providers { type: http, interval: 86400, proxy: 直接连接, header: { User-Agent: ["clash-verge/v2.5.1"] }, health-check: { enable: true, url: 'https://dns.google/generate_204', expected-status: 204,  interval: 600, timeout: 3000, max-failed-times: 2, lazy: false }, override: { ip-version: dual }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|有效|联系|测试|节点|日期|群组|加入|通知|维护|网址|地址|下载|更新|APP|登录|严禁|恢复|处理|谢谢' }
 # age-secret-key: '私钥', override: { ip-version: dual, additional-suffix: '后缀' }
 proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
@@ -175,30 +175,30 @@ bal: &bal { type: load-balance, strategy: round-robin, <<: *download, empty-fall
 smart: &smart { type: smart, strategy: sticky-sessions, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, <<: *area, empty-fallback: REJECT, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询], <<: *use }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询], <<: *use, icon: 'https://mihomo.echs.top/img/Painted/Universal/StreamingSE.png' }
-  - { name: 直接连接, type: select, proxies: [DIRECT,IPV4优先,IPV6优先,仅IPV4,仅IPV6], icon: 'https://mihomo.echs.top/img/Painted/Accommodation/Online_Booking.png' }
-  - { name: 代理DNS, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Universal/Streaming.png' }
-  - { name: 代理QUIC, type: select, proxies: [PASS-RULE,REJECT], icon: 'https://mihomo.echs.top/img/Painted/Google_Suite/Admin.png' }
-  - { name: TELEGRAM, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Social_Media/Telegram.png' }
-  - { name: 国外AI, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Fitness/Chat.png' }
-  - { name: 下载相关, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Universal/RoundRobin.png' }
-  - { name: 风控安全, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Google_Suite/Account.png' }
-  - { name: GOOGLE, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Google_Suite/Google.png' }
-  - { name: 海外媒体, <<: *dl, icon: 'https://mihomo.echs.top/img/Painted/Universal/Video.png' }
-  - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/Painted/Universal/Auto_Speed.png' }
-  - { name: 香港|智能选择, <<: *smart, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Hong_Kong.png' }
-  - { name: 台湾|智能选择, <<: *smart, filter: '(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Taiwan.png' }
-  - { name: 新加坡|智能选择, <<: *smart, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Singapore.png' }
-  - { name: 日本|智能选择, <<: *smart, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Japan.png' }
-  - { name: 韩国|智能选择, <<: *smart, filter: '(?i)🇰🇷|韩国|\\bKR\\b|\\bkorea\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/South_Korea.png' }
-  - { name: 美国|智能选择, <<: *smart, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/United_States.png' }
-  - { name: 加拿大|智能选择, <<: *smart, filter: '(?i)🇨🇦|加拿大|\\bCA\\b|\\bcanada\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Canada.png' }
-  - { name: 德国|智能选择, <<: *smart, filter: '(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Germany.png' }
-  - { name: 英国|智能选择, <<: *smart, filter: '(?i)🇬🇧|英国|\\bUK\\b|\\bGB\\b|\\bunitedkingdom\\b|\\bunited\s?kingdom\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/United_Kingdom.png' }
-  - { name: 法国|智能选择, <<: *smart, filter: '(?i)🇫🇷|法国|\\bFR\\b|\\bfrance\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/France.png' }
-  - { name: 荷兰|智能选择, <<: *smart, filter: '(?i)🇳🇱|荷兰|\\bNL\\b|\\bnetherlands?\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Netherlands.png' }
-  - { name: 香港|下载轮询, <<: *bal, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Hong_Kong.png' }
-  - { name: 新加坡|下载轮询, <<: *bal, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Singapore.png' }
-  - { name: 日本|下载轮询, <<: *bal, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/Japan.png' }
-  - { name: 美国|下载轮询, <<: *bal, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Painted/Rounded_Rectangle/United_States.png' }
-  - { name: GLOBAL, type: select, proxies: [最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询,代理连接,直接连接,代理DNS,代理QUIC,TELEGRAM,国外AI,下载相关,风控安全,GOOGLE,海外媒体], include-all-providers: true, hidden: true, icon: 'https://mihomo.echs.top/img/Painted/Universal/Final.png' }
+  - { name: 代理连接, type: select, proxies: [最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询], <<: *use, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/StreamingSE.png' }
+  - { name: 直接连接, type: select, proxies: [DIRECT,IPV4优先,IPV6优先,仅IPV4,仅IPV6], icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Accommodation/Online_Booking.png' }
+  - { name: 代理DNS, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Streaming.png' }
+  - { name: 代理QUIC, type: select, proxies: [PASS-RULE,REJECT], icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Admin.png' }
+  - { name: TELEGRAM, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Social_Media/Telegram.png' }
+  - { name: 国外AI, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Fitness/Chat.png' }
+  - { name: 下载相关, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/RoundRobin.png' }
+  - { name: 风控安全, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Account.png' }
+  - { name: GOOGLE, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Google.png' }
+  - { name: 海外媒体, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Video.png' }
+  - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Auto_Speed.png' }
+  - { name: 香港|智能选择, <<: *smart, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Hong_Kong.png' }
+  - { name: 台湾|智能选择, <<: *smart, filter: '(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Taiwan.png' }
+  - { name: 新加坡|智能选择, <<: *smart, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Singapore.png' }
+  - { name: 日本|智能选择, <<: *smart, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Japan.png' }
+  - { name: 韩国|智能选择, <<: *smart, filter: '(?i)🇰🇷|韩国|\\bKR\\b|\\bkorea\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/South_Korea.png' }
+  - { name: 美国|智能选择, <<: *smart, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_States.png' }
+  - { name: 加拿大|智能选择, <<: *smart, filter: '(?i)🇨🇦|加拿大|\\bCA\\b|\\bcanada\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Canada.png' }
+  - { name: 德国|智能选择, <<: *smart, filter: '(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Germany.png' }
+  - { name: 英国|智能选择, <<: *smart, filter: '(?i)🇬🇧|英国|\\bUK\\b|\\bGB\\b|\\bunitedkingdom\\b|\\bunited\s?kingdom\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_Kingdom.png' }
+  - { name: 法国|智能选择, <<: *smart, filter: '(?i)🇫🇷|法国|\\bFR\\b|\\bfrance\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/France.png' }
+  - { name: 荷兰|智能选择, <<: *smart, filter: '(?i)🇳🇱|荷兰|\\bNL\\b|\\bnetherlands?\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Netherlands.png' }
+  - { name: 香港|下载轮询, <<: *bal, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Hong_Kong.png' }
+  - { name: 新加坡|下载轮询, <<: *bal, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Singapore.png' }
+  - { name: 日本|下载轮询, <<: *bal, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Japan.png' }
+  - { name: 美国|下载轮询, <<: *bal, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_States.png' }
+  - { name: GLOBAL, type: select, proxies: [最低延迟,香港|智能选择,台湾|智能选择,新加坡|智能选择,日本|智能选择,韩国|智能选择,美国|智能选择,加拿大|智能选择,德国|智能选择,英国|智能选择,法国|智能选择,荷兰|智能选择,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询,代理连接,直接连接,代理DNS,代理QUIC,TELEGRAM,国外AI,下载相关,风控安全,GOOGLE,海外媒体], include-all-providers: true, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Final.png' }
