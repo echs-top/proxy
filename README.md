@@ -24,6 +24,10 @@
 
 MRS：`939.32KB` `170209` (含dnsmasq-china DNS分流规则)
 
+### 日志
+
+[Github Commits](https://github.com/echs-top/proxy/commits/main)、[Telegram Channel](https://t.me/echsfxy_proxy)
+
 ### Zashboard
 
 增加了霞鹜文楷，更新至 `3.10.0`
