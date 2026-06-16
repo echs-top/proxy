@@ -2,8 +2,35 @@ name: Auto Update
 
 on:
   schedule:
+    # 每天北京时间 02:53 (UTC时间 18:53)
     - cron: '53 18 * * *'
   workflow_dispatch:
+    # 【新增选择框集群】控制手动触发时的执行步骤，默认全选 (true)
+    inputs:
+      phase1:
+        description: '🔄 运行 Phase 1 - Update Add Rules'
+        type: boolean
+        default: true
+      phase2:
+        description: '🌳 运行 Phase 2 - Update List Rules'
+        type: boolean
+        default: true
+      phase3:
+        description: '📦 运行 Phase 3 - Convert MRS Rules'
+        type: boolean
+        default: true
+      phase4:
+        description: '🖼️ 运行 Phase 4 - Update Images'
+        type: boolean
+        default: true
+      phase5:
+        description: '🚀 运行 Phase 5 - Build Zashboard'
+        type: boolean
+        default: true
+      phase6:
+        description: '📝 运行 Phase 6 - Update README'
+        type: boolean
+        default: true
 
 env:
   TZ: Asia/Shanghai
@@ -60,7 +87,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mihomo-core-
 
-      # --- 环境初始化 (增加容错重试) ---
+      # --- 环境初始化 ---
       - name: ⚙️ Setup Python Env
         run: |
           for i in 1 2; do
@@ -74,8 +101,10 @@ jobs:
             fi
           done
 
-      # --- 串行执行流水线 (全覆盖智能重试) ---
+      # --- 串行执行流水线 (全步骤覆盖选择判定与智能重试) ---
+      
       - name: 🔄 Phase 1 - Update Add Rules
+        if: github.event_name == 'schedule' || github.event.inputs.phase1 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
@@ -92,6 +121,7 @@ jobs:
           done
 
       - name: 🌳 Phase 2 - Update List Rules
+        if: github.event_name == 'schedule' || github.event.inputs.phase2 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
@@ -105,6 +135,7 @@ jobs:
           done
 
       - name: 📦 Phase 3 - Convert MRS Rules
+        if: github.event_name == 'schedule' || github.event.inputs.phase3 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
@@ -119,6 +150,7 @@ jobs:
           done
 
       - name: 🖼️ Phase 4 - Update Images
+        if: github.event_name == 'schedule' || github.event.inputs.phase4 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
@@ -132,6 +164,7 @@ jobs:
           done
 
       - name: 🚀 Phase 5 - Build Zashboard
+        if: github.event_name == 'schedule' || github.event.inputs.phase5 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
@@ -145,6 +178,7 @@ jobs:
           done
 
       - name: 📝 Phase 6 - Update README
+        if: github.event_name == 'schedule' || github.event.inputs.phase6 == 'true'
         run: |
           for i in 1 2; do
             if bash -e -c '
