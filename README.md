@@ -26,9 +26,9 @@ MRS：`939.32KB` `170209` (含dnsmasq-china DNS分流规则)
 
 ### Zashboard
 
-增加了霞鹜文楷，更新至 `3.9.0`
+增加了霞鹜文楷，更新至 `3.10.0`
 
-dist.zip `11.80MB`
+dist.zip `11.78MB`
 
 [https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip](https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip)
 
