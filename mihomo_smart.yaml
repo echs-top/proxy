@@ -29,11 +29,11 @@ tcp-concurrent: true
 find-process-mode: 'off'
 disable-keep-alive: false
 keep-alive-interval: 15
-keep-alive-idle: 300
+keep-alive-idle: 600
 etag-support: true
 # global-ua: 'Mozilla/5.0 (Linux; Android 16; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.217 Mobile Safari/537.36'
 # global-ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.257 Safari/537.36'
-# external-controller: 127.0.0.1:9090
+# external-controller: "[::]:9090"
 # secret: '密码'
 # external-doh-server: /dns-query
 # external-ui: ./zashboard
@@ -60,7 +60,7 @@ tun:
   disable-icmp-forwarding: true
   # endpoint-independent-nat: true
   dns-hijack: [any:53,tcp://any:53]
-  udp-timeout: 300
+  udp-timeout: 600
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
   doh.pub: [120.53.53.53,1.12.12.21]
@@ -81,11 +81,11 @@ dns:
   use-system-hosts: true
   prefer-h3: true
   respect-rules: false
-  # listen: 0.0.0.0:1053
+  # listen: "[::]:1053"
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/15
-  fake-ip-range6: fd00:dcba:9876::/64
-  # fake-ip-ttl: 1
+  fake-ip-range6: fd00:a4c5:9b12:d3f8:e760:00df::/96
+  fake-ip-ttl: 1
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,ads,fake-ip
@@ -105,14 +105,8 @@ dns:
   nameserver-policy:
     'rule-set:ads': ['rcode://name_error']
     'rule-set:proxy@direct': *direct-dns
-    'rule-set:ai': *fakeip-dns
-    'rule-set:download': *fakeip-dns
-    'rule-set:safe': *fakeip-dns
-    'rule-set:google': *fakeip-dns
-    'rule-set:media': *fakeip-dns
-    'rule-set:proxy-lite': *fakeip-dns
-    'rule-set:direct-lite': *direct-dns
-    'rule-set:dnsmasq-china-lite': *direct-dns
+    'rule-set:ai,download,safe,google,media,proxy-lite': *fakeip-dns
+    'rule-set:direct-lite,dnsmasq-china-lite': *direct-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
 sniffer: 
@@ -121,8 +115,8 @@ sniffer:
   parse-pure-ip: true
   override-destination: false
   sniff: { HTTP: { ports: [80,8080-8880], override-destination: true }, TLS: { ports: [443,8443] }, QUIC: { ports: [443,8443] } }
-  skip-domain: ['rule-set:ads','rule-set:proxy@direct','rule-set:ai','rule-set:download','rule-set:safe','rule-set:google','rule-set:media','rule-set:proxy-lite','rule-set:direct-lite','rule-set:dnsmasq-china-lite']
-  skip-src-address: ['rule-set:telegram_ip','rule-set:safe_ip','rule-set:google_ip','rule-set:media_ip','rule-set:direct_ip']
+  skip-domain: ['rule-set:ads,proxy@direct,ai,download,safe,google,media,proxy-lite,direct-lite,dnsmasq-china-lite']
+  skip-src-address: ['rule-set:telegram_ip,safe_ip,google_ip,media_ip,direct_ip']
 ip: &ip { type: http, interval: 86400, proxy: 代理连接, behavior: ipcidr, format: mrs }
 domain: &domain { type: http, interval: 86400, proxy: 代理连接, behavior: domain, format: mrs }
 rule-providers:
