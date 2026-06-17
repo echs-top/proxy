@@ -173,8 +173,8 @@ Zashboard: [echs-top/zashboard](https://github.com/echs-top/zashboard)
 
 ### 客户端
 
-**Android**：[Box(ROOT)](https://github.com/boxproxy/box)(通用)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)(smart)
+**Android**：[Box(ROOT裸核)](https://github.com/boxproxy/box)ᵃˡˡ、[Bettbox](https://github.com/appshubcc/Bettbox)、[Flyclash](https://github.com/GtxFury/FlyClash-Android)ˢᵐᵃʳᵗ、[Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box)ˢᵐᵃʳᵗ
 
-**Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)(通用)[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[Bettbox](https://github.com/appshubcc/Bettbox)
+**Windows**：[minihomo(裸核)](https://github.com/bestruirui/minihomo)ᵃˡˡ[uwp管理](https://github.com/Kindness-Kismet/WINUI3-loopback_manager)、[Bettbox](https://github.com/appshubcc/Bettbox)、[Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box)ˢᵐᵃʳᵗ
 
 **OpenClash**：[𝕄𝕀ℍ𝕆𝕄𝕆 的千种配置](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/THEDOC/THE_REAL_README.md)
