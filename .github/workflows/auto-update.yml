@@ -3,7 +3,7 @@ name: Auto Update
 on:
   schedule:
     # 每天北京时间 02:53 (UTC时间 18:53)
-    - cron: '53 18 * * *'
+    - cron: '43 18 * * *'
   workflow_dispatch:
     # 【新增选择框集群】控制手动触发时的执行步骤，默认全选 (true)
     inputs:
