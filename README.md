@@ -1,16 +1,16 @@
-### 声明
+### 前言/声明
 
 本项目仅供技术交流与学术研究使用，模板跟随内核维护更新。
 
 欢迎issues共同维护(如增加/删除分流域名、增加广告域名/删除误杀、更多规则建议等等)
 
-自用优先、TUN/VPN、激进设置、完善分流、多订阅组、地区策略
+**自用优先**、TUN/VPN、激进设置、完善分流、**多订阅组**、地区策略
 
-### 模板
+### 模板 (多订阅)
 
 [mihomo.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo.yaml)、[mihomo_smart.yaml](https://raw.githubusercontent.com/echs-top/proxy/refs/heads/main/mihomo_smart.yaml)
 
-### 脚本
+### 脚本 (单订阅)
 [https://mihomo.echs.top/mihomo.js](https://mihomo.echs.top/mihomo.js)
 
 [https://mihomo.echs.top/mihomo_smart.js](https://mihomo.echs.top/mihomo_smart.js)
@@ -26,7 +26,7 @@
 
 MRS：`939.42KB` `170151` (含dnsmasq-china DNS分流规则)
 
-### 日志
+### 更新日志
 
 [Github Commits](https://github.com/echs-top/proxy/commits/main)、[Telegram Channel](https://t.me/echsfxy_proxy)
 
@@ -159,7 +159,7 @@ dist-lxgwwenkai-only.zip `5.44MB`
 - [DustinWin/ruleset_geodata](https://github.com/DustinWin/ruleset_geodata)
 - [wwqgtxx/clash-rules](https://github.com/wwqgtxx/clash-rules)
 
-### 引用
+### 引用参考
 
 图标：[lipis/flag-icons](https://github.com/lipis/flag-icons)、[Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon)、[Vbaethon/HOMOMIX](https://github.com/Vbaethon/HOMOMIX)
 
@@ -175,7 +175,7 @@ Zashboard: [echs-top/zashboard](https://github.com/echs-top/zashboard)
 
 Action共同维护：[Gemini](gemini.google.com)、[Deepseek](https://www.deepseek.com)
 
-### 客户端
+### 客户端推荐
 
 **Android**：[Box(ROOT裸核)](https://github.com/boxproxy/box)ᵃˡˡ、[Bettbox](https://github.com/appshubcc/Bettbox)、[Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box)ˢᵐᵃʳᵗ
 

@@ -1,4 +1,4 @@
-# update: 2026-06-16
+# update: 2026-06-18
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -9,10 +9,12 @@ proxy-providers:
   link1: { <<: *providers, url: '订阅链接1', path: ./providers/link1.yaml }
   link2: { <<: *providers, url: '订阅链接2', path: ./providers/link2.yaml }
   link3: { <<: *providers, url: '订阅链接3', path: ./providers/link3.yaml }
-# 地区分组
-area: &area { use: [link1,link2] }
-# 下载轮询
-download: &download { use: [link3] }
+  link4: { <<: *providers, url: '订阅链接4', path: ./providers/link4.yaml }
+# 地区分组，建议区分普通节点和专线
+area1: &area1 { use: [link1,link2] }
+area2: &area2 { use: [link3] }
+# 轮询下载
+download: &download { use: [link4] }
 # 手动选择
 use: &use { use: [link1,link3] }
 
@@ -160,11 +162,23 @@ sub-rules:
   sub-media: [*quic,'MATCH,海外媒体']
   sub-proxy: [*quic,'MATCH,代理连接']
 proxies: [{ name: IPV4优先, type: direct, udp: true, ip-version: ipv4-prefer },{ name: IPV6优先, type: direct, udp: true, ip-version: ipv6-prefer },{ name: 仅IPV4, type: direct, udp: true, ip-version: ipv4 },{ name: 仅IPV6, type: direct, udp: true, ip-version: ipv6 }]
-bal: &bal { type: load-balance, strategy: round-robin, <<: *download, empty-fallback: REJECT, hidden: true }
+hk: &hk { filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Hong_Kong.png' }
+tw: &tw { filter: '(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Taiwan.png' }
+sg: &sg { filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Singapore.png' }
+jp: &jp { filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Japan.png' }
+kr: &kr { filter: '(?i)🇰🇷|韩国|\\bKR\\b|\\bkorea\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/South_Korea.png' }
+us: &us { filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_States.png' }
+ca: &ca { filter: '(?i)🇨🇦|加拿大|\\bCA\\b|\\bcanada\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Canada.png' }
+de: &de { filter: '(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Germany.png' }
+uk: &uk { filter: '(?i)🇬🇧|英国|\\bUK\\b|\\bGB\\b|\\bunitedkingdom\\b|\\bunited\s?kingdom\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_Kingdom.png' }
+fr: &fr { filter: '(?i)🇫🇷|法国|\\bFR\\b|\\bfrance\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/France.png' }
+nl: &nl { filter: '(?i)🇳🇱|荷兰|\\bNL\\b|\\bnetherlands?\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Netherlands.png' }
+test: &test { type: url-test, tolerance: 30, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Auto_Speed.png' }
+bal: &bal { type: load-balance, strategy: round-robin, empty-fallback: REJECT, hidden: true }
 fall: &fall { type: fallback, <<: *area, empty-fallback: REJECT, hidden: true }
-dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询], <<: *use }
+dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟¹,最低延迟²,香港|故障转移¹,香港|故障转移²,台湾|故障转移¹,台湾|故障转移²,新加坡|故障转移¹,新加坡|故障转移²,日本|故障转移¹,日本|故障转移²,韩国|故障转移¹,韩国|故障转移²,美国|故障转移¹,美国|故障转移²,加拿大|故障转移¹,加拿大|故障转移²,德国|故障转移¹,德国|故障转移²,英国|故障转移¹,英国|故障转移²,法国|故障转移¹,法国|故障转移²,荷兰|故障转移¹,荷兰|故障转移²,香港|轮询下载,新加坡|轮询下载,日本|轮询下载,美国|轮询下载], <<: *use }
 proxy-groups:
-  - { name: 代理连接, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询], <<: *use, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/StreamingSE.png' }
+  - { name: 代理连接, type: select, proxies: [最低延迟¹,最低延迟²,香港|故障转移¹,香港|故障转移²,台湾|故障转移¹,台湾|故障转移²,新加坡|故障转移¹,新加坡|故障转移²,日本|故障转移¹,日本|故障转移²,韩国|故障转移¹,韩国|故障转移²,美国|故障转移¹,美国|故障转移²,加拿大|故障转移¹,加拿大|故障转移²,德国|故障转移¹,德国|故障转移²,英国|故障转移¹,英国|故障转移²,法国|故障转移¹,法国|故障转移²,荷兰|故障转移¹,荷兰|故障转移²,香港|轮询下载,新加坡|轮询下载,日本|轮询下载,美国|轮询下载], <<: *use, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/StreamingSE.png' }
   - { name: 直接连接, type: select, proxies: [DIRECT,IPV4优先,IPV6优先,仅IPV4,仅IPV6], icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Accommodation/Online_Booking.png' }
   - { name: 代理DNS, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Streaming.png' }
   - { name: 代理QUIC, type: select, proxies: [PASS-RULE,REJECT], icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Admin.png' }
@@ -174,20 +188,32 @@ proxy-groups:
   - { name: 风控安全, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Account.png' }
   - { name: GOOGLE, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Google_Suite/Google.png' }
   - { name: 海外媒体, <<: *dl, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Video.png' }
-  - { name: 最低延迟, type: url-test, tolerance: 30, <<: *use, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Auto_Speed.png' }
-  - { name: 香港|故障转移, <<: *fall, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Hong_Kong.png' }
-  - { name: 台湾|故障转移, <<: *fall, filter: '(?i)🇹🇼|台湾|\\bTW\\b|\\btaiwan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Taiwan.png' }
-  - { name: 新加坡|故障转移, <<: *fall, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Singapore.png' }
-  - { name: 日本|故障转移, <<: *fall, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Japan.png' }
-  - { name: 韩国|故障转移, <<: *fall, filter: '(?i)🇰🇷|韩国|\\bKR\\b|\\bkorea\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/South_Korea.png' }
-  - { name: 美国|故障转移, <<: *fall, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_States.png' }
-  - { name: 加拿大|故障转移, <<: *fall, filter: '(?i)🇨🇦|加拿大|\\bCA\\b|\\bcanada\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Canada.png' }
-  - { name: 德国|故障转移, <<: *fall, filter: '(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Germany.png' }
-  - { name: 英国|故障转移, <<: *fall, filter: '(?i)🇬🇧|英国|\\bUK\\b|\\bGB\\b|\\bunitedkingdom\\b|\\bunited\s?kingdom\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_Kingdom.png' }
-  - { name: 法国|故障转移, <<: *fall, filter: '(?i)🇫🇷|法国|\\bFR\\b|\\bfrance\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/France.png' }
-  - { name: 荷兰|故障转移, <<: *fall, filter: '(?i)🇳🇱|荷兰|\\bNL\\b|\\bnetherlands?\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Netherlands.png' }
-  - { name: 香港|下载轮询, <<: *bal, filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Hong_Kong.png' }
-  - { name: 新加坡|下载轮询, <<: *bal, filter: '(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Singapore.png' }
-  - { name: 日本|下载轮询, <<: *bal, filter: '(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/Japan.png' }
-  - { name: 美国|下载轮询, <<: *bal, filter: '(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Rounded_Rectangle/United_States.png' }
-  - { name: GLOBAL, type: select, proxies: [最低延迟,香港|故障转移,台湾|故障转移,新加坡|故障转移,日本|故障转移,韩国|故障转移,美国|故障转移,加拿大|故障转移,德国|故障转移,英国|故障转移,法国|故障转移,荷兰|故障转移,香港|下载轮询,新加坡|下载轮询,日本|下载轮询,美国|下载轮询,代理连接,直接连接,代理DNS,代理QUIC,TELEGRAM,国外AI,下载相关,风控安全,GOOGLE,海外媒体], include-all-providers: true, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Final.png' }
+  - { name: 最低延迟¹, <<: [*test,*area1] }
+  - { name: 香港|故障转移¹, <<: [*smart,*area1,*hk] }
+  - { name: 台湾|故障转移¹, <<: [*smart,*area1,*tw] }
+  - { name: 新加坡|故障转移¹, <<: [*smart,*area1,*sg] }
+  - { name: 日本|故障转移¹, <<: [*smart,*area1,*jp] }
+  - { name: 韩国|故障转移¹, <<: [*smart,*area1,*kr] }
+  - { name: 美国|故障转移¹, <<: [*smart,*area1,*us] }
+  - { name: 加拿大|故障转移¹, <<: [*smart,*area1,*ca] }
+  - { name: 德国|故障转移¹, <<: [*smart,*area1,*de] }
+  - { name: 英国|故障转移¹, <<: [*smart,*area1,*uk] }
+  - { name: 法国|故障转移¹, <<: [*smart,*area1,*fr] }
+  - { name: 荷兰|故障转移¹, <<: [*smart,*area1,*nl] }
+  - { name: 最低延迟², <<: [*test,*area2] }
+  - { name: 香港|故障转移², <<: [*smart,*area2,*hk] }
+  - { name: 台湾|故障转移², <<: [*smart,*area2,*tw] }
+  - { name: 新加坡|故障转移², <<: [*smart,*area2,*sg] }
+  - { name: 日本|故障转移², <<: [*smart,*area2,*jp] }
+  - { name: 韩国|故障转移², <<: [*smart,*area2,*kr] }
+  - { name: 美国|故障转移², <<: [*smart,*area2,*us] }
+  - { name: 加拿大|故障转移², <<: [*smart,*area2,*ca] }
+  - { name: 德国|故障转移², <<: [*smart,*area2,*de] }
+  - { name: 英国|故障转移², <<: [*smart,*area2,*uk] }
+  - { name: 法国|故障转移², <<: [*smart,*area2,*fr] }
+  - { name: 荷兰|故障转移², <<: [*smart,*area2,*nl] }
+  - { name: 香港|轮询下载, <<: [*bal,*download,*hk] }
+  - { name: 新加坡|轮询下载, <<: [*bal,*download,*sg] }
+  - { name: 日本|轮询下载, <<: [*bal,*download,*jp] }
+  - { name: 美国|轮询下载, <<: [*bal,*download,*us] }
+  # - { name: GLOBAL, type: select, proxies: [最低延迟¹,最低延迟²,香港|故障转移¹,香港|故障转移²,台湾|故障转移¹,台湾|故障转移²,新加坡|故障转移¹,新加坡|故障转移²,日本|故障转移¹,日本|故障转移²,韩国|故障转移¹,韩国|故障转移²,美国|故障转移¹,美国|故障转移²,加拿大|故障转移¹,加拿大|故障转移²,德国|故障转移¹,德国|故障转移²,英国|故障转移¹,英国|故障转移²,法国|故障转移¹,法国|故障转移²,荷兰|故障转移¹,荷兰|故障转移²,香港|轮询下载,新加坡|轮询下载,日本|轮询下载,美国|轮询下载,代理连接,直接连接,代理DNS,代理QUIC,TELEGRAM,国外AI,下载相关,风控安全,GOOGLE,海外媒体], include-all-providers: true, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Final.png' }
