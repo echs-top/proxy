@@ -173,6 +173,8 @@ Zashboard: [echs-top/zashboard](https://github.com/echs-top/zashboard)
 
 霞鹜文楷：[lxgw-wenkai-lite-webfont](https://www.npmjs.com/package/lxgw-wenkai-lite-webfont)
 
+Action共同维护：[Gemini](gemini.google.com)、[Deepseek](https://www.deepseek.com)
+
 ### 客户端
 
 **Android**：[Box(ROOT裸核)](https://github.com/boxproxy/box)ᵃˡˡ、[Bettbox](https://github.com/appshubcc/Bettbox)、[Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box)ˢᵐᵃʳᵗ
