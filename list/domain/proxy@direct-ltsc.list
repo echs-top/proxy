@@ -224,6 +224,7 @@ crls.pki.goog
 i.pki.goog
 o.pki.goog
 +.ocsp.pki.goog
++.2mdn-cn.net
 +.prod-support.apple-support.akadns.net
 +.support-china.apple-support.akadns.net
 +.adcdownload.apple.com.akadns.net

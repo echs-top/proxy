@@ -22,7 +22,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`940.06KB` `170026` (含dnsmasq-china DNS分流规则)
+MRS：`939.42KB` `170151` (含dnsmasq-china DNS分流规则)
 
 ### 日志
 
@@ -46,7 +46,7 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - ads：[秋风](https://awavenue.top) + [217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/ad_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_domain.list)  
   较精简的国内外去广告域名规则  
-  Update：`2026.06.17` `8456`  
+  Update：`2026.06.18` `8559`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
 
 - proxy@direct：[补充](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list) + [google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) - '+.cn'  
@@ -61,7 +61,7 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - download：[补充](https://github.com/echs-top/proxy/blob/main/work/list/download_domain.list) + [pikpak](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pikpak.list) + [docker](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/docker.list)  
   下载相关域名规则  
-  Update：`2026.06.14` `27`  
+  Update：`2026.06.18` `32`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/download.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/download.mrs)
 
 - safe：[补充](https://github.com/echs-top/proxy/blob/main/work/list/safe_domain.list) + [category-finance](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance.list) - [category-finance@cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-finance@cn.list) + [twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list) + [paypal](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.list) + [stripe](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/stripe.list) + [category-cryptocurrency](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.list) + [reddit](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.list) - '+.cn'  
@@ -81,17 +81,17 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list) + ([tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)) +[github api](https://api.github.com/meta) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
   代理域名规则  
-  Update：`2026.06.16` `20457`  
+  Update：`2026.06.18` `20464`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list) + [备案域名](https://www.nodeseek.com/post-464238-1)  
   国内域名规则  
-  Update：`2026.06.15` `31460`  
+  Update：`2026.06.18` `31463`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
 - direct：cn + [games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) + [microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list) + [private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
   直连域名规则  
-  Update：`2026.06.16` `31845`  
+  Update：`2026.06.18` `31848`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
 - dnsmasq-china：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
@@ -106,7 +106,7 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   少量vercel/netlify/cloudflare优选IP规则  
-  Update：`2026.06.16` `30`  
+  Update：`2026.06.18` `23`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - safe_ip：[twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list)  
@@ -126,29 +126,29 @@ dist-lxgwwenkai-only.zip `5.41MB`
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   国内IP规则  
-  Update：`2026.06.17` `8502`  
+  Update：`2026.06.18` `8521`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.06.17` `8543`  
+  Update：`2026.06.18` `8558`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
 
 - proxy-lite：proxy - ads - google - media  
   精简代理域名规则  
-  Update：`2026.06.16` `18825`  
+  Update：`2026.06.18` `18832`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
 
 - direct-lite：direct - ads - proxy@direct - proxy  
   精简直连域名规则  
-  Update：`2026.06.17` `31328`  
+  Update：`2026.06.18` `31329`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs)
 
 - dnsmasq-china-lite：'dnsmasq-china' - ads - proxy@direct - proxy - direct  
   精简dnsmasq-china域名规则  
-  Update：`2026.06.17` `98658`  
+  Update：`2026.06.18` `98652`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
 更多规则推荐：
