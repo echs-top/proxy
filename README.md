@@ -4,7 +4,7 @@
 
 欢迎issues共同维护(如增加/删除分流域名、增加广告域名/删除误杀、更多规则建议等等)
 
-**自用优先**、TUN/VPN、激进设置、完善分流、**多订阅组**、地区策略
+**自用优先、TUN/VPN、激进设置、完善分流、多订阅组、地区策略**
 
 ### 模板 (多订阅)
 
@@ -17,8 +17,9 @@
 
 ### 预览
 
-| ![](img/zashboard5.webp) | ![](img/zashboard6.webp) |
-| :---: | :---: |
+| ![](img/readme/zashboard1.webp) | ![](img/readme/zashboard2.webp) | ![](img/readme/zashboard3.webp) |
+| :---: | :---: | :---: |
+| ![](img/readme/bettbox1.webp) | ![](img/readme/bettbox2.webp) | ![](img/readme/bettbox3.webp) |
 
 ### 占用
 
