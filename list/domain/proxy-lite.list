@@ -3380,6 +3380,7 @@ dl.begellhouse.com
 +.cdkworkshop.com
 +.cdmatech.com
 +.cdn-apple.com
++.cdn-cookieyes.com
 +.cdn-terapeak.com
 licdn.cn.cdn20.com
 +.cdn77.com
@@ -3767,7 +3768,9 @@ public-us-pingsx.api.clonoth.com
 +.contentful.com
 +.contest.com
 +.convrgencegame.com
++.cookiebot.com
 +.cookiepro.com
++.cookieyes.com
 +.cool-comics.com
 +.coolaler.com
 +.coolder.com
@@ -6013,7 +6016,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.hellosmartbook.com
 +.hellporno.com
 +.helpeachpeople.com
-+.supercell.helpshift.com
+supercell.helpshift.com
 +.hembed.com
 +.hentai-archive.com
 +.hentai-books.com
@@ -11372,6 +11375,7 @@ tesla-cdn.thron.com
 +.truenas.com
 +.trunest.com
 +.trust-provider.com
++.trustarc.com
 +.trustcor.com
 +.trusted-dwg.com
 +.trustedanalytics.com
@@ -13598,9 +13602,11 @@ rss.datuan.dev
 +.akile.io
 +.akstat.io
 +.apiary.io
++.appconsent.io
 +.applicationinsights.io
 +.atom.io
 +.attic.io
++.axept.io
 +.azurecontainer.io
 +.azurecr.io
 +.bcovlive.io
@@ -13783,6 +13789,7 @@ deribit.cdn.prismic.io
 +.taptap.io
 +.tarantool.io
 +.tardigrade.io
++.termly.io
 +.terraform.io
 +.tianti.io
 +.trezor.io
@@ -14741,6 +14748,7 @@ bbs.boingboing.net
 +.colleee.net
 +.edge.steam-dns.top.comcast.net
 +.comodo.net
++.consentmanager.net
 +.coolinet.net
 +.coolmonster.net
 +.corel.net
