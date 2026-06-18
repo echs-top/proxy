@@ -173,7 +173,7 @@ nl: &nl { filter: '(?i)🇳🇱|荷兰|\\bNL\\b|\\bnetherlands?\\b', icon: 'http
 most: &most { filter: '(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\s?kong\\b|🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b|🇯🇵|日本|\\bJP\\b|\\bjapan\\b|🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\s?states\\b', icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Final.png' }
 test: &test { type: url-test, tolerance: 30, empty-fallback: REJECT, hidden: true, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/Auto_Speed.png' }
 bal: &bal { type: load-balance, strategy: round-robin, empty-fallback: REJECT, hidden: true }
-fall: &fall { type: fallback, <<: *area, empty-fallback: REJECT, hidden: true }
+fall: &fall { type: fallback, empty-fallback: REJECT, hidden: true }
 dl: &dl { type: select, proxies: [代理连接,直接连接,最低延迟¹,最低延迟²,故障转移¹,故障转移²,香港|故障转移¹,香港|故障转移²,台湾|故障转移¹,台湾|故障转移²,新加坡|故障转移¹,新加坡|故障转移²,日本|故障转移¹,日本|故障转移²,美国|故障转移¹,美国|故障转移²,德国|故障转移¹,德国|故障转移²,英国|故障转移¹,英国|故障转移²,荷兰|故障转移¹,荷兰|故障转移²,香港|轮询下载,新加坡|轮询下载,日本|轮询下载,美国|轮询下载], <<: *use }
 proxy-groups:
   - { name: 代理连接, type: select, proxies: [最低延迟¹,最低延迟²,故障转移¹,故障转移²,香港|故障转移¹,香港|故障转移²,台湾|故障转移¹,台湾|故障转移²,新加坡|故障转移¹,新加坡|故障转移²,日本|故障转移¹,日本|故障转移²,美国|故障转移¹,美国|故障转移²,德国|故障转移¹,德国|故障转移²,英国|故障转移¹,英国|故障转移²,荷兰|故障转移¹,荷兰|故障转移²,香港|轮询下载,新加坡|轮询下载,日本|轮询下载,美国|轮询下载], <<: *use, icon: 'https://mihomo.echs.top/img/Hand-Painted-icon/Universal/StreamingSE.png' }
