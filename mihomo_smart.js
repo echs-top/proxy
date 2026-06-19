@@ -1,4 +1,4 @@
-// update: 2026-06-18
+// update: 2026-06-19
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -6,10 +6,10 @@ function main(config) {
   const subscriptionProxies = config.proxies || [];
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
-  const fakeipDns = ["rcode://success"];
   const directDns = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
   const proxyDns = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
   const balAnchor = { "type": "load-balance", "strategy": "round-robin", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
+  // # smart参数："policy-priority": "JP:1.2;SG:1.2;US:1.2", "type-priority": "ss:1.5;vless:1.2;vmess:0.8"
   const smartAnchor = { "type": "smart", "strategy": "sticky-sessions", "uselightgbm": true, "collectdata": false, "sample-rate": "1", "prefer-asn": false, "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "智能选择", "香港|智能选择", "台湾|智能选择", "新加坡|智能选择", "日本|智能选择", "美国|智能选择", "德国|智能选择", "英国|智能选择", "荷兰|智能选择", "香港|轮询下载", "新加坡|轮询下载", "日本|轮询下载", "美国|轮询下载"], "include-all-providers": true, "empty-fallback": "REJECT" };
   const originDns = config.dns || {};
@@ -54,7 +54,8 @@ function main(config) {
     // "secret": "密码",
     // "external-doh-server": "/dns-query",
     // "external-ui": "./zashboard",
-    // "external-ui-url": "https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip",
+    // 霞鹜文楷：https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip
+    // "external-ui-url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
     "lgbm-auto-update": true,
     "lgbm-update-interval": 72,
     "lgbm-url": "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin",
@@ -114,7 +115,7 @@ function main(config) {
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
         "rule-set:proxy@direct": directDns,
-        "rule-set:ai,download,safe,google,media,proxy-lite": fakeipDns,
+        "rule-set:ai,download,safe,google,media,proxy-lite": proxyDns,
         "rule-set:direct-lite,dnsmasq-china-lite": directDns
       },
       "direct-nameserver": directDns,

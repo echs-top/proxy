@@ -1,4 +1,4 @@
-// update: 2026-06-18
+// update: 2026-06-19
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -6,7 +6,6 @@ function main(config) {
   const subscriptionProxies = config.proxies || [];
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
-  const fakeipDns = ["rcode://success"];
   const directDns = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
   const proxyDns = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
   const balAnchor = { "type": "load-balance", "strategy": "round-robin", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
@@ -54,7 +53,8 @@ function main(config) {
     // "secret": "密码",
     // "external-doh-server": "/dns-query",
     // "external-ui": "./zashboard",
-    // "external-ui-url": "https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip",
+    // 霞鹜文楷：https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip
+    // "external-ui-url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
     "profile": { "store-selected": true, "store-fake-ip": true },
     "experimental": { "quic-go-disable-gso": false, "quic-go-disable-ecn": true, "dialer-ip4p-convert": false },
     "port": 0,
@@ -111,7 +111,7 @@ function main(config) {
       "nameserver-policy": {
         "rule-set:ads": ["rcode://name_error"],
         "rule-set:proxy@direct": directDns,
-        "rule-set:ai,download,safe,google,media,proxy-lite": fakeipDns,
+        "rule-set:ai,download,safe,google,media,proxy-lite": proxyDns,
         "rule-set:direct-lite,dnsmasq-china-lite": directDns
       },
       "direct-nameserver": directDns,

@@ -1,4 +1,4 @@
-# update: 2026-06-18
+# update: 2026-06-19
 # 简介: https://github.com/echs-top/proxy
 
 
@@ -39,7 +39,8 @@ etag-support: true
 # secret: '密码'
 # external-doh-server: /dns-query
 # external-ui: ./zashboard
-# external-ui-url: 'https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip'
+# 霞鹜文楷：https://github.com/echs-top/proxy/releases/download/zashboard/dist.zip
+# external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 profile: { store-selected: true, store-fake-ip: true }
 experimental: { quic-go-disable-gso: false, quic-go-disable-ecn: true, dialer-ip4p-convert: false }
 port: 0
@@ -68,7 +69,6 @@ hosts:
   services.googleapis.cn: services.googleapis.com
   google.cn: google.com
   cn.bing.com: global.bing.com
-fakeip-dns: &fakeip-dns ['rcode://success']
 direct-dns: &direct-dns ['https://dns.alidns.com/dns-query#直接连接','https://doh.pub/dns-query#直接连接&h3=false']
 proxy-dns: &proxy-dns ['https://dns.google/dns-query#代理DNS','https://dns.quad9.net/dns-query#代理DNS']
 dns: 
@@ -104,7 +104,7 @@ dns:
   nameserver-policy:
     'rule-set:ads': ['rcode://name_error']
     'rule-set:proxy@direct': *direct-dns
-    'rule-set:ai,download,safe,google,media,proxy-lite': *fakeip-dns
+    'rule-set:ai,download,safe,google,media,proxy-lite': *proxy-dns
     'rule-set:direct-lite,dnsmasq-china-lite': *direct-dns
   direct-nameserver: *direct-dns
   direct-nameserver-follow-policy: true
