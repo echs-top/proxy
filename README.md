@@ -127,7 +127,7 @@ dist-lxgwwenkai-only.zip `5.44MB`
   Update：`2026.06.19` `112`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/google.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/google.mrs)
 
-- cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [OpenIPDB](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
+- cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [metowolf/iplist](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   国内IP规则  
   Update：`2026.06.20` `8423`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
