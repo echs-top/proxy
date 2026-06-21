@@ -1,4 +1,4 @@
-// update: 2026-06-19
+// update: 2026-06-21
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -7,7 +7,7 @@ function main(config) {
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
   const directDns = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
-  const proxyDns = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
+  const proxyDns = ["https://dns.google/dns-query#代理DNS&ecs=8.8.8.8/24&ecs-override=true", "https://dns.quad9.net/dns-query#代理DNS&ecs=9.9.9.9/24&ecs-override=true"];
   const balAnchor = { "type": "load-balance", "strategy": "round-robin", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const fallAnchor = { "type": "fallback", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "故障转移", "香港|故障转移", "台湾|故障转移", "新加坡|故障转移", "日本|故障转移", "美国|故障转移", "德国|故障转移", "英国|故障转移", "荷兰|故障转移", "香港|轮询下载", "新加坡|轮询下载", "日本|轮询下载", "美国|轮询下载"], "include-all-providers": true, "empty-fallback": "REJECT" };

@@ -1,4 +1,4 @@
-// update: 2026-06-19
+// update: 2026-06-21
 // 简介: https://github.com/echs-top/proxy
 
 
@@ -7,10 +7,11 @@ function main(config) {
   const ipAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "ipcidr", "format": "mrs" };
   const domainAnchor = { "type": "http", "interval": 86400, "proxy": "代理连接", "behavior": "domain", "format": "mrs" };
   const directDns = ["https://dns.alidns.com/dns-query#直接连接", "https://doh.pub/dns-query#直接连接&h3=false"];
-  const proxyDns = ["https://dns.google/dns-query#代理DNS", "https://dns.quad9.net/dns-query#代理DNS"];
+  const proxyDns = ["https://dns.google/dns-query#代理DNS&ecs=8.8.8.8/24&ecs-override=true", "https://dns.quad9.net/dns-query#代理DNS&ecs=9.9.9.9/24&ecs-override=true"];
   const balAnchor = { "type": "load-balance", "strategy": "round-robin", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
-  // # smart参数："policy-priority": "JP:1.2;SG:1.2;US:1.2", "type-priority": "ss:1.5;vless:1.2;vmess:0.8"
-  const smartAnchor = { "type": "smart", "strategy": "sticky-sessions", "uselightgbm": true, "collectdata": false, "sample-rate": "1", "prefer-asn": false, "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
+  // smart参数："policy-priority": "JP:1.2;SG:1.2;US:1.2", "type-priority": "ss:1.5;vless:1.2;vmess:0.8"
+  // type-priority还在提交pull中，现在还是无效参数
+  const smartAnchor = { "type": "smart", "strategy": "sticky-sessions", "uselightgbm": true, "collectdata": false, "sample-rate": "1", "prefer-asn": false, "policy-priority": "", "type-priority": "", "include-all-providers": true, "empty-fallback": "REJECT", "hidden": true };
   const dlAnchor = { "type": "select", "proxies": ["代理连接", "直接连接", "最低延迟", "智能选择", "香港|智能选择", "台湾|智能选择", "新加坡|智能选择", "日本|智能选择", "美国|智能选择", "德国|智能选择", "英国|智能选择", "荷兰|智能选择", "香港|轮询下载", "新加坡|轮询下载", "日本|轮询下载", "美国|轮询下载"], "include-all-providers": true, "empty-fallback": "REJECT" };
   const originDns = config.dns || {};
   const appendDirectTag = (val) => { if (typeof val === 'string') { return val.split('#')[0] + '#直接连接'; } return val; };
