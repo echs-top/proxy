@@ -57527,6 +57527,7 @@
 +.vscode.download.prss.microsoft.com
 +.vz.download.prss.microsoft.com
 +.windbg.download.prss.microsoft.com
++.surface.downloads.prss.microsoft.com
 +.sdx.microsoft.com
 +.storeedge.microsoft.com
 +.download.visualstudio.microsoft.com
@@ -103350,6 +103351,10 @@
 +.oepkgs.net
 +.ofdreader.net
 +.offerstrack.net
++.shell.cdn.office.net
++.statics.teams.cdn.office.net
++.b.c2r.ts.cdn.office.net
++.f.c2r.ts.cdn.office.net
 +.office-cn.net
 +.officebay.net
 +.offshoremedia.net
