@@ -122,6 +122,7 @@ cdn-cn.apple-mapkit.com
 challenges.cloudflare.com
 a.nel.cloudflare.com
 stun.cloudflare.com
++.www.destinationurl.com
 alt1-mtalk.google.com
 alt2-mtalk.google.com
 alt3-mtalk.google.com
@@ -137,6 +138,7 @@ alt8-mtalk.google.com
 +.dl.l.google.com
 +.gstaticadssl.l.google.com
 +.pki-goog.l.google.com
++.www-googletagmanager.l.google.com
 +.redirector.c.mail.google.com
 +.download.mlcc.google.com
 mtalk.google.com
@@ -150,6 +152,7 @@ mtalk4.google.com
 +.download.tensorflow.google.com
 +.tools.google.com
 +.dg-meta.video.google.com
++.clickserver.googleads.com
 +.clientservices.googleapis.com
 +.fontfiles.googleapis.com
 +.fonts.googleapis.com
