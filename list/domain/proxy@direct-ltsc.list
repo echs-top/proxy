@@ -40,7 +40,6 @@ init.gc.apple.com
 +.gs-loc.apple.com
 +.gs-loc-cn.apple.com
 +.guzzoni.apple.com
-+.iadsdk.apple.com
 +.init-kt.apple.com
 +.init-p01md.apple.com
 +.ipcdn.apple.com
@@ -138,9 +137,7 @@ alt8-mtalk.google.com
 +.dl.google.com
 +.dl.l.google.com
 +.gstaticadssl.l.google.com
-+.pagead-googlehosted.l.google.com
 +.pki-goog.l.google.com
-+.www-googletagmanager.l.google.com
 +.redirector.c.mail.google.com
 +.download.mlcc.google.com
 mtalk.google.com
@@ -154,7 +151,6 @@ mtalk4.google.com
 +.download.tensorflow.google.com
 +.tools.google.com
 +.dg-meta.video.google.com
-+.clickserver.googleads.com
 +.clientservices.googleapis.com
 +.fontfiles.googleapis.com
 +.fonts.googleapis.com
@@ -170,7 +166,6 @@ mtalk4.google.com
 +.googletraveladservices-cn.com
 +.checkin.gstatic.com
 +.connectivitycheck.gstatic.com
-+.csi.gstatic.com
 +.fonts.gstatic.com
 +.g0.gstatic.com
 +.g1.gstatic.com
@@ -231,7 +226,6 @@ crls.pki.goog
 i.pki.goog
 o.pki.goog
 +.ocsp.pki.goog
-+.2mdn-cn.net
 +.prod-support.apple-support.akadns.net
 +.support-china.apple-support.akadns.net
 +.adcdownload.apple.com.akadns.net
@@ -272,7 +266,6 @@ cl2-cdn.origin-apple.com.akadns.net
 +.www.apple.com.edgekey.net.globalredir.akadns.net
 +.clickserve.dartsearch.net
 +.dartsearch-cn.net
-+.doubleclick-cn.net
 +.store.apple.com.edgekey.net
 +.gonglchuangl.net
 +.gongyichuangyi.net
