@@ -122,7 +122,6 @@ cdn-cn.apple-mapkit.com
 challenges.cloudflare.com
 a.nel.cloudflare.com
 stun.cloudflare.com
-+.www.destinationurl.com
 alt1-mtalk.google.com
 alt2-mtalk.google.com
 alt3-mtalk.google.com
@@ -137,7 +136,9 @@ alt8-mtalk.google.com
 +.dl.google.com
 +.dl.l.google.com
 +.gstaticadssl.l.google.com
++.pagead-googlehosted.l.google.com
 +.pki-goog.l.google.com
++.www-googletagmanager.l.google.com
 +.redirector.c.mail.google.com
 +.download.mlcc.google.com
 mtalk.google.com
@@ -162,8 +163,13 @@ mtalk4.google.com
 +.wear.googleapis.com
 +.googleapis-cn.com
 +.googleapps-cn.com
++.googleoptimize.com
 +.googlesyndication-cn.com
++.googletagmanager-cn.com
++.googletagservices-cn.com
++.googletraveladservices.com
 +.googletraveladservices-cn.com
++.googlevads-cn.com
 +.checkin.gstatic.com
 +.connectivitycheck.gstatic.com
 +.fonts.gstatic.com
@@ -266,6 +272,7 @@ cl2-cdn.origin-apple.com.akadns.net
 +.www.apple.com.edgekey.net.globalredir.akadns.net
 +.clickserve.dartsearch.net
 +.dartsearch-cn.net
++.doubleclick-cn.net
 +.store.apple.com.edgekey.net
 +.gonglchuangl.net
 +.gongyichuangyi.net
