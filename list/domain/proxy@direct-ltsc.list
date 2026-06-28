@@ -6,6 +6,8 @@
 +.cds-cdn.v.aaplimg.com
 +.guzzoni-apple-com.v.aaplimg.com
 +.swallow-apple-com.v.aaplimg.com
++.admob-cn.com
++.app-analytics-services.com
 +.app-measurement-cn.com
 +.adcdownload.apple.com
 +.appldnld.apple.com
@@ -40,6 +42,7 @@ init.gc.apple.com
 +.gs-loc.apple.com
 +.gs-loc-cn.apple.com
 +.guzzoni.apple.com
++.iadsdk.apple.com
 +.init-kt.apple.com
 +.init-p01md.apple.com
 +.ipcdn.apple.com
@@ -122,6 +125,7 @@ cdn-cn.apple-mapkit.com
 challenges.cloudflare.com
 a.nel.cloudflare.com
 stun.cloudflare.com
++.www.destinationurl.com
 alt1-mtalk.google.com
 alt2-mtalk.google.com
 alt3-mtalk.google.com
@@ -138,7 +142,6 @@ alt8-mtalk.google.com
 +.gstaticadssl.l.google.com
 +.pagead-googlehosted.l.google.com
 +.pki-goog.l.google.com
-+.www-googletagmanager.l.google.com
 +.redirector.c.mail.google.com
 +.download.mlcc.google.com
 mtalk.google.com
@@ -152,6 +155,8 @@ mtalk4.google.com
 +.download.tensorflow.google.com
 +.tools.google.com
 +.dg-meta.video.google.com
++.google-analytics-cn.com
++.googleadservices-cn.com
 +.clientservices.googleapis.com
 +.fontfiles.googleapis.com
 +.fonts.googleapis.com
@@ -164,6 +169,7 @@ mtalk4.google.com
 +.googleapis-cn.com
 +.googleapps-cn.com
 +.googleoptimize.com
++.googleoptimize-cn.com
 +.googlesyndication-cn.com
 +.googletagmanager-cn.com
 +.googletagservices-cn.com
@@ -172,6 +178,7 @@ mtalk4.google.com
 +.googlevads-cn.com
 +.checkin.gstatic.com
 +.connectivitycheck.gstatic.com
++.csi.gstatic.com
 +.fonts.gstatic.com
 +.g0.gstatic.com
 +.g1.gstatic.com
@@ -232,6 +239,7 @@ crls.pki.goog
 i.pki.goog
 o.pki.goog
 +.ocsp.pki.goog
++.2mdn-cn.net
 +.prod-support.apple-support.akadns.net
 +.support-china.apple-support.akadns.net
 +.adcdownload.apple.com.akadns.net
@@ -272,7 +280,6 @@ cl2-cdn.origin-apple.com.akadns.net
 +.www.apple.com.edgekey.net.globalredir.akadns.net
 +.clickserve.dartsearch.net
 +.dartsearch-cn.net
-+.doubleclick-cn.net
 +.store.apple.com.edgekey.net
 +.gonglchuangl.net
 +.gongyichuangyi.net
