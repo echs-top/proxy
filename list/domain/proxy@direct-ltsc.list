@@ -6,8 +6,6 @@
 +.cds-cdn.v.aaplimg.com
 +.guzzoni-apple-com.v.aaplimg.com
 +.swallow-apple-com.v.aaplimg.com
-+.admob-cn.com
-+.app-analytics-services.com
 +.app-measurement-cn.com
 +.adcdownload.apple.com
 +.appldnld.apple.com
@@ -42,7 +40,6 @@ init.gc.apple.com
 +.gs-loc.apple.com
 +.gs-loc-cn.apple.com
 +.guzzoni.apple.com
-+.iadsdk.apple.com
 +.init-kt.apple.com
 +.init-p01md.apple.com
 +.ipcdn.apple.com
@@ -155,8 +152,7 @@ mtalk4.google.com
 +.download.tensorflow.google.com
 +.tools.google.com
 +.dg-meta.video.google.com
-+.google-analytics-cn.com
-+.googleadservices-cn.com
++.clickserver.googleads.com
 +.clientservices.googleapis.com
 +.fontfiles.googleapis.com
 +.fonts.googleapis.com
@@ -168,17 +164,10 @@ mtalk4.google.com
 +.wear.googleapis.com
 +.googleapis-cn.com
 +.googleapps-cn.com
-+.googleoptimize.com
-+.googleoptimize-cn.com
 +.googlesyndication-cn.com
-+.googletagmanager-cn.com
-+.googletagservices-cn.com
-+.googletraveladservices.com
 +.googletraveladservices-cn.com
-+.googlevads-cn.com
 +.checkin.gstatic.com
 +.connectivitycheck.gstatic.com
-+.csi.gstatic.com
 +.fonts.gstatic.com
 +.g0.gstatic.com
 +.g1.gstatic.com
@@ -239,7 +228,6 @@ crls.pki.goog
 i.pki.goog
 o.pki.goog
 +.ocsp.pki.goog
-+.2mdn-cn.net
 +.prod-support.apple-support.akadns.net
 +.support-china.apple-support.akadns.net
 +.adcdownload.apple.com.akadns.net
