@@ -6,6 +6,7 @@
 +.cds-cdn.v.aaplimg.com
 +.guzzoni-apple-com.v.aaplimg.com
 +.swallow-apple-com.v.aaplimg.com
++.admob-cn.com
 +.app-measurement-cn.com
 +.adcdownload.apple.com
 +.appldnld.apple.com
@@ -40,6 +41,7 @@ init.gc.apple.com
 +.gs-loc.apple.com
 +.gs-loc-cn.apple.com
 +.guzzoni.apple.com
++.iadsdk.apple.com
 +.init-kt.apple.com
 +.init-p01md.apple.com
 +.ipcdn.apple.com
@@ -137,7 +139,6 @@ alt8-mtalk.google.com
 +.dl.google.com
 +.dl.l.google.com
 +.gstaticadssl.l.google.com
-+.pagead-googlehosted.l.google.com
 +.pki-goog.l.google.com
 +.redirector.c.mail.google.com
 +.download.mlcc.google.com
@@ -152,7 +153,6 @@ mtalk4.google.com
 +.download.tensorflow.google.com
 +.tools.google.com
 +.dg-meta.video.google.com
-+.clickserver.googleads.com
 +.clientservices.googleapis.com
 +.fontfiles.googleapis.com
 +.fonts.googleapis.com

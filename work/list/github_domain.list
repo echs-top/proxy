@@ -69,9 +69,11 @@ pipelinesghubeus9.actions.githubusercontent.com
 pipelinesproxcnc1.actions.githubusercontent.com
 pipelinesproxcus1.actions.githubusercontent.com
 pipelinesproxeau1.actions.githubusercontent.com
+pipelinesproxjpw1.actions.githubusercontent.com
 pipelinesproxsdc1.actions.githubusercontent.com
 pipelinesproxweu1.actions.githubusercontent.com
 pipelinesproxwus31.actions.githubusercontent.com
+pipelinesproxwus32.actions.githubusercontent.com
 pkg.actions.githubusercontent.com
 productionresultssa0.blob.core.windows.net
 productionresultssa1.blob.core.windows.net
@@ -109,6 +111,7 @@ runnerghubwus31.actions.githubusercontent.com
 runnerproxcnc1.actions.githubusercontent.com
 runnerproxcus1.actions.githubusercontent.com
 runnerproxeau1.actions.githubusercontent.com
+runnerproxjpw1.actions.githubusercontent.com
 runnerproxsdc1.actions.githubusercontent.com
 runnerproxweu1.actions.githubusercontent.com
 setup-tools.actions.githubusercontent.com
