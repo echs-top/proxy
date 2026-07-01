@@ -6,7 +6,6 @@
 +.cds-cdn.v.aaplimg.com
 +.guzzoni-apple-com.v.aaplimg.com
 +.swallow-apple-com.v.aaplimg.com
-+.admob-cn.com
 +.app-measurement-cn.com
 +.adcdownload.apple.com
 +.appldnld.apple.com
@@ -41,7 +40,6 @@ init.gc.apple.com
 +.gs-loc.apple.com
 +.gs-loc-cn.apple.com
 +.guzzoni.apple.com
-+.iadsdk.apple.com
 +.init-kt.apple.com
 +.init-p01md.apple.com
 +.ipcdn.apple.com
@@ -124,7 +122,6 @@ cdn-cn.apple-mapkit.com
 challenges.cloudflare.com
 a.nel.cloudflare.com
 stun.cloudflare.com
-+.www.destinationurl.com
 alt1-mtalk.google.com
 alt2-mtalk.google.com
 alt3-mtalk.google.com
