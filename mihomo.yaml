@@ -63,7 +63,7 @@ tun:
   udp-timeout: 600
 hosts:
   dns.alidns.com: [223.5.5.5,223.6.6.6,'2400:3200::1','2400:3200:baba::1']
-  doh.pub: [120.53.53.53,1.12.12.21]
+  doh.pub: [120.53.53.53,1.12.12.12]
   dns.google: [8.8.8.8,8.8.4.4,'2001:4860:4860::8888','2001:4860:4860::8844']
   dns.quad9.net: [9.9.9.9,149.112.112.112,'2620:fe::fe','2620:fe::9']
   services.googleapis.cn: services.googleapis.com

@@ -54,7 +54,7 @@ dist-lxgwwenkai-only.zip `5.44MB`
   Update：`2026.07.02` `8581`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
 
-- proxy@direct：[补充](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list) + [google-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) - '+.cn'  
+- proxy@direct：[补充](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list) + [microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) - '+.cn'  
   国外域名前置直连规则，如FCM  
   Update：`2026.06.21` `314`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
