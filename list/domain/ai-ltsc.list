@@ -59,6 +59,7 @@ pplx-res.cloudinary.com
 +.codeium.com
 +.codeiumdata.com
 +.cohere.com
++.copilot.com
 +.coze.com
 +.crewai.com
 +.crixet.com
@@ -120,6 +121,7 @@ notebooklm-pa.googleapis.com
 +.perplexity.com
 +.poe.com
 +.qoder.com
+openai.qualtrics.com
 +.sora.com
 +.spicywriter.com
 +.windsurf.com
@@ -160,6 +162,7 @@ openaicom.imgix.net
 +.events.statsigapi.net
 +.themeforest.net
 copilotprodattachments.blob.core.windows.net
+openaiassets.blob.core.windows.net
 openaicomproductionae4b.blob.core.windows.net
 +.comfy.org
 +.comfyci.org
