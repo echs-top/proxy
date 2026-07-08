@@ -756,6 +756,7 @@ lh3.googleadsserving.cn
 +.wj.jiancai365.cn
 +.jiezoiq.cn
 +.jiguang.cn
++.jiuyuntian3.cn
 +.jknrwe.cn
 +.www.jmine.cn
 +.jpush.cn
@@ -772,6 +773,7 @@ lm10111.jtrincc.cn
 +.link.jzzxapp.cn
 +.k2n0f.cn
 +.js.kalvinbg.cn
++.kapkh.cn
 +.smetrics.karcher.cn
 +.kekop.cn
 +.kinleung.cn
@@ -812,6 +814,7 @@ lm10111.jtrincc.cn
 +.deeplink.locokids.cn
 +.lomark.cn
 +.lpmzt.cn
++.lrphk.cn
 +.luciochen.cn
 +.metrics.lululemon.cn
 +.smetrics.lululemon.cn
@@ -930,6 +933,7 @@ scs.openspeech.cn
 +.qguwoq.cn
 +.qhonzpl.cn
 +.c.qiandao.cn
++.qienews.cn
 +.qijpaih.cn
 +.kbae.qiqqh.cn
 +.qiuxl11.cn
@@ -1905,6 +1909,7 @@ usr-api.aiclk.com
 +.optimus-ads.amap.com.w.alikunlun.com
 +.acookie.alimama.com
 +.p.alimama.com
++.alipansou.com
 +.amdc.alipay.com
 +.collect.alipay.com
 +.loggw.alipay.com
@@ -1962,7 +1967,6 @@ usr-api.aiclk.com
 +.1hlahoc4rpc-sdk.rum.aliyuncs.com
 +.1m9o22qt9lx-sdk.rum.aliyuncs.com
 +.ep2x3kiawg-sdk.rum.aliyuncs.com
-+.f8ds5tkidk-sdk.rum.aliyuncs.com
 +.haa3j9plpi-default-cn.rum.aliyuncs.com
 +.hfwpz4bisq-default-cn.rum.aliyuncs.com
 +.j2c03hoppk-default-cn.rum.aliyuncs.com
@@ -2396,7 +2400,6 @@ c.bidtoolads.com
 +.bigwww.com
 +.bihaipack.com
 +.dataflow.biliapi.com
-+.tracker.chat.bilibili.com
 +.data.bilibili.com
 +.interface.bilibili.com
 +.miniapp.bilibili.com
@@ -2412,6 +2415,7 @@ c.bidtoolads.com
 +.log.bitauto.com
 +.bitmedianetwork.com
 +.ads.bittorrent.com
++.api-ext.bixbitemarketing.com
 +.img11.biyan8.com
 +.adserver.bizedge.com
 +.adserver.bizhat.com
@@ -2917,6 +2921,7 @@ toblog.ctobsnssdk.com
 +.matomo.datasanalytics.com
 +.daybreaklights.com
 +.images.dayoo.com
++.wdr160gz.dayugslb.com
 +.dazhantai.com
 +.db8b41ie5.com
 +.cs02-pps-drcn.dbankcdn.com
@@ -3620,6 +3625,7 @@ hexagon-analytics.com
 +.utrack.hexun.com
 +.heyos.com
 +.appconf.heytapdownload.com
++.adsbdfs.heytapimage.com
 +.adsfs.heytapimage.com
 +.adsfs-sdkconfig.heytapimage.com
 +.cc-algo-cn.heytapimage.com
@@ -3720,6 +3726,7 @@ m-adnet.hiaiabc.com
 +.honorsearch-drcn.hiboard.hihonorcloud.com
 +.honorsearch-dre.hiboard.hihonorcloud.com
 +.ads-drcn.platform.hihonorcloud.com
++.ads-dre.platform.hihonorcloud.com
 +.ads-drru.platform.hihonorcloud.com
 +.log-dra.platform.hihonorcloud.com
 +.log-drcn.platform.hihonorcloud.com
@@ -4207,6 +4214,7 @@ knicks.jd.com
 +.kontera.com
 +.sdkapi.kookong.com
 +.koowo.com
++.kouclo.com
 +.a.koudai.com
 +.wap.koudaitong.com
 +.b.kouke5.com
@@ -4614,7 +4622,6 @@ watson.microsoft.com
 +.ggx03.miguvideo.com
 +.ggxwb.miguvideo.com
 +.v.miguvideo.com
-+.abtest-api-data.mihoyo.com
 +.ad-log-upload.mihoyo.com
 +.apm-api.mihoyo.com
 +.apm-log-upload.mihoyo.com
@@ -4897,6 +4904,7 @@ browser.events.data.msn.com
 +.c.nuhcpf.com
 +.nullitics.com
 +.log.nuomi.com
++.metric.nuonuo.com
 +.nuseek.com
 +.click.nvgaming.nvidia.com
 +.anews7.nvwu.com
@@ -5496,7 +5504,6 @@ iadctest.qwapi.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
 +.v9-reading-ad.qznovelvod.com
-+.v95-aw-reading-ad.qznovelvod.com
 +.v95-se-zjwztc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
 +.v96-sz-daily-reading-ad.qznovelvod.com
@@ -6802,6 +6809,7 @@ sdkapp.uve.weibo.com
 +.logtake.weidian.com
 +.weidianyuedu.com
 +.1.weiheshidai.com
++.weilayun.com
 +.badjs.weixinbridge.com
 +.welved.com
 +.code.wenbanzhu.com
@@ -6859,6 +6867,7 @@ sdkapp.uve.weibo.com
 +.wowfunnow.com
 +.stats.wp.com
 +.api-ad-adapter.wps.com
++.api-ad-adapter-mb.wps.com
 +.api-ad-adapter-sg.wps.com
 +.abroadad.cache.wpscdn.com
 +.wrating.com
@@ -6896,6 +6905,7 @@ api.ssp.xcultur.com
 +.xfreeservice.com
 +.xg4ken.com
 +.ads.xhamster.com
++.ads-i1.xhscdn.com
 +.ads-i10.xhscdn.com
 +.ads-i2.xhscdn.com
 +.ads-i3.xhscdn.com
@@ -6906,6 +6916,7 @@ api.ssp.xcultur.com
 +.ads-leona-s1.xhscdn.com
 +.ads-video-al.xhscdn.com
 +.ads-video-qc.xhscdn.com
++.ads-vp5.xhscdn.com
 +.xhyktech.com
 +.cdn.xianchengyou.com
 +.khrtac.xiangha.com
@@ -7803,7 +7814,6 @@ cdn.liftoff-creatives.io
 +.trackercollect.ddxq.mobi
 +.trackerfeed.ddxq.mobi
 +.inner-active.mobi
-+.jintengli.mobi
 +.mydas.mobi
 +.oneway.mobi
 +.tianmu.mobi
@@ -7992,6 +8002,7 @@ tdsdk.cpatrk.net
 +.e-planning.net
 +.adservrs.com.edgekey.net
 wildcard.moatads.com.edgekey.net
++.wangsu-smetrics.redhat.com.edgekey.net
 +.fastclick.com.edgesuite.net
 heads-ak.spotify.com.edgesuite.net
 +.eighthlayer.net
@@ -8227,6 +8238,7 @@ statsigapi.net
 +.vnclip.net
 +.mini-prog-drm.vodplayvideo.net
 +.w55c.net
++.wangsu-smetrics.redhat.com.edgekey.net.wanakadns.net
 +.bannieres.wdmedia.net
 +.secure.webconnect.net
 +.webstat.net
