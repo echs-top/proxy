@@ -103,8 +103,6 @@ rlog.popin.cc
 +.fishingstore.club
 +.gym-glamoursklep.club
 +.gym-glamourspl.club
-+.gymyoga.club
-+.newrock-sklep.club
 +.pitbull-pl.club
 +.stalco.club
 +.stalco-nar.club
@@ -758,6 +756,7 @@ lh3.googleadsserving.cn
 +.jiguang.cn
 +.jiuyuntian3.cn
 +.jknrwe.cn
++.jlwz.cn
 +.www.jmine.cn
 +.jpush.cn
 +.jrltdiu.cn
@@ -835,6 +834,7 @@ lm10111.jtrincc.cn
 +.mathtype.cn
 +.metrics.mathworks.cn
 +.smetrics.mathworks.cn
++.mayi360.cn
 +.mbai.cn
 +.meihu56.cn
 +.metaword.cn
@@ -862,6 +862,7 @@ browser.events.data.msn.cn
 +.mxevdii.cn
 +.myhug.cn
 +.dl.natgo.cn
++.fanzhuang.net.cn
 +.jdpm.net.cn
 +.t.home.news.cn
 +.nfvj.cn
@@ -1966,6 +1967,7 @@ usr-api.aiclk.com
 +.1fw35mn5y7h-sdk.rum.aliyuncs.com
 +.1hlahoc4rpc-sdk.rum.aliyuncs.com
 +.1m9o22qt9lx-sdk.rum.aliyuncs.com
++.axyleu11gz-default-cn.rum.aliyuncs.com
 +.ep2x3kiawg-sdk.rum.aliyuncs.com
 +.haa3j9plpi-default-cn.rum.aliyuncs.com
 +.hfwpz4bisq-default-cn.rum.aliyuncs.com
@@ -2601,6 +2603,7 @@ log.byteoversea.com
 +.log-api.pangolin-sdk-toutiao.com.w.cdngslb.com
 +.api-access.pangolin-sdk-toutiao-b.com.w.cdngslb.com
 +.api-access.pangolin-sdk-toutiao1.com.w.cdngslb.com
++.ads-i2.xhscdn.com.w.cdngslb.com
 +.ads-img-al.xhscdn.com.w.cdngslb.com
 +.ads-video-al.xhscdn.com.w.cdngslb.com
 +.ads3-normal-hl.zijieapi.com.w.cdngslb.com
@@ -2609,6 +2612,7 @@ log.byteoversea.com
 +.sgtm.dhgate.com.cdngtm.com
 +.httpdns.c.cdnhwc2.com
 +.httpdns1.cc.cdnhwc5.com
++.p66-ad.adkwai.com.3dce113f.cdnhwchcg02.com
 +.syh-imp.cdnjtzy.com
 +.cdnmaster.com
 +.beacon.cdnpure.com
@@ -2663,7 +2667,6 @@ sdk.cferw.com
 +.sssvd.china.com
 +.chinaapper.com
 +.sdkoptedge.chinanetcenter.com
-+.ads.chinaums.com
 +.a2put.chinaz.com
 +.stats.chinaz.com
 +.chiq-cloud.com
@@ -3017,6 +3020,7 @@ toblog.ctobsnssdk.com
 +.metrics-picture.dreport.meituan.net.eo.dnse1.com
 +.tracking.ksztone.com.eo.dnse2.com
 +.beacon.cdn.qq.com.cdn.dnsv1.com
++.ads-i1.xhscdn.com.cdn.dnsv1.com
 +.do-global.com
 +.dockdigestion.com
 +.dogcollarfavourbluff.com
@@ -3929,7 +3933,6 @@ sf16-static.i18n-pglstatp.com
 +.appadapi.ihuman.com
 +.ijinshan.com
 +.ilbanner.com
-+.static.ilclock.com
 +.ilkwork.com
 +.illustriousoatmeal.com
 +.imageter.com
@@ -4124,6 +4127,7 @@ knicks.jd.com
 +.api.jietuhb.com
 +.tracking.jiffyworld.com
 +.target.ads.jihuoniao.com
++.ad.open.api.jihuoniao.com
 +.jikewan.com
 +.jikklfexh.com
 +.wuliao.jingyanben.com
@@ -4313,7 +4317,6 @@ log.stat.kugou.com
 +.lameletters.com
 +.landkarts.com
 +.zq.lansedir.com
-+.ads.games.laohu.com
 +.largebrass.com
 +.images.newsletter.larksuite.com
 +.laughcloth.com
@@ -4904,7 +4907,6 @@ browser.events.data.msn.com
 +.c.nuhcpf.com
 +.nullitics.com
 +.log.nuomi.com
-+.metric.nuonuo.com
 +.nuseek.com
 +.click.nvgaming.nvidia.com
 +.anews7.nvwu.com
@@ -4995,7 +4997,6 @@ sms.ads.oppomobile.com
 +.orientedargument.com
 +.orionember.com
 +.tracking.orixa-media.com
-+.orlen-pl.com
 +.marketing.osijek031.com
 +.js-api.otherlevels.com
 +.js-tags.otherlevels.com
@@ -5497,15 +5498,16 @@ iadctest.qwapi.com
 +.v13-reading-ad.qznovelvod.com
 +.v26-reading-ad.qznovelvod.com
 +.v3-reading-ad.qznovelvod.com
++.v5-bd-daily-reading-ad.qznovelvod.com
 +.v5-ex-reading-ad.qznovelvod.com
 +.v5-reading-ad.qznovelvod.com
-+.v5-se-gddgtc-reading-ad.qznovelvod.com
 +.v5-se-sjy-daily-reading-ad.qznovelvod.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
 +.v9-reading-ad.qznovelvod.com
 +.v95-se-zjwztc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
++.v96-reading-ad.qznovelvod.com
 +.v96-sz-daily-reading-ad.qznovelvod.com
 +.rabbitrifle.com
 +.rackforstorage.com
@@ -6161,7 +6163,7 @@ api.statsig.com
 +.ad.technoratimedia.com
 +.trk.techtarget.com
 +.spinbox.techtracker.com
-+.tecunonline.com
++.www.tecunonline.com
 +.tedioustooth.com
 +.teenrevenue.com
 +.telaria.com
@@ -6369,6 +6371,7 @@ ads-api.twitter.com
 +.twzui6.com
 +.livetech.shopee.com.br.txlivecdn.com
 +.livetech.shopee.co.id.txlivecdn.com
++.livetech.shopee.co.th.txlivecdn.com
 +.livetech.shopee.vn.txlivecdn.com
 +.m.txtxr.com
 +.tynt.com
@@ -6679,7 +6682,6 @@ webview.unityads.unity3d.com
 +.ru-onrt-stsdk.vivoglobal.com
 +.ru-os-config-appstore.vivoglobal.com
 +.ru-p.vivoglobal.com
-+.ru-pnrt-stsdk.vivoglobal.com
 +.ru-romsp-unifyconfig.vivoglobal.com
 +.ru-st-exappupgrade.vivoglobal.com
 +.ru-st-sl.vivoglobal.com
@@ -6909,7 +6911,6 @@ api.ssp.xcultur.com
 +.ads-i10.xhscdn.com
 +.ads-i2.xhscdn.com
 +.ads-i3.xhscdn.com
-+.ads-i8.xhscdn.com
 +.ads-img-al.xhscdn.com
 +.ads-img-bak.xhscdn.com
 +.ads-img-qc.xhscdn.com
@@ -7040,7 +7041,6 @@ xlviirdr.com
 +.stat.download.xunlei.com
 +.kkpgv2.xunlei.com
 +.soa-vip-ssl.xunlei.com
-+.advertpay.vip.xunlei.com
 +.upgrade.xl9.xunlei.com
 +.xvhttu3c9.com
 +.cc.xwscg.com
@@ -7532,7 +7532,6 @@ m.ad.zhangyue.com
 +.b73223085-49c6-4dca-a2f1-4722014079bf-dpcj8stbzfif.edgeone.dev
 +.b73223085-49c6-4dca-a2f1-4722014079fb-dpi4fgipupcs.edgeone.dev
 +.copyright-case-review.edgeone.dev
-+.efhjfjdhdksdhlfsfsvjvj-dprhmd8pvnvd.edgeone.dev
 +.gdgdcjkklfsgclfgcg-dph9klajknan.edgeone.dev
 +.ggkhhfhhfhflhjdcxcvbthg-dpfmbose3uxq.edgeone.dev
 +.ggsgsgsgdjjczkjgjkggacggc-dpqt3wpkjdo9.edgeone.dev
@@ -7836,6 +7835,7 @@ h5.analytics.126.net
 +.ads.music.126.net
 +.iadmusicmat.music.126.net
 +.iadmusicmatvideo.music.126.net
++.imgsize.ph.126.net
 +.stat.ws.126.net
 +.webstat.ws.126.net
 +.yt-adp.ws.126.net
@@ -8480,31 +8480,23 @@ metrika.yandex.ru
 +.msgacs-m.lazada.sg
 +.hits.sh
 +.brubecksports.shop
-+.choice-pl.shop
 +.fight-pl.shop
 +.fighterspors.shop
-+.fightersports.shop
 +.fighterzz.shop
-+.focus-pl.shop
 +.focusgarden-dom.shop
 +.focusgardenes.shop
 +.focusgardenev.shop
 +.focusgardenhome.shop
 +.focusgardenme.shop
-+.focusgardenmeble.shop
-+.focusgardenmoda.shop
 +.focusgardens-pl.shop
 +.focusgardense.shop
-+.focusgardm.shop
 +.focusgardom.shop
-+.focussklep.shop
 +.garden-homes.shop
 +.gardendodomu.shop
 +.gardendom.shop
 +.gardendomowy.shop
 +.gardensztabik.shop
 +.godunns.shop
-+.gogardens.shop
 +.gostalcos.shop
 +.gryxx.shop
 +.gstalco.shop
@@ -8519,13 +8511,11 @@ metrika.yandex.ru
 +.sogardens.shop
 +.sorevolution.shop
 +.sostalcs.shop
-+.sportzz.shop
 +.staco-shop.shop
 +.stalco24-pl.shop
 +.stalcom-pl.shop
 +.stalcopl24.shop
 +.stalcos.shop
-+.store-pl.shop
 +.strausstore.shop
 +.ziaja-pl.shop
 +.ziajacom.shop
