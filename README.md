@@ -27,7 +27,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`938.90KB` `170045` (含dnsmasq-china DNS分流规则)
+MRS：`938.82KB` `169957` (含dnsmasq-china DNS分流规则)
 
 ### 更新日志
 
@@ -51,12 +51,12 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - ads：[秋风](https://awavenue.top) + [217heidai](https://github.com/217heidai/adblockfilters)+[PATREON](https://pgl.yoyo.org/adservers/) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/ad_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/ad_del_domain.list)  
   较精简的国内外去广告域名规则  
-  Update：`2026.07.10` `8702`  
+  Update：`2026.07.11` `8748`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/ads.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/ads.mrs)
 
 - proxy@direct：[补充](https://github.com/echs-top/proxy/blob/main/work/list/proxy%40direct_domain.list) + [microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) - '+.cn'  
   国外域名前置直连规则，如FCM  
-  Update：`2026.07.02` `288`  
+  Update：`2026.07.11` `290`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy@direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy@direct.mrs)
 
 - ai：[ai](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.list) + [category-ai-!cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.list) - [category-ai-cn](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.list)  
@@ -91,17 +91,17 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list) + [备案域名](https://www.nodeseek.com/post-464238-1)  
   国内域名规则  
-  Update：`2026.07.09` `31522`  
+  Update：`2026.07.11` `31534`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
 - direct：cn + [games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) + [microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list) + [private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
   直连域名规则  
-  Update：`2026.07.09` `31928`  
+  Update：`2026.07.11` `31942`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
 - dnsmasq-china：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
   dnsmasq-china域名规则，可作为DNS分流补充规则  
-  Update：`2026.06.30` `111690`  
+  Update：`2026.07.11` `111603`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china.mrs)
 
 - telegram_ip：[telegram api](https://core.telegram.org/resources/cidr.txt)  
@@ -111,7 +111,7 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   少量vercel/netlify/cloudflare优选IP规则  
-  Update：`2026.07.10` `24`  
+  Update：`2026.07.11` `24`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - safe_ip：[twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list)  
@@ -131,12 +131,12 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [metowolf/iplist](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   国内IP规则  
-  Update：`2026.07.10` `8590`  
+  Update：`2026.07.11` `8587`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.07.10` `8632`  
+  Update：`2026.07.11` `8628`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
@@ -148,12 +148,12 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - direct-lite：direct - ads - proxy@direct - proxy  
   精简直连域名规则  
-  Update：`2026.07.09` `31355`  
+  Update：`2026.07.11` `31369`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs)
 
 - dnsmasq-china-lite：'dnsmasq-china' - ads - proxy@direct - proxy - direct  
   精简dnsmasq-china域名规则  
-  Update：`2026.07.10` `98229`  
+  Update：`2026.07.11` `98083`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/dnsmasq-china-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/dnsmasq-china-lite.mrs)
 
 更多规则推荐：
