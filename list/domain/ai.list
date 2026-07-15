@@ -60,6 +60,7 @@ pplx-res.cloudinary.com
 +.codeiumdata.com
 +.cohere.com
 +.copilot.com
++.copilot-stg.com
 +.coze.com
 +.crewai.com
 +.crixet.com
@@ -136,6 +137,7 @@ ai.google.dev
 +.antigravity-unleash.goog
 +.antigravity.google
 +.deepmind.google
++.flow.google
 +.gemini.google
 +.generativeai.google
 +.jules.google
