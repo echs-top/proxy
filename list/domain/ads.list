@@ -104,6 +104,7 @@ rlog.popin.cc
 +.shd247.click
 +.stalco.click
 +.cartx.cloud
++.4fizjo.club
 +.blackhome.club
 +.fishingstore.club
 +.gardenpl.club
@@ -355,6 +356,7 @@ adx.appsdk.com.cn
 +.same.chinadaily.com.cn
 +.metrics.citi.com.cn
 +.clarins.com.cn
++.claz.com.cn
 +.bd1.click.com.cn
 +.hmjs.cnmo-img.com.cn
 +.phpstat.cntcm.com.cn
@@ -657,6 +659,7 @@ abyss.cyapi.cn
 +.z2.fakutownee.cn
 +.fakxqq.cn
 +.falal.cn
++.www.fanwish.cn
 +.fdhvczd.cn
 +.fengyukun03.cn
 +.a1.firefoxchina.cn
@@ -1026,6 +1029,7 @@ adservice.sigmob.cn
 dc.sigmob.cn
 +.www.silurian.cn
 +.adblock.sina.cn
++.ad.cj.sina.cn
 +.cre.dp.sina.cn
 +.gk.sina.cn
 +.log.sina.cn
@@ -1987,7 +1991,6 @@ usr-api.aiclk.com
 +.1m9o22qt9lx-sdk.rum.aliyuncs.com
 +.axyleu11gz-default-cn.rum.aliyuncs.com
 +.ep2x3kiawg-sdk.rum.aliyuncs.com
-+.f8ds5tkidk-sdk.rum.aliyuncs.com
 +.haa3j9plpi-default-cn.rum.aliyuncs.com
 +.hfwpz4bisq-default-cn.rum.aliyuncs.com
 +.j2c03hoppk-default-cn.rum.aliyuncs.com
@@ -2376,7 +2379,6 @@ nsclick.baidu.com
 +.sofire.bdstatic.com
 +.su.bdstatic.com
 +.zz.bdstatic.com
-+.ads-i3.xhscdn.com.a.bdydns.com
 +.beachfront.com
 +.smetrics.beatsbydre.com
 +.bebi.com
@@ -2635,6 +2637,7 @@ log.byteoversea.com
 +.sgtm.dhgate.com.cdngtm.com
 +.httpdns.c.cdnhwc2.com
 +.httpdns1.cc.cdnhwc5.com
++.p66-ad.adkwai.com.3dce113f.cdnhwchcg02.com
 +.syh-imp.cdnjtzy.com
 +.cdnmaster.com
 +.beacon.cdnpure.com
@@ -3874,6 +3877,9 @@ live-api.hktvmall.com
 +.huo07100hy.com
 +.huo07110hy.com
 +.huo07120hy.com
++.huo07140hy.com
++.huo07150hy.com
++.huo07160hy.com
 +.huoying666.com
 +.collect.hupu.com
 +.e-goblin.hupu.com
@@ -5538,6 +5544,7 @@ iadctest.qwapi.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
 +.v9-reading-ad.qznovelvod.com
++.v95-aw-reading-ad.qznovelvod.com
 +.v95-se-zjwztc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
 +.v96-reading-ad.qznovelvod.com
@@ -5869,6 +5876,7 @@ smetrics.samsung.com
 +.log-hl.snssdk.com
 +.log-lq.snssdk.com
 +.mcs.snssdk.com
++.mercury-sdk.snssdk.com
 +.mon.snssdk.com
 +.open.snssdk.com
 +.pangolin.snssdk.com
@@ -6202,11 +6210,22 @@ api.statsig.com
 +.myads.telkomsel.com
 +.temelio.com
 +.data.tempersyi.com
++.beacon.tencent.com
++.android.bugly.tencent.com
++.ios.bugly.tencent.com
 +.sensors.cloud.tencent.com
 +.galileotelemetry.tencent.com
 +.log.tpns.gz2.tencent.com
 +.stat.tpns.gz2.tencent.com
++.guid.tpns.hk.tencent.com
++.log.tpns.hk.tencent.com
++.stat.tpns.hk.tencent.com
++.ad.hunyuan.tencent.com
 +.tpns.sgp.tencent.com
++.guid.tpns.sh.tencent.com
++.log.tpns.sh.tencent.com
++.mstat.tpns.sh.tencent.com
++.stat.tpns.sh.tencent.com
 +.tpns.tencent.com
 +.tpstelemetry.tencent.com
 +.tencentapigw.com
@@ -6538,6 +6557,7 @@ webview.unityads.unity3d.com
 +.verticalmass.com
 +.ads.verticalresponse.com
 +.vervewireless.com
++.verybark.com
 +.veryboys.com
 +.a.vfghd.com
 +.a.vfgtb.com
@@ -6635,6 +6655,7 @@ webview.unityads.unity3d.com
 +.cname-sin01-stsdk09.vivoglobal.com
 +.co-romsp-unifyconfig.vivoglobal.com
 +.co-st-sl.vivoglobal.com
++.co-timesync.vivoglobal.com
 +.co-vcode-api.vivoglobal.com
 +.co-vcode-od.vivoglobal.com
 +.de-gdpr-err-up.vivoglobal.com
@@ -6722,7 +6743,6 @@ webview.unityads.unity3d.com
 +.sg-cfg-stsdk.vivoglobal.com
 +.stsdk.vivoglobal.com
 +.tr-domaincfg.vivoglobal.com
-+.tr-err-up.vivoglobal.com
 +.tr-onrt-stsdk.vivoglobal.com
 +.tr-ort-stsdk.vivoglobal.com
 +.tr-p.vivoglobal.com
@@ -6951,6 +6971,7 @@ api.ssp.xcultur.com
 +.khrtac.xiangha.com
 +.xianshangzixun.com
 +.xianzhice.com
++.xiaobaixitong.com
 +.xiaodongrui.com
 +.adx.xiaodutv.com
 +.nsclickvideo.xiaodutv.com
@@ -7558,11 +7579,13 @@ m.ad.zhangyue.com
 +.wondoads.de
 +.zanox-affiliate.de
 +.ay.delivery
++.0whw23nd-dpb9te1dacqs.edgeone.dev
 +.b73223085-49c6-4dca-a2f1-4722014079bf.edgeone.dev
 +.b73223085-49c6-4dca-a2f1-4722014079bf-dpcj8stbzfif.edgeone.dev
 +.b73223085-49c6-4dca-a2f1-4722014079fb-dpi4fgipupcs.edgeone.dev
 +.b74364238-d49c-4f21-a234-d47e9697ee92-dpowf5bnj9al.edgeone.dev
 +.blanked.edgeone.dev
++.bvafrgmentumioter-dpun22ih62e8.edgeone.dev
 +.cas-microsoft.edgeone.dev
 +.copyright-case-review.edgeone.dev
 +.cpwehwhhhdsjddjkdfhesh-dps076qx66zp.edgeone.dev
@@ -7652,6 +7675,7 @@ m.ad.zhangyue.com
 +.ads.soweb.gr
 +.ad.gt
 +.3o9s.short.gy
++.homla.help
 +.sdk.yolanda.hk
 +.prf.hn
 +.homladom.homes
@@ -7704,6 +7728,7 @@ m.ad.zhangyue.com
 +.adserve.io
 +.data-reporting.agora.io
 +.logservice.agora.io
++.logservice-asia.agora.io
 +.logservice-rtm.agora.io
 +.report-america.agora.io
 +.report-asia.agora.io
@@ -8528,15 +8553,24 @@ metrika.yandex.ru
 +.jmacs-m.lazada.sg
 +.msgacs-m.lazada.sg
 +.hits.sh
++.4-fizjopl.shop
++.4fizjo-poland.shop
++.4fizjocome.shop
++.4fizjopl.shop
++.4fizjos.shop
++.4fizjosports.shop
++.4fizjosup.shop
 +.alpinuoutdoor.shop
 +.alpinus-pl.shop
 +.alpinusports.shop
 +.brubeck-pl.shop
 +.brubeck-sports.shop
 +.brubecksports.shop
++.fighterboks.shop
 +.fighteres.shop
 +.fighterspor.shop
 +.fighterspors.shop
++.fightersport.shop
 +.focusgardenev.shop
 +.focusgardenhome.shop
 +.focusgardenme.shop
@@ -8640,7 +8674,6 @@ t7z.cupid.ptqy.gitv.tv
 +.policy.video.ptqy.gitv.tv
 +.sdk-cache.video.ptqy.gitv.tv
 +.time.video.ptqy.gitv.tv
-+.openapi.vip.ptqy.gitv.tv
 +.adlink-api.huan.tv
 +.ads.huan.tv
 +.log.appstore3.huan.tv
