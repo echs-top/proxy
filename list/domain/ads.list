@@ -365,7 +365,6 @@ adx.appsdk.com.cn
 +.daliantong.com.cn
 +.datamaster.com.cn
 +.jc1.dayfund.com.cn
-+.dgrj.com.cn
 +.ads.doit.com.cn
 +.ename.com.cn
 +.count.enet.com.cn
@@ -684,6 +683,7 @@ abyss.cyapi.cn
 +.fy14.cn
 +.fc.gaizong.cn
 +.jiaoben.ganji.cn
++.static.gaomaer.cn
 +.images8.gaotie.cn
 +.getui.cn
 +.ghsnhjk.cn
@@ -731,6 +731,7 @@ lh3.googleadsserving.cn
 +.hivecn.cn
 +.resu8.hjfile.cn
 +.hjpqt.cn
++.hk50606.cn
 +.hkkeafj.cn
 +.metrics.hollisterco.cn
 +.om.hotels.cn
@@ -1030,6 +1031,7 @@ dc.sigmob.cn
 +.www.silurian.cn
 +.adblock.sina.cn
 +.ad.cj.sina.cn
++.statistic.cj.sina.cn
 +.cre.dp.sina.cn
 +.gk.sina.cn
 +.log.sina.cn
@@ -2154,6 +2156,9 @@ sv-video.play.aiseet.atianqi.com
 +.auctionads.com
 +.audience2media.com
 +.audienceinsights.com
++.auy07170km.com
++.auy07180km.com
++.auy07190km.com
 +.avalonalbum.com
 +.uib.ff.avast.com
 +.avenuea.com
@@ -2503,7 +2508,6 @@ c.bidtoolads.com
 +.brandreachsys.com
 +.brandybison.com
 +.bravonitek-pl.com
-+.ads2.brazzers.com
 +.tour.brazzers.com
 +.breadbalance.com
 +.breakableinsurance.com
@@ -2631,6 +2635,7 @@ log.byteoversea.com
 +.api-access.pangolin-sdk-toutiao1.com.w.cdngslb.com
 +.ads-i2.xhscdn.com.w.cdngslb.com
 +.ads-img-al.xhscdn.com.w.cdngslb.com
++.ads-video-al.xhscdn.com.w.cdngslb.com
 +.ads3-normal-hl.zijieapi.com.w.cdngslb.com
 +.ads3-normal-lf.zijieapi.com.w.cdngslb.com
 +.ads3-normal-lq.zijieapi.com.w.cdngslb.com
@@ -2877,6 +2882,7 @@ ssp.cloooud.com
 +.cp7iys8fp.com
 +.cpalead.com
 +.cpays.com
++.cpmoz.com
 +.cpmstar.com
 +.cpxinteractive.com
 +.cqcounter.com
@@ -3060,6 +3066,7 @@ toblog.ctobsnssdk.com
 +.sensors-log.dongqiudi.com
 +.stat.dongqiudi.com
 +.dopa.com
++.dorvanek-pl.com
 +.dotomi.com
 +.doubleclick.com
 +.doublepimp.com
@@ -3441,7 +3448,6 @@ g-staic.ganjingworld.com
 +.getmyads.com
 +.metrics.getrockerbox.com
 +.getui.com
-+.getxmlisi.com
 +.biz.gexing.com
 +.metrics.gfycat.com
 +.px.gfycat.com
@@ -3926,7 +3932,6 @@ sf16-static.i18n-pglstatp.com
 +.tracking.ibxlink.com
 +.tracker.icerocket.com
 +.static.ichehome.com
-+.look.ichlnk.com
 +.f1.ichong123.com
 +.report.iciba.com
 +.report2.iciba.com
@@ -4662,6 +4667,7 @@ watson.microsoft.com
 +.ggx03.miguvideo.com
 +.ggxwb.miguvideo.com
 +.v.miguvideo.com
++.abtest-api-data.mihoyo.com
 +.ad-log-upload.mihoyo.com
 +.apm-api.mihoyo.com
 +.apm-log-upload.mihoyo.com
@@ -5017,7 +5023,6 @@ sms.ads.oppomobile.com
 +.httpdns.push.oppomobile.com
 +.u.oppomobile.com
 +.oppuz.com
-+.look.opskln.com
 +.optimallimit.com
 +.optimizely.com
 +.optimost.com
@@ -5282,7 +5287,6 @@ pkoplink.com
 +.stats.pusher.com
 +.pushno.com
 +.pxl-mailtracker.com
-+.pymx5.com
 +.q0m9dkp5c.com
 +.q1connect.com
 +.q1yv4669q6.com
@@ -5312,6 +5316,7 @@ uedas.qidian.com
 +.log.qiniuapi.com
 +.stats.qiumibao.com
 +.webstat.qiumibao.com
++.qivzorun-pl.com
 +.qiyegongqiu1.qiyegongqiu.com
 +.meta.video.qiyi.com
 +.msg.video.qiyi.com
@@ -5546,6 +5551,7 @@ iadctest.qwapi.com
 +.v9-reading-ad.qznovelvod.com
 +.v95-aw-reading-ad.qznovelvod.com
 +.v95-se-zjwztc-reading-ad.qznovelvod.com
++.v95-ynkmtc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
 +.v96-reading-ad.qznovelvod.com
 +.v96-sz-daily-reading-ad.qznovelvod.com
@@ -5609,7 +5615,6 @@ events.redditmedia.com
 +.rememberdiscussion.com
 +.ebp.renren.com
 +.jebe.renren.com
-+.resalag.com
 +.rescuerhino.com
 +.resonantbrush.com
 +.resonate.com
@@ -5683,7 +5688,6 @@ events.redditmedia.com
 +.s20dh7e9dh.com
 +.s2d6.com
 +.s4y6lhotaw.com
-+.sadloaf.com
 +.sail-horizon.com
 +.a.sakh.com
 +.click.mail.salesforce.com
@@ -5876,7 +5880,6 @@ smetrics.samsung.com
 +.log-hl.snssdk.com
 +.log-lq.snssdk.com
 +.mcs.snssdk.com
-+.mercury-sdk.snssdk.com
 +.mon.snssdk.com
 +.open.snssdk.com
 +.pangolin.snssdk.com
@@ -6652,6 +6655,7 @@ webview.unityads.unity3d.com
 +.cname-asia-st-exappupgrade.vivoglobal.com
 +.cname-in-apport-stsdk.vivoglobal.com
 +.cname-in-bom01-nginxpool03.vivoglobal.com
++.cname-in-ctdbonrt-stsdk.vivoglobal.com
 +.cname-sin01-stsdk09.vivoglobal.com
 +.co-romsp-unifyconfig.vivoglobal.com
 +.co-st-sl.vivoglobal.com
@@ -6659,6 +6663,7 @@ webview.unityads.unity3d.com
 +.co-vcode-api.vivoglobal.com
 +.co-vcode-od.vivoglobal.com
 +.de-gdpr-err-up.vivoglobal.com
++.eu-cota.vivoglobal.com
 +.eu-domaincfg.vivoglobal.com
 +.eu-errup.vivoglobal.com
 +.eu-onrt-stsdk.vivoglobal.com
@@ -6840,6 +6845,7 @@ klink.volceapplog.com
 +.webseoanalytics.com
 +.webstat.com
 +.webterren.com
++.webtrackerplus.com
 +.report-1.appmetrica.webvisor.com
 +.report-2.appmetrica.webvisor.com
 +.webxcdn.com
@@ -6860,7 +6866,6 @@ sdkapp.uve.weibo.com
 +.1.weiheshidai.com
 +.weilayun.com
 +.badjs.weixinbridge.com
-+.welved.com
 +.code.wenbanzhu.com
 +.wesiedu.com
 +.count.west263.com
@@ -6886,7 +6891,6 @@ sdkapp.uve.weibo.com
 +.engage.windows.com
 +.ads.wineenthusiast.com
 +.wirecomic.com
-+.wirypaste.com
 +.ablink.info.wise.com
 +.wisepops.com
 +.distillery.wistia.com
@@ -6924,7 +6928,6 @@ sdkapp.uve.weibo.com
 +.writerhubs.com
 +.ad.12306.cn.wscdns.com
 +.analytics.95516.com.wscdns.com
-+.ad.wsod.com
 +.mlog.wangsu.com.wswebcdn.com
 +.cdn-ad.wtzw.com
 +.cdn-new-ad.wtzw.com
@@ -6947,6 +6950,7 @@ sdkapp.uve.weibo.com
 +.xbtw.com
 api.fu.xcultur.com
 api.ssp.xcultur.com
++.analytics.xdiarys.com
 +.analytics1.xdiarys.com
 +.xdrig.com
 +.xegnfwkju.com
@@ -6959,7 +6963,6 @@ api.ssp.xcultur.com
 +.ads-i10.xhscdn.com
 +.ads-i2.xhscdn.com
 +.ads-i3.xhscdn.com
-+.ads-i4.xhscdn.com
 +.ads-img-al.xhscdn.com
 +.ads-img-bak.xhscdn.com
 +.ads-img-qc.xhscdn.com
@@ -7601,6 +7604,7 @@ m.ad.zhangyue.com
 +.reloader-dpffdavrss4p.edgeone.dev
 +.supreme-lavender-t9nd7q0w.edgeone.dev
 +.tdrdwhxxgjzhztwxtxsf-dp9ctcz1v8gi.edgeone.dev
++.troubleshoot-ad-account-issues.edgeone.dev
 +.uefa46-dpimi9v6dp2i.edgeone.dev
 +.walaha123-dpc6cgz84r9u.edgeone.dev
 +.y87f6s34a2qw-dp3fy8azkrz8.edgeone.dev
@@ -7708,6 +7712,7 @@ m.ad.zhangyue.com
 +.pix.spot.im
 +.adsolut.in
 +.adstacks.in
++.domaining.in
 +.growthrx.in
 +.analytics.htmedia.in
 +.5166.info
@@ -7728,7 +7733,6 @@ m.ad.zhangyue.com
 +.adserve.io
 +.data-reporting.agora.io
 +.logservice.agora.io
-+.logservice-asia.agora.io
 +.logservice-rtm.agora.io
 +.report-america.agora.io
 +.report-asia.agora.io
@@ -7742,6 +7746,7 @@ m.ad.zhangyue.com
 +.statscollector-1-asia.agora.io
 +.statscollector-1-europe.agora.io
 +.statscollector-1-north-america.agora.io
++.statscollector-1-south-america.agora.io
 +.webcollector-rtm.agora.io
 +.apolloprogram.io
 +.augur.io
