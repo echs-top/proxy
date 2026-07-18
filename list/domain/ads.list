@@ -280,6 +280,7 @@ rlog.popin.cc
 +.btrace.ysp.cctv.cn
 +.mtrace.ysp.cctv.cn
 +.business-ad.cdn-go.cn
++.adsimg.kompas.com.0d0007d9.cdnhwc8.cn
 +.ad.cdnjm.cn
 +.cdnmaster.cn
 +.cdxyb.cn
@@ -864,6 +865,7 @@ lm10111.jtrincc.cn
 +.miam4.cn
 +.app.log.nf.migu.cn
 +.uem.migu.cn
++.mkplastic.cn
 +.mkue.cn
 +.mlstx.cn
 +.mngjrn.cn
@@ -923,7 +925,6 @@ scs.openspeech.cn
 +.pfqwbqs.cn
 +.vendhelpuous.pgvjmp.cn
 +.phqew.cn
-+.stat2.pixpin.cn
 +.load.tbyvvwvv.plasmatreatment.cn
 +.bdx.playnext.cn
 +.pmensrl.cn
@@ -1399,6 +1400,7 @@ adstudio-assets.scdn.co
 +.du.163.com
 +.fp-upload.dun.163.com
 +.ir-sdk.dun.163.com
++.e-p4p.163.com
 +.g.163.com
 +.timejs.game.163.com
 +.channel.m.163.com
@@ -1989,9 +1991,9 @@ usr-api.aiclk.com
 +.ad-host-backup-europe.oss-eu-central-1.aliyuncs.com
 +.ad-host-backup-america.oss-us-west-1.aliyuncs.com
 +.appgiftwall.oss-us-west-1.aliyuncs.com
++.1fw35mn5y7h-sdk.rum.aliyuncs.com
 +.1hlahoc4rpc-sdk.rum.aliyuncs.com
 +.1m9o22qt9lx-sdk.rum.aliyuncs.com
-+.axyleu11gz-default-cn.rum.aliyuncs.com
 +.ep2x3kiawg-sdk.rum.aliyuncs.com
 +.haa3j9plpi-default-cn.rum.aliyuncs.com
 +.hfwpz4bisq-default-cn.rum.aliyuncs.com
@@ -3738,7 +3740,6 @@ hexagon-analytics.com
 +.hfc195b.com
 +.hffxc.com
 +.hgads.com
-+.hhly88.com
 +.sdd.hi1718.com
 api-gd.hiaiabc.com
 g-adnet.hiaiabc.com
@@ -4166,6 +4167,7 @@ knicks.jd.com
 +.api.jietuhb.com
 +.tracking.jiffyworld.com
 +.target.ads.jihuoniao.com
++.ad.open.api.jihuoniao.com
 +.jikewan.com
 +.jikklfexh.com
 +.wuliao.jingyanben.com
@@ -4361,8 +4363,6 @@ log.stat.kugou.com
 +.launchbit.com
 +.amdc.lazada.com
 +.orange-dc.lazada.com
-+.ph-log-emagzal.lazada.com
-+.sg-log-emagzal.lazada.com
 +.adashx.ut.lazada.com
 +.h-adashx.ut.lazada.com
 +.lazybumblebee.com
@@ -5249,6 +5249,7 @@ pkoplink.com
 +.protraffic.com
 +.provenpixel.com
 +.prpops.com
++.przyrost-pl.com
 +.ads.psd2html.com
 +.dm.pstatp.com
 +.pb3.pstatp.com
@@ -6121,6 +6122,7 @@ api.statsig.com
 +.p.tanx.com
 +.rdstat.tanx.com
 +.ae-alimelog.taobao.com
++.alimelog.taobao.com
 +.audid-api.taobao.com
 +.audid-api-sg.taobao.com
 +.baichuan-sdk.taobao.com
@@ -6748,6 +6750,7 @@ webview.unityads.unity3d.com
 +.sg-cfg-stsdk.vivoglobal.com
 +.stsdk.vivoglobal.com
 +.tr-domaincfg.vivoglobal.com
++.tr-err-up.vivoglobal.com
 +.tr-onrt-stsdk.vivoglobal.com
 +.tr-ort-stsdk.vivoglobal.com
 +.tr-p.vivoglobal.com
@@ -6950,7 +6953,6 @@ sdkapp.uve.weibo.com
 +.xbtw.com
 api.fu.xcultur.com
 api.ssp.xcultur.com
-+.analytics.xdiarys.com
 +.analytics1.xdiarys.com
 +.xdrig.com
 +.xegnfwkju.com
@@ -7603,6 +7605,7 @@ m.ad.zhangyue.com
 +.ready-to-g0u3yt-dp10u3ka993x.edgeone.dev
 +.reloader-dpffdavrss4p.edgeone.dev
 +.supreme-lavender-t9nd7q0w.edgeone.dev
++.tapin.edgeone.dev
 +.tdrdwhxxgjzhztwxtxsf-dp9ctcz1v8gi.edgeone.dev
 +.troubleshoot-ad-account-issues.edgeone.dev
 +.uefa46-dpimi9v6dp2i.edgeone.dev
@@ -8180,6 +8183,7 @@ heads-ak.spotify.com.edgesuite.net
 +.analytics.meituan.net
 +.data-sdk-uuid-log.d.meituan.net
 +.dreport.meituan.net
++.methmeth.net
 +.a.mfcad.net
 +.counter.mirohost.net
 +.a.mktw.net
@@ -8792,7 +8796,6 @@ g2.ganjing.world
 +.adktrack124.xyz
 +.caomeixz7.xyz
 +.qcloud-sg-datareceiver.kurogame.xyz
-+.paypa1.xyz
 +.prufenzo.xyz
 +.randkuj.xyz
 +.rexadvert.xyz
