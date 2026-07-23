@@ -277,7 +277,6 @@ rlog.popin.cc
 +.camelee.cn
 +.telemetry.canva.cn
 +.casee.cn
-+.mtrace.ysp.cctv.cn
 +.business-ad.cdn-go.cn
 +.adsimg.kompas.com.0d0007d9.cdnhwc8.cn
 +.ad.cdnjm.cn
@@ -289,7 +288,6 @@ rlog.popin.cc
 +.analysis.chatglm.cn
 +.bdasd.chdbook.cn
 +.log.china.cn
-+.feedbackstorage.blob.core.chinacloudapi.cn
 +.pcmactivity.chinacloudsites.cn
 +.cholo215.cn
 +.cholor201115.cn
@@ -942,6 +940,7 @@ scs.openspeech.cn
 +.qezpjlp.cn
 +.qfcdgy.cn
 +.qguwoq.cn
++.qhkxs.cn
 +.qhonzpl.cn
 +.c.qiandao.cn
 +.qienews.cn
@@ -1256,6 +1255,7 @@ telecome.cn
 +.y0764.cn
 +.y4n.cn
 +.yahekby.cn
++.yangshengzu.cn
 +.yatemy.cn
 +.ycsshb.cn
 +.ydgsvls.cn
@@ -1529,7 +1529,6 @@ adstudio-assets.scdn.co
 +.v16.56.com
 +.www.56.com
 +.57573zubo36833.com
-+.advert.58.com
 +.brandshow.58.com
 +.jing.58.com
 +.poro.58.com
@@ -1846,6 +1845,7 @@ sdk.mobads.adwangmai.com
 +.ah-ha.com
 +.ahalogy.com
 +.aheadday.com
++.ai-nexork.com
 cdn.aiclk.com
 oss.cdn.aiclk.com
 cpc-service-square.aiclk.com
@@ -2867,7 +2867,6 @@ ssp.cloooud.com
 +.cp7iys8fp.com
 +.cpalead.com
 +.cpays.com
-+.cpmoz.com
 +.cpmstar.com
 +.cpxinteractive.com
 +.cqcounter.com
@@ -6632,6 +6631,7 @@ webview.unityads.unity3d.com
 +.cname-sin01-stsdk09.vivoglobal.com
 +.co-romsp-unifyconfig.vivoglobal.com
 +.co-st-sl.vivoglobal.com
++.co-timesync.vivoglobal.com
 +.co-vcode-api.vivoglobal.com
 +.co-vcode-od.vivoglobal.com
 +.de-gdpr-err-up.vivoglobal.com
@@ -6866,6 +6866,7 @@ sdkapp.uve.weibo.com
 +.wirecomic.com
 +.ablink.info.wise.com
 +.wisepops.com
++.wislazyskor-pl.com
 +.distillery.wistia.com
 +.pipedream.wistia.com
 +.wittypopcorn.com
@@ -6936,6 +6937,7 @@ api.ssp.xcultur.com
 +.ads-i10.xhscdn.com
 +.ads-i2.xhscdn.com
 +.ads-i3.xhscdn.com
++.ads-i4.xhscdn.com
 +.ads-img-al.xhscdn.com
 +.ads-img-bak.xhscdn.com
 +.ads-img-qc.xhscdn.com
@@ -7201,7 +7203,6 @@ m.atm.youku.com
 +.youxiaoad.com
 +.tj.youzanyun.com
 +.wenxue.youzhicn.com
-+.ad-material.ys7.com
 +.log.ys7.com
 +.ysjwj.com
 +.ytelc.com
@@ -7238,7 +7239,6 @@ pcdn.yximgs.com
 +.tx-p2p-v2.pull.yximgs.com
 +.ws-p2p.pull.yximgs.com
 +.ws-p2p-v2.pull.yximgs.com
-+.tob-tracker.yximgs.com
 +.v1-ad.video.yximgs.com
 +.v2-ad.video.yximgs.com
 +.v3-ad.video.yximgs.com
@@ -7386,6 +7386,7 @@ m.ad.zhangyue.com
 +.upc.zztfly.com
 +.myads.company
 +.digitalsolutions360-dpouvkf7wkw5.edgeone.cool
++.webmail-myaccount-secure-micrsoftnotifications-dpob324t4jqd.zh-cn.edgeone.cool
 +.umami.oyo.cool
 +.homla.cyou
 +.matomo.activate.cz
@@ -7576,6 +7577,7 @@ m.ad.zhangyue.com
 +.intellectual-property-appeal-dp16ue7mh0wc.edgeone.dev
 +.intellectual-property-review-dp8cm75v8j31.edgeone.dev
 +.meta-transparency-appeal-form-471ed0d914a1.edgeone.dev
++.pretty-white-ziekneey.edgeone.dev
 +.ready-to-g0u3yt-dp10u3ka993x.edgeone.dev
 +.reloader-dpffdavrss4p.edgeone.dev
 +.supreme-lavender-t9nd7q0w.edgeone.dev
@@ -7583,6 +7585,7 @@ m.ad.zhangyue.com
 +.tdrdwhxxgjzhztwxtxsf-dp9ctcz1v8gi.edgeone.dev
 +.troubleshoot-ad-account-issues.edgeone.dev
 +.uefa46-dpimi9v6dp2i.edgeone.dev
++.w6r46g0hb-dpv3acpgp8ta.edgeone.dev
 +.y87f6s34a2qw-dp3fy8azkrz8.edgeone.dev
 +.ourdreamstaticpages.pages.dev
 +.plausibleio.workers.dev
@@ -8183,6 +8186,7 @@ heads-ak.spotify.com.edgesuite.net
 +.ngmco.net
 +.ggdm1.nhaidu.net
 +.ads.wikia.nocookie.net
++.novacapital-ai.net
 +.nr-data.net
 +.ns1p.net
 +.promotionad.nvcam.net
@@ -8211,6 +8215,8 @@ heads-ak.spotify.com.edgesuite.net
 +.adserver.portugalmail.net
 +.primetime.net
 +.pro-market.net
++.proinvest-pl.net
++.prolnvest-polska.net
 +.pubnative.net
 +.pureclarity.net
 +.analytics.pushgrid.net
