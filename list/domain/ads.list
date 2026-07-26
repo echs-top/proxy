@@ -39,7 +39,6 @@
 +.counter.search.bg
 +.ads.unison.bg
 +.adnet.biz
-+.baike.biz
 +.beizi.biz
 +.ktu.sv2.biz
 +.textads.biz
@@ -310,7 +309,6 @@ adxserver.ad.cmvideo.cn
 +.apiwmda.58.com.cn
 +.7car.com.cn
 +.count.7m.com.cn
-+.91adv.com.cn
 +.11.96131.com.cn
 +.whfpbc.99.com.cn
 +.a32a.com.cn
@@ -352,7 +350,6 @@ adx.appsdk.com.cn
 +.same.chinadaily.com.cn
 +.metrics.citi.com.cn
 +.clarins.com.cn
-+.claz.com.cn
 +.bd1.click.com.cn
 +.hmjs.cnmo-img.com.cn
 +.phpstat.cntcm.com.cn
@@ -412,7 +409,6 @@ adx.appsdk.com.cn
 +.sdk.stat.foreign.nearme.com.cn
 +.synad2.nuffnang.com.cn
 +.offie-wps.com.cn
-+.oneyouxi.com.cn
 +.count.pcauto.com.cn
 +.count5.pconline.com.cn
 +.ivy.pconline.com.cn
@@ -719,6 +715,7 @@ lh3.googleadsserving.cn
 +.halopaper.cn
 +.a.hbf23.cn
 +.hbqabbg.cn
++.hbxhnqj.cn
 +.hbzhenquan.cn
 +.hcbmq.cn
 +.hechaocheng.cn
@@ -729,7 +726,6 @@ lh3.googleadsserving.cn
 +.hivecn.cn
 +.resu8.hjfile.cn
 +.hjpqt.cn
-+.hk50606.cn
 +.hkkeafj.cn
 +.metrics.hollisterco.cn
 +.om.hotels.cn
@@ -853,13 +849,13 @@ lm10111.jtrincc.cn
 +.mbai.cn
 +.meihu56.cn
 +.metaword.cn
++.metheny.cn
 +.analytics.metro.cn
 +.mfxyqh.cn
 +.mgzjin.cn
 +.miam4.cn
 +.app.log.nf.migu.cn
 +.uem.migu.cn
-+.mkplastic.cn
 +.mkue.cn
 +.mlstx.cn
 +.mngjrn.cn
@@ -895,7 +891,6 @@ browser.events.data.msn.cn
 +.renacious.nwwadq.cn
 +.logserver.nzxcloud.cn
 +.oaclrst.cn
-+.okwfx.cn
 +.oldulgk.cn
 +.click.oneplus.cn
 scs.openspeech.cn
@@ -917,7 +912,6 @@ scs.openspeech.cn
 +.pfdth.cn
 +.pfqwbqs.cn
 +.vendhelpuous.pgvjmp.cn
-+.stat2.pixpin.cn
 +.load.tbyvvwvv.plasmatreatment.cn
 +.bdx.playnext.cn
 +.pmensrl.cn
@@ -1112,7 +1106,6 @@ telecome.cn
 +.sstats.thermoscientific.cn
 +.thinkingdata.cn
 +.trail.thomsonreuters.cn
-+.ad.thsi.cn
 +.fz.tiansys.cn
 +.smetrics.tiffany.cn
 +.tikz.cn
@@ -1166,6 +1159,7 @@ telecome.cn
 +.udeztrb.cn
 +.uebabuf.cn
 +.uerzyr.cn
++.uhwnrfu.cn
 +.bdjs.uimg.cn
 +.uimr.cn
 +.cdp.cloud.unity.cn
@@ -1202,7 +1196,6 @@ telecome.cn
 +.vyye.cn
 +.vzvvifw.cn
 +.tongdun-fingerprint.walmartmobile.cn
-+.walz.cn
 +.matomo.wanqianyun.cn
 +.k1.wanwenwan.cn
 +.data.waptime.cn
@@ -1550,6 +1543,7 @@ adstudio-assets.scdn.co
 +.abcd.5lu.com
 +.efgh.5lu.com
 +.adjb.5nd.com
++.5pub.com
 +.644446.com
 +.bj.ad.track.66mobi.com
 +.kl.67it.com
@@ -1672,6 +1666,8 @@ ad-scope.com
 +.adflight.com
 +.adforce.com
 +.adform.com
+ads.adfunlink.com
+adtracker.adfunlink.com
 +.adhaven.com
 +.adhese.com
 +.adinall.com
@@ -2421,6 +2417,7 @@ c.bidtoolads.com
 +.bigwww.com
 +.bihaipack.com
 +.dataflow.biliapi.com
++.tracker.chat.bilibili.com
 +.data.bilibili.com
 +.interface.bilibili.com
 +.miniapp.bilibili.com
@@ -3045,7 +3042,6 @@ toblog.ctobsnssdk.com
 +.metrics-picture.dreport.meituan.net.eo.dnse1.com
 +.tracking.ksztone.com.eo.dnse2.com
 +.beacon.cdn.qq.com.cdn.dnsv1.com
-+.ads-i1.xhscdn.com.cdn.dnsv1.com
 +.do-global.com
 +.zx.docin.com
 +.dockdigestion.com
@@ -4040,6 +4036,7 @@ sf16-static.i18n-pglstatp.com
 +.puma.api.iqiyi.com
 +.apisgame.iqiyi.com
 +.cards-css.iqiyi.com
++.cs-feige.iqiyi.com
 +.doh.iqiyi.com
 +.emoticon-sns.iqiyi.com
 +.static.g.iqiyi.com
@@ -4656,6 +4653,7 @@ watson.microsoft.com
 +.ggx03.miguvideo.com
 +.ggxwb.miguvideo.com
 +.v.miguvideo.com
++.abtest-api-data.mihoyo.com
 +.ad-log-upload.mihoyo.com
 +.apm-api.mihoyo.com
 +.apm-log-upload.mihoyo.com
@@ -6101,6 +6099,7 @@ api.statsig.com
 +.p.tanx.com
 +.rdstat.tanx.com
 +.ae-alimelog.taobao.com
++.alimelog.taobao.com
 +.audid-api.taobao.com
 +.audid-api-sg.taobao.com
 +.baichuan-sdk.taobao.com
@@ -6637,6 +6636,7 @@ webview.unityads.unity3d.com
 +.cname-in-apport-stsdk.vivoglobal.com
 +.cname-in-bom01-nginxpool03.vivoglobal.com
 +.cname-sin01-stsdk09.vivoglobal.com
++.co-domaincfg.vivoglobal.com
 +.co-romsp-unifyconfig.vivoglobal.com
 +.co-st-sl.vivoglobal.com
 +.co-timesync.vivoglobal.com
@@ -6933,7 +6933,6 @@ sdkapp.uve.weibo.com
 +.xbtw.com
 api.fu.xcultur.com
 api.ssp.xcultur.com
-+.analytics.xdiarys.com
 +.analytics1.xdiarys.com
 +.xdrig.com
 +.xegnfwkju.com
@@ -6999,6 +6998,7 @@ data.mistat.india.xiaomi.com
 +.globalvideo.cdn.pandora.intl.xiaomi.com
 +.in-miuilog.sms.intl.xiaomi.com
 +.a.market.xiaomi.com
++.t17.market.xiaomi.com
 +.video.market.xiaomi.com
 +.resolver.mi.xiaomi.com
 data.mistat.xiaomi.com
@@ -7011,6 +7011,7 @@ data.mistat.xiaomi.com
 +.dvb.pandora.xiaomi.com
 +.milink.pandora.xiaomi.com
 +.misc.pandora.xiaomi.com
++.ottl7-l2.pandora.xiaomi.com
 +.redirect.pandora.xiaomi.com
 +.stat.pandora.xiaomi.com
 +.preload.xiaomi.com
@@ -8071,7 +8072,6 @@ tdsdk.cpatrk.net
 +.e-planning.net
 +.adservrs.com.edgekey.net
 wildcard.moatads.com.edgekey.net
-+.wangsu-smetrics.redhat.com.edgekey.net
 +.fastclick.com.edgesuite.net
 heads-ak.spotify.com.edgesuite.net
 +.eighthlayer.net
@@ -8316,7 +8316,6 @@ statsigapi.net
 +.vnclip.net
 +.mini-prog-drm.vodplayvideo.net
 +.w55c.net
-+.wangsu-smetrics.redhat.com.edgekey.net.wanakadns.net
 +.bannieres.wdmedia.net
 +.secure.webconnect.net
 +.webstat.net
