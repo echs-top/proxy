@@ -153,10 +153,12 @@
 +.attestation.app
 +.authpass.app
 +.bbc-reporting-api.app
++.blurams.app
 +.bsky.app
 +.carrotquest.app
 +.carrottrack.app
 +.cash.app
++.ceno.app
 +.cloudproxy.app
 +.comments.app
 +.coreldraw.app
@@ -6303,6 +6305,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.githubhackathon.com
 +.githubnext.com
 +.githubstatus.com
++.githubsupport.com
 +.githubuniverse.com
 +.githubusercontent.com
 +.gitlab.com
@@ -11144,6 +11147,7 @@ rsshub.rssforever.com
 +.sb24.com
 +.sberauto.com
 +.sberbank.com
++.sberbank-tele.com
 +.sbitravelcard.com
 +.sbnation.com
 +.sbuxcard.com
@@ -14174,6 +14178,7 @@ rss.datuan.dev
 +.termux.dev
 +.tfhub.dev
 +.tg.dev
++.tryai.dev
 +.demo.unlock-music.dev
 +.sbti.unun.dev
 +.usercontent.dev
@@ -16698,6 +16703,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.keiba.net
 +.kenyaraha.net
 +.khangar.net
++.kinescopecdn.net
 +.kinguin.net
 +.kir2kos.net
 +.kisscos.net
@@ -19885,6 +19891,7 @@ rsshub.rss.tips
 +.iphonese.tv
 +.iphonexs.tv
 +.itunesradio.tv
++.ivicdn.tv
 +.iwank.tv
 +.iwara.tv
 +.ixnxx.tv

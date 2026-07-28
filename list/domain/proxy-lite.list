@@ -111,10 +111,12 @@
 +.agedm.app
 +.attestation.app
 +.authpass.app
++.blurams.app
 +.bsky.app
 +.carrotquest.app
 +.carrottrack.app
 +.cash.app
++.ceno.app
 +.comments.app
 +.coreldraw.app
 +.dashly.app
@@ -5777,6 +5779,7 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.githubhackathon.com
 +.githubnext.com
 +.githubstatus.com
++.githubsupport.com
 +.githubuniverse.com
 +.githubusercontent.com
 +.gitlab.com
@@ -5910,7 +5913,6 @@ straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
 +.greenlakehybridcloud.com
 +.greginhollywood.com
 +.grindr.com
-+.grokipedia.com
 +.grooby.com
 +.group-ib.com
 +.groupfun.com
@@ -10212,6 +10214,7 @@ rsshub.rssforever.com
 +.sb24.com
 +.sberauto.com
 +.sberbank.com
++.sberbank-tele.com
 +.sbitravelcard.com
 +.sbuxcard.com
 +.sc.com
@@ -12980,6 +12983,7 @@ rss.datuan.dev
 +.t-tech.dev
 +.termux.dev
 +.tg.dev
++.tryai.dev
 +.demo.unlock-music.dev
 +.sbti.unun.dev
 +.usercontent.dev
@@ -15328,6 +15332,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.kairakudoujin.net
 +.kakaocdn.net
 +.kenyaraha.net
++.kinescopecdn.net
 +.kinguin.net
 +.kir2kos.net
 +.kisscos.net
@@ -18281,6 +18286,7 @@ rsshub.rss.tips
 +.iphonese.tv
 +.iphonexs.tv
 +.itunesradio.tv
++.ivicdn.tv
 +.iwank.tv
 +.iwara.tv
 +.ixnxx.tv

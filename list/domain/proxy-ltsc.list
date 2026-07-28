@@ -104,10 +104,12 @@
 +.agedm.app
 +.attestation.app
 +.authpass.app
++.blurams.app
 +.bsky.app
 +.carrotquest.app
 +.carrottrack.app
 +.cash.app
++.ceno.app
 +.comments.app
 +.coreldraw.app
 +.dashly.app
@@ -5636,6 +5638,7 @@ rsshub.email-once.com
 +.githubhackathon.com
 +.githubnext.com
 +.githubstatus.com
++.githubsupport.com
 +.githubuniverse.com
 +.githubusercontent.com
 +.gitlab.com
@@ -5769,7 +5772,6 @@ rsshub.email-once.com
 +.greenlakehybridcloud.com
 +.greginhollywood.com
 +.grindr.com
-+.grokipedia.com
 +.grooby.com
 +.group-ib.com
 +.groupfun.com
@@ -9867,6 +9869,7 @@ rsshub.rssforever.com
 +.savitabhabhi.com
 +.savoycomputing.com
 +.sb-cd.com
++.sberbank-tele.com
 +.sbitravelcard.com
 +.sbuxcard.com
 +.scaleflex.com
@@ -12573,6 +12576,7 @@ rss.datuan.dev
 +.stackpath.dev
 +.termux.dev
 +.tg.dev
++.tryai.dev
 +.demo.unlock-music.dev
 +.sbti.unun.dev
 +.usercontent.dev
@@ -14806,6 +14810,7 @@ a4e8s8k3.map2.ssl.hwcdn.net
 +.kairakudoujin.net
 +.kakaocdn.net
 +.kenyaraha.net
++.kinescopecdn.net
 +.kinguin.net
 +.kir2kos.net
 +.kisscos.net
@@ -17653,6 +17658,7 @@ rsshub.rss.tips
 +.iphonese.tv
 +.iphonexs.tv
 +.itunesradio.tv
++.ivicdn.tv
 +.iwank.tv
 +.iwara.tv
 +.ixnxx.tv
