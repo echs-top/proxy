@@ -277,7 +277,6 @@ rlog.popin.cc
 +.telemetry.canva.cn
 +.casee.cn
 +.business-ad.cdn-go.cn
-+.adsimg.kompas.com.0d0007d9.cdnhwc8.cn
 +.ad.cdnjm.cn
 +.cdnmaster.cn
 +.cdxyb.cn
@@ -3802,6 +3801,7 @@ live-api.hktvmall.com
 +.ads.hollywood.com
 +.homelycrown.com
 +.adimages.homestore.com
++.log.homestyler.com
 +.honorableland.com
 +.click.hookupinyourcity.com
 +.click.hooligapps.com
@@ -4344,8 +4344,6 @@ log.stat.kugou.com
 +.launchbit.com
 +.amdc.lazada.com
 +.orange-dc.lazada.com
-+.ph-log-emagzal.lazada.com
-+.sg-log-emagzal.lazada.com
 +.adashx.ut.lazada.com
 +.h-adashx.ut.lazada.com
 +.lazybumblebee.com
@@ -4368,7 +4366,6 @@ log.stat.kugou.com
 +.leftliquid.com
 +.ads-api-o.api.leiniao.com
 +.ctv-ads.api.leiniao.com
-+.ssai-ads.api.leiniao.com
 +.ssai2-ads.api.leiniao.com
 +.lejuliang.com
 +.lekkirendovikai.com
@@ -4922,6 +4919,7 @@ browser.events.data.msn.com
 +.c.nuhcpf.com
 +.nullitics.com
 +.log.nuomi.com
++.metric.nuonuo.com
 +.nuseek.com
 +.click.nvgaming.nvidia.com
 +.anews7.nvwu.com
@@ -5153,6 +5151,7 @@ pkoplink.com
 +.li.pmc.com
 +.ads.pni.com
 +.pocketfaucet.com
++.podstcrednex-ai.com
 +.poemprompt.com
 +.pointlessprofit.com
 +.pointroll.com
@@ -5199,6 +5198,7 @@ pkoplink.com
 +.privatecash.com
 +.widget.privy.com
 +.prmtracking.com
++.pro-investpolska.com
 +.probablepartner.com
 +.processplantation.com
 +.segment-cdn.producthunt.com
@@ -5208,6 +5208,7 @@ pkoplink.com
 +.ads.program3.com
 +.programattik.com
 +.click.e.progressive.com
++.proinvest-pl.com
 +.projectwonderful.com
 +.promobenef.com
 +.pronetadvertising.com
@@ -6557,7 +6558,6 @@ webview.unityads.unity3d.com
 +.vigyn4gpx.com
 +.vilenexus.com
 +.n-st.vip.com
-+.in.vipliangmei.com
 +.adserver.virginmedia.com
 +.banners.virtuagirlhd.com
 +.cbanners.virtuagirlhd.com
@@ -6623,7 +6623,6 @@ webview.unityads.unity3d.com
 +.cname-asia-st-exappupgrade.vivoglobal.com
 +.cname-in-apport-stsdk.vivoglobal.com
 +.cname-in-bom01-nginxpool03.vivoglobal.com
-+.cname-in-ctdbonrt-stsdk.vivoglobal.com
 +.cname-sin01-stsdk09.vivoglobal.com
 +.co-romsp-unifyconfig.vivoglobal.com
 +.co-st-sl.vivoglobal.com
@@ -6891,6 +6890,7 @@ sdkapp.uve.weibo.com
 +.wowfunnow.com
 +.stats.wp.com
 +.api-ad-adapter.wps.com
++.api-ad-adapter-mb.wps.com
 +.api-ad-adapter-sg.wps.com
 +.abroadad.cache.wpscdn.com
 +.wrating.com
@@ -7576,6 +7576,7 @@ m.ad.zhangyue.com
 +.ready-to-g0u3yt-dp10u3ka993x.edgeone.dev
 +.reloader-dpffdavrss4p.edgeone.dev
 +.supreme-lavender-t9nd7q0w.edgeone.dev
++.symmetrical-octo-umbrella-dpfq8j6ozudi.edgeone.dev
 +.tapin.edgeone.dev
 +.troubleshoot-ad-account-issues.edgeone.dev
 +.uefa46-dpimi9v6dp2i.edgeone.dev
@@ -8211,6 +8212,7 @@ heads-ak.spotify.com.edgesuite.net
 +.primetime.net
 +.pro-market.net
 +.proinvest-pl.net
++.proinvestai.net
 +.prolnvest-polska.net
 +.pubnative.net
 +.pureclarity.net
