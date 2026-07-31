@@ -5,6 +5,7 @@
 +.analytics.jst.ai
 +.m2.ai
 +.nakedly.ai
++.stats-cdn.polyspeak.ai
 +.cdn.smalk.ai
 +.a.vdo.ai
 +.paa-reporting-advertising.amazon
@@ -731,6 +732,7 @@ lh3.googleadsserving.cn
 +.hzhabei.cn
 +.i-fk.cn
 +.ibozys.cn
++.moon.ibytecdn.cn
 +.ads.icloseli.cn
 +.idubwz.cn
 +.iefmvk.cn
@@ -739,6 +741,7 @@ lh3.googleadsserving.cn
 +.metrics.ilovematlab.cn
 +.smetrics.ilovematlab.cn
 +.immob.cn
++.pyk.in-neo.cn
 +.link.infineon.cn
 +.inmobi.cn
 +.inmobicdn.cn
@@ -4130,7 +4133,6 @@ knicks.jd.com
 +.api.jietuhb.com
 +.tracking.jiffyworld.com
 +.target.ads.jihuoniao.com
-+.ad.open.api.jihuoniao.com
 +.jikewan.com
 +.wuliao.jingyanben.com
 +.jm3uvitq0.com
@@ -4897,6 +4899,8 @@ browser.events.data.msn.com
 +.z.nowscore.com
 +.npttech.com
 +.marketing.nsfocus.com
++.nug08010lu.com
++.nug08011lu.com
 +.c.nuhcpf.com
 +.nullitics.com
 +.log.nuomi.com
@@ -5501,7 +5505,6 @@ iadctest.qwapi.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
 +.v9-reading-ad.qznovelvod.com
-+.v95-aw-reading-ad.qznovelvod.com
 +.v95-se-zjwztc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
 +.v96-reading-ad.qznovelvod.com
@@ -5564,6 +5567,7 @@ events.redditmedia.com
 +.reklamdsp.com
 +.relmaxtop.com
 +.rememberdiscussion.com
++.remox.com
 +.ebp.renren.com
 +.jebe.renren.com
 +.rescuerhino.com
@@ -6493,7 +6497,6 @@ webview.unityads.unity3d.com
 +.analytics.umetrip.com.c.vedcdnlb.com
 +.veille-referencement.com
 +.velismedia.com
-+.venetrigni.com
 +.vengefulgrass.com
 +.ventivmedia.com
 +.venturead.com
@@ -7167,7 +7170,6 @@ m.atm.youku.com
 +.youxiaoad.com
 +.tj.youzanyun.com
 +.wenxue.youzhicn.com
-+.ad-material.ys7.com
 +.log.ys7.com
 +.ysjwj.com
 +.ytelc.com
@@ -7306,9 +7308,12 @@ m.ad.zhangyue.com
 +.polaris3-normal-hl.zijieapi.com
 +.polaris3-normal-lf.zijieapi.com
 +.polaris3-normal-lq.zijieapi.com
++.polaris5-normal-gl2.zijieapi.com
 +.polaris5-normal-hl.zijieapi.com
 +.polaris5-normal-lf.zijieapi.com
 +.polaris5-normal-lq.zijieapi.com
++.polaris5-normal-xh.zijieapi.com
++.polaris5-normal-zb.zijieapi.com
 +.saveu5-normal-lq.zijieapi.com
 +.starkgame.zijieapi.com
 +.timon.zijieapi.com
@@ -7436,6 +7441,7 @@ m.ad.zhangyue.com
 +.tm.br.de
 +.marketing.net.brillen.de
 +.cash4popup.de
++.clicktag.de
 +.foo.cosmocode.de
 +.coupling-media.de
 +.deloo.de
@@ -8483,7 +8489,6 @@ offerwall.yandex.net
 +.ntvk1.ru
 +.owebmoney.ru
 +.pbnet.ru
-+.popunder.ru
 +.counter.rambler.ru
 +.top100-images.rambler.ru
 +.rate.ru
