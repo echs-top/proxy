@@ -719,6 +719,7 @@ lh3.googleadsserving.cn
 +.hgpbhuj.cn
 +.hivecn.cn
 +.resu8.hjfile.cn
++.hjgen.cn
 +.hjpqt.cn
 +.hkkeafj.cn
 +.metrics.hollisterco.cn
@@ -1533,6 +1534,7 @@ adstudio-assets.scdn.co
 +.abcd.5lu.com
 +.efgh.5lu.com
 +.adjb.5nd.com
++.5pub.com
 +.644446.com
 +.bj.ad.track.66mobi.com
 +.kl.67it.com
@@ -2307,6 +2309,7 @@ nsclick.baidu.com
 +.httpdns.baidubce.com
 +.baidustatic.com
 +.baifendian.com
++.ad.baihemob.com
 +.baixing.com
 +.baltic-pipe-pl.com
 +.newads.bangbros.com
@@ -3022,7 +3025,6 @@ toblog.ctobsnssdk.com
 +.metrics-picture.dreport.meituan.net.eo.dnse1.com
 +.tracking.ksztone.com.eo.dnse2.com
 +.beacon.cdn.qq.com.cdn.dnsv1.com
-+.ads-i1.xhscdn.com.cdn.dnsv1.com
 +.do-global.com
 +.zx.docin.com
 +.dockdigestion.com
@@ -4303,6 +4305,7 @@ log.stat.kugou.com
 +.webcollects.kugou.com
 +.splashimgbssdl.yun.kugou.com
 +.kuheju.com
++.msstatic.com.gslb.kuiniuca.com
 +.h1.kukuw.com
 +.p3-ad-sign.byteimg.com.w.kunluncan.com
 +.img.adnyg.com.w.kunlungr.com
@@ -5500,6 +5503,7 @@ iadctest.qwapi.com
 +.v5-bd-daily-reading-ad.qznovelvod.com
 +.v5-ex-reading-ad.qznovelvod.com
 +.v5-reading-ad.qznovelvod.com
++.v5-se-bjtc-reading-ad.qznovelvod.com
 +.v5-se-gddgtc-reading-ad.qznovelvod.com
 +.v5-se-sjy-daily-reading-ad.qznovelvod.com
 +.v6-daily-reading-ad.qznovelvod.com
@@ -6143,6 +6147,7 @@ api.statsig.com
 +.tb4gv2cp5z.com
 +.all.cnzz.com.danuoyi.tbcache.com
 +.httpdns.danuoyi.tbcache.com
++.gwrtdp-tn690bfadt.tclclouds.com
 +.sg.tdatamaster.com
 +.tdlop7tsme.com
 +.widgets.teads-xo.com
@@ -6893,7 +6898,6 @@ sdkapp.uve.weibo.com
 api.fu.xcultur.com
 api.ssp.xcultur.com
 +.analytics.xdiarys.com
-+.analytics1.xdiarys.com
 +.xdrig.com
 +.xegnfwkju.com
 +.analytics.xelondigital.com
@@ -7227,7 +7231,9 @@ pcdn.yximgs.com
 +.p3.zbjimg.com
 +.zedo.com
 +.zelamtron-pl.com
++.zeldrunek-pl.com
 +.zelorprime-ai.com
++.zelorprimeai.com
 +.zemanta.com
 +.zenzuu.com
 +.zephyrlabyrinth.com
