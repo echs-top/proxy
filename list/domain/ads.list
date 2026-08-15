@@ -241,6 +241,7 @@ rlog.popin.cc
 +.c4d4.cn
 +.smetrics.calvinklein.cn
 +.camelee.cn
++.telemetry.canva.cn
 +.casee.cn
 +.ad.cdnjm.cn
 +.cdnmaster.cn
@@ -317,6 +318,7 @@ adx.appsdk.com.cn
 +.datamaster.com.cn
 +.jc1.dayfund.com.cn
 +.dgrj.com.cn
++.track.sohu.com.dsa.dnsv1.com.cn
 +.ads.doit.com.cn
 +.ename.com.cn
 +.count.enet.com.cn
@@ -536,6 +538,7 @@ abyss.cyapi.cn
 +.events-dra-op-dbankcloud-com-dra.edge.dbankedge.cn
 +.0001-metrics1-drcn-dt-dbankcloud-cn.geac.dbankedge.cn
 +.0002-metrics1-drcn-dt-dbankcloud-cn.geac.dbankedge.cn
++.metrics1-drcn-dt-dbankcloud-cn.gere.dbankedge.cn
 +.events-dra-op-dbankcloud-com-dra.region.dbankedge.cn
 +.aem.dentsuchina.cn
 +.msz3.destinia.cn
@@ -643,6 +646,7 @@ lh3.googleadsserving.cn
 +.gsxbxvd.cn
 +.gtcqbnu.cn
 +.pgdt.gtimg.cn
++.tianshu.gtimg.cn
 +.bd1.guancha.cn
 +.bdjs.guangyuanol.cn
 +.gujkj.cn
@@ -2248,6 +2252,7 @@ nsclick.baidu.com
 +.midinfo.baofeng.com
 +.a.baomihua.com
 +.djs.baomihua.com
++.resource.baomihua.com
 +.baremetrics.com
 +.basebanner.com
 +.basketballbelieve.com
@@ -2850,6 +2855,7 @@ toblog.ctobsnssdk.com
 +.browser-http-intake.logs.datadoghq.com
 +.rum-http-intake.logs.datadoghq.com
 +.datapickles.com
++.matomo.datasanalytics.com
 +.daybreaklights.com
 +.images.dayoo.com
 +.dazhantai.com
@@ -2920,6 +2926,7 @@ toblog.ctobsnssdk.com
 +.adserver.digitoday.com
 +.bea-s.dinghuoche.com
 +.resolver.dingtalk.com
++.stdown.dinju.com
 +.dipan.com
 +.directaclick.com
 +.tr.email.directindustry.com
@@ -3866,6 +3873,7 @@ sf16-static.i18n-pglstatp.com
 +.appadapi.ihuman.com
 +.ijinshan.com
 +.ilbanner.com
++.static.ilclock.com
 +.ilkwork.com
 +.illustriousoatmeal.com
 +.imageter.com
@@ -4059,6 +4067,7 @@ knicks.jd.com
 +.api.jietuhb.com
 +.tracking.jiffyworld.com
 +.target.ads.jihuoniao.com
++.ad.open.api.jihuoniao.com
 +.jikewan.com
 +.wuliao.jingyanben.com
 +.jm3uvitq0.com
@@ -4266,7 +4275,6 @@ log.stat.kugou.com
 +.storeen.ldmnq.com
 +.rainbow-prod-jdlog.ldoverseas.com
 +.ldspdf.com
-+.ld-analytics.ldycdn.com
 +.banana.le.com
 +.cherry.le.com
 +.stat.le.com
@@ -4561,7 +4569,9 @@ watson.microsoft.com
 +.ggxwb.miguvideo.com
 +.v.miguvideo.com
 +.ad-log-upload.mihoyo.com
++.apm-api.mihoyo.com
 +.apm-log-upload.mihoyo.com
++.apm-log-upload-v6.mihoyo.com
 +.data-abtest-api.mihoyo.com
 +.h5collector.mihoyo.com
 +.h5log-api-dualstack.mihoyo.com
@@ -5080,6 +5090,7 @@ pkoplink.com
 +.pointlessprofit.com
 +.pointroll.com
 +.pokkt.com
++.polarisx-ai.com
 +.polfundai.com
 +.polishedfolly.com
 +.polska-skarvest.com
@@ -5135,6 +5146,7 @@ pkoplink.com
 +.programattik.com
 +.click.e.progressive.com
 +.proinvest-pl.com
++.proinvestpolska-ai.com
 +.projectwonderful.com
 +.promobenef.com
 +.pronetadvertising.com
@@ -5448,6 +5460,7 @@ iadctest.qwapi.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
 +.v9-reading-ad.qznovelvod.com
++.v95-se-zjwztc-reading-ad.qznovelvod.com
 +.v95-zjjx2tc-reading-ad.qznovelvod.com
 +.v96-reading-ad.qznovelvod.com
 +.v96-sz-daily-reading-ad.qznovelvod.com
@@ -6634,6 +6647,7 @@ webview.unityads.unity3d.com
 +.sg-cfg-stsdk.vivoglobal.com
 +.stsdk.vivoglobal.com
 +.tr-domaincfg.vivoglobal.com
++.tr-err-up.vivoglobal.com
 +.tr-onrt-stsdk.vivoglobal.com
 +.tr-ort-stsdk.vivoglobal.com
 +.tr-p.vivoglobal.com
@@ -6834,6 +6848,7 @@ sdkapp.uve.weibo.com
 +.xbtw.com
 api.fu.xcultur.com
 api.ssp.xcultur.com
++.analytics.xdiarys.com
 +.xdrig.com
 +.xegnfwkju.com
 +.analytics.xelondigital.com
@@ -6937,6 +6952,7 @@ adsebs.ximalaya.com
 +.adbehavior.wsa.ximalaya.com
 +.adse.wsa.ximalaya.com
 +.xdcs-collector.ximalaya.com
++.xindalawyer.com
 +.ip.xindong.com
 +.logc-sg.tsd.xindong.com
 +.ichc1.xinglinpukang.com
@@ -7171,6 +7187,7 @@ pcdn.yximgs.com
 +.zemanta.com
 +.zenzuu.com
 +.zephyrlabyrinth.com
++.api-analytics.zepp.com
 +.api-analytics-cn3.zepp.com
 +.api-analytics-de.zepp.com
 +.api-analytics-us.zepp.com
@@ -7482,6 +7499,8 @@ m.ad.zhangyue.com
 +.exotic-lime-olunrtbr.edgeone.dev
 +.ffsre-dpzou3ijaxzb.edgeone.dev
 +.icy-brown-yrznyes4.edgeone.dev
++.intellectual-property-center.edgeone.dev
++.intellectual-property-troubleshooting-center.edgeone.dev
 +.loginpages0000-dpf0869el7ik.edgeone.dev
 +.no2body7-dpyijatuyl2q.edgeone.dev
 +.pretty-white-ziekneey.edgeone.dev
@@ -8128,13 +8147,16 @@ heads-ak.spotify.com.edgesuite.net
 +.piorunkapitura-ai.net
 +.dluat.pokerbros.net
 +.i.pokerbros.net
++.polarisxpl.net
 +.polfund-ai.net
 +.popads.net
 +.popcash.net
 +.adserver.portugalmail.net
 +.primetime.net
++.pro-invest-polska.net
 +.pro-market.net
 +.proinvest-pl.net
++.proinvest-polska.net
 +.proinvestai.net
 +.prolnvest-polska.net
 +.pubnative.net
@@ -8327,6 +8349,7 @@ offerwall.yandex.net
 +.cdnondemand.org
 +.consensu.org
 +.crypto-loot.org
++.www.digitalfiles.org
 +.statistical-report.djiservice.org
 +.ad1.emule-project.org
 +.ad.exyws.org
