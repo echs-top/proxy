@@ -12,10 +12,12 @@
 +.h2o.ai
 +.jasper.ai
 +.jetbrains.ai
++.kimi.ai
 +.lmstudio.ai
 +.lovart.ai
 +.meta.ai
 +.mistral.ai
++.moonshot.ai
 +.mozilla.ai
 +.openart.ai
 +.openclaw.ai
@@ -71,6 +73,7 @@ pplx-res.cloudinary.com
 +.deepwiki.com
 +.diabrowser.com
 +.dola.com
++.dreamgen.com
 +.elevenlabs.com
 +.envato.com
 +.envato-static.com
@@ -148,9 +151,11 @@ ai.google.dev
 +.notebooklm.google
 +.opal.google
 +.manus.im
++.talkai.info
 +.elevenlabs.io
 +.intercom.io
 +.minimax.io
++.notegpt.io
 o33249.ingest.sentry.io
 +.coderabbit.gallery.vsassets.io
 +.copilot.cloud.microsoft
@@ -163,6 +168,7 @@ openaicom.imgix.net
 +.grazie.aws.intellij.net
 +.liveperson.net
 +.lpsnmedia.net
++.novelai.net
 +.poecdn.net
 +.events.statsigapi.net
 +.themeforest.net

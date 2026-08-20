@@ -132,7 +132,6 @@ rlog.popin.cc
 +.papi.look.360.cn
 +.stat.m.360.cn
 +.openbox.mobilem.360.cn
-+.h5.mse.360.cn
 +.s.360.cn
 +.c.sayhi.360.cn
 +.stat.sd.360.cn
@@ -773,6 +772,7 @@ lm10111.jtrincc.cn
 +.lop.lamimi.cn
 +.un1.lawyernet.cn
 +.lbprjdi.cn
++.lccfjszp.cn
 +.lgygy.cn
 +.lhippac.cn
 +.track.libii.cn
@@ -1094,6 +1094,7 @@ telecome.cn
 +.txre.cn
 +.ty.cn
 +.u88.cn
++.uaqe.cn
 +.ubxqerc.cn
 +.ads.uc.cn
 +.adtrack.uc.cn
@@ -1203,6 +1204,7 @@ telecome.cn
 +.xmywlyh.cn
 +.xn--m7r781dz66a.cn
 +.xpcwrgy.cn
++.xpdyqax.cn
 +.xryrylt.cn
 +.xtjpdfr.cn
 +.xueaaaw.cn
@@ -1317,7 +1319,6 @@ adstudio-assets.scdn.co
 +.smartad.10010.com
 +.1.1010pic.com
 +.101com.com
-+.soft.110route.com
 +.1.11467.com
 +.114la.com
 +.bdwmhz.120askimages.com
@@ -1805,7 +1806,6 @@ sdk.mobads.adwangmai.com
 +.ahalogy.com
 +.aheadday.com
 +.ai-fiversity.com
-+.ai-nexork.com
 +.ai-polarisx.com
 +.ai-proinvest-polska.com
 cdn.aiclk.com
@@ -1898,7 +1898,6 @@ usr-api.aiclk.com
 +.adash-emas.cn-hangzhou.aliyuncs.com
 +.httpdns-api.aliyuncs.com
 +.httpdns-sc.aliyuncs.com
-+.log.aliyuncs.com
 +.dmg-dd.oss-accelerate.aliyuncs.com
 +.wzjs1.oss-accelerate.aliyuncs.com
 +.xpjcg.oss-accelerate.aliyuncs.com
@@ -2322,6 +2321,7 @@ nsclick.baidu.com
 +.sofire.bdstatic.com
 +.su.bdstatic.com
 +.zz.bdstatic.com
++.ads-i3.xhscdn.com.a.bdydns.com
 +.beachfront.com
 +.smetrics.beatsbydre.com
 +.bebi.com
@@ -2445,7 +2445,6 @@ c.bidtoolads.com
 +.brand-display.com
 +.brandreachsys.com
 +.brandybison.com
-+.bravikzen-ai.com
 +.tour.brazzers.com
 +.breadbalance.com
 +.breakableinsurance.com
@@ -2920,7 +2919,6 @@ toblog.ctobsnssdk.com
 +.gp.dejanews.com
 +.delicatecascade.com
 +.eclicks.deliveroo.com
-+.sm.dell.com
 +.demandbase.com
 +.deployads.com
 +.marketing.desertcart.com
@@ -3002,6 +3000,7 @@ toblog.ctobsnssdk.com
 +.ap.dongqiudi.com
 +.sensors-log.dongqiudi.com
 +.stat.dongqiudi.com
++.cloudcdn.dopa.com
 +.dotomi.com
 +.doubleclick.com
 +.doublepimp.com
@@ -3786,7 +3785,7 @@ ad-splash-tracking.hktvmall.com
 +.met2.hp.com
 +.support.hqts.com
 +.hs-banner.com
-+.hseda.com
++.www.hseda.com
 +.ads.hsoub.com
 +.ads2.hsoub.com
 +.hsych.com
@@ -4983,6 +4982,7 @@ images.outbrainimg.com
 +.bidder.dsp.outfit7.com
 +.hb-af-us-central1.outfit7.com
 +.ads.outpersonals.com
++.ouyaoxiazai.com
 +.overconfidentfood.com
 +.overkick.com
 +.overture.com
@@ -5480,6 +5480,7 @@ iadctest.qwapi.com
 +.v5-bd-daily-reading-ad.qznovelvod.com
 +.v5-ex-reading-ad.qznovelvod.com
 +.v5-reading-ad.qznovelvod.com
++.v5-se-gddgtc-reading-ad.qznovelvod.com
 +.v5-se-sjy-daily-reading-ad.qznovelvod.com
 +.v6-daily-reading-ad.qznovelvod.com
 +.v6-reading-ad.qznovelvod.com
@@ -6140,6 +6141,7 @@ api.statsig.com
 +.telaria.com
 +.myads.telkomsel.com
 +.temelio.com
++.data.tempersyi.com
 +.beacon.tencent.com
 +.android.bugly.tencent.com
 +.ios.bugly.tencent.com
@@ -6916,8 +6918,6 @@ tracker.ai.xiaomi.com
 +.api.d.xiaomi.com
 +.cdn.exp.xiaomi.com
 +.notice.game.xiaomi.com
-+.api.xmpush.global.xiaomi.com
-+.register.xmpush.global.xiaomi.com
 +.hybrid.xiaomi.com
 +.pi.ias.xiaomi.com
 data.mistat.india.xiaomi.com
@@ -6950,7 +6950,6 @@ data.mistat.rus.xiaomi.com
 +.api.miui.security.xiaomi.com
 +.stat.xiaomi.com
 +.p.www.xiaomi.com
-+.api.xmpush.xiaomi.com
 +.xiaoxiuapp.com
 +.log.us.xiaoyi.com
 +.xiaozhen.com
@@ -7508,9 +7507,6 @@ m.ad.zhangyue.com
 +.05gdfi007-dpm2gawaoxpl.edgeone.dev
 +.098yjuio-dpwxvxwxcuwy.edgeone.dev
 +.alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr.edgeone.dev
-+.awsforensicl3ns-west1apprunner-dprd03feve9j.edgeone.dev
-+.b48411138-0326-4a61-9b6e-51b0d590d944.edgeone.dev
-+.bottom-coral-l4ei8f1s.edgeone.dev
 +.cloudsrvjk876nj987-dp1lu5k2i9vz.edgeone.dev
 +.combined-silver-0x5s9uu5.edgeone.dev
 +.copyright-claim-review-request-form.edgeone.dev
@@ -7524,13 +7520,12 @@ m.ad.zhangyue.com
 +.khjfdgsfsdfhjklljdhgdstryt-dp97141gwv85.edgeone.dev
 +.loginpages0000-dpf0869el7ik.edgeone.dev
 +.no2body7-dpyijatuyl2q.edgeone.dev
-+.pretty-white-ziekneey.edgeone.dev
 +.request-copyright-policy-review.edgeone.dev
 +.review-copyright-infringement-reports.edgeone.dev
 +.review-copyright-policy-violations.edgeone.dev
 +.srvkdtsged5w23456ds-dplleb90jz3x.edgeone.dev
 +.symmetrical-octo-umbrella-dpfq8j6ozudi.edgeone.dev
-+.w6r46g0hb-dpv3acpgp8ta.edgeone.dev
++.upgrade-dp2c1xqj8ejo.edgeone.dev
 +.well-aquamarine-psata8ej.edgeone.dev
 +.ytterbic-amber-qilwigl2.edgeone.dev
 +.ourdreamstaticpages.pages.dev
@@ -7608,7 +7603,6 @@ m.ad.zhangyue.com
 +.3o9s.short.gy
 +.sdk.yolanda.hk
 +.prf.hn
-+.gymsports.homes
 +.clicks.njuskalo.hr
 +.ads.deltha.hu
 +.sher.index.hu
@@ -8046,7 +8040,6 @@ heads-ak.spotify.com.edgesuite.net
 +.gamesites100.net
 +.getui.net
 +.stats.gioneemobile.net
-+.glurvextopin-ai.net
 +.glwxw.net
 +.gmads.net
 +.go-mpulse.net
@@ -8136,7 +8129,6 @@ heads-ak.spotify.com.edgesuite.net
 +.netshelter.net
 +.ggdm1.nhaidu.net
 +.ads.wikia.nocookie.net
-+.novacapital-ai.net
 +.nr-data.net
 +.ns1p.net
 +.nurtowinpl.net
@@ -8207,7 +8199,6 @@ heads-ak.spotify.com.edgesuite.net
 +.images-pw.secureserver.net
 +.securityannex.net
 +.semasio.net
-+.sila-finoblia-pl.net
 +.ad.simgames.net
 +.s3.pfp.sina.net
 +.1.sj33.net
@@ -8304,7 +8295,6 @@ offerwall.yandex.net
 +.youmi.net
 +.123.ywxww.net
 +.zdbb.net
-+.zeltix-ai.net
 +.stat.zenon.net
 +.zgisp.net
 +.saad.ms.zhangyue.net
