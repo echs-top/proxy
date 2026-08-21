@@ -132,7 +132,9 @@ rlog.popin.cc
 +.papi.look.360.cn
 +.stat.m.360.cn
 +.openbox.mobilem.360.cn
-+.s.360.cn
++.eul.s.360.cn
++.g.s.360.cn
++.p.s.360.cn
 +.c.sayhi.360.cn
 +.stat.sd.360.cn
 +.pub.se.360.cn
@@ -458,6 +460,7 @@ adx.appsdk.com.cn
 +.tracking-adnet.vivo.com.cn
 +.vcardsdkservice.vivo.com.cn
 +.w8.com.cn
++.analytics.med.wanfangdata.com.cn
 +.medad.med.wanfangdata.com.cn
 +.analyse.weather.com.cn
 +.ctc.weather.com.cn
@@ -585,7 +588,6 @@ abyss.cyapi.cn
 +.dycwt.cn
 +.by.dyq.cn
 +.hl.dyq.cn
-+.img.easypass.cn
 +.eblnzoq.cn
 +.ebrid.cn
 +.jb.ecar168.cn
@@ -1053,6 +1055,7 @@ mission-pub.smart-tv.cn
 telecome.cn
 +.tengfeidn.cn
 +.tepusi888.cn
++.teue.cn
 +.th7.cn
 +.adpai.thepaper.cn
 +.somni.mapac.thermofisher.cn
@@ -1366,6 +1369,7 @@ adstudio-assets.scdn.co
 +.match.p4p.1688.com
 +.cvda.17173.com
 +.log1.17173.com
++.scollect.17173.com
 +.stat.v.17173.com
 +.vda.17173.com
 +.s.17173cdn.com
@@ -1462,7 +1466,6 @@ adstudio-assets.scdn.co
 +.51mitu.com
 +.51taifu.com
 +.ad.51wnl.com
-+.ad.51wnl-cq.com
 +.r.51wnl-cq.com
 +.51yes.com
 +.game.51yund.com
@@ -1565,7 +1568,6 @@ alicoccdnct-xn.inter.71edge.com
 +.aboardlevel.com
 +.ad.aboutwebservices.com
 +.ads.abovetopsecret.com
-+.absolutering.com
 +.absorbingband.com
 +.abstractedauthority.com
 +.abtasty.com
@@ -1693,7 +1695,6 @@ p66-ad.adkwai.com
 +.ads-bilek.com
 +.ads-twitter.com
 +.ads1-adnow.com
-+.ads180.com
 +.ads3-adnow.com
 +.ads4homes.com
 +.adsafeprotected.com
@@ -1754,6 +1755,7 @@ tr-asia.adsmoloco.com
 +.adutp.com
 +.adv-adserver.com
 +.advangelists.com
++.advariant.com
 +.adventory.com
 +.adventurousamount.com
 +.ads.adverline.com
@@ -2208,7 +2210,6 @@ sv-video.play.aiseet.atianqi.com
 +.res.mi.baidu.com
 +.miao.baidu.com
 +.miaowu.baidu.com
-+.mo.baidu.com
 +.mobads.baidu.com
 +.mobads-logs.baidu.com
 +.plugin.mobopay.baidu.com
@@ -2291,7 +2292,6 @@ nsclick.baidu.com
 +.basebanner.com
 +.basketballbelieve.com
 +.baskettexture.com
-+.bastingart.com
 +.t.bawafx.com
 +.advert.bayarea.com
 +.bayescom.com
@@ -2365,7 +2365,6 @@ c.bidtoolads.com
 +.yyapp-mlog.bigda.com
 +.bigfishapparel.com
 +.ads.bigfoot.com
-+.bigworldfashion.com
 +.bigwww.com
 +.bihaipack.com
 +.dataflow.biliapi.com
@@ -2576,7 +2575,6 @@ log.byteoversea.com
 +.sgtm.dhgate.com.cdngtm.com
 +.httpdns.c.cdnhwc2.com
 +.httpdns1.cc.cdnhwc5.com
-+.ads-i4.xhscdn.com.057f7a7d.cdnhwcxcy07.com
 +.syh-imp.cdnjtzy.com
 +.cdnmaster.com
 +.beacon.cdnpure.com
@@ -2692,13 +2690,6 @@ cloooud.com
 sdkapi.cloooud.com
 ssp.cloooud.com
 +.bkt.clouddn.com
-+.7u2gej.com1.z0.glb.clouddn.com
-+.7u2ss1.com1.z0.glb.clouddn.com
-+.7vzmoi.com1.z0.glb.clouddn.com
-+.7xi9g1.com1.z0.glb.clouddn.com
-+.7xjob4.com1.z0.glb.clouddn.com
-+.7xo4q8.com1.z0.glb.clouddn.com
-+.7xsqvb.com1.z0.glb.clouddn.com
 +.cloudflareinsights.com
 +.cloudguppy.com
 +.clrstm.com
@@ -2956,6 +2947,7 @@ toblog.ctobsnssdk.com
 +.adserver.digitoday.com
 +.bea-s.dinghuoche.com
 +.resolver.dingtalk.com
++.stdown.dinju.com
 +.dipan.com
 +.directaclick.com
 +.tr.email.directindustry.com
@@ -3001,6 +2993,7 @@ toblog.ctobsnssdk.com
 +.sensors-log.dongqiudi.com
 +.stat.dongqiudi.com
 +.cloudcdn.dopa.com
++.www.dopa.com
 +.dotomi.com
 +.doubleclick.com
 +.doublepimp.com
@@ -3120,6 +3113,7 @@ adguanggao.eee114.com
 +.entercasino.com
 +.enviousthread.com
 +.tracking.epicgames.com
++.ads.epltalk.com
 +.epom.com
 +.eqads.com
 +.clicks.equantum.com
@@ -3343,6 +3337,7 @@ catalog.fjwhcbsh.com
 +.g5xu1dslr6.com
 +.gadsbee.com
 +.gainifyads.com
++.galaxien.com
 +.game-advertising-online.com
 +.gameanalytics.com
 +.ng-vn-notice.gameitop.com
@@ -3583,7 +3578,6 @@ firebaselogging-pa.googleapis.com
 +.services.hearstmags.com
 +.subscribe.hearstmags.com
 +.aps.hearstnp.com
-+.heavly1.com
 +.heheshield.com
 +.heima8.com
 +.hellobar.com
@@ -4080,7 +4074,6 @@ knicks.jd.com
 +.d-collector.jennifersoft.com
 +.jesgoo.com
 +.ad.jetsoftware.com
-+.jewelrysprings.com
 +.ads.jewishfriendfinder.com
 +.promotion-quicker.jftechsoft.com
 +.ads.jianchiapp.com
@@ -4146,9 +4139,7 @@ knicks.jd.com
 +.kb894lngt.com
 +.ad.keenspace.com
 +.ads.kelbymediagroup.com
-+.kernellife.com
 +.kf4kwomxhl.com
-+.telemetry-logs.kimi.com
 +.kindads.com
 +.kindlereunion.com
 +.up.wps.kingsoft.com
@@ -4301,7 +4292,6 @@ log.stat.kugou.com
 +.storeen.ldmnq.com
 +.rainbow-prod-jdlog.ldoverseas.com
 +.ldspdf.com
-+.ld-analytics.ldycdn.com
 +.banana.le.com
 +.cherry.le.com
 +.stat.le.com
@@ -4955,7 +4945,6 @@ sms.ads.oppomobile.com
 +.optimizely.com
 +.optimost.com
 +.tracker.optin-lead.com
-+.optionsnomad.com
 +.optmd.com
 +.optmnstr.com
 +.optmstr.com
@@ -4982,7 +4971,6 @@ images.outbrainimg.com
 +.bidder.dsp.outfit7.com
 +.hb-af-us-central1.outfit7.com
 +.ads.outpersonals.com
-+.ouyaoxiazai.com
 +.overconfidentfood.com
 +.overkick.com
 +.overture.com
@@ -5023,7 +5011,6 @@ api-access.pangolin-sdk-toutiao5.com
 +.partner-ads.com
 +.analytics.partnerboost.com
 +.app.partnerboost.com
-+.partnerhut.com
 +.partplanes.com
 +.passeura.com
 +.ads.passion.com
@@ -5547,6 +5534,7 @@ events.redditmedia.com
 +.reklamdsp.com
 +.relmaxtop.com
 +.rememberdiscussion.com
++.remox.com
 +.rendakon-pl.com
 +.ebp.renren.com
 +.jebe.renren.com
@@ -5581,7 +5569,6 @@ events.redditmedia.com
 +.rkcfmfm97.com
 +.rlcdn.com
 +.apm-fe.rnote.com
-+.roaddynamics.com
 +.oas.roanoke.com
 +.roar.com
 +.robotrefinery.com
@@ -5822,7 +5809,6 @@ smetrics.samsung.com
 +.tnc3-aliec2.snssdk.com
 +.tnc3-alisc1.snssdk.com
 +.tnc3-bjlgy.snssdk.com
-+.toutiao-frontier.snssdk.com
 +.tsearch.snssdk.com
 +.ug.snssdk.com
 +.vcl-brain.snssdk.com
@@ -6141,7 +6127,6 @@ api.statsig.com
 +.telaria.com
 +.myads.telkomsel.com
 +.temelio.com
-+.data.tempersyi.com
 +.beacon.tencent.com
 +.android.bugly.tencent.com
 +.ios.bugly.tencent.com
@@ -6251,6 +6236,7 @@ business-api.tiktok.com
 +.topsem.com
 +.topsir.com
 +.topstats.com
++.static.topxgun.com
 +.oas.toronto.com
 +.totemcash.com
 +.touch-moblie.com
@@ -6846,7 +6832,6 @@ sdkapp.uve.weibo.com
 +.api-ad-adapter-mb.wps.com
 +.abroadad.cache.wpscdn.com
 +.wrating.com
-+.writerhubs.com
 +.ad.12306.cn.wscdns.com
 +.analytics.95516.com.wscdns.com
 +.cdn-ad.wtzw.com
@@ -7507,10 +7492,12 @@ m.ad.zhangyue.com
 +.05gdfi007-dpm2gawaoxpl.edgeone.dev
 +.098yjuio-dpwxvxwxcuwy.edgeone.dev
 +.alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr.edgeone.dev
++.balanced-red-emhnkdfj-dp7g2kvqxx8n.edgeone.dev
 +.cloudsrvjk876nj987-dp1lu5k2i9vz.edgeone.dev
 +.combined-silver-0x5s9uu5.edgeone.dev
 +.copyright-claim-review-request-form.edgeone.dev
 +.copyright-policy-troubleshooting-request-form.edgeone.dev
++.d7522e2c-c5f7-4dc8-b83f-9f9dacd15c4d.edgeone.dev
 +.doc-fcms.edgeone.dev
 +.exotic-lime-olunrtbr.edgeone.dev
 +.ffsre-dpzou3ijaxzb.edgeone.dev
@@ -7527,6 +7514,7 @@ m.ad.zhangyue.com
 +.symmetrical-octo-umbrella-dpfq8j6ozudi.edgeone.dev
 +.upgrade-dp2c1xqj8ejo.edgeone.dev
 +.well-aquamarine-psata8ej.edgeone.dev
++.xminesserversaqwq.edgeone.dev
 +.ytterbic-amber-qilwigl2.edgeone.dev
 +.ourdreamstaticpages.pages.dev
 +.dark-brook-fd40.astotgpqlekgiky.workers.dev
@@ -8496,6 +8484,7 @@ metrika.yandex.ru
 +.jmacs-m.lazada.sg
 +.msgacs-m.lazada.sg
 +.hits.sh
++.66mh.shop
 +.centralhomeoffers.shop
 +.dailyvalueoffers.shop
 +.fighter-shop.shop
