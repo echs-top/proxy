@@ -3313,7 +3313,7 @@ init.gc.apple.com
 +.gsp4-cn.ls.apple.com
 +.gsp5-cn.ls.apple.com
 +.gsp85-cn-ssl.ls.apple.com
-gspe11-2-cn-ssl.ls.apple.com
++.gspe11-2-cn-ssl.ls.apple.com
 gspe12-cn-ssl.ls.apple.com
 +.gspe19-2-cn-ssl.ls.apple.com
 +.gspe19-cn.ls.apple.com
@@ -13876,6 +13876,7 @@ download.jetbrains.com
 +.metastudioxr.com
 +.metatrader4.com
 +.metatrader5.com
++.metax-tech.com
 +.metersphere.com
 +.metizutix.com
 +.metritestscn.com
