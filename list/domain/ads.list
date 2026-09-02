@@ -4,6 +4,7 @@
 +.cognitiv.ai
 +.data.hailuo.ai
 +.analytics.jst.ai
++.sentry.lovart.ai
 +.m2.ai
 +.nakedly.ai
 +.stats-cdn.polyspeak.ai
@@ -276,7 +277,6 @@ rlog.popin.cc
 +.smetrics.calvinklein.cn
 +.camelee.cn
 +.casee.cn
-+.mtrace.ysp.cctv.cn
 +.ad.cdnjm.cn
 +.cdnmaster.cn
 +.adimg.ce.cn
@@ -296,7 +296,6 @@ rlog.popin.cc
 +.advertise.cloudlinks.cn
 +.cmpxaup.cn
 adxserver.ad.cmvideo.cn
-+.ggc.cmvideo.cn
 +.ggx.cmvideo.cn
 +.ad.cnr.cn
 +.ggdata1.cnr.cn
@@ -435,6 +434,7 @@ adx.appsdk.com.cn
 +.dns.weixin.qq.com.cn
 +.wxaintpcos.wxqcloud.qq.com.cn
 +.down.qqfarmer.com.cn
++.qufu.com.cn
 +.ad.rayli.com.cn
 +.news.reedexpo.com.cn
 +.images.response.reedexpo.com.cn
@@ -615,7 +615,6 @@ abyss.cyapi.cn
 +.events-dra-op-dbankcloud-com-dra.edge.dbankedge.cn
 +.0001-metrics1-drcn-dt-dbankcloud-cn.geac.dbankedge.cn
 +.0002-metrics1-drcn-dt-dbankcloud-cn.geac.dbankedge.cn
-+.metrics1-drcn-dt-dbankcloud-cn.gere.dbankedge.cn
 +.events-dra-op-dbankcloud-com-dra.region.dbankedge.cn
 +.ddapp.cn
 +.aem.dentsuchina.cn
@@ -702,6 +701,7 @@ abyss.cyapi.cn
 +.adv-sv-show.focus.cn
 +.adv-sv-stat.focus.cn
 +.bdu.focus.cn
++.ad.foxitreader.cn
 +.fqxkj.cn
 +.trk.futureelectronics.cn
 +.fwmbjrl.cn
@@ -724,6 +724,7 @@ abyss.cyapi.cn
 +.adsense.google.cn
 lh3.googleadsserving.cn
 +.gostats.cn
++.statistics.gd.gov.cn
 +.stats.tj.gov.cn
 +.govkunming.cn
 +.gpxxbyf.cn
@@ -804,7 +805,6 @@ lh3.googleadsserving.cn
 +.stat.jc001.cn
 +.jdnlynb.cn
 +.jgid.cn
-+.jhzfwl.cn
 +.wj.jiancai365.cn
 +.jiezoiq.cn
 +.jiguang.cn
@@ -1056,6 +1056,7 @@ pay.sboot.cn
 +.shilian168.cn
 +.1.shopit.cn
 +.shuzilm.cn
++.sifugu.cn
 adservice.sigmob.cn
 dc.sigmob.cn
 +.www.silurian.cn
@@ -1180,7 +1181,6 @@ telecome.cn
 +.smetrics.tuvsud.cn
 +.tvabqt.cn
 +.tvdpebx.cn
-+.tvrom.cn
 +.twdjn.cn
 +.ty.cn
 +.u88.cn
@@ -1275,6 +1275,7 @@ telecome.cn
 +.minfo.wps.cn
 +.pcfg.wps.cn
 +.push.wps.cn
++.spinfo.wps.cn
 +.update.wps.cn
 +.wpsweb-dc.wps.cn
 +.mo.res.wpscdn.cn
@@ -1508,7 +1509,6 @@ adstudio-assets.scdn.co
 +.360ads.com
 +.cps.360buy.com
 +.img2.360buyimg.com
-+.360chou.com
 +.360in.com
 +.360kuai.com
 +.360os.com
@@ -1531,7 +1531,6 @@ adstudio-assets.scdn.co
 +.adx.36kr.com
 +.37wan.com
 +.m.38xs.com
-+.3975.com
 +.classic.39health.com
 +.39jz.com
 +.fc.3dmgame.com
@@ -2138,6 +2137,7 @@ tk.anythinktech.com
 +.app-measurement.com
 +.appboycdn.com
 +.mobile.appchina.com
++.ads.apple.com
 advertising.apple.com
 proxy.advp.apple.com
 api-adservices.apple.com
@@ -2436,7 +2436,6 @@ nsclick.baidu.com
 +.sofire.bdstatic.com
 +.su.bdstatic.com
 +.zz.bdstatic.com
-+.ads-i3.xhscdn.com.a.bdydns.com
 +.beachfront.com
 +.smetrics.beatsbydre.com
 +.bebi.com
@@ -2695,6 +2694,7 @@ log.byteoversea.com
 +.sgtm.dhgate.com.cdngtm.com
 +.httpdns.c.cdnhwc2.com
 +.httpdns1.cc.cdnhwc5.com
++.ads-i4.xhscdn.com.057f7a7d.cdnhwcxcy07.com
 +.syh-imp.cdnjtzy.com
 +.cdnmaster.com
 +.beacon.cdnpure.com
@@ -3132,7 +3132,6 @@ toblog.ctobsnssdk.com
 +.akamai-apigateway-gio-analytics.tesla.cn.eo.dnse4.com
 +.stats-cdn.polyspeak.ai.cdn.dnsv1.com
 +.beacon.cdn.qq.com.cdn.dnsv1.com
-+.ads-i1.xhscdn.com.cdn.dnsv1.com
 +.do-global.com
 +.dobra-aktywolnia-pl.com
 +.dobraaktywolnia-ai.com
@@ -3581,6 +3580,7 @@ g-staic.ganjingworld.com
 +.zt.gifshow.com
 +.giocdn.com
 +.adrotic.girlonthenet.com
++.sentry.gitcode.com
 +.tracker.gitee.com
 +.50m.gkcyc.com
 +.gl0r6d2uyy.com
@@ -3781,7 +3781,6 @@ hexagon-analytics.com
 +.img-c.heytapimage.com
 +.ums-rum-cn.heytapimage.com
 +.ums-rum-global.heytapimage.com
-+.adm-smc-cn.heytapmobi.com
 +.adx.ads.heytapmobi.com
 +.adx-f.ads.heytapmobi.com
 +.adx-id.ads.heytapmobi.com
@@ -3931,6 +3930,7 @@ ad-splash-tracking.hktvmall.com
 +.ads.hollywood.com
 +.homelycrown.com
 +.adimages.homestore.com
++.log.homestyler.com
 +.honeybutterbliss.com
 +.ads.honor.com
 +.honorableland.com
@@ -4532,6 +4532,7 @@ log.stat.kugou.com
 +.forms.lenovo.com
 +.forms-emea.lenovo.com
 +.o.lenovo.com
++.metrics.qira.lenovo.com
 +.s.lenovo.com
 +.images.smbdirect.lenovo.com
 +.app.update.lenovo.com
@@ -4607,7 +4608,6 @@ outlookads.live.com
 +.livingsleet.com
 +.li.livingsocial.com
 +.lizardslaugh.com
-+.sentry.lkcoffee.com
 +.lkmhn.com
 +.lkqd.com
 +.lnk0.com
@@ -4710,9 +4710,9 @@ log-report.com
 +.xiuxiu.android.dl.meitu.com
 +.gg.meitu.com
 +.message.meitu.com
++.sentry-26.meitu.com
 adui.tg.meitu.com
 +.tuiguang.meitu.com
-+.sentry.meitu-int.com
 +.hreport.meituan.com
 +.httpdns.meituan.com
 +.impdsp.meituan.com
@@ -5112,6 +5112,7 @@ browser.events.data.msn.com
 +.c.nuhcpf.com
 +.nullitics.com
 +.log.nuomi.com
++.metric.nuonuo.com
 +.nurtowin-ai.com
 +.nurtowinai.com
 +.nuseek.com
@@ -5178,6 +5179,7 @@ browser.events.data.msn.com
 +.operationchicken.com
 +.opienetwork.com
 +.opmnstr.com
++.opoxv.com
 adx.ads.oppomobile.com
 bdapi.ads.oppomobile.com
 ck.ads.oppomobile.com
@@ -5281,7 +5283,7 @@ api-access.pangolin-sdk-toutiao5.com
 +.a8.jp.peacebird.com
 +.peasrch.com
 +.peer39.com
-+.a.pemsrv.com
++.pemsrv.com
 +.adver.pengyou.com
 +.pennyweb.com
 +.penxiangge.com
@@ -5999,7 +6001,6 @@ smetrics.samsung.com
 +.shinystat.com
 +.shiveringspot.com
 +.shiverscissors.com
-+.analysis.shixunsuda.com
 +.ads.shizmoo.com
 +.shockinggrass.com
 +.shoppingads.com
@@ -6983,7 +6984,6 @@ webview.unityads.unity3d.com
 +.tr-p.vivoglobal.com
 +.tr-romsp-unifyconfig.vivoglobal.com
 +.tr-st-sl.vivoglobal.com
-+.tr-stsdk.vivoglobal.com
 +.tr-timesync.vivoglobal.com
 +.tr-vcode-api.vivoglobal.com
 +.tr-vcode-od.vivoglobal.com
@@ -7157,7 +7157,6 @@ sdkapp.uve.weibo.com
 +.ad.12306.cn.wscdns.com
 +.analytics.95516.com.wscdns.com
 +.cdn-ad.wtzw.com
-+.cdn-new-ad.wtzw.com
 +.wukongtongji.com
 +.wumii.com
 +.vhs.wwstat.com
@@ -7475,6 +7474,7 @@ m.atm.youku.com
 +.youxiaoad.com
 +.tj.youzanyun.com
 +.wenxue.youzhicn.com
++.ad-material.ys7.com
 +.adx.ys7.com
 +.log.ys7.com
 +.ysjwj.com
@@ -7529,7 +7529,6 @@ pcdn.yximgs.com
 +.zantracker.com
 +.zarget.com
 +.zazhipu.com
-+.statistics.zbj.com
 +.p3.zbjimg.com
 +.zedo.com
 +.zemanta.com
@@ -7592,7 +7591,6 @@ m.ad.zhangyue.com
 +.gecko5-lf.zijieapi.com
 +.log.zijieapi.com
 +.log-klink.zijieapi.com
-+.log5-applog-hl.zijieapi.com
 +.log5-applog-lf.zijieapi.com
 +.mcs.zijieapi.com
 +.minigame5-normal-hl.zijieapi.com
@@ -8932,7 +8930,6 @@ t7z.cupid.ptqy.gitv.tv
 +.ads.huan.tv
 +.log.appstore3.huan.tv
 +.livemonitor.huan.tv
-+.monitor-ads.huan.tv
 +.monitor-ads-test.huan.tv
 +.download.changhong.upgrade2.huan.tv
 +.downloadxml.changhong.upgrade2.huan.tv
@@ -9028,6 +9025,7 @@ edge.ads.twitch.tv
 +.pixel.watch
 +.6v4.work
 +.6v6.work
++.sentry.dreambig.work
 g2.ganjing.world
 +.pulse.genki.world
 +.thebugs.ws
