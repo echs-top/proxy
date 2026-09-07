@@ -26,8 +26,22 @@ export default {
       });
     }
 
+    // 4. 请求验证：仅允许 GET/HEAD 方法，限制 URL 长度
+    if (!["GET", "HEAD"].includes(request.method)) {
+      return new Response("Method Not Allowed", {
+        status: 405,
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+      });
+    }
+    if (url.pathname.length > 2048) {
+      return new Response("Request URI Too Long", {
+        status: 414,
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+      });
+    }
+
     try {
-      // 4. 获取静态资源
+      // 5. 获取静态资源
       const response = await env.ASSETS.fetch(request);
 
       // 如果资源不存在（404）
