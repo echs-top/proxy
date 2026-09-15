@@ -442,12 +442,14 @@ onekey.zendesk.com
 +.jivochat.de
 +.number26.de
 +.tech26.de
++.stripe.dev
 +.t-tech.dev
 +.spasibo.digital
 +.hsbc.com.eg
 +.jivochat.es
 +.ibkr.eu
 +.interactivebrokers.eu
++.stripe.events
 +.dydx.exchange
 +.lighter.exchange
 +.curve.fi
@@ -463,6 +465,7 @@ onekey.zendesk.com
 +.2gis.ge
 +.jivara.global
 +.longbridge.global
++.stripe.global
 +.t-finance.group
 +.fsmone.com.hk
 +.hsbc.com.hk
