@@ -303,6 +303,7 @@ google-ohttp-relay-safebrowsing.fastly-edge.com
 +.dart.dev
 +.dartpad.dev
 +.deps.dev
++.firebase.dev
 +.flutter.dev
 +.fuchsia.dev
 +.g.dev

@@ -88,6 +88,7 @@ copilot-telemetry-service.githubusercontent.com
 alkalicore-pa.clients6.google.com
 alkalimakersuite-pa.clients6.google.com
 webchannel-alkalimakersuite-pa.clients6.google.com
++.flow.google.com
 +.gemini.google.com
 +.jules.google.com
 +.labs.google.com
@@ -148,6 +149,7 @@ ai.google.dev
 +.generativeai.google
 +.jules.google
 +.labs.google
++.notebook.google
 +.notebooklm.google
 +.opal.google
 +.manus.im
