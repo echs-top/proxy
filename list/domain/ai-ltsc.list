@@ -19,8 +19,10 @@
 +.mistral.ai
 +.moonshot.ai
 +.mozilla.ai
++.muse.ai
 +.openart.ai
 +.openclaw.ai
++.opencode.ai
 +.openrouter.ai
 +.perplexity.ai
 +.plannotator.ai
@@ -85,8 +87,10 @@ copilot-telemetry.githubusercontent.com
 copilot-telemetry-service.githubusercontent.com
 +.aistudio.google.com
 +.bard.google.com
+geminiweb-pa.clients.google.com
 alkalicore-pa.clients6.google.com
 alkalimakersuite-pa.clients6.google.com
+geminiweb-pa.clients6.google.com
 webchannel-alkalimakersuite-pa.clients6.google.com
 +.flow.google.com
 +.gemini.google.com
@@ -108,6 +112,7 @@ daily-cloudcode-pa.googleapis.com
 +.generativelanguage.googleapis.com
 notebooklm.googleapis.com
 notebooklm-pa.googleapis.com
++.labstailwind.pa.googleapis.com
 +.proactivebackend-pa.googleapis.com
 +.robinfrontend-pa.googleapis.com
 +.grok.com
@@ -119,6 +124,7 @@ notebooklm-pa.googleapis.com
 +.langchain.com
 +.manuscdn.com
 +.marscode.com
++.metaaivm.com
 +.copilot.microsoft.com
 +.midjourney.com
 +.oaistatic.com
