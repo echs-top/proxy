@@ -113,7 +113,8 @@ rlog.popin.cc
 +.adserver.bdoce.cl
 +.a11.click
 +.adme2.click
-+.canjearppuntos.click
++.canjepuntostotal.click
++.canjepuntosvip.click
 +.consultarenvio.click
 +.doqpm.click
 +.ldhy.click
@@ -134,7 +135,6 @@ rlog.popin.cc
 +.ad.12306.cn
 +.bdad.123pan.cn
 +.ent1.12584.cn
-+.126.cn
 +.16aq.cn
 +.vstlog.17u.cn
 +.1rtb.cn
@@ -380,10 +380,6 @@ adx.appsdk.com.cn
 +.metrics.citibank.com.cn
 +.clarins.com.cn
 +.bd1.click.com.cn
-+.cn-feed-whatsapp.com.cn
-+.cn-gui-whatsapp.com.cn
-+.cn-peer-whatsapp.com.cn
-+.cn-ping-whatsapp.com.cn
 +.hmjs.cnmo-img.com.cn
 +.phpstat.cntcm.com.cn
 +.trk.compair.com.cn
@@ -512,6 +508,7 @@ adx.appsdk.com.cn
 +.sensors.umetrip.com.cn
 +.adserver.webproxy.idc-lorien21swww.bltheluxurystorontor.mgmt.toronto.ups.com.cn
 +.1.v-x.com.cn
++.uu.v2raynapps.com.cn
 +.collect.vans.com.cn
 +.smetrics.visitsingapore.com.cn
 +.adlog.vivo.com.cn
@@ -640,6 +637,7 @@ abyss.cyapi.cn
 +.events-dre-op-dbankcloud-com-dre.appacc.dbankedge.cn
 +.events-dre-op-hicloud-com-dre.appacc.dbankedge.cn
 +.grs-dbankcloud-com-dra.appacc.dbankedge.cn
++.hisearch-dra-dt-dbankcloud-com-dra.appacc.dbankedge.cn
 +.grs-dbankcloud-com-dra.appacc-region.dbankedge.cn
 +.adx-dra-op-dbankcloud-com-dra.edge.dbankedge.cn
 +.events-dra-op-dbankcloud-com-dra.edge.dbankedge.cn
@@ -1267,6 +1265,7 @@ telecome.cn
 +.uerzyr.cn
 +.bdjs.uimg.cn
 +.cdp.cloud.unity.cn
++.metrics2.unity.cn
 +.cdn.iads.unitychina.cn
 +.unityads.unitychina.cn
 +.unypud.cn
@@ -1474,7 +1473,6 @@ adstudio-assets.scdn.co
 +.0dy3evz6x.com
 +.0otmh22aj2.com
 +.0wk6gdkg8r.com
-+.0x2beace.com
 +.0xr7ii3df.com
 +.1717.1000uc.com
 m1.ad.10010.com
@@ -2920,6 +2918,7 @@ cloooud.com
 sdkapi.cloooud.com
 ssp.cloooud.com
 +.bkt.clouddn.com
++.7xi9g1.com1.z0.glb.clouddn.com
 +.cloudflareinsights.com
 +.cloudguppy.com
 +.clrstm.com
@@ -3307,6 +3306,7 @@ toblog.ctobsnssdk.com
 +.vupload.duowan.com
 +.dustyhammer.com
 log-verify.dutils.com
++.adsmis.duxiaoman.com
 +.track.dws.com
 +.untitled.dwstatic.com
 +.dxpmedia.com
@@ -4011,6 +4011,7 @@ m-adnet.hiaiabc.com
 +.analytics.shop.hisense.com
 +.api-4know-em.hismarttv.com
 +.api-gps.hismarttv.com
++.api-gps-em.hismarttv.com
 +.api-gps-eu.hismarttv.com
 +.api-launcher-eu.hismarttv.com
 +.api-launcher-na.hismarttv.com
@@ -4818,6 +4819,8 @@ log-report.com
 +.mbaobao.com
 +.ads.mcafee.com
 +.mcdlks.com
++.matomo.mdjpxw.com
++.umami.mdjpxw.com
 +.bidder.mdspinc.com
 +.meadowlullaby.com
 +.measlymiddle.com
@@ -5047,7 +5050,6 @@ staging-notify.sec.miui.com
 +.da.mmarket.com
 +.nr.mmcdn.com
 +.nr.static.mmcdn.com
-+.mmda-mayhulika-ph.com
 +.mmdamayhulikaph.com
 +.mmismm.com
 +.mmkkiivv.com
@@ -5906,7 +5908,7 @@ iadctest.qwapi.com
 +.v5-bd-daily-reading-ad.qznovelvod.com
 +.v5-ex-reading-ad.qznovelvod.com
 +.v5-reading-ad.qznovelvod.com
-+.v5-se-bjtc-reading-ad.qznovelvod.com
++.v5-se-ex-mc-reading-ad.qznovelvod.com
 +.v5-se-gddgtc-reading-ad.qznovelvod.com
 +.v5-se-sjy-daily-reading-ad.qznovelvod.com
 +.v6-daily-reading-ad.qznovelvod.com
@@ -6251,7 +6253,9 @@ umini.shujupie.com
 +.mon.snssdk.com
 +.open.snssdk.com
 +.pangolin.snssdk.com
++.sdfp.snssdk.com
 +.stream.snssdk.com
++.tbm.snssdk.com
 +.tnc3-aliec2.snssdk.com
 +.tnc3-alisc1.snssdk.com
 +.tnc3-bjlgy.snssdk.com
@@ -6284,6 +6288,7 @@ shouji.sogou.com
 +.reke.at.sohu.com
 agn.aty.sohu.com
 +.vstat.v.blog.sohu.com
++.changyan.sohu.com
 +.fpb.sohu.com
 +.i.go.sohu.com
 +.imp.go.sohu.com
@@ -7053,6 +7058,7 @@ o-sdk.mediation.unity3d.com
 +.cname-in-apport-stsdk.vivoglobal.com
 +.cname-in-bom01-nginxpool03.vivoglobal.com
 +.cname-sin01-stsdk09.vivoglobal.com
++.co-cota.vivoglobal.com
 +.co-domaincfg.vivoglobal.com
 +.co-onrt-stsdk.vivoglobal.com
 +.co-ort-stsdk.vivoglobal.com
@@ -7474,6 +7480,7 @@ data.mistat.rus.xiaomi.com
 +.adbehavior.ximalaya.com
 +.adse.ximalaya.com
 adsebs.ximalaya.com
++.adwbs.ximalaya.com
 +.ad.c.ximalaya.com
 +.ad.c4.ximalaya.com
 +.linkeye.ximalaya.com
@@ -7546,6 +7553,7 @@ xlviirdr.com
 +.y6a7ap3io3.com
 +.advertpro.ya.com
 +.pixel.yabidos.com
++.adserver.yaboo.com
 +.ads.yahoo.com
 adspecs.yahoo.com
 +.advertising.yahoo.com
@@ -7692,6 +7700,7 @@ m.atm.youku.com
 +.yunxish.com
 +.yur09130og.com
 +.yur09140og.com
++.qiniuyunxz.yxflzs.com
 +.ad.a.yximgs.com
 +.ali-ad.a.yximgs.com
 +.ali2.a.yximgs.com
@@ -7755,6 +7764,7 @@ m.ad.zhangyue.com
 +.slotabrosdev.zharev.com
 +.slotabrosuat.zharev.com
 +.cdnlog.zhenai.com
++.zhigao5191.com
 +.adstatic.zhihu.com
 +.crash2.zhihu.com
 +.event.zhihu.com
@@ -7876,6 +7886,7 @@ m.ad.zhangyue.com
 +.upc.zztfly.com
 +.myads.company
 +.2kij3uhj3.cyou
++.8ieu7ue.cyou
 +.matomo.activate.cz
 +.advisormedia.cz
 +.adserver.anawe.cz
@@ -8056,6 +8067,7 @@ m.ad.zhangyue.com
 +.officialgmailveirifcationtunnel-dpfk8fse6v5v.edgeone.dev
 +.ofornaogu-dpzv6dife1hh.edgeone.dev
 +.profitable-pink-0y9btnew-dpk6vqe6eheo.edgeone.dev
++.sriramnwar-dpoae04723lz.edgeone.dev
 +.webmaprocessinh-dpbehei5spwx.edgeone.dev
 +.wwwww-dpe7gpnooou7.edgeone.dev
 +.ourdreamstaticpages.pages.dev
@@ -8361,7 +8373,6 @@ cdn.liftoff-creatives.io
 +.ads.zorvec.name
 +.img.0279.net
 h5.analytics.126.net
-+.cstaticdun.126.net
 +.img1.126.net
 +.img3.126.net
 +.statistic.live.126.net
@@ -8725,6 +8736,7 @@ heads-ak.spotify.com.edgesuite.net
 +.hub5emu.sandai.net
 +.hub5pnc.sandai.net
 +.hub5u.sandai.net
++.hubstat.sandai.net
 +.mcfg.sandai.net
 +.hub5pn.wap.sandai.net
 +.etl.xlmc.sandai.net
@@ -9056,12 +9068,14 @@ metrika.yandex.ru
 +.favimeble.shop
 +.favipl.shop
 +.fighter-shop.shop
-+.furniture-store.shop
 +.gardenmarket.shop
++.gorituals.shop
++.halloweencostumes-ie.shop
 +.homespl.shop
 +.homeyoupl.shop
 +.homlaes.shop
 +.homlaspl.shop
++.housedeal-eu.shop
 +.imagiraffe.shop
 +.lindabella.shop
 +.meobsogu.shop
@@ -9073,6 +9087,7 @@ metrika.yandex.ru
 +.plrituals.shop
 +.qntezlhu.shop
 +.ritualspl.shop
++.sorituals.shop
 +.spitishops.shop
 +.tr-suwen.shop
 +.tylerfoster.shop
@@ -9082,7 +9097,6 @@ metrika.yandex.ru
 +.zakladyboleslawieconsale-pl.shop
 +.zakladyboleslawieczone-pl.shop
 +.zakladykspl.shop
-+.zakladyspl.shop
 +.ads.citymagazine.si
 +.stats.faluninfo.si
 +.ad.xmovies8.si
