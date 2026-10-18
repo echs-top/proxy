@@ -32,6 +32,7 @@
 +.tapnow.ai
 +.trae.ai
 +.tripo3d.ai
++.typesafe.ai
 +.x.ai
 +.youmind.ai
 +.windsurf.build
@@ -72,6 +73,7 @@ pplx-res.cloudinary.com
 +.cursor.com
 +.cursor-cdn.com
 +.cursorapi.com
++.cursorvm.com
 +.deepmind.com
 +.deepwiki.com
 +.diabrowser.com
@@ -190,6 +192,7 @@ openaicomproductionae4b.blob.core.windows.net
 +.comfyregistry.org
 +.deepwiki.org
 +.featuregates.org
++.openai.org
 +.cursor.sh
 +.chatgpt.site
 +.youmind.site
