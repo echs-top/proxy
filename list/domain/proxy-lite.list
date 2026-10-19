@@ -111,6 +111,7 @@
 +.agedm.app
 +.attestation.app
 +.authpass.app
++.beget.app
 +.blurams.app
 +.bsky.app
 +.carrotquest.app
@@ -721,6 +722,8 @@ rsshub.woodland.cafe
 +.anaconda.cloud
 +.appdomain.cloud
 +.appleone.cloud
++.beget.cloud
++.begetcdn.cloud
 +.binance.cloud
 +.bybit.cloud
 +.ero-labs.cloud
@@ -2005,7 +2008,6 @@ github-api.arkoselabs.com
 +.askubuntu.com
 +.asmhentai.com
 +.asmrbuluo.com
-+.asobostudio.com
 +.aspenpublishing.com
 +.aspnetcdn.com
 +.asproex.com
@@ -5357,7 +5359,6 @@ rsshub.email-once.com
 +.flexclip.com
 +.flexsig.com
 +.flickr.com
-+.flightsimulator.com
 +.flipboard.com
 +.flipfap.com
 +.flipkart.com
@@ -13545,6 +13546,7 @@ rss.datuan.dev
 +.mastodon.host
 +.nike.host
 +.sexvideos.host
++.beget.hosting
 +.vps.hosting
 +.hot
 +.hotmail
@@ -13995,6 +13997,7 @@ deribit.cdn.prismic.io
 +.solscan.io
 +.soup.io
 +.spatial.io
++.sprut.io
 +.cdn.statically.io
 +.statuspage.io
 +.stealthex.io
@@ -15831,6 +15834,7 @@ ood.opsource.net
 +.pussyboy.net
 +.pussyspace.net
 +.putinho.net
++.pv-cdn.net
 +.pvp.net
 +.pximg.net
 +.pypl.net
@@ -17804,6 +17808,7 @@ rsshub.ktachibana.party
 +.anyxxx.pro
 +.babes34.pro
 +.barss1207.pro
++.beget.pro
 +.binancezh.pro
 +.bsxm1213.pro
 +.cutout.pro
@@ -18166,6 +18171,7 @@ bybit.ada.support
 +.2gis.tech
 +.appleone.tech
 +.atomyze.tech
++.beget.tech
 +.bystys.tech
 +.deepfreeze.tech
 +.dropbox.tech
