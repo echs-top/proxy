@@ -35,6 +35,7 @@
 +.typesafe.ai
 +.x.ai
 +.youmind.ai
++.claude.app
 +.windsurf.build
 +.chatgpt.livekit.cloud
 +.host.livekit.cloud
@@ -52,13 +53,16 @@ ppl-ai-file-upload.s3.amazonaws.com
 sydney.bing.com
 browser-intake-datadoghq.com
 +.chat.com
++.chatbotclaude.com
 +.chatgpt.com
 +.cici.com
 +.ciciai.com
 +.ciciaicdn.com
 +.claude.com
++.claudeacademy.com
 +.claudemcpclient.com
 +.claudemcpcontent.com
++.claudestudio.com
 +.claudeusercontent.com
 +.gateway.ai.cloudflare.com
 pplx-res.cloudinary.com
@@ -147,7 +151,10 @@ openai.qualtrics.com
 +.grok.x.com
 +.youmind.com
 +.clau.de
++.ant.dev
++.antspace.dev
 +.claude.dev
++.claudepages.dev
 ai.google.dev
 +.kiro.dev
 +.openspec.dev
@@ -170,6 +177,7 @@ ai.google.dev
 +.minimax.io
 +.notegpt.io
 o33249.ingest.sentry.io
+o33249.ingest.us.sentry.io
 +.coderabbit.gallery.vsassets.io
 +.copilot.cloud.microsoft
 +.openaiapi-site.azureedge.net
@@ -188,6 +196,7 @@ openaicom.imgix.net
 copilotprodattachments.blob.core.windows.net
 openaiassets.blob.core.windows.net
 openaicomproductionae4b.blob.core.windows.net
++.claude.new
 +.comfy.org
 +.comfyci.org
 +.comfyregistry.org
@@ -196,8 +205,10 @@ openaicomproductionae4b.blob.core.windows.net
 +.openai.org
 +.cursor.sh
 +.chatgpt.site
++.claude.site
 +.youmind.site
 +.hf.space
 +.ai.studio
++.anthropic.team
 +.oystermercury.top
 api.together.xyz
