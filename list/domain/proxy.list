@@ -167,6 +167,7 @@
 +.cash.app
 +.ceno.app
 +.clashmi.app
++.claude.app
 +.cloudflare.app
 +.cloudproxy.app
 +.comments.app
@@ -175,6 +176,7 @@
 +.dashlytrack.app
 +.flclashx.app
 +.floorp.app
++.fluxer.app
 +.get.app
 +.glarity.app
 +.grapheneos.app
@@ -3715,6 +3717,7 @@ licdn.cn.cdn20.com
 +.charticulator.com
 +.chat.com
 +.chatango.com
++.chatbotclaude.com
 +.chatgpt.com
 +.chatpdf.com
 +.chatter.com
@@ -3902,8 +3905,10 @@ licdn.cn.cdn20.com
 +.classicnike.com
 +.classymomsex.com
 +.claude.com
++.claudeacademy.com
 +.claudemcpclient.com
 +.claudemcpcontent.com
++.claudestudio.com
 +.claudeusercontent.com
 +.clearsurance.com
 +.click-sec.com
@@ -5762,6 +5767,11 @@ cisco.evergage.com
 +.fluidfxapp.com
 +.fluidpreview.com
 +.flutterapp.com
++.fluxer.com
++.fluxerapp.com
++.fluxerstatic.com
++.fluxerstatus.com
++.fluxerusercontent.com
 +.flyflv.com
 +.flyingjizz.com
 +.flyvpn.com
@@ -14238,12 +14248,15 @@ rss.wudifeixue.com
 +.ai-sdk.dev
 +.amazon.dev
 +.amp.dev
++.ant.dev
++.antspace.dev
 +.autodesk.dev
 +.aws.dev
 +.bdn.dev
 +.chromeos.dev
 +.clashverge.dev
 +.claude.dev
++.claudepages.dev
 +.cloudflare.dev
 +.da3dsoul.dev
 +.dart.dev
@@ -14256,6 +14269,7 @@ rss.datuan.dev
 +.firebase.dev
 +.flow.dev
 +.flutter.dev
++.fluxer.dev
 +.fly.dev
 +.fuchsia.dev
 +.fury.dev
@@ -14520,6 +14534,7 @@ rss.datuan.dev
 +.gh
 +.gi
 +.discord.gift
++.fluxer.gift
 +.discord.gifts
 +.gl
 +.gle
@@ -15826,6 +15841,7 @@ hub.slarker.me
 +.zzcloud.me
 +.anal.media
 +.discord.media
++.fluxer.media
 +.gmo.media
 +.gsearch.media
 +.guo.media
@@ -19622,6 +19638,7 @@ rsshub.ktachibana.party
 +.bkkdown.site
 +.chatgpt.site
 +.cian.site
++.claude.site
 +.dert.site
 +.dodi-repacks.site
 +.empornium.site
@@ -19753,6 +19770,7 @@ bybit.ada.support
 +.tci
 +.td
 +.tdk
++.anthropic.team
 +.armgs.team
 +.jetbrains.team
 +.ktech.team
@@ -19830,6 +19848,7 @@ rsshub.rss.tips
 +.airbnb.tools
 +.discord.tools
 +.fastlane.tools
++.fluxer.tools
 +.ssr.tools
 +.123sex.top
 +.13mei13.top
