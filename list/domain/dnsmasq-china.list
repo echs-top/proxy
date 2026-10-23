@@ -11,6 +11,7 @@
 +.1nfinite.ai
 +.502.ai
 +.accio.ai
++.advance.ai
 +.aimatrix.ai
 +.atlab.ai
 +.autowise.ai
@@ -204,13 +205,10 @@
 +.img.beauty
 +.0006fc9541020.beer
 +.000b0fb9410281.beer
-+.001d628661009.beer
 +.014cbd7e810301.beer
-+.01a7d69861013.beer
 +.01d55251a10241.beer
 +.01f438bf710301.beer
 +.01ffa63e710261.beer
-+.021a5f9841009.beer
 +.02b5c31e511032.beer
 +.032ab0b0a10292.beer
 +.03369709d10301.beer
@@ -218,7 +216,6 @@
 +.038d0addd10241.beer
 +.03d882c8810271.beer
 +.03f99b91610271.beer
-+.0429f95301011.beer
 +.04adca98c1022.beer
 +.05880a57e1022.beer
 +.058a2a0741016.beer
@@ -234,13 +231,10 @@
 +.0743fd8231024.beer
 +.07ba0de711020.beer
 +.07fe8668211012.beer
-+.0800c988e1010.beer
 +.08424b74011032.beer
 +.08c8b537f1021.beer
 +.08c9f63d31021.beer
-+.0945a5ee91011.beer
 +.0959930d71015.beer
-+.0990fc0011011.beer
 +.09c5062ea1020.beer
 +.0b6e0659811021.beer
 +.0bb875c361022.beer
@@ -252,20 +246,14 @@
 +.0d49f571e1017.beer
 +.0e38e883511032.beer
 +.0e76427381016.beer
-+.0efef58c41014.beer
-+.0fe5d43561011.beer
-+.0fe7e0a941011.beer
 +.108addf0811012.beer
 +.10c5a16c51015.beer
 +.10ec4a74b10281.beer
-+.11714ae0b1014.beer
 +.11cda806e11012.beer
 +.122c3e52810272.beer
 +.12590d0ff10272.beer
 +.128d3a16610271.beer
-+.12e6824e11013.beer
 +.13c283b0710281.beer
-+.14565cabd1011.beer
 +.14776ac8e1022.beer
 +.1606c348011042.beer
 +.160c7443c1019.beer
@@ -275,19 +263,13 @@
 +.17293879b10261.beer
 +.1811d2af81022.beer
 +.181709bd610271.beer
-+.181b5f7e71011.beer
 +.18713d3521023.beer
 +.18aa28dfd1020.beer
-+.18d9535531011.beer
 +.18db5cd8710292.beer
 +.18fd54f1b1114.beer
-+.19ed5ce761013.beer
-+.1a4a282fe1010.beer
 +.1aab715d01015.beer
 +.1ac6404321019.beer
-+.1afaecefe1014.beer
 +.1b0dbdb5310311.beer
-+.1baf107ed1014.beer
 +.1c767ba9310272.beer
 +.1de6de84b1017.beer
 +.1e44f70c510272.beer
@@ -296,14 +278,11 @@
 +.1f371be461017.beer
 +.1f6cd3ca611032.beer
 +.211d2977a10301.beer
-+.2128673cd1013.beer
 +.22cc0971910251.beer
-+.231e3dffa1010.beer
 +.234f0188110291.beer
 +.2354b5daa10311.beer
 +.238e22bf310251.beer
 +.2392fe36a1019.beer
-+.23e4cb2581013.beer
 +.246b35da610272.beer
 +.2551aa29811031.beer
 +.2559e5f081017.beer
@@ -317,13 +296,9 @@
 +.26f4a1f8f10271.beer
 +.2789a91661019.beer
 +.28d4cc3671024.beer
-+.28d7baa3e1013.beer
 +.28e4cd79f1023.beer
-+.29227e5771014.beer
 +.29c17146910271.beer
-+.29ca702351014.beer
 +.2a965464310251.beer
-+.2b079fbcd1009.beer
 +.2b7a44c2110251.beer
 +.2d6cd83bf10261.beer
 +.2e30175771022.beer
@@ -338,14 +313,11 @@
 +.3062d65271020.beer
 +.31998a86110251.beer
 +.31b081b851019.beer
-+.321a6d50a1009.beer
 +.32495fe5f11042.beer
 +.3259b95be11032.beer
 +.327aa34f510311.beer
 +.330d5ba0e1024.beer
-+.336cfe9101009.beer
 +.3419e2cbf10261.beer
-+.348b60ac51011.beer
 +.34a14155f1016.beer
 +.34f04e8d410291.beer
 +.354d7967c11032.beer
@@ -361,11 +333,9 @@
 +.394afb34a1020.beer
 +.39b86269e11031.beer
 +.39bfe802d10292.beer
-+.39f6e28d71009.beer
 +.3a2dc2bd21023.beer
 +.3afbda6f11015.beer
 +.3b2479faf10301.beer
-+.3bfc4d6861010.beer
 +.3c1bddb4110301.beer
 +.3c324f3ae10241.beer
 +.3c4c142e21021.beer
@@ -374,7 +344,6 @@
 +.3cf6c871511032.beer
 +.3d2848f7811042.beer
 +.3ded4c0f310311.beer
-+.3e089a2bd1011.beer
 +.3e1f90ccd1016.beer
 +.3e306b2a010272.beer
 +.3e5da509e10271.beer
@@ -390,7 +359,6 @@
 +.413cd5ac210291.beer
 +.41739b0aa10301.beer
 +.420d586841024.beer
-+.421db96b91011.beer
 +.42224b3c51016.beer
 +.42ed983e61019.beer
 +.432b4376611021.beer
@@ -399,8 +367,6 @@
 +.4395e6c8b10291.beer
 +.4506ecebe10292.beer
 +.451f46bd110281.beer
-+.4587c00611011.beer
-+.46d7940171014.beer
 +.4714da8871019.beer
 +.472ac621b11032.beer
 +.478bc6c1c10301.beer
@@ -408,30 +374,24 @@
 +.479d8573510301.beer
 +.48251413f10281.beer
 +.49e7fb6261023.beer
-+.49eb891471010.beer
 +.4a38863a11017.beer
 +.4a4779c371024.beer
 +.4b145a7b110292.beer
 +.4b784b66f10311.beer
 +.4b9953f631024.beer
 +.4ba69ed8e10292.beer
-+.4bf85b0f61014.beer
-+.4c37ebc131010.beer
-+.4c55033b91010.beer
 +.4ccd82a0d11031.beer
 +.4d2bc4d7311031.beer
 +.4d458710811011.beer
 +.4d64c7aff11031.beer
 +.4e0e47ea71022.beer
 +.4e7e414fd1015.beer
-+.4ebf1036c1010.beer
 +.4ef06207210281.beer
 +.4ef870db01022.beer
 +.4f0b987b410311.beer
 +.4fd4969ff1022.beer
 +.50257e08d1015.beer
 +.51eb0685c11021.beer
-+.523c8cb891010.beer
 +.534d73a9411032.beer
 +.5401da8c911031.beer
 +.544e5adac11012.beer
@@ -441,21 +401,16 @@
 +.55d32c2b010271.beer
 +.5606968d01021.beer
 +.564253a9b11042.beer
-+.56456c9fa1013.beer
 +.574e313cc10272.beer
 +.5805c102b11021.beer
-+.59220ab771010.beer
-+.59b1a9d9d1010.beer
 +.59dead1ce10301.beer
 +.59f086f4910311.beer
 +.59ff599661017.beer
 +.5a1eacf0110241.beer
-+.5a6fed2321010.beer
 +.5a828d12510272.beer
 +.5a8a3d1d111021.beer
 +.5afc70ef010251.beer
 +.5b1c73dc010311.beer
-+.5b39c2f791014.beer
 +.5b529d4e711021.beer
 +.5ba6319c311011.beer
 +.5c407acb510301.beer
@@ -472,16 +427,13 @@
 +.600df970611031.beer
 +.602ab6ff810251.beer
 +.606b558d310281.beer
-+.616a191f21009.beer
 +.62609e25011021.beer
 +.62ddccc8810301.beer
 +.63744c3e410292.beer
 +.652ebb57a11021.beer
 +.653697e101020.beer
 +.65b01705c10261.beer
-+.65bb2d6d81010.beer
 +.664e4037310291.beer
-+.66c970e7e1011.beer
 +.670e13a8f11042.beer
 +.674da9a521017.beer
 +.6758169ad1020.beer
@@ -489,7 +441,6 @@
 +.67a4488e31017.beer
 +.68596e90010311.beer
 +.6887cc57c10251.beer
-+.696b333851010.beer
 +.6b1813f5210261.beer
 +.6bac9d15d10271.beer
 +.6c7ccba3e11031.beer
@@ -498,7 +449,6 @@
 +.6e8fe57151019.beer
 +.6ef102d0210261.beer
 +.6f25df38a10291.beer
-+.6f7b51b741014.beer
 +.6fe7c9d291017.beer
 +.707e518c610291.beer
 +.714a0ffa611031.beer
@@ -508,25 +458,16 @@
 +.71b394ce11114.beer
 +.71d7f1e121019.beer
 +.71f68cc351015.beer
-+.7214fa7e11011.beer
 +.723e7a5a510261.beer
 +.7245f7d6211012.beer
-+.7265a5ef31011.beer
-+.727d5e6cb1011.beer
 +.730d60bec10281.beer
 +.7315297af11011.beer
 +.73573dd6a1023.beer
-+.7366cba131014.beer
 +.73d1708e01022.beer
 +.73ea00c7710272.beer
 +.741b0fca410271.beer
-+.74ad7537d1014.beer
 +.74da6ad581020.beer
 +.7543c79b410291.beer
-+.7597af9ac1010.beer
-+.75b58faf61014.beer
-+.766899d4f1011.beer
-+.77ee6f16b1011.beer
 +.790a8f76c10301.beer
 +.7928a82f311032.beer
 +.7951ee2a510281.beer
@@ -538,7 +479,6 @@
 +.7b761738c10261.beer
 +.7c5ba8e2b10281.beer
 +.7c637ea6d10271.beer
-+.7c644b8a21013.beer
 +.7d4b19ab710241.beer
 +.7d604703e1023.beer
 +.7d8fc91771017.beer
@@ -583,14 +523,11 @@
 +.8ddbf947e1020.beer
 +.8e5da0c5911031.beer
 +.8ee1834c110272.beer
-+.8eeea09bc1009.beer
 +.8f72500e910271.beer
 +.900d8ac6110261.beer
 +.904e0d2ba10241.beer
 +.90b5d42ca1016.beer
-+.91103d3a31014.beer
 +.9149df3441020.beer
-+.92cf4088b1014.beer
 +.93e8209f610272.beer
 +.93fbf3a7f10281.beer
 +.9437803d210271.beer
@@ -601,36 +538,28 @@
 +.96ac893dd11011.beer
 +.96cc09c581022.beer
 +.96ce3cebe11042.beer
-+.96daa24471013.beer
 +.97ce6cbd010292.beer
 +.97d9f793c1022.beer
 +.9862ad1f310292.beer
-+.988848a9d1013.beer
-+.98b8cd6b21011.beer
 +.98d4c586f11012.beer
-+.991fd1ce91009.beer
 +.99357b59811012.beer
 +.999d743c51022.beer
 +.9a04d8da811031.beer
 +.9b09eea7810251.beer
-+.9b37f3cc81011.beer
 +.9bb4cf93e10261.beer
 +.9c941a3b41021.beer
 +.9ca4b8eca1019.beer
 +.9ce69ea6b10272.beer
 +.9cfa10ad910291.beer
-+.9d47e2c251009.beer
 +.9de3c7ffb10291.beer
 +.9dfb917ee1019.beer
 +.9eacc080d10291.beer
-+.9efca2b9a1009.beer
 +.9f7ef6acd10291.beer
 +.9fe3e7d4c10311.beer
 +.a049636971024.beer
 +.a142b5e7511011.beer
 +.a1a22678d1019.beer
 +.a30437f3510292.beer
-+.a33a8c8c81011.beer
 +.a44aeaeac1016.beer
 +.a45e4f5fd10272.beer
 +.a465a95641016.beer
@@ -638,7 +567,6 @@
 +.a4da96ae511032.beer
 +.a5380a8e41016.beer
 +.a6562752811032.beer
-+.a7479032d1014.beer
 +.a74be6c3e1021.beer
 +.a756716251017.beer
 +.a7a13fde51022.beer
@@ -649,13 +577,10 @@
 +.a96b32e2b1015.beer
 +.a9998f7ed11042.beer
 +.a9c7f491710251.beer
-+.aa433d1b51013.beer
-+.aa50b44761011.beer
 +.aa5c82aeb10271.beer
 +.abef6142010291.beer
 +.ac3ba49731016.beer
 +.ace06a98610272.beer
-+.ad22b2e021014.beer
 +.ad2b0298510251.beer
 +.ae0f9d6cf11021.beer
 +.ae5de9f6f1021.beer
@@ -667,23 +592,15 @@
 +.b041e427810281.beer
 +.b07cceaf011012.beer
 +.b082392de1024.beer
-+.b18e55f8a1010.beer
-+.b214bd8861009.beer
-+.b2216419b1013.beer
 +.b22fb6d6d1015.beer
 +.b230756fa1114.beer
-+.b230ed9d61010.beer
 +.b262a49751023.beer
 +.b287f400810291.beer
 +.b29f45a5b10271.beer
 +.b3198a37310281.beer
 +.b40e80b301022.beer
-+.b44fd0fd51014.beer
-+.b53358ed31009.beer
 +.b6098130711042.beer
-+.b643bce461009.beer
 +.b670bffdf1021.beer
-+.b6a531b371011.beer
 +.b6cc0921b1024.beer
 +.b71ef13941015.beer
 +.b76ad11181024.beer
@@ -701,38 +618,25 @@
 +.bcf1ef2511022.beer
 +.bd3be95d910301.beer
 +.bf07e33c810281.beer
-+.c03b92b501009.beer
 +.c098d113b11031.beer
-+.c0c0b511e1009.beer
 +.c122e63a111031.beer
 +.c27619fb01019.beer
 +.c369a0f0611031.beer
 +.c3b9cd3fb10311.beer
 +.c402f6df11021.beer
-+.c43c3cb111011.beer
 +.c469f14b911012.beer
 +.c516b5c2510272.beer
 +.c53c4e56510281.beer
-+.c578801be1009.beer
 +.c57e6607c10292.beer
-+.c5a13eec21010.beer
 +.c5b27c7c01019.beer
 +.c6bad2ad01020.beer
 +.c7bc68c2811032.beer
 +.c835249c31017.beer
-+.c837c4e951009.beer
-+.c8a8b0af81014.beer
-+.c8f8537d91013.beer
-+.c953b5d8b1013.beer
 +.c9e8e19a411012.beer
 +.ca0d7b2da10271.beer
-+.ca5d4ce601013.beer
 +.caa830d2710251.beer
 +.cab346ef31016.beer
 +.cb6037f1b10261.beer
-+.cb8a5dff61011.beer
-+.cb8e405b81014.beer
-+.cbc32120f1014.beer
 +.ccbb6be551024.beer
 +.ccddb877c1024.beer
 +.cce0bd02011032.beer
@@ -742,9 +646,7 @@
 +.cdea4d2cb10261.beer
 +.cded23c0b11011.beer
 +.cea45b9f61023.beer
-+.cf6ea43741014.beer
 +.cf8587a521017.beer
-+.cfb30e2181013.beer
 +.d05512bf210292.beer
 +.d0bf4234011011.beer
 +.d11180a781015.beer
@@ -758,16 +660,11 @@
 +.d3bc311b910311.beer
 +.d406dc73a1016.beer
 +.d48c3443110281.beer
-+.d4cd5439c1009.beer
 +.d6861213910261.beer
-+.d6ffdb55d1009.beer
 +.d7585a05210281.beer
 +.d8fb1ffab10251.beer
-+.da563c3c21010.beer
 +.daeac4faf10292.beer
-+.daf30622c1010.beer
 +.db23bc6de1024.beer
-+.dc5febe781010.beer
 +.dd0d7e15310311.beer
 +.dd536adb110272.beer
 +.de2edec3011032.beer
@@ -778,7 +675,6 @@
 +.dfeeb7ee91022.beer
 +.e13000d6f1019.beer
 +.e151475d71020.beer
-+.e27e02c891010.beer
 +.e3492587711012.beer
 +.e363172a110241.beer
 +.e36b9a1c210301.beer
@@ -798,9 +694,7 @@
 +.eb10c842d10291.beer
 +.ebbcb476210291.beer
 +.ebbf2f9101016.beer
-+.ec4ca59341009.beer
 +.ecac1cd921021.beer
-+.ed403ab821011.beer
 +.ed77fc33a10241.beer
 +.eda7fb17710272.beer
 +.ef369594911012.beer
@@ -814,8 +708,6 @@
 +.f1d28bdd11019.beer
 +.f2c8017f110281.beer
 +.f33eb245b1022.beer
-+.f385e7fcd1013.beer
-+.f3bed1ef51013.beer
 +.f3ff28a3e1015.beer
 +.f40ca6aa911042.beer
 +.f419a55f61023.beer
@@ -827,7 +719,6 @@
 +.f66a747451016.beer
 +.f69a662cb11031.beer
 +.f6c62f7ab11031.beer
-+.f6d4a4f461010.beer
 +.f704204fa11021.beer
 +.f71f38e6a1015.beer
 +.f79f9e5b71019.beer
@@ -835,11 +726,8 @@
 +.f7e84829210281.beer
 +.f800909401015.beer
 +.f831fb9ce11031.beer
-+.f9f4a38021013.beer
 +.fa2da1f5b1024.beer
-+.faadcf6d01009.beer
 +.fb4bc82f71019.beer
-+.fb71ef91e1014.beer
 +.fbf6c93bf10272.beer
 +.fc92322b910311.beer
 +.fcc8aa32d10251.beer
@@ -849,9 +737,7 @@
 +.fdf46bd061024.beer
 +.fe15a959f1020.beer
 +.fe232d4b510271.beer
-+.ff722fbac1011.beer
 +.ffbc6bb121021.beer
-+.ffbc82f8d1013.beer
 +.ffc540c0611031.beer
 +.ffca028de10292.beer
 +.ffe06ebc91024.beer
@@ -1741,7 +1627,6 @@
 +.hycdn.cc
 +.hyhy.cc
 +.hykj.cc
-+.hyshe.cc
 +.hyun.cc
 +.hzfc.cc
 +.i1r.cc
@@ -1930,7 +1815,6 @@
 +.ljk.cc
 +.lkme.cc
 +.loac.cc
-+.lolimoe.cc
 +.longyu.cc
 +.longzhou.cc
 +.lookr.cc
@@ -2083,7 +1967,6 @@
 +.omycar.cc
 +.oncity.cc
 +.onekey.cc
-+.oov.cc
 +.open-verify.cc
 +.openlink.cc
 +.openmv.cc
@@ -2698,6 +2581,7 @@
 +.zz.ci
 +.c.citic
 +.cfhc.citic
++.citicbank.citic
 +.design.citic
 +.gack.citic
 +.group.citic
@@ -3016,6 +2900,7 @@
 +.amiao.co
 +.anlian.co
 +.appcpa.co
++.auditoryworks.co
 +.authing.co
 +.authing-inc.co
 +.bibigpt.co
@@ -3234,6 +3119,7 @@
 +.00ef6bce51ccd47d.com
 +.00hh.com
 +.00ic.com
++.00kxs.com
 +.00shu.com
 +.00tera.com
 +.00tu.com
@@ -3833,7 +3719,6 @@
 +.0cname.com
 +.0d263788316151cb.com
 +.0daily.com
-+.0dm.com
 +.0duw.com
 +.0e0c2e9e94622290.com
 +.0easy.com
@@ -4882,7 +4767,6 @@
 +.18qingqu.com
 +.18snf.com
 +.18touch.com
-+.18wk.com
 +.18zhongyao.com
 +.18zhuanqian.com
 +.18zp.com
@@ -5008,7 +4892,6 @@
 +.1iptv.com
 +.1j1x.com
 +.1jbest.com
-+.1jiesong.com
 +.1ju.com
 +.1juhao.com
 +.1juzi.com
@@ -5063,7 +4946,6 @@
 +.1sapp.com
 +.1shangbiao.com
 +.1shoucang.com
-+.1skp.com
 +.1sohu.com
 +.1speaking.com
 +.1st56.com
@@ -6501,7 +6383,6 @@
 +.4006510600.com
 +.4006631958.com
 +.4006695539.com
-+.4006758160.com
 +.4006787252.com
 +.4006800660.com
 +.4006906600.com
@@ -6520,7 +6401,6 @@
 +.4008123123.com
 +.4008258399.com
 +.4008338788.com
-+.4008600011.com
 +.4008618618.com
 +.4008787706.com
 +.4008800016.com
@@ -7167,7 +7047,6 @@
 +.51lingji.com
 +.51link.com
 +.51liucheng.com
-+.51livetv.com
 +.51losangeles.com
 +.51lxrc.com
 +.51lzr.com
@@ -7463,7 +7342,6 @@
 +.52393.com
 +.523touzi.com
 +.524399game.com
-+.525069.com
 +.5251yx.com
 +.52524118.com
 +.5252b.com
@@ -7805,7 +7683,6 @@
 +.55zs.com
 +.56.com
 +.56015.com
-+.56099443.com
 +.560e.com
 +.560wf.com
 +.5611.com
@@ -7869,7 +7746,6 @@
 +.57573zubo36833.com
 +.576.com
 +.57608.com
-+.5760x.com
 +.57648.com
 +.57665.com
 +.57676.com
@@ -8159,7 +8035,6 @@
 +.5m5m5m.com
 +.5mapk.com
 +.5nd.com
-+.5nnj.com
 +.5o.com
 +.5ooq.com
 +.5pao.com
@@ -9141,7 +9016,6 @@
 +.80shihua.com
 +.80srz.com
 +.80test.com
-+.80txt.com
 +.80vps.com
 +.80xg.com
 +.810840.com
@@ -9706,7 +9580,6 @@
 +.91muzhi.com
 +.91ninthpalace.com
 +.91nzh.com
-+.91pandian.com
 +.91petct.com
 +.91post.com
 +.91pusi.com
@@ -10276,7 +10149,6 @@
 +.9ihb.com
 +.9ihome.com
 +.9ijf.com
-+.9ilu.com
 +.9imobi.com
 +.9inx.com
 +.9ioldgame.com
@@ -10508,12 +10380,10 @@
 +.abtnetworks.com
 +.abtt266.com
 +.abublue.com
-+.abundancen.com
 +.abupdate.com
 +.abuquant.com
 +.abusky.com
 +.abuyun.com
-+.abykt.com
 +.abyssdawn.com
 +.ac268.com
 +.ac57.com
@@ -10569,7 +10439,6 @@
 +.acgdraw.com
 +.acggit.com
 +.acgist.com
-+.acglivefan.com
 +.acgmc.com
 +.acgorg.com
 +.acgres.com
@@ -11702,7 +11571,6 @@
 +.akplayer.com
 +.akptfe.com
 +.akr-developers.com
-+.akscan.com
 +.akspeedy.com
 +.akswjt.com
 +.aksxw.com
@@ -11717,7 +11585,6 @@
 +.aladdin-reagent.com
 +.aladdinedu.com
 +.aladdinnet.com
-+.alafy.com
 +.alameal.com
 +.alanyhq.com
 +.alavr.com
@@ -12289,7 +12156,6 @@
 +.anhengcloud.com
 +.anheyu.com
 +.anhkgg.com
-+.anhouse.com
 +.anhuaedu.com
 +.anhuaiedu.com
 +.anhuanjia.com
@@ -12641,7 +12507,6 @@
 +.aoya-hk.com
 +.aoyanchang.com
 +.aoyangzg.com
-+.aoyanwl.com
 +.aoye.com
 +.aoyige.com
 +.aoyiluoad.com
@@ -12833,7 +12698,6 @@
 +.aptenon.com
 +.apubond.com
 +.apusic.com
-+.apwuyou.com
 +.aq2y.com
 +.aqara.com
 +.aqbxcdn9.com
@@ -13717,7 +13581,6 @@
 +.baidustatic.com
 +.baidusx.com
 +.baidutab.com
-+.baidutieba.com
 +.baidutt.com
 +.baiduux.com
 +.baiduwaf.com
@@ -14308,7 +14171,6 @@
 +.bbb1415.com
 +.bbbaaa.com
 +.bbbao.com
-+.bbbmq.com
 +.bbbtgo.com
 +.bbcagroup.com
 +.bbcayy.com
@@ -14969,7 +14831,6 @@
 +.bgbluesky.com
 +.bgccn.com
 +.bgctv.com
-+.bgdeco.com
 +.bgdzsw.com
 +.bggd.com
 +.bghgw.com
@@ -15030,6 +14891,7 @@
 +.bhdxfsyy.com
 +.bhecard.com
 +.bheyy.com
++.bhgcdn.com
 +.bhghy.com
 +.bhgjjy.com
 +.bhgmarketplace.com
@@ -15424,7 +15286,6 @@
 +.biqugena.com
 +.biquges.com
 +.biqugex.com
-+.biqugexs.com
 +.biqugexsapp.com
 +.biqugexsw.com
 +.biqukai.com
@@ -15512,7 +15373,6 @@
 +.biyong007.com
 +.biyork.com
 +.biyouxue.com
-+.biyuansh.com
 +.biyuanshuiwu.com
 +.biyuzg.com
 +.biz-abroad.com
@@ -16169,7 +16029,6 @@
 +.bluesdream.com
 +.blueseaict.com
 +.bluesharkinfo.com
-+.blueskykong.com
 +.blueskystudy.com
 +.blueskyxn.com
 +.bluesoleil.com
@@ -16499,7 +16358,6 @@
 +.boshgame.com
 +.boshihoujob.com
 +.boshijob.com
-+.boshika.com
 +.boshixitong.com
 +.boshungame.com
 +.bosi12315.com
@@ -16605,6 +16463,7 @@
 +.bqgz88.com
 +.bqlcev.com
 +.bqpoint.com
++.bqpwlw.com
 +.bqq8.com
 +.bqqpx.com
 +.bqsnn.com
@@ -18441,7 +18300,6 @@
 +.cdskdxyy.com
 +.cdslsxh.com
 +.cdsme.com
-+.cdsns.com
 +.cdsnzx.com
 +.cdsuns.com
 +.cdswjs.com
@@ -18893,7 +18751,6 @@
 +.chajie.com
 +.chakahao.com
 +.chakahui.com
-+.chakonghao.com
 +.chakuaizhao.com
 +.chalaili.com
 +.chalcochem.com
@@ -19978,7 +19835,6 @@
 +.chinaklb.com
 +.chinakong.com
 +.chinakqn.com
-+.chinakshx.com
 +.chinaksi.com
 +.chinakuangshi.com
 +.chinakyzl.com
@@ -20118,7 +19974,6 @@
 +.chinarjw.com
 +.chinarta.com
 +.chinartlaw.com
-+.chinaruiji.com
 +.chinarun.com
 +.chinarunau.com
 +.chinarzfh.com
@@ -20243,7 +20098,6 @@
 +.chinavalin.com
 +.chinavas.com
 +.chinavcpe.com
-+.chinavid.com
 +.chinaviewstone.com
 +.chinavipsoft.com
 +.chinavisual.com
@@ -21939,7 +21793,6 @@
 +.cnpdccutter.com
 +.cnpenjing.com
 +.cnpereading.com
-+.cnpfjt.com
 +.cnpghouse.com
 +.cnpharm.com
 +.cnphotec.com
@@ -24232,7 +24085,6 @@
 +.czxixi.com
 +.czxixigu.com
 +.czxthmls.com
-+.czxuexi.com
 +.czxxw.com
 +.czxy.com
 +.czyabo.com
@@ -25009,7 +24861,6 @@
 +.dbmall.com
 +.dbnuo.com
 +.dbparking.com
-+.dbqgg.com
 +.dbs724.com
 +.dbscar.com
 +.dc-cn.com
@@ -25650,7 +25501,6 @@
 +.dhidcw.com
 +.dhimavision.com
 +.dhj3413.com
-+.dhjt.com
 +.dhkq120.com
 +.dhkqyy.com
 +.dhmeri.com
@@ -26800,7 +26650,6 @@
 +.doubleeagle-group.com
 +.doublestarmingren.com
 +.doublewin123.com
-+.doublleclinic.com
 +.doubo03.com
 +.doucang.com
 +.doucehua.com
@@ -27616,7 +27465,6 @@
 +.dzcjw.com
 +.dzcmedu.com
 +.dzcolor.com
-+.dzcrcgas.com
 +.dzdiy.com
 +.dzdu.com
 +.dzdvip.com
@@ -28650,7 +28498,6 @@
 +.emfuture.com
 +.emin123.com
 +.eminsheng.com
-+.emiretasnbd.com
 +.emjianshen.com
 +.emjob.com
 +.emlinix.com
@@ -29476,7 +29323,6 @@
 +.ezhu.com
 +.ezhun.com
 +.ezhupei.com
-+.ezindie.com
 +.eziot.com
 +.ezjhw.com
 +.ezlippi.com
@@ -30201,7 +30047,6 @@
 +.feiyu.com
 +.feiyuapi.com
 +.feiyue15.com
-+.feiyueconglin.com
 +.feiyuhu.com
 +.feiyunjs.com
 +.feiyuteam.com
@@ -32566,7 +32411,6 @@
 +.gdojbk.com
 +.gdokpackaging.com
 +.gdolai.com
-+.gdomall.com
 +.gdou.com
 +.gdpace.com
 +.gdpcdz.com
@@ -33274,7 +33118,6 @@
 +.ginwa.com
 +.gioccc.com
 +.giocdn.com
-+.giomeru.com
 +.gionee.com
 +.gioner.com
 +.giordano.com
@@ -33684,7 +33527,6 @@
 +.gmyihua.com
 +.gmylj.com
 +.gmzhushou.com
-+.gmzi.com
 +.gmzx.com
 +.gnber.com
 +.gncebest88.com
@@ -33714,7 +33556,6 @@
 +.gnlearn.com
 +.gnnzfw.com
 +.gnrcbank.com
-+.gnrnye.com
 +.gnssinfo.com
 +.gnt8.com
 +.gnway.com
@@ -33768,7 +33609,6 @@
 +.goforandroid.com
 +.gofreeplay.com
 +.gogbuy.com
-+.goglew5sn.com
 +.gogo123.com
 +.gogoauc.com
 +.gogocn.com
@@ -35187,7 +35027,6 @@
 +.gxcrjm.com
 +.gxcro.com
 +.gxcschem.com
-+.gxcscm.com
 +.gxcsfc.com
 +.gxcskj.com
 +.gxcsmed.com
@@ -35989,7 +35828,6 @@
 +.gxnnsdyy.com
 +.gxnnsy.com
 +.gxnntfx.com
-+.gxnnthch.com
 +.gxnntn.com
 +.gxnnws.com
 +.gxnnxny.com
@@ -36150,7 +35988,6 @@
 +.gxshangyou.com
 +.gxshanyixing.com
 +.gxshbs.com
-+.gxshck.com
 +.gxshdl.com
 +.gxshenyi.com
 +.gxshgk.com
@@ -36865,7 +36702,6 @@
 +.gzhaigu.com
 +.gzhakj.com
 +.gzhand.com
-+.gzhangcha.com
 +.gzhatao.com
 +.gzhbchy.com
 +.gzhc365.com
@@ -37168,6 +37004,7 @@
 +.gzxhcbfx.com
 +.gzxhce.com
 +.gzxianc.com
++.gzxiancheng.com
 +.gzxiaoban.com
 +.gzxict.com
 +.gzxijiu.com
@@ -37421,7 +37258,6 @@
 +.haiintelligent.com
 +.haijianstock.com
 +.haijiaonet.com
-+.haijiaoshi.com
 +.haijiasu.com
 +.haijingshe.com
 +.haijizq.com
@@ -37834,7 +37670,6 @@
 +.haobangni.com
 +.haobangscm.com
 +.haobtc.com
-+.haocaa.com
 +.haocai.com
 +.haocang.com
 +.haochangyou.com
@@ -38317,7 +38152,6 @@
 +.hbjcxy.com
 +.hbjdxt.com
 +.hbjgwl.com
-+.hbjhc.com
 +.hbjhkfcyy.com
 +.hbjinnong.com
 +.hbjinshenglan.com
@@ -38998,7 +38832,6 @@
 +.hemanzi.com
 +.hemaos.com
 +.hemaread.com
-+.hemaxiaofen.com
 +.hemayouxi.com
 +.hemayun.com
 +.hemayx.com
@@ -39762,7 +39595,6 @@
 +.hj1951.com
 +.hj217.com
 +.hjapi.com
-+.hjbbs.com
 +.hjbxw.com
 +.hjcadc.com
 +.hjchee.com
@@ -40000,6 +39832,7 @@
 +.hmgbtv.com
 +.hmgj.com
 +.hmgreat.com
++.hmhpay.com
 +.hminvestment.com
 +.hmj666.com
 +.hmlan.com
@@ -40360,7 +40193,6 @@
 +.hnyygroup.com
 +.hnyytech.com
 +.hnyyws.com
-+.hnyyxj.com
 +.hnyyyfsyy.com
 +.hnyyyz.com
 +.hnyzfwlkj.com
@@ -41198,7 +41030,6 @@
 +.html5train.com
 +.htmlai.com
 +.htmleaf.com
-+.htmlsucai.com
 +.htmycn.com
 +.htnice.com
 +.htong.com
@@ -42313,7 +42144,6 @@
 +.hwcloudsite.com
 +.hwcloudvis.com
 +.hwcpb.com
-+.hwcrazy.com
 +.hwehs.com
 +.hweventgrid.com
 +.hwfcw.com
@@ -42642,7 +42472,6 @@
 +.hywaternet.com
 +.hywh1999.com
 +.hywjjz.com
-+.hywngss.com
 +.hywx.com
 +.hyx1927.com
 +.hyxrmt.com
@@ -42929,7 +42758,6 @@
 +.hzqsn.com
 +.hzqszl.com
 +.hzqxbg.com
-+.hzqyhydrogen.com
 +.hzr1.com
 +.hzragine.com
 +.hzranqu.com
@@ -45273,7 +45101,6 @@
 +.iximo.com
 +.ixingfei.com
 +.ixinglu.com
-+.ixingmei.com
 +.ixingpan.com
 +.ixinqing.com
 +.ixintu.com
@@ -45929,7 +45756,6 @@
 +.jh-uav.com
 +.jh0516.com
 +.jh3737.com
-+.jh3j.com
 +.jh597.com
 +.jh8k.com
 +.jh96095.com
@@ -46643,7 +46469,6 @@
 +.jingbotech.com
 +.jingc.com
 +.jingcaipaint.com
-+.jingcaituijian.com
 +.jingchengban.com
 +.jingchengwl.com
 +.jingchuhao.com
@@ -46867,7 +46692,6 @@
 +.jinpacs.com
 +.jinpanlab.com
 +.jinpengecologyhotel.com
-+.jinpg.com
 +.jinpu.com
 +.jinpupvc.com
 +.jinqi2023.com
@@ -47097,7 +46921,6 @@
 +.jiugangbid.com
 +.jiuguijiu000799.com
 +.jiuhantang365.com
-+.jiuhengmake.com
 +.jiuhewj.com
 +.jiuhongwang.com
 +.jiuhua0566.com
@@ -47364,6 +47187,7 @@
 +.jkhapp.com
 +.jkhcfz.com
 +.jkhds872.com
++.jkik635.com
 +.jkjiekuan.com
 +.jkjzt.com
 +.jkl6.com
@@ -47941,7 +47765,6 @@
 +.jrmianban.com
 +.jrntv.com
 +.jrpengze.com
-+.jrq39d1r8.com
 +.jrs-live-football.com
 +.jrs-live-score.com
 +.jrs-live-z.com
@@ -48333,7 +48156,6 @@
 +.jssutong.com
 +.jssuty.com
 +.jssuwei.com
-+.jsswordshop.com
 +.jssyj.com
 +.jssytc.com
 +.jstcm.com
@@ -49490,7 +49312,6 @@
 +.kanbaobei.com
 +.kancaibao.com
 +.kanchao.com
-+.kanchuan.com
 +.kandao.com
 +.kandedongguan.com
 +.kandehotelhuizhou.com
@@ -49835,6 +49656,7 @@
 +.kehaohao.com
 +.kehou.com
 +.kehu51.com
++.kehua.com
 +.kehuan-upward.com
 +.kehuda.com
 +.kehuduan.com
@@ -50069,7 +49891,6 @@
 +.khruiming.com
 +.khs1994.com
 +.khvle.com
-+.khysct.com
 +.ki-pa.com
 +.kiaic.com
 +.kibinggroup.com
@@ -50345,7 +50166,6 @@
 +.klinlee.com
 +.klisedu.com
 +.kliwu.com
-+.kljiyou.com
 +.kljtc.com
 +.kllife.com
 +.klmnf.com
@@ -50441,7 +50261,6 @@
 +.knn-nj.com
 +.knnnd.com
 +.knockdream.com
-+.knotesapp.com
 +.know-act.com
 +.know88.com
 +.knowapartments.com
@@ -50619,7 +50438,6 @@
 +.kr-tencentclb.com
 +.kr126.com
 +.krahag.com
-+.krak12.com
 +.krd168.com
 +.krenzheng.com
 +.kridol.com
@@ -50700,7 +50518,6 @@
 +.ksrmtzx.com
 +.ksrmyy.com
 +.ksrsy.com
-+.ksruanjian.com
 +.ksslxh.com
 +.kst-cn.com
 +.kst100.com
@@ -52328,7 +52145,6 @@
 +.lesofn.com
 +.lesonccl.com
 +.lesoon.com
-+.lesports.com
 +.less-bug.com
 +.lesso.com
 +.letabc.com
@@ -52400,7 +52216,6 @@
 +.leyantech.com
 +.leyaoyao.com
 +.leyard.com
-+.leyi007.com
 +.leyifan.com
 +.leying.com
 +.leying365.com
@@ -52724,6 +52539,7 @@
 +.liebiao.com
 +.liebigwatch.com
 +.liebo.com
++.liechacha.com
 +.liechan.com
 +.lieguo.com
 +.lieguozhi.com
@@ -53199,7 +53015,6 @@
 +.liuchengguanli.com
 +.liuchengtu.com
 +.liuchenkeji.com
-+.liudanking.com
 +.liudaoxiang.com
 +.liudatxt.com
 +.liudayadan.com
@@ -54127,6 +53942,7 @@
 +.luchentech.com
 +.luchenwater.com
 +.luchuang.com
++.luciabid.com
 +.luck-number.com
 +.luckao.com
 +.luckeeinc.com
@@ -54600,7 +54416,6 @@
 +.lynlzqy.com
 +.lynr.com
 +.lyobs.com
-+.lyou123.com
 +.lyouoa.com
 +.lypb.com
 +.lypd.com
@@ -55610,7 +55425,6 @@
 +.mczhihui.com
 +.mczsok.com
 +.mczyz.com
-+.md-hmjt.com
 +.md5ma.com
 +.mdaehx.com
 +.mdbchina.com
@@ -55688,6 +55502,7 @@
 +.medicalimagecloud.com
 +.medicalqc.com
 +.mediecogroup.com
++.mediext.com
 +.medifinit.com
 +.medilinkthera.com
 +.medinoah.com
@@ -57160,7 +56975,6 @@
 +.molcoo.com
 +.moldnano.com
 +.molefitting.com
-+.molerose.com
 +.molesdn.com
 +.molibaike.com
 +.molihuadami.com
@@ -57286,6 +57100,7 @@
 +.morninginn.com
 +.morningwhistle.com
 +.morong-elec.com
++.mos0039.com
 +.moschat.com
 +.moseacg.com
 +.moseeker.com
@@ -57610,7 +57425,6 @@
 +.murphysec.com
 +.murphyyi.com
 +.muselab-tech.com
-+.musenxi.com
 +.musetransfer.com
 +.music4x.com
 +.musicchina-expo.com
@@ -58011,7 +57825,6 @@
 +.myztxyy.com
 +.myzxsx.com
 +.myzxyy.com
-+.myzyy.com
 +.myzyzy.com
 +.mz52.com
 +.mz99.com
@@ -58759,7 +58572,6 @@
 +.newtouch-elec.com
 +.newtranx.com
 +.newtrip.com
-+.newume.com
 +.newupbank.com
 +.newvfx.com
 +.newvisionvc.com
@@ -60799,7 +60611,6 @@
 +.ontheroadstore.com
 +.onthetrip.com
 +.onthink.com
-+.onwaf.com
 +.onwaytech.com
 +.onwork.com
 +.onwsw.com
@@ -61364,7 +61175,6 @@
 +.palmestore.com
 +.palmexpo.com
 +.palmfungames.com
-+.palmjoys.com
 +.palmpay.com
 +.palmpay-inc.com
 +.palmpk.com
@@ -61378,7 +61188,6 @@
 +.pan-ics.com
 +.pan-key.com
 +.pan131.com
-+.pan58.com
 +.panabit.com
 +.panaihua.com
 +.panasiashipping.com
@@ -61948,7 +61757,6 @@
 +.php100.com
 +.php168.com
 +.php318.com
-+.phpbbchina.com
 +.phpchina.com
 +.phpcomposer.com
 +.phpconchina.com
@@ -63386,7 +63194,6 @@
 +.qfwl.com
 +.qfxcha.com
 +.qg108.com
-+.qgb2b.com
 +.qgbnzb.com
 +.qgenius.com
 +.qgfund.com
@@ -63434,7 +63241,6 @@
 +.qhdren.com
 +.qhduhu.com
 +.qhdvtc.com
-+.qhdxgps.com
 +.qhdxw.com
 +.qhdzyy.com
 +.qhea.com
@@ -63821,6 +63627,7 @@
 +.qilinyiqi88.com
 +.qiliuxs.com
 +.qilong.com
++.qilongnianzsq.com
 +.qilongtan.com
 +.qilongyoule.com
 +.qilu-pharma.com
@@ -64655,7 +64462,6 @@
 +.quanoukeji.com
 +.quanqinet.com
 +.quanqiuwa.com
-+.quanqiuweishang.com
 +.quansheng-group.com
 +.quanshi.com
 +.quanshuge.com
@@ -65196,6 +65002,7 @@
 +.qykjedu.com
 +.qymdb.com
 +.qymgc.com
++.qypaizhuo.com
 +.qyrb.com
 +.qyrcrs.com
 +.qysbj.com
@@ -68076,6 +67883,7 @@
 +.secsilo.com
 +.sectigochina.com
 +.securityeb.com
++.securityhg.com
 +.securityinsight.com
 +.secutimes.com
 +.secwk.com
@@ -68702,7 +68510,6 @@
 +.shanglischool.com
 +.shanglushan.com
 +.shanglv51.com
-+.shangpai123.com
 +.shangpin.com
 +.shangpinshou.com
 +.shangpo.com
@@ -69538,7 +69345,6 @@
 +.shjgu.com
 +.shjh120.com
 +.shjhjc.com
-+.shjiabu.com
 +.shjinbao.com
 +.shjincan.com
 +.shjingmi.com
@@ -69730,7 +69536,6 @@
 +.shouyoushenqi.com
 +.shouyoutv.com
 +.shouzhang.com
-+.shouzhangapp.com
 +.shouzhitao.com
 +.shouzhuanzhidao.com
 +.shovesoft.com
@@ -71143,7 +70948,6 @@
 +.smgstv.com
 +.smhsw.com
 +.smhyplay.com
-+.smianao.com
 +.smianet.com
 +.smic-sh.com
 +.smicc.com
@@ -72860,7 +72664,6 @@
 +.swisswatcheshot.com
 +.swisswatchx.com
 +.swit-battery.com
-+.switchb2b.com
 +.switchxiazai.com
 +.switzerland-visacenter.com
 +.swjjshfw.com
@@ -76252,7 +76055,6 @@
 +.tongdaonews.com
 +.tongdaotv.com
 +.tongdayun.com
-+.tongdelove.com
 +.tongdinggroup.com
 +.tongdy.com
 +.tongfangpc.com
@@ -76275,7 +76077,6 @@
 +.tongliaowang.com
 +.tonglichang.com
 +.tonglingwulian.com
-+.tonglize.com
 +.tongmengge.com
 +.tongmengguo.com
 +.tongniguoji.com
@@ -76297,6 +76098,7 @@
 +.tongtool.com
 +.tongtut.com
 +.tongwei.com
++.tongwenads.com
 +.tongxianghuicn.com
 +.tongxiangshun.com
 +.tongxiclub.com
@@ -76409,7 +76211,6 @@
 +.topgslb.com
 +.topgus.com
 +.tophant.com
-+.tophold.com
 +.topideal.com
 +.topjoy.com
 +.topjoycloud.com
@@ -77015,7 +76816,6 @@
 +.ttxn.com
 +.ttxsapp.com
 +.ttxuanpai.com
-+.ttxx8888.com
 +.ttyec.com
 +.ttyfp.com
 +.ttyfund.com
@@ -78002,6 +77802,8 @@
 +.unihertz.com
 +.unilumin.com
 +.unimasdata.com
++.unimcom.com
++.uniminnovation.com
 +.unimtx.com
 +.uninf.com
 +.uninstall-tools.com
@@ -78306,7 +78108,6 @@
 +.uu898.com
 +.uucall.com
 +.uucin.com
-+.uucnn.com
 +.uucqrdmk.com
 +.uueasy.com
 +.uuedutech.com
@@ -78345,7 +78146,6 @@
 +.uutop.com
 +.uutytp.com
 +.uuu9.com
-+.uuulan.com
 +.uuuo.com
 +.uuusss.com
 +.uuvisa.com
@@ -78727,7 +78527,6 @@
 +.vic18.com
 +.vicanquan.com
 +.vicbio.com
-+.vicigaming.com
 +.vicitymall.com
 +.vickn.com
 +.vicome.com
@@ -80131,7 +79930,6 @@
 +.weeet.com
 +.weefang.com
 +.weeiy.com
-+.weekus.com
 +.weeqoo.com
 +.weeyun.com
 +.wefans.com
@@ -80322,7 +80120,6 @@
 +.weiqing120.com
 +.weiqiok.com
 +.weiqitv.com
-+.weiquyx.com
 +.weiren.com
 +.weirenjob.com
 +.weiresearch.com
@@ -81464,7 +81261,6 @@
 +.wjjfjt.com
 +.wjjyxxw.com
 +.wjlxmedia.com
-+.wjmh8.com
 +.wjqcw.com
 +.wjqwy.com
 +.wjrcb.com
@@ -83909,7 +83705,6 @@
 +.xiaoyastar.com
 +.xiaoyatong.com
 +.xiaoyegejitar.com
-+.xiaoyejidian.com
 +.xiaoyejixie.com
 +.xiaoyeren.com
 +.xiaoyezi.com
@@ -84294,7 +84089,6 @@
 +.xingshen.com
 +.xingshu.com
 +.xingshulin.com
-+.xingsteel.com
 +.xingtai0319.com
 +.xingtai123.com
 +.xingtaishipping.com
@@ -85298,7 +85092,6 @@
 +.xoso64.com
 +.xoso94.com
 +.xoso96.com
-+.xoudou.com
 +.xox717.com
 +.xox848.com
 +.xoxxoo.com
@@ -85833,7 +85626,6 @@
 +.xuqijt.com
 +.xuqyfw.com
 +.xuruowei.com
-+.xushenghb.com
 +.xushunda.com
 +.xusplastic.com
 +.xusss.com
@@ -86052,7 +85844,6 @@
 +.xygmed.com
 +.xygre.com
 +.xygsjt.com
-+.xygt666.com
 +.xygtea.com
 +.xygulou.com
 +.xyh2021.com
@@ -86753,7 +86544,6 @@
 +.ybsftd.com
 +.ybsjyyn.com
 +.ybstjs.com
-+.ybt168.com
 +.ybtianshantu.com
 +.ybty.com
 +.ybvip.com
@@ -86786,6 +86576,7 @@
 +.ycangels.com
 +.ycaqr.com
 +.ycb.com
++.ycbeyond.com
 +.ycbian.com
 +.ycbright.com
 +.ycbroker.com
@@ -87294,7 +87085,6 @@
 +.yhkingdee.com
 +.yhkz.com
 +.yhm11.com
-+.yhmob.com
 +.yhppk.com
 +.yhqapp.com
 +.yhqdashi.com
@@ -87572,7 +87362,6 @@
 +.yikuaixiu.com
 +.yikuns.com
 +.yikuyi.com
-+.yilandezhong.com
 +.yilantop.com
 +.yilanvaas.com
 +.yile8.com
@@ -87664,7 +87453,6 @@
 +.yingbei365.com
 +.yingbio.com
 +.yingcaicheng.com
-+.yingcankeji.com
 +.yingchaozhibo.com
 +.yingchengnet.com
 +.yingchuang.com
@@ -87734,7 +87522,6 @@
 +.yingtianwang.com
 +.yingtongshe.com
 +.yingworks.com
-+.yingxiahome.com
 +.yingxiaofangan.com
 +.yingxiaoli.com
 +.yingxichina.com
@@ -88752,7 +88539,6 @@
 +.youleliwu.com
 +.youlesp.com
 +.youletd.com
-+.youleyou.com
 +.youlianfuwu.com
 +.youliangda.com
 +.youliao.com
@@ -89340,6 +89126,7 @@
 +.yuanmadian.com
 +.yuanmait.com
 +.yuanmajiaoyiw.com
++.yuanmancang.com
 +.yuanmatao.com
 +.yuanpanguoji.com
 +.yuanqilt.com
@@ -89566,7 +89353,6 @@
 +.yuhuaholding.com
 +.yuhuanghuagong.com
 +.yuhucoldchain.com
-+.yuhuijob.com
 +.yuhx.com
 +.yujia.com
 +.yujiahui.com
@@ -89942,7 +89728,6 @@
 +.yunyuba.com
 +.yunyueqiji.com
 +.yunyunvip.com
-+.yunyuwuyou.com
 +.yunzazhi.com
 +.yunzehj.com
 +.yunzhan365.com
@@ -89978,8 +89763,6 @@
 +.yuqncloud.com
 +.yuquanhosp.com
 +.yuque.com
-+.yur09130og.com
-+.yur09140og.com
 +.yurongoptical.com
 +.yurun.com
 +.yusainorthwest.com
@@ -91516,7 +91299,6 @@
 +.zhdsbang.com
 +.zhe.com
 +.zhe800.com
-+.zhe900.com
 +.zhebei.com
 +.zhebeipharm.com
 +.zhebumai.com
@@ -92708,7 +92490,6 @@
 +.ziyouwu.com
 +.ziyouziti.com
 +.ziyrta.com
-+.ziyuan605.com
 +.ziyuandai.com
 +.ziyuangou.com
 +.ziyuanku.com
@@ -92780,7 +92561,6 @@
 +.zjabjc.com
 +.zjadgroup.com
 +.zjafl.com
-+.zjags.com
 +.zjaijiagroup.com
 +.zjaikang.com
 +.zjairports.com
@@ -93286,7 +93066,6 @@
 +.zjzhonglan.com
 +.zjzhongtian.com
 +.zjzjjx.com
-+.zjzoneng.com
 +.zjzramc.com
 +.zjzrzyjy.com
 +.zjzsa.com
@@ -93571,7 +93350,6 @@
 +.zol-img.com
 +.zollty.com
 +.zomanbio.com
-+.zombiescat.com
 +.zomsky.com
 +.zon100.com
 +.zonboapp.com
@@ -93730,7 +93508,6 @@
 +.zrj96.com
 +.zrkjy.com
 +.zrlyyy.com
-+.zrmm.com
 +.zrpta.com
 +.zrtechnology.com
 +.zrtg.com
@@ -93805,14 +93582,12 @@
 +.zshpldbz.com
 +.zshsoft.com
 +.zshszy.com
-+.zshtys888.com
 +.zshypr.com
 +.zsihuo.com
 +.zsimc.com
 +.zsincer.com
 +.zsite.com
 +.zsj18.com
-+.zsjhx.com
 +.zsjjob.com
 +.zsjuchuang.com
 +.zsjxwj.com
@@ -94611,7 +94386,6 @@
 +.ciyynodegroup.cyou
 +.cnmjcn.cyou
 +.gshdw.cyou
-+.scdn.cyou
 +.shengtai.cyou
 +.vps.dance
 +.115cdn.de
@@ -94690,7 +94464,6 @@
 +.huisheng.fm
 +.kexue.fm
 +.lizhi.fm
-+.octo.fm
 +.qingting.fm
 +.tide.fm
 +.weike.fm
@@ -94720,6 +94493,7 @@
 +.clzd.fun
 +.code.fun
 +.crazybig.fun
++.croakfang.fun
 +.csur.fun
 +.cumen.fun
 +.daai.fun
@@ -94812,9 +94586,9 @@
 +.springx.fun
 +.sric.fun
 +.studyhub.fun
++.sysy.fun
 +.tangyoufushi.fun
 +.tideswing.fun
-+.tpwallet.fun
 +.tsukistar.fun
 +.tuangoumall666.fun
 +.tuxun.fun
@@ -95118,22 +94892,14 @@
 +.zhilian.host
 +.zhi.hu
 +.12345.icu
-+.212512124156.icu
-+.2512124740355.icu
 +.270326012f82.icu
 +.39507037133f.icu
-+.4502512122531.icu
-+.521251212122.icu
 +.7head.icu
-+.8733777251212.icu
-+.9799251212480.icu
 +.aayun.icu
 +.clfdked.icu
-+.cttptru-pt.icu
 +.cvszavosz.icu
 +.dnspro.icu
 +.ert.icu
-+.fullcopecb.icu
 +.gagaga.icu
 +.hljzl.icu
 +.ifreedom.icu
@@ -95154,13 +94920,11 @@
 +.mya92f.icu
 +.oneself.icu
 +.ouou.icu
-+.puoraiatorcubt.icu
 +.pwdding.icu
 +.qiangang.icu
 +.scio.icu
 +.slcyber.icu
 +.terminal.icu
-+.turs-ptt.icu
 +.wanan8888.icu
 +.wikipediaxx.icu
 +.xbk.icu
@@ -95256,7 +95020,6 @@
 +.1116fad158.info
 +.1116fad167.info
 +.1116fad176.info
-+.18dao.info
 +.21xl.info
 +.23uswx.info
 +.2dfire.info
@@ -95983,7 +95746,6 @@
 +.agtech.ltd
 +.anshuntech.ltd
 +.aoun.ltd
-+.apecloud.ltd
 +.beilin.ltd
 +.biya.ltd
 +.chancel.ltd
@@ -97111,7 +96873,6 @@
 +.816798.net
 +.8207hh.net
 +.8207uu.net
-+.8246.net
 +.833006.net
 +.84684.net
 +.86656.net
@@ -97209,7 +96970,6 @@
 +.aamgame.net
 +.aanroute.net
 +.aaspt.net
-+.aauc.net
 +.aaxinwen.net
 +.abbyschoice.net
 +.abc369.net
@@ -97462,7 +97222,6 @@
 +.ausner.net
 +.aussino.net
 +.auto-testing.net
-+.auto-union.net
 +.autodnsv1.net
 +.autofull.net
 +.autophagy.net
@@ -97907,7 +97666,6 @@
 +.canway.net
 +.caocaokeji.net
 +.caochai.net
-+.caochen.net
 +.caoliao.net
 +.caomall.net
 +.capitalcloud.net
@@ -97963,7 +97721,6 @@
 +.cdn-cdn.net
 +.cdn86.net
 +.cdn90.net
-+.cdnb.net
 +.cdnbbb.net
 +.cdnbuild.net
 +.cdncache.net
@@ -98627,6 +98384,7 @@
 +.de-tencentclb.net
 +.de123.net
 +.deckmanager.net
++.deeepseek.net
 +.deepblog.net
 +.deepmd.net
 +.deepsheet.net
@@ -98804,7 +98562,6 @@
 +.donhonet.net
 +.donoo.net
 +.doooor.net
-+.doorzo.net
 +.dopic.net
 +.dopo-online.net
 +.doublearrow.net
@@ -99198,7 +98955,6 @@
 +.forcemz.net
 +.forestpolice.net
 +.formtalk.net
-+.forsol.net
 +.fortunebs.net
 +.foshannews.net
 +.founder.net
@@ -100324,7 +100080,6 @@
 +.ixfc.net
 +.ixmu.net
 +.ixpub.net
-+.ixuanshu.net
 +.ixueyi.net
 +.iydu.net
 +.iyoujiao.net
@@ -100766,7 +100521,6 @@
 +.kmwx.net
 +.koalacam.net
 +.kofunion.net
-+.kogfc.net
 +.koiclub.net
 +.konfan.net
 +.kongzhi.net
@@ -100834,7 +100588,6 @@
 +.laike.net
 +.lailook.net
 +.lainzy.net
-+.laipei.net
 +.laiqi.net
 +.laituijian.net
 +.laiyouhui.net
@@ -101141,7 +100894,6 @@
 +.madio.net
 +.mafengwo.net
 +.magcloud.net
-+.maguang.net
 +.maibangbang.net
 +.maichuang.net
 +.maidengju.net
@@ -101188,7 +100940,6 @@
 +.maysun.net
 +.mayswind.net
 +.mazey.net
-+.mbitrres.net
 +.mbzhu.net
 +.mc9y.net
 +.mcbbs.net
@@ -101658,6 +101409,7 @@
 +.onedi.net
 +.onedns.net
 +.onegreen.net
++.onesec.net
 +.onething.net
 +.onethingtech.net
 +.onetop.net
@@ -104150,7 +103902,6 @@
 +.yuecdn.net
 +.yuekesoft.net
 +.yuelu.net
-+.yueshifengyin.net
 +.yueting.net
 +.yuetuvip.net
 +.yueya.net
@@ -104545,6 +104296,7 @@
 +.go-behind.one
 +.ikuuu.one
 +.jbb.one
++.kiko-play-niptan.one
 +.no-mad-sub.one
 +.okjc.one
 +.sakata.one
@@ -104674,7 +104426,6 @@
 +.15426.org
 +.17025.org
 +.17jiedu.org
-+.17ym.org
 +.182yg.org
 +.188188.org
 +.1937nanjing.org
@@ -104792,7 +104543,6 @@
 +.angelmom.org
 +.angui.org
 +.ankang06.org
-+.anpsk.org
 +.anquan.org
 +.anren.org
 +.anyline.org
@@ -104876,7 +104626,6 @@
 +.bjqh.org
 +.bjsdr.org
 +.bjsyhy.org
-+.bjtndao.org
 +.bjtth.org
 +.bjzgh.org
 +.bjzgh12351.org
@@ -105194,7 +104943,6 @@
 +.cnbct.org
 +.cnbis.org
 +.cnbooks.org
-+.cncapital.org
 +.cncgw.org
 +.cncma.org
 +.cncourt.org
@@ -105729,7 +105477,6 @@
 +.ioptics.org
 +.iqalliance.org
 +.ishubao.org
-+.ishuquge.org
 +.isiluke.org
 +.ismsms.org
 +.isorenzheng.org
@@ -105750,7 +105497,6 @@
 +.ixdc.org
 +.izyz.org
 +.jafie.org
-+.jamms.org
 +.jarods.org
 +.javaboy.org
 +.javamilk.org
@@ -105895,7 +105641,6 @@
 +.liudatxt.org
 +.liudon.org
 +.lixiaolu.org
-+.lnfdcxh.org
 +.lngwy.org
 +.lonelystar.org
 +.longwiki.org
@@ -106437,7 +106182,6 @@
 +.up62.org
 +.upcd.org
 +.urbanchina.org
-+.urbansocialwork.org
 +.urocancer.org
 +.ustclug.org
 +.utchk.org
@@ -106997,7 +106741,6 @@
 +.16537.ru
 +.airshipads.ru
 +.aliexpress.ru
-+.angelyeast.ru
 +.dbankcdn.ru
 +.dbankcloud.ru
 +.huawei.ru
@@ -107107,16 +106850,6 @@
 +.0003399xtz1.shop
 +.0003399xtz2.shop
 +.0006111xtz2.shop
-+.0007999ab0.shop
-+.0007999ab1.shop
-+.0007999ab2.shop
-+.0007999ab3.shop
-+.0007999ab4.shop
-+.0007999ab5.shop
-+.0007999ab6.shop
-+.0007999ab7.shop
-+.0007999ab8.shop
-+.0007999ab9.shop
 +.000868adh1.shop
 +.000868agl1.shop
 +.000868atz2.shop
@@ -107129,8 +106862,6 @@
 +.4888777a14.shop
 +.49zz1110002a4.shop
 +.51015kid.shop
-+.5559000ab0.shop
-+.5559000ab7.shop
 +.55ht5hn.shop
 +.6666343ac4.shop
 +.8882258ab4.shop
@@ -107160,7 +106891,6 @@
 +.hj44103a1.shop
 +.hjd111.shop
 +.homearch.shop
-+.hongsheng.shop
 +.huijie.shop
 +.huoshi.shop
 +.ibnjl.shop
@@ -107172,7 +106902,6 @@
 +.jiuwang.shop
 +.jqs4463333a7.shop
 +.jqs4463333a9.shop
-+.jxckd.shop
 +.kkyp.shop
 +.laolieren.shop
 +.liangjiu.shop
@@ -107453,17 +107182,14 @@
 +.discount-polska.store
 +.endress.store
 +.finesilver.store
-+.flashsalesfb.store
 +.forwe.store
 +.goldennumis.store
 +.hnzhhzh.store
 +.hoaihe.store
 +.homearch.store
 +.huaji.store
-+.hungsh.store
 +.ictdns.store
 +.ienglish.store
-+.kingsh.store
 +.ksdyob.store
 +.ktuner.store
 +.linzhou.store
@@ -107992,7 +107718,6 @@
 +.wavideo.tv
 +.wawayu.tv
 +.weibo.tv
-+.weihai.tv
 +.wezhibo.tv
 +.wo186.tv
 +.wol.tv
@@ -108072,6 +107797,7 @@
 +.uuxs.tw
 +.xiaomi.tw
 +.travel6.co.uk
++.digitalmall.uk
 +.ks5.uno
 +.rjsth.uno
 +.starlink.uno
@@ -108277,7 +108003,6 @@
 +.dlwang.vip
 +.dnss.vip
 +.dnstest.vip
-+.dpafmp641.vip
 +.druid.vip
 +.dsfjh.vip
 +.duanshipin.vip
@@ -108291,7 +108016,6 @@
 +.elianmeng.vip
 +.enfi.vip
 +.erlo.vip
-+.esound.vip
 +.evcard.vip
 +.evdo.vip
 +.eyy8.vip
@@ -108388,8 +108112,6 @@
 +.kuaiyingyong.vip
 +.kumao.vip
 +.kumiao.vip
-+.kydl308015.vip
-+.kydl308029.vip
 +.kye.vip
 +.lattice.vip
 +.leapahead.vip
@@ -108648,7 +108370,6 @@
 +.byr.wiki
 +.caomei.wiki
 +.chase-secure55.wiki
-+.chucheng.wiki
 +.csdiy.wiki
 +.dongbing.wiki
 +.fgo.wiki
@@ -108826,7 +108547,6 @@
 +.madsam.work
 +.mbtools.work
 +.mcbaas.work
-+.mdxw.work
 +.miak.work
 +.mind-medi.work
 +.mono.work
@@ -109172,7 +108892,6 @@
 +.dingding.xin
 +.evan.xin
 +.fang.xin
-+.fefd203.xin
 +.findyou.xin
 +.fqis.xin
 +.gongyi.xin
@@ -109649,7 +109368,6 @@
 +.qianyuewenhua.xyz
 +.qingkongfy.xyz
 +.qinxing.xyz
-+.qjwh.xyz
 +.qkixeld.xyz
 +.qtlcdn360.xyz
 +.quanyin.xyz
