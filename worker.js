@@ -1,6 +1,30 @@
+const RATE_LIMIT_MAX = 60; // max requests
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // per 60 seconds
+const rateLimitStore = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+  if (!entry || now - entry.start > RATE_LIMIT_WINDOW_MS) {
+    rateLimitStore.set(ip, { start: now, count: 1 });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // 0. 限流：防止单一来源 IP 高频请求耗尽资源
+    const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+    if (isRateLimited(clientIp)) {
+      return new Response("Too Many Requests", {
+        status: 429,
+        headers: { "Content-Type": "text/plain; charset=utf-8", "Retry-After": "60" },
+      });
+    }
 
     // 1. 强制使用 HTTPS：如果是 HTTP 请求，直接 301 重定向到 HTTPS
     if (url.protocol === "http:") {
