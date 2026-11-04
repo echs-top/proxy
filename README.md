@@ -27,7 +27,7 @@
 
 裸核：约40～150MB(smart分支占用偏高)
 
-MRS：`964.71KB` `173846` (含dnsmasq-china DNS分流规则)
+MRS：`964.71KB` `173837` (含dnsmasq-china DNS分流规则)
 
 ### 更新日志
 
@@ -86,17 +86,17 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - proxy：[proxy](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.list) + ([tld-not-cn](https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/tld-not-cn.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/tld-not-cn@del_domain.list)) +[github api](https://api.github.com/meta) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/proxy_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/proxy_del_domain.list)  
   代理域名规则  
-  Update：`2026.11.03` `20877`  
+  Update：`2026.11.05` `20879`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy.mrs)
 
 - cn：[cn-lite](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn-lite.list) + [备案域名](https://www.nodeseek.com/post-464238-1)  
   国内域名规则  
-  Update：`2026.11.03` `32626`  
+  Update：`2026.11.05` `32625`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/cn.mrs)
 
 - direct：cn + [games-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/games-cn.list) + [apple-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/apple-cn.list) + [microsoft-cn](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/microsoft-cn.list) + [private](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/private.list) + [增加](https://github.com/echs-top/proxy/blob/main/work/list/direct_add_domain.list) - [删除](https://github.com/echs-top/proxy/blob/main/work/list/direct_del_domain.list)  
   直连域名规则  
-  Update：`2026.11.03` `33037`  
+  Update：`2026.11.05` `33036`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct.mrs)
 
 - dnsmasq-china：[dnsmasq-china](https://github.com/felixonmars/dnsmasq-china-list)  
@@ -111,7 +111,7 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - enhanced-FaaS-in-China_ip：[enhanced-FaaS-in-China](https://github.com/xingpingcn/enhanced-FaaS-in-China)  
   少量vercel/netlify/cloudflare优选IP规则  
-  Update：`2026.11.04` `14`  
+  Update：`2026.11.05` `13`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/enhanced-FaaS-in-China.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/enhanced-FaaS-in-China.mrs)
 
 - safe_ip：[twitter](https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list)  
@@ -131,24 +131,24 @@ dist-lxgwwenkai-only.zip `5.60MB`
 
 - cn_ip：[china-operator-ip](https://gaoyifan.github.io/china-operator-ip/china46.txt) + [苍狼山庄](https://ispip.clang.cn) + [metowolf/iplist](https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt) + [zhufengme/block_cn_files](https://raw.githubusercontent.com/zhufengme/block_cn_files/master/cn_ip_list.txt)  
   国内IP规则  
-  Update：`2026.11.04` `10025`  
+  Update：`2026.11.05` `10015`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/cn.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/cn.mrs)
 
 - direct_ip：cn_ip + 'enhanced-FaaS-in-China_ip' + [private_ip](https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/privateip.list)  
   直连IP规则  
-  Update：`2026.11.04` `10066`  
+  Update：`2026.11.05` `10056`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/ip/direct.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/ip/direct.mrs)
 
 谨慎引用！lite规则：
 
 - proxy-lite：proxy - ads - google - media  
   精简代理域名规则  
-  Update：`2026.11.03` `19203`  
+  Update：`2026.11.05` `19205`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/proxy-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/proxy-lite.mrs)
 
 - direct-lite：direct - ads - proxy@direct - proxy  
   精简直连域名规则  
-  Update：`2026.11.03` `32418`  
+  Update：`2026.11.05` `32417`  
   规则链接：[list](https://raw.githubusercontent.com/echs-top/proxy/main/list/domain/direct-lite.list) / [mrs](https://raw.githubusercontent.com/echs-top/proxy/main/mrs/domain/direct-lite.mrs)
 
 - dnsmasq-china-lite：'dnsmasq-china' - ads - proxy@direct - proxy - direct  
