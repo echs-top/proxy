@@ -53,6 +53,7 @@ ppl-ai-file-upload.s3.amazonaws.com
 +.client-api.arkoselabs.com
 +.auth0.com
 +.ai.azure.com
+production-copilot-host-westus.webpubsub.azure.com
 sydney.bing.com
 browser-intake-datadoghq.com
 +.chat.com
@@ -82,6 +83,7 @@ pplx-res.cloudinary.com
 +.cursor-cdn.com
 +.cursorapi.com
 +.cursorvm.com
+http-intake.logs.us5.datadoghq.com
 +.deepmind.com
 +.deepwiki.com
 +.diabrowser.com
@@ -130,6 +132,7 @@ notebooklm-pa.googleapis.com
 +.proactivebackend-pa.googleapis.com
 +.robinfrontend-pa.googleapis.com
 +.grok.com
++.grokbot.com
 +.grokipedia.com
 +.groq.com
 +.gemini.gstatic.com
@@ -186,6 +189,7 @@ ai.google.dev
 +.minimax.io
 +.notegpt.io
 o33249.ingest.sentry.io
+o1158394.ingest.us.sentry.io
 o33249.ingest.us.sentry.io
 +.coderabbit.gallery.vsassets.io
 +.copilot.cloud.microsoft
