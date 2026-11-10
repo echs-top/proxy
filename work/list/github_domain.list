@@ -76,6 +76,13 @@ pipelinesproxweu1.actions.githubusercontent.com
 pipelinesproxwus31.actions.githubusercontent.com
 pipelinesproxwus32.actions.githubusercontent.com
 pkg.actions.githubusercontent.com
+production-copilot-host-austriaeast.webpubsub.azure.com
+production-copilot-host-centralus-02.webpubsub.azure.com
+production-copilot-host-centralus.webpubsub.azure.com
+production-copilot-host-eastasia.webpubsub.azure.com
+production-copilot-host-westus.webpubsub.azure.com
+production-copilot-host-westus3.webpubsub.azure.com
+production-copilot-host.webpubsub.azure.com
 productionresultssa0.blob.core.windows.net
 productionresultssa1.blob.core.windows.net
 productionresultssa10.blob.core.windows.net
