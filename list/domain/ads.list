@@ -50,6 +50,7 @@
 +.ktu.sv2.biz
 +.textads.biz
 +.trafficfactory.biz
++.abu.usaday.biz
 +.ads.wwe.biz
 +.banners.bol.com.br
 +.adserver.diariodosertao.com.br
@@ -1111,6 +1112,8 @@ pay.sboot.cn
 +.online.sh.cn
 +.api.shanghailingye.cn
 +.shanhutech.cn
+shihuo.log.shihuocdn.cn
+shihuo-new.log.shihuocdn.cn
 +.statichf.shihuocdn.cn
 +.shilian168.cn
 +.ad.shobo.cn
@@ -2796,6 +2799,8 @@ usr-api.aiclk.com
 +.adash-emas.cn-hangzhou.aliyuncs.com
 +.httpdns-api.aliyuncs.com
 +.httpdns-sc.aliyuncs.com
+du-app.cn-hangzhou.log.aliyuncs.com
+client-upload.cn-shanghai.log.aliyuncs.com
 +.wzjs1.oss-accelerate.aliyuncs.com
 +.xpjcg.oss-accelerate.aliyuncs.com
 +.ad-host-backup-asia.oss-ap-southeast-1.aliyuncs.com
@@ -2853,9 +2858,6 @@ usr-api.aiclk.com
 +.h-adashx.ut.amap.com
 +.amazingcounters.com
 +.aax-eu-dub.amazon.com
-advertising-api.amazon.com
-advertising-api-eu.amazon.com
-advertising-api-fe.amazon.com
 +.amazon-adsystem.com
 adtago.s3.amazonaws.com
 advice-ads.s3.amazonaws.com
@@ -2933,7 +2935,6 @@ tk.anythinktech.com
 +.appboycdn.com
 +.mobile.appchina.com
 +.ads.apple.com
-advertising.apple.com
 proxy.advp.apple.com
 api-adservices.apple.com
 books-analytics-events.apple.com
@@ -6627,7 +6628,6 @@ mobile.da.mgtv.com
 +.ads.mic.com
 +.micro-xdb.com
 +.microad-cn.com
-bingads.microsoft.com
 mobile.events.data.microsoft.com
 +.target.microsoft.com
 watson.telemetry.microsoft.com
@@ -7109,6 +7109,7 @@ browser.events.data.msn.com
 +.obv3epx22d.com
 +.oceancloudhosts.com
 +.analytics.oceanengine.com
+lf-event-manager.oceanengine.com
 +.ocvdi0rum.com
 +.od6992uotl.com
 +.ads.oddschecker.com
@@ -8503,7 +8504,6 @@ agn.aty.sohu.com
 +.offer.sponsorpay.com
 +.spookysleet.com
 +.spoonballoon.com
-adstudio.spotify.com
 heads-fa.spotify.com
 +.wl.spotify.com
 +.spotlessstamp.com
@@ -8879,9 +8879,6 @@ ws.tapjoyads.com
 +.tidysprite.com
 +.tiexing.com
 +.ads.tiktok.com
-ads-api.tiktok.com
-ads-jp.tiktok.com
-ads-sg.tiktok.com
 +.analytics.tiktok.com
 business-api.tiktok.com
 +.mcs-va.tiktok.com
@@ -10134,8 +10131,6 @@ xlviirdr.com
 +.adserver.yaboo.com
 +.yah3ph65tc.com
 +.ads.yahoo.com
-adspecs.yahoo.com
-advertising.yahoo.com
 +.analytics.yahoo.com
 ads.auctions.yahoo.com
 log.fc.yahoo.com
@@ -10147,7 +10142,6 @@ analytics.query.yahoo.com
 udc.yahoo.com
 udcm.yahoo.com
 +.partnerads.ysm.yahoo.com
-adtech.yahooinc.com
 +.yahzsa6o2o.com
 +.x6.yakiuchi.com
 +.yandexmetrica.com
@@ -11753,6 +11747,7 @@ offerwall.yandex.net
 +.somniture.stuff.co.nz
 +.webads.co.nz
 +.ads.xtra.co.nz
++.dash.kryon.one
 +.fireads.online
 +.report.starshort.online
 +.memelq.acs.org
@@ -11908,7 +11903,6 @@ offerwall.yandex.net
 +.a.ucoz.ru
 +.yadro.ru
 +.adsdk.yandex.ru
-advertising.yandex.ru
 +.api.appmetrica.yandex.ru
 +.bs.yandex.ru
 metrika.yandex.ru
