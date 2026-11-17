@@ -3383,6 +3383,7 @@ cdn.angruo.com
 +.adcdownload.apple.com
 +.appldnld.apple.com
 +.apps.apple.com
++.captive.apple.com
 +.cds.apple.com
 +.cdsassets.apple.com
 +.certs.apple.com
@@ -3419,6 +3420,7 @@ init.gc.apple.com
 +.iphone-ld.apple.com
 +.itunes.apple.com
 +.itunesconnect.apple.com
+configuration.ls.apple.com
 +.gsp10-ssl-cn.ls.apple.com
 +.gsp11-cn.ls.apple.com
 +.gsp12-cn.ls.apple.com

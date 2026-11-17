@@ -1111,6 +1111,7 @@ pay.sboot.cn
 +.sglyd.cn
 +.online.sh.cn
 +.api.shanghailingye.cn
+bid.shanghailingye.cn
 +.shanhutech.cn
 shihuo.log.shihuocdn.cn
 shihuo-new.log.shihuocdn.cn
@@ -2914,13 +2915,18 @@ analyticsengine.s3.amazonaws.com
 +.ad.anuntis.com
 +.anxiousapples.com
 +.anysdk.com
+adx.anythinktech.com
 adx-bj.anythinktech.com
 adx-bj-req.anythinktech.com
 adx-cn.anythinktech.com
 adx-os.anythinktech.com
 api.anythinktech.com
 cn-api.anythinktech.com
+cn-api-sec.anythinktech.com
+cn-da.anythinktech.com
+cn-tk.anythinktech.com
 da.anythinktech.com
+ssapi.anythinktech.com
 tk.anythinktech.com
 +.ao2doihore.com
 +.aopytfhhfc.com
@@ -3949,6 +3955,7 @@ ssp.cloooud.com
 +.mydisplay.ctfile.com
 +.ctk8ifokyw.com
 success.ctobsnssdk.com
+tobapplog.ctobsnssdk.com
 toblog.ctobsnssdk.com
 +.ma-adx.ctrip.com
 +.ctrmi.com
@@ -8557,6 +8564,8 @@ sdownload.stargame.com
 +.statcounter.com
 +.statdynamic.com
 adx-strategy-api-cn.statisticslinks.com
+da.statisticslinks.com
+tk.statisticslinks.com
 +.stats4all.com
 +.statsie.com
 api.statsig.com
@@ -8919,6 +8928,7 @@ business-api.tiktok.com
 +.www.top-banners.com
 +.top-site-list.com
 +.top20free.com
++.topicspin.com
 +.ads.toplayaffiliates.com
 +.toplistcity.com
 +.stats.topofblogs.com
