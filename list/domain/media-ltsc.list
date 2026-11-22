@@ -262,6 +262,7 @@ zeenews-fonts.s3.amazonaws.com
 +.bookclubgirl.com
 +.bowenpress.com
 +.boxun.com
++.bravotv.com
 +.breitbart.com
 +.broadpressinc.com
 +.businessinsider.com
@@ -289,6 +290,7 @@ zeenews-fonts.s3.amazonaws.com
 +.chinatimes.com
 +.citylab.com
 +.cnbc.com
++.cnbccouncils.com
 +.cnbcfm.com
 +.cnbeta.com
 +.cnbetacdn.com
@@ -369,6 +371,7 @@ zeenews-fonts.s3.amazonaws.com
 +.fdiintelligence.com
 +.financialadvisoriq.com
 +.fnlondon.com
++.focusfeatures.com
 +.forbes.com
 +.forbesimg.com
 +.fortuneinsight.com
@@ -527,6 +530,7 @@ deutschewelle.h-cdn.com
 +.harpercollinsadvantage.com
 +.harpercollinschristian.com
 +.harpercollinsspeakersbureau.com
++.hayu.com
 +.hcpdts.com
 +.herringnetwork.com
 +.hk01.com
@@ -554,6 +558,7 @@ deutschewelle.h-cdn.com
 +.ignites.com
 +.ignitesasia.com
 +.igniteseurope.com
++.illumination.com
 +.india.com
 +.indiancolleges.com
 +.infoq.com
@@ -615,7 +620,6 @@ cbsi.live.ott.irdeto.com
 +.bbc.mp-pxcdn.com
 +.mpfinance.com
 +.mpweekly.com
-+.msnbc.com
 +.mtvnservices.com
 +.my-formosa.com
 +.my13la.com
@@ -656,8 +660,11 @@ cbsi.live.ott.irdeto.com
 +.nbcolympics.com
 +.nbcsports.com
 +.nbcudigitaladops.com
++.nbcumv.com
 +.nbcuni.com
++.nbcunicareers.com
 +.nbcuniversal.com
++.nbcuniversalprivacy.com
 +.neigbuy.com
 +.netflix.com
 +.netflixdnstest0.com
@@ -854,6 +861,7 @@ cbsservice.aws.syncbak.com
 +.techspot.com
 +.techtudo.com
 +.teenchoice.com
++.telemundo.com
 +.testonfox.com
 +.the-japan-news.com
 +.theaffairs.com
@@ -896,11 +904,18 @@ link.theplatform.com
 +.udn.com
 +.udndata.com
 +.udnfunlife.com
++.udxfpp.com
 +.umsoplaneta.com
++.universalbeijingresort.com
++.universalhorrorunleashed.com
++.universalkidsresort.com
 +.universalorlando.com
 +.universalpictures.com
++.universalpicturesathome.com
 +.universalpicturesinternational.com
++.universalproductsexperiences.com
 +.universalstudioshollywood.com
++.uphe.com
 +.urduvoa.com
 +.usatoday.com
 +.usatodaynetworkservice.com
@@ -1205,6 +1220,7 @@ himalaya-exchange.zendesk.com
 +.sponichi.co.jp
 +.thomsonreuters.co.jp
 +.tokyo-sports.co.jp
++.usj.co.jp
 +.yomiuri.co.jp
 +.yomiuri-johkai.co.jp
 +.yomiuri-ryokou.co.jp
@@ -1729,6 +1745,8 @@ vs-hls-pushb-uk-live.akamaized.net
 +.thetimes.co.uk
 +.thisismoney.co.uk
 +.thomsonreuters.co.uk
++.universalpictures.co.uk
++.universalukproject.co.uk
 +.wirelessgroup.co.uk
 +.youtube.co.uk
 +.gbnews.uk
