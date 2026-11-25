@@ -51,11 +51,7 @@
 ppl-ai-file-upload.s3.amazonaws.com
 +.anthropic.com
 +.anythingllm.com
-+.client-api.arkoselabs.com
-+.auth0.com
-+.ai.azure.com
 production-copilot-host-westus.webpubsub.azure.com
-sydney.bing.com
 browser-intake-datadoghq.com
 +.chat.com
 +.chatbotclaude.com
@@ -138,8 +134,6 @@ notebooklm-pa.googleapis.com
 +.grokipedia.com
 +.groq.com
 +.gemini.gstatic.com
-+.identrust.com
-+.intercomcdn.com
 +.langchain.com
 +.magnific.com
 +.manuscdn.com
@@ -187,7 +181,6 @@ ai.google.dev
 +.manus.im
 +.talkai.info
 +.elevenlabs.io
-+.intercom.io
 +.minimax.io
 +.notegpt.io
 o33249.ingest.sentry.io
@@ -195,7 +188,7 @@ o1158394.ingest.us.sentry.io
 o33249.ingest.us.sentry.io
 +.coderabbit.gallery.vsassets.io
 +.copilot.cloud.microsoft
-+.openaiapi-site.azureedge.net
+openaiapi-site.azureedge.net
 production-openaicom-storage.azureedge.net
 openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
 servd-anthropic-website.b-cdn.net
@@ -206,7 +199,6 @@ openaicom.imgix.net
 +.lpsnmedia.net
 +.novelai.net
 +.poecdn.net
-+.events.statsigapi.net
 +.themeforest.net
 copilotprodattachments.blob.core.windows.net
 openaiassets.blob.core.windows.net
@@ -216,7 +208,6 @@ openaicomproductionae4b.blob.core.windows.net
 +.comfyci.org
 +.comfyregistry.org
 +.deepwiki.org
-+.featuregates.org
 +.openai.org
 +.cursor.sh
 +.chatgpt.site
@@ -226,4 +217,3 @@ openaicomproductionae4b.blob.core.windows.net
 +.ai.studio
 +.anthropic.team
 +.oystermercury.top
-api.together.xyz
